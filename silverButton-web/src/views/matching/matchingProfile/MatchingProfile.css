@@ -1,0 +1,73 @@
+.matching-profile-container {
+  font-family: 'Arial', sans-serif;
+  padding: 40px;
+  text-align: center;
+}
+
+.caregiver-info, .dependent-info {
+  background-color: #fff; /* 회색 배경을 제거하고 흰색으로 설정 */
+  padding: 50px;
+  margin: 20px;
+  border-radius: 12px;
+  flex: 1;
+  min-width: 400px;
+  max-width: 800px;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db; /* 희미한 회색 라인 추가 */
+  box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1); /* 우측과 하단에 그림자 효과 추가 */
+}
+
+.caregiver-info h2, .dependent-info h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.caregiver-info p, .dependent-info p {
+  font-size: 1.2rem;
+  margin: 10px 0;
+}
+
+.matching-profile-content {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.buttons-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.button {
+  padding: 12px 30px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+  color: white;
+  font-weight: bold;
+  transition: background 0.3s ease;
+  margin-right: 20px;
+}
+
+.prev-button {
+  background: linear-gradient(to right, #6ee7b7, #3b82f6);
+}
+
+.complete-button {
+  background: linear-gradient(to right, #6ee7b7, #3b82f6);
+}
+
+.button:hover {
+  opacity: 0.8;
+}
+
+.prev-button:hover {
+  background: linear-gradient(to left, #6ee7b7, #3b82f6);
+}
+
+.complete-button:hover {
+  background: linear-gradient(to left, #6ee7b7, #3b82f6);
+}

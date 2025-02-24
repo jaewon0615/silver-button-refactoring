@@ -1,0 +1,69 @@
+.caregiver-list-container {
+  width: 100%;
+  padding: 20px;
+  font-family: Arial, sans-serif;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.caregiver-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 20px;
+  list-style: none; /* 리스트 스타일 제거 */
+  margin: 0; /* 여백 제거 */
+  padding: 0; /* 내부 여백 제거 */
+}
+
+.caregiver-item {
+  width: calc(50% - 10px);
+  background-color: #f9f9f9;
+  border: 1px solid #ddd;
+  padding: 15px;
+  border-radius: 8px;
+  font-size: 20px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.caregiver-item h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.caregiver-item p {
+  font-size: 14px;
+  color: #555;
+}
+
+.view-profile-btn {
+  display: block;
+  margin-top: 15px;
+  padding: 8px 15px;
+  background: linear-gradient(to right bottom, #9381ff, #6ee7b7); /* 요청하신 버튼 색 */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.view-profile-btn:hover {
+  background: linear-gradient(to right bottom, #6ee7b7, #9381ff); /* hover 시 색상 반전 */
+}
+
+.no-data {
+  text-align: center;
+  font-size: 18px;
+  color: #888;
+}
+
+.error-message {
+  text-align: center;
+  font-size: 16px;
+  color: red;
+}
