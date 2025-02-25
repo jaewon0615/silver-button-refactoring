@@ -1,19 +1,26 @@
 package com.korit.silverbutton.service.implement;
 
 import com.korit.silverbutton.common.constant.ResponseMessage;
+
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.board.Request.BoardRequestDto;
-import com.korit.silverbutton.dto.board.Response.BoardResponseDto;
-import com.korit.silverbutton.dto.board.Response.BoardUpdateResponseDto;
-import com.korit.silverbutton.dto.paged.Response.PagedResponseDto;
+import com.korit.silverbutton.dto.board.response.BoardResponseDto;
+import com.korit.silverbutton.dto.board.response.BoardUpdateResponseDto;
+import com.korit.silverbutton.dto.paged.response.PagedResponseDto;
+
+import com.korit.silverbutton.dto.board.request.BoardRequestDto;
+
 import com.korit.silverbutton.entity.Board;
 import com.korit.silverbutton.entity.User;
+
 import com.korit.silverbutton.repository.BoardRepository;
 import com.korit.silverbutton.repository.UserRepository;
+
 import com.korit.silverbutton.service.BoardService;
 import com.korit.silverbutton.service.ProfileImgService;
+
 import io.jsonwebtoken.io.IOException;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -21,6 +28,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDateTime;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;

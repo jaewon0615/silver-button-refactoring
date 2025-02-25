@@ -1,8 +1,10 @@
-package com.korit.silverbutton.dto.board.Request;
+package com.korit.silverbutton.dto.board.request;
 
 import jakarta.validation.constraints.NotBlank;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;

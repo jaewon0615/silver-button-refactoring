@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.Dependent.RequestDto;
+package com.korit.silverbutton.dto.dependent.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -10,10 +10,13 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class DependentRequestDto {
-
     private Long id;
+
     private String name;
+
     private String userId;
+
     private String phone;
+
     private String password;
 }

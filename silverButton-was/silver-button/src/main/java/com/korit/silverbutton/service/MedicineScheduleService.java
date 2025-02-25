@@ -1,8 +1,11 @@
 package com.korit.silverbutton.service;
 
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.medicine.MedicineScheduleRequestDto;
-import com.korit.silverbutton.dto.medicine.MedicineScheduleResponseDto;
+import com.korit.silverbutton.dto.medicine.response.MedicineScheduleResponseDto;
+
+import com.korit.silverbutton.dto.medicine.requset.MedicineScheduleRequestDto;
+
+
 import org.springframework.stereotype.Service;
 
 import java.util.List;

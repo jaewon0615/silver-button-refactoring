@@ -1,11 +1,10 @@
-package com.korit.silverbutton.dto.User.Response;
+package com.korit.silverbutton.dto.user.response;
 
 import com.korit.silverbutton.entity.User;
 import lombok.Getter;
 
 @Getter
 public class UserResponseDto {
-
     private Long id;
 
     private String userId;
@@ -13,8 +12,6 @@ public class UserResponseDto {
     private String password;
 
     private String email;
-
-
 
     public UserResponseDto(User user){
         this.id = user.getId();

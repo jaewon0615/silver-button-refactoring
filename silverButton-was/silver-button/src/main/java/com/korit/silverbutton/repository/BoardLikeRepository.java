@@ -1,6 +1,7 @@
 package com.korit.silverbutton.repository;
 
 import com.korit.silverbutton.entity.BoardLike;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

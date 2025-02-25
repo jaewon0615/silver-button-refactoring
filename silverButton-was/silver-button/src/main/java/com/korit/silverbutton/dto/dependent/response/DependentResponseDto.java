@@ -1,14 +1,16 @@
-package com.korit.silverbutton.dto.Dependent.ResponseDto;
+package com.korit.silverbutton.dto.dependent.response;
 
 import com.korit.silverbutton.entity.User;
 import lombok.Getter;
 
 @Getter
 public class DependentResponseDto {
-
     private Long id;
+
     private String userId;
+
     private String name;
+
     private String phone;
 
     public DependentResponseDto(User user) {

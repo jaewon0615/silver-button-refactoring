@@ -1,7 +1,8 @@
 package com.korit.silverbutton.service;
 
-import com.korit.silverbutton.dto.HealthMagazine.request.HealthMagazineRequestDto;
-import com.korit.silverbutton.dto.HealthMagazine.response.HealthMagazineResponseDto;
+import com.korit.silverbutton.dto.healthMagazine.request.HealthMagazineRequestDto;
+
+import com.korit.silverbutton.dto.healthMagazine.response.HealthMagazineResponseDto;
 import com.korit.silverbutton.dto.ResponseDto;
 
 import java.util.List;
@@ -20,5 +21,4 @@ public interface HealthMagazineService {
     ResponseDto<List<HealthMagazineResponseDto>> findLatestByOrderByPublishedDateDesc();
 
     ResponseDto<List<HealthMagazineResponseDto>> findAllByOrderByViewCountDesc();
-
 }

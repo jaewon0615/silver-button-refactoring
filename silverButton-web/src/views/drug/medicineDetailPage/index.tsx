@@ -5,18 +5,19 @@ import axios from "axios";
 import * as s from "./style";
 import { useCookies } from "react-cookie";
 import useAuthStore from "../../../stores/auth.store";
+import { css } from "@emotion/react";
 
 interface MedicineData {
   id: number;
-  userId:string;
+  userId: string;
   itemName: string;
   efcyQesitm: string | null;
   useMethodQesitm: string | null;
   depositMethodQesitm: string | null;
   medicineImage: string | null;
   intrcQesitm: string | null;
-  atpnQesitm:string | null;
-  seQesitm:string | null;
+  atpnQesitm: string | null;
+  seQesitm: string | null;
 }
 
 export default function MedicineDetailPage() {
@@ -28,8 +29,8 @@ export default function MedicineDetailPage() {
   const [cookies] = useCookies(["token", "userId"]);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const { user } = useAuthStore();
+  const [showModal, setShowModal] = useState(false); // 모달 상태 추가
 
-  // userId를 쿠키에서 가져오고, 존재하지 않을 경우 경고 메시지를 출력
   const userId = cookies.userId;
 
   const getTokenFromCookies = () => {
@@ -62,23 +63,21 @@ export default function MedicineDetailPage() {
   }, [id]);
 
   const handleSaveMedicine = async () => {
-    // 토큰과 사용자 ID가 모두 존재하는지 확인
     if (!token || !user?.userId) {
       console.log(token);
-      console.log(userId);
-      console.log("userId: "+user?.userId);
-      alert("로그인 후 다시 시도해주세요.");
-    
+      console.log("userId: " + user?.userId);
+
+      // 모달 띄우기
+      setShowModal(true);
       return;
     }
 
     if (medicine) {
       try {
-        console.log(medicine.efcyQesitm);
         await axios.post(
           `http://localhost:4040/api/v1/medicine-schedule/`,
           {
-            userId:user.userId,
+            userId: user.userId,
             itemSeq: medicine.id,
             itemName: medicine.itemName,
             efcyQesitm: medicine.efcyQesitm,
@@ -101,60 +100,86 @@ export default function MedicineDetailPage() {
     }
   };
 
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleLoginRedirect = () => {
+    navigate("/auth"); // 로그인 페이지로 이동
+    setShowModal(false); // 모달 닫기
+  };
+
   return (
     <div css={s.contSt}>
-  <div css={s.conttSt}>
-    {loading && <div>Loading...</div>}
-    {error && <div>{error}</div>}
-    {medicine ? (
-      <div css={s.listCt}>
-        <div css={s.medicineAll}>
-          <div css={s.medicineRow}>
-            <div css={s.medicineName}>약품 이름: {medicine.itemName}</div>
-            <button onClick={handleSaveMedicine} css={s.saveButton}>약품 저장</button>
-          {saveMessage && <div>{saveMessage}</div>}
+      <div css={s.conttSt}>
+        {loading && <div css={s.loading}>Loading...</div>}
+        {error && <div css={s.error}>{error}</div>}
+        {medicine ? (
+          <div css={s.listCt}>
+            <div css={s.medicineAll}>
+              <div css={s.medicineRow}>
+                <div css={s.medicineName}>약품 이름: {medicine.itemName}</div>
+                <button onClick={handleSaveMedicine} css={s.saveButton}>
+                  약품 저장
+                </button>
+                {saveMessage && <div css={s.saveMessage}>{saveMessage}</div>}
+              </div>
+              <div css={s.imageBox}>
+                <img src={medicine.medicineImage || ""} alt={medicine.itemName} />
+              </div>
+              <div css={s.medicneDeatail}>
+                <div css={s.detailText}>
+                  <span css={s.text}>효능: </span>
+                  {medicine.efcyQesitm ?? "정보 없음"}
+                </div>
+                <div css={s.detailText}>
+                  <span css={s.text}>복용 방법: </span>
+                  {medicine.useMethodQesitm ?? "정보 없음"}
+                </div>
+                <div css={s.detailText}>
+                  <span css={s.text}>보관 방법: </span>
+                  {medicine.depositMethodQesitm ?? "정보 없음"}
+                </div>
+                <div css={s.detailText}>
+                  <span css={s.text}>약품 복용 시 주의 사항: </span>
+                  {medicine.atpnQesitm ?? "정보 없음"}
+                </div>
+                <div css={s.detailText}>
+                  <span css={s.text}>약품 부작용: </span>
+                  {medicine.seQesitm ?? "정보 없음"}
+                </div>
+                <div css={s.detailText}>
+                  <span css={s.text}>약품 사용방법: </span>
+                  {medicine.useMethodQesitm ?? "정보 없음"}
+                </div>
+                <div css={s.detailText}>
+                  <span css={s.text}>약품 상호작용: </span>
+                  {medicine.intrcQesitm ?? "정보 없음"}
+                </div>
+              </div>
+            </div>
           </div>
-          <div css={s.imageBox}>
-          <img src={medicine.medicineImage || ""} alt={medicine.itemName} />
-        </div>
-          <div css={s.medicneDeatail}>
-            <div css={s.detailText}>
-              <span css={s.text}>효능: </span>
-              {medicine.intrcQesitm ?? "정보 없음"}
-            </div>
-            <div css={s.detailText}>
-              <span css={s.text}>복용 방법: </span>
-              {medicine.useMethodQesitm ?? "정보 없음"}
-            </div>
-            <div css={s.detailText}>
-              <span css={s.text}>보관 방법: </span>
-              {medicine.depositMethodQesitm ?? "정보 없음"}
-            </div>
-            <div css={s.detailText}>
-              <span css={s.text}>약품 복용 시 주의 사항: </span>
-              {medicine.atpnQesitm ?? "정보 없음"}
-            </div>
-            <div css={s.detailText}>
-              <span css={s.text}>약품 부작용: </span>
-              {medicine.seQesitm ?? "정보 없음"}
-            </div>
-            <div css={s.detailText}>
-              <span css={s.text}>약품 사용방법: </span>
-              {medicine.useMethodQesitm ?? "정보 없음"}
-            </div>
-            <div css={s.detailText}>
-              <span css={s.text}>약품 상호작용: </span>
-              {medicine.intrcQesitm ?? "정보 없음"}
-            </div>
-          </div>
-          
-        </div>
+        ) : (
+          <div>약품 정보가 없습니다.</div>
+        )}
       </div>
-    ) : (
-      <div>약품 정보가 없습니다.</div>
-    )}
-  </div>
-</div>
 
+      {/* 모달 */}
+      {showModal && (
+        <div css={s.modal}>
+          <div css={s.modalContent}>
+            <p css={s.modalText}>등록된 회원만 저장 가능합니다. 로그인 화면으로 이동하시겠습니까?</p>
+            <button onClick={handleLoginRedirect} css={s.modalButton}>
+              예
+            </button>
+            <button onClick={handleCloseModal} css={s.closeButton}>
+              아니오
+            </button>
+          </div>
+        </div>
+      )}
+    </div>
   );
 }
+
+

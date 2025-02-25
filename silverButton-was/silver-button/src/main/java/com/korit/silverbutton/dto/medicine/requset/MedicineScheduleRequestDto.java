@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.medicine;
+package com.korit.silverbutton.dto.medicine.requset;
 
 import lombok.*;
 

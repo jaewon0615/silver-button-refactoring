@@ -2,30 +2,32 @@ package com.korit.silverbutton.controller;
 
 import com.korit.silverbutton.common.constant.ApiMappingPattern;
 import com.korit.silverbutton.common.constant.ResponseMessage;
-import com.korit.silverbutton.dto.SignIn.Request.SignInRequestDto;
-import com.korit.silverbutton.dto.SignUp.Request.SignUpRequestDto;
-import com.korit.silverbutton.dto.SignIn.Response.SignInResponseDto;
-import com.korit.silverbutton.dto.SignUp.Response.SignUpResponseDto;
+
+import com.korit.silverbutton.dto.signIn.request.SignInRequestDto;
+import com.korit.silverbutton.dto.signUp.request.SignUpRequestDto;
+import com.korit.silverbutton.dto.user.request.OverlapIdRequestDto;
+import com.korit.silverbutton.dto.user.request.OverlapNicknameRequestDto;
+
+import com.korit.silverbutton.dto.signIn.response.SignInResponseDto;
+import com.korit.silverbutton.dto.signUp.response.SignUpResponseDto;
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.SnsLoginResponseDto;
-import com.korit.silverbutton.dto.User.Request.OverlapIdRequestDto;
-import com.korit.silverbutton.dto.User.Request.OverlapNicknameRequestDto;
-import com.korit.silverbutton.dto.User.Request.UserRequestDto;
-import com.korit.silverbutton.entity.User;
+
+
 import com.korit.silverbutton.principal.PrincipalUser;
 import com.korit.silverbutton.provider.JwtProvider;
+
 import com.korit.silverbutton.service.AuthService;
-import com.korit.silverbutton.service.TokenBlacklistService;
 import com.korit.silverbutton.service.UserService;
+import com.korit.silverbutton.service.TokenBlacklistService;
+
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
-
-import java.util.Optional;
 
 @RestController
 @RequestMapping(ApiMappingPattern.AUTH)
@@ -40,8 +42,6 @@ public class AuthController {
     private static final String LOGIN_PATH = "/login";
     private static final String DEPENDENT_LOGIN_PATH = "/dependent-login";
     private static final String LOGOUT_PATH = "/logout";
-    private static final String MAIL = "/mail";
-
 
     private final UserService userService;
 
@@ -83,9 +83,7 @@ public class AuthController {
     @PostMapping("/check-duplicate-userId")
     public ResponseEntity<ResponseDto<Boolean>> duplicateCheckUserId(
             @RequestBody OverlapIdRequestDto dto){
-        System.out.println("숨1");
         boolean isDuplicated= authService.overlapUserId(dto.getUserId());
-        System.out.println("숨2");
         ResponseDto<Boolean> response= isDuplicated? ResponseDto.setFailed("userId가 중복됩니다."):
                 ResponseDto.setSuccess("userId가 사용가능합니다.", isDuplicated);
 

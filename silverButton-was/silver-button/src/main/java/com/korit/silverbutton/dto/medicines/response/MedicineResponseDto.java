@@ -1,7 +1,6 @@
-package com.korit.silverbutton.dto.medicines;
+package com.korit.silverbutton.dto.medicines.response;
 
 import com.korit.silverbutton.entity.Medicine;
-import com.korit.silverbutton.entity.MedicineSchedule;
 import lombok.*;
 
 @Data

@@ -2,10 +2,13 @@ package com.korit.silverbutton.service.implement;
 
 import com.korit.silverbutton.common.constant.ResponseMessage;
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.medicine.MedicineScheduleRequestDto;
-import com.korit.silverbutton.dto.medicine.MedicineScheduleResponseDto;
+import com.korit.silverbutton.dto.medicine.response.MedicineScheduleResponseDto;
+
+import com.korit.silverbutton.dto.medicine.requset.MedicineScheduleRequestDto;
+
 import com.korit.silverbutton.entity.MedicineSchedule;
 import com.korit.silverbutton.entity.User;
+
 import com.korit.silverbutton.repository.MedicineScheduleRepository;
 import com.korit.silverbutton.repository.UserRepository;
 import com.korit.silverbutton.service.MedicineScheduleService;

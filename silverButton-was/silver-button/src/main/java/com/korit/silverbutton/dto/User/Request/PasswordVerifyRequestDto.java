@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.User.Request;
+package com.korit.silverbutton.dto.user.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.Data;

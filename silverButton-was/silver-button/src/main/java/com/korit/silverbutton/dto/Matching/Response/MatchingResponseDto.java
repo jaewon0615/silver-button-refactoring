@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.Matching.Response;
+package com.korit.silverbutton.dto.matching.response;
 
 import com.korit.silverbutton.entity.Matchings;
 import lombok.*;
@@ -8,6 +8,7 @@ import lombok.*;
 @NoArgsConstructor
 public class MatchingResponseDto {
     private Long dependentId;
+
     private Long caregiverId;
 
     public MatchingResponseDto(Matchings matchings) {

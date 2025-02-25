@@ -2,8 +2,8 @@ package com.korit.silverbutton.controller;
 
 import com.korit.silverbutton.dto.ResponseDto;
 
-import com.korit.silverbutton.dto.medicines.MedicineRequestDto;
-import com.korit.silverbutton.dto.medicines.MedicineResponseDto;
+import com.korit.silverbutton.dto.medicines.requset.MedicineRequestDto;
+import com.korit.silverbutton.dto.medicines.response.MedicineResponseDto;
 
 import com.korit.silverbutton.service.MedicineService;
 import lombok.RequiredArgsConstructor;

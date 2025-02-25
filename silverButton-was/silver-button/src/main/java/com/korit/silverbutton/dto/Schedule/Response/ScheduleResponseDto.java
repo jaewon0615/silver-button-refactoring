@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.Schedule.Response;
+package com.korit.silverbutton.dto.schedule.response;
 
 import lombok.*;
 
@@ -6,6 +6,8 @@ import lombok.*;
 @AllArgsConstructor
 public class ScheduleResponseDto {
     private Long id;
+
     private String scheduleDate;
+
     private String task;
 }

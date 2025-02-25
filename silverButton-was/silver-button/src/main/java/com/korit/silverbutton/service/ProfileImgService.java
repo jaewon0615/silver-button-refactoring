@@ -2,10 +2,11 @@ package com.korit.silverbutton.service;
 
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
+
 import com.korit.silverbutton.common.constant.ResponseMessage;
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.entity.User;
 import com.korit.silverbutton.repository.UserRepository;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -65,10 +66,6 @@ public class ProfileImgService {
 
         return Paths.get("profile", newFileName).toString();
     }
-
-
-
-
 
     public ResponseDto<List<String>> uploadFiles(List<MultipartFile> files) {
         List<String> uploadedFileUrls = new ArrayList<>();

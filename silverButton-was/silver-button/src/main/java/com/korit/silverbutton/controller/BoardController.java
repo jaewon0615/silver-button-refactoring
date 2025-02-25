@@ -2,14 +2,17 @@ package com.korit.silverbutton.controller;
 
 import com.korit.silverbutton.common.constant.ApiMappingPattern;
 import com.korit.silverbutton.common.constant.ResponseMessage;
+
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.board.Request.BoardRequestDto;
-import com.korit.silverbutton.dto.board.Response.BoardResponseDto;
-import com.korit.silverbutton.dto.board.Response.BoardUpdateResponseDto;
-import com.korit.silverbutton.dto.paged.Response.PagedResponseDto;
+import com.korit.silverbutton.dto.board.response.BoardResponseDto;
+import com.korit.silverbutton.dto.board.response.BoardUpdateResponseDto;
+import com.korit.silverbutton.dto.paged.response.PagedResponseDto;
+
+import com.korit.silverbutton.dto.board.request.BoardRequestDto;
 import com.korit.silverbutton.principal.PrincipalUser;
 import com.korit.silverbutton.service.BoardService;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

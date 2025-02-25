@@ -7,7 +7,10 @@ import lombok.Data;
 @AllArgsConstructor
 public class ResponseDrugApi<D> {
     private int pageNo;
+
     private int totalCount;
+
     private int numberOfRows;
+
     private D[] drugs;
 }

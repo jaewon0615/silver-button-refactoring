@@ -1,15 +1,18 @@
-package com.korit.silverbutton.dto.comment.Response;
+package com.korit.silverbutton.dto.comment.response;
 
 import com.korit.silverbutton.entity.Comment;
 import lombok.Data;
 
 @Data
 public class CommentResponseDto {
-
     private Long id;
+
     private Long boardId;
+
     private String writer;
+
     private String content;
+
     private Long writerId;
 
     public CommentResponseDto(Comment comment) {

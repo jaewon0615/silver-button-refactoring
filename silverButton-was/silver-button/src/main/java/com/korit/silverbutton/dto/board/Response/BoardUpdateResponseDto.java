@@ -1,7 +1,9 @@
-package com.korit.silverbutton.dto.board.Response;
+package com.korit.silverbutton.dto.board.response;
 
 import com.korit.silverbutton.entity.Board;
+
 import jakarta.validation.constraints.NotBlank;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;

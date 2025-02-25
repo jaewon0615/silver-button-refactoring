@@ -1,6 +1,7 @@
-package com.korit.silverbutton.dto.Request;
+package com.korit.silverbutton.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 

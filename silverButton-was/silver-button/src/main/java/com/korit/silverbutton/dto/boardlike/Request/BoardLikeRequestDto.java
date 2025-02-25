@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.boardlike.Request;
+package com.korit.silverbutton.dto.boardlike.request;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -7,5 +7,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BoardLikeRequestDto {
     private Long id;
+
     private Long boardId;
 }

@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.Schedule;
+package com.korit.silverbutton.dto.schedule;
 
 import lombok.Data;
 

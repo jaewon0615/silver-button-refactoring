@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.User.Request;
+package com.korit.silverbutton.dto.user.request;
 
 import lombok.*;
 
@@ -7,7 +7,5 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 public class OverlapIdRequestDto {
-
-    // 아이디 중복 확인 dto
     private String userId;
 }

@@ -1,17 +1,18 @@
 package com.korit.silverbutton.service.implement;
 
 import com.korit.silverbutton.common.constant.ResponseMessage;
-import com.korit.silverbutton.dto.HealthMagazine.response.HealthMagazineResponseDto;
+
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.medicine.MedicineScheduleRequestDto;
-import com.korit.silverbutton.dto.medicine.MedicineScheduleResponseDto;
-import com.korit.silverbutton.dto.medicines.MedicineRequestDto;
-import com.korit.silverbutton.dto.medicines.MedicineResponseDto;
-import com.korit.silverbutton.entity.HealthMagazine;
+import com.korit.silverbutton.dto.medicines.response.MedicineResponseDto;
+
+import com.korit.silverbutton.dto.medicines.requset.MedicineRequestDto;
+
+
 import com.korit.silverbutton.entity.Medicine;
-import com.korit.silverbutton.entity.MedicineSchedule;
+
 import com.korit.silverbutton.repository.MedicineRepository;
 import com.korit.silverbutton.service.MedicineService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

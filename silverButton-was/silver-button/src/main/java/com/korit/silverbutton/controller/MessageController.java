@@ -1,15 +1,20 @@
 package com.korit.silverbutton.controller;
 
 import com.korit.silverbutton.common.constant.ApiMappingPattern;
-import com.korit.silverbutton.dto.Message.Request.MessageRequestDto;
-import com.korit.silverbutton.dto.Message.Response.MessageResponseDto;
+
+import com.korit.silverbutton.dto.message.request.MessageRequestDto;
+
+import com.korit.silverbutton.dto.message.response.MessageResponseDto;
 import com.korit.silverbutton.dto.ResponseDto;
+
 import com.korit.silverbutton.principal.PrincipalUser;
 import com.korit.silverbutton.service.MessageService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -22,12 +27,19 @@ import java.util.List;
 @RequiredArgsConstructor
 public class MessageController {
 
+    private static final String MESSAGE_GET = "/";
+    private static final String MESSAGE_SENDER = "/sender";
+    private static final String MESSAGE_RECEIVER = "/receive";
+    private static final String MESSAGE_POST = "/";
+    private static final String MESSAGE_DELETE = "{id}";
+    private static final String MESSAGE_GET_ID = "{id}";
+
 
 
     private final MessageService messageService;
     private static final Logger log = LoggerFactory.getLogger(MessageController.class);
 
-    @GetMapping
+    @GetMapping(MESSAGE_GET)
     public ResponseEntity<ResponseDto<List<MessageResponseDto>>> getAllMessages(
             @AuthenticationPrincipal PrincipalUser principalUser
     )
@@ -44,7 +56,7 @@ public class MessageController {
         return ResponseEntity.status(status).body(response);
     }
 
-    @GetMapping("/sender")
+    @GetMapping(MESSAGE_SENDER)
     public ResponseEntity<ResponseDto<List<MessageResponseDto>>> getOutGoingMessages(
             @AuthenticationPrincipal PrincipalUser principalUser
     ){
@@ -54,7 +66,7 @@ public class MessageController {
         return ResponseEntity.status(status).body(response);
     }
 
-    @GetMapping("/receive")
+    @GetMapping(MESSAGE_RECEIVER)
     public ResponseEntity<ResponseDto<List<MessageResponseDto>>> getReceiveMessages(
             @AuthenticationPrincipal PrincipalUser principalUser
     ){
@@ -64,7 +76,7 @@ public class MessageController {
         return ResponseEntity.status(status).body(response);
     }
 
-    @PostMapping
+    @PostMapping(MESSAGE_POST)
     public ResponseEntity<ResponseDto<MessageResponseDto>> createMessage(
             @Valid @RequestBody MessageRequestDto messageRequestDto,
             @AuthenticationPrincipal PrincipalUser principalUser
@@ -75,7 +87,7 @@ public class MessageController {
         return ResponseEntity.status(status).body(response);
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(MESSAGE_DELETE)
     public ResponseEntity<ResponseDto<Void>> deleteMessage(
             @PathVariable Long id,
             @AuthenticationPrincipal PrincipalUser principalUser
@@ -87,7 +99,7 @@ public class MessageController {
         return ResponseEntity.status(status).body(response);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(MESSAGE_GET_ID)
     public ResponseEntity<ResponseDto<MessageResponseDto>> getMessageById(
             @PathVariable Long id,
             @AuthenticationPrincipal PrincipalUser principalUser

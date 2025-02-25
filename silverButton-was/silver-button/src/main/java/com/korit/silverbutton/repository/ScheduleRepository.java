@@ -2,18 +2,17 @@ package com.korit.silverbutton.repository;
 
 import com.korit.silverbutton.entity.Matchings;
 import com.korit.silverbutton.entity.MatchingsId;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Repository
 public interface ScheduleRepository extends JpaRepository<Matchings, MatchingsId> {
-
-    // 날짜로 조회해서 띄우기
     @Query(value = "with temp_table as( " +
             "SELECT " +
             "scd.id AS schedule_id, " +

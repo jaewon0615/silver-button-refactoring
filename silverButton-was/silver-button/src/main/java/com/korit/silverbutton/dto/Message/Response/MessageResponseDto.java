@@ -1,7 +1,7 @@
-package com.korit.silverbutton.dto.Message.Response;
+package com.korit.silverbutton.dto.message.response;
 
 import com.korit.silverbutton.entity.Message;
-import com.korit.silverbutton.entity.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -11,12 +11,19 @@ import java.time.LocalDateTime;
 @Data
 public class MessageResponseDto {
     private final Long id;
+
     private final Long senderId;
+
     private final String senderName;
+
     private final Long receiverId;
+
     private final String receiverName;
+
     private final String title;
+
     private final String content;
+
     private final LocalDateTime createdAt;
 
     public MessageResponseDto(Message message) {

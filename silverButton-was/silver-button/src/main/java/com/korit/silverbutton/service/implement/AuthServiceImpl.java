@@ -1,24 +1,28 @@
 package com.korit.silverbutton.service.implement;
 
 import com.korit.silverbutton.common.constant.ResponseMessage;
-import com.korit.silverbutton.dto.SignIn.Request.SignInRequestDto;
-import com.korit.silverbutton.dto.SignUp.Request.SignUpRequestDto;
-import com.korit.silverbutton.dto.SignIn.Response.SignInResponseDto;
-import com.korit.silverbutton.dto.SignUp.Response.SignUpResponseDto;
+
+import com.korit.silverbutton.dto.signIn.request.SignInRequestDto;
+import com.korit.silverbutton.dto.signUp.request.SignUpRequestDto;
+
+import com.korit.silverbutton.dto.signIn.response.SignInResponseDto;
+import com.korit.silverbutton.dto.signUp.response.SignUpResponseDto;
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.SnsLoginResponseDto;
+
 import com.korit.silverbutton.entity.User;
 import com.korit.silverbutton.provider.JwtProvider;
+
 import com.korit.silverbutton.repository.UserRepository;
 import com.korit.silverbutton.service.AuthService;
 import com.korit.silverbutton.service.MailService;
+
 import com.korit.silverbutton.service.TokenBlacklistService;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -28,7 +32,6 @@ public class AuthServiceImpl implements AuthService {
     private final BCryptPasswordEncoder bCryptpasswordEncoder;
     private final JwtProvider jwtProvider;
     private final TokenBlacklistService tokenBlacklistService;
-    private final MailService mailService;
 
     @Override
     public ResponseDto<SignUpResponseDto> signUp(SignUpRequestDto dto) {

@@ -1,14 +1,19 @@
 package com.korit.silverbutton.service.implement;
 
 import com.korit.silverbutton.common.constant.ResponseMessage;
-import com.korit.silverbutton.dto.Message.Request.MessageRequestDto;
-import com.korit.silverbutton.dto.Message.Response.MessageResponseDto;
+
+import com.korit.silverbutton.dto.message.request.MessageRequestDto;
+
+import com.korit.silverbutton.dto.message.response.MessageResponseDto;
 import com.korit.silverbutton.dto.ResponseDto;
+
 import com.korit.silverbutton.entity.Message;
 import com.korit.silverbutton.entity.User;
+
 import com.korit.silverbutton.repository.MessageRepository;
 import com.korit.silverbutton.repository.UserRepository;
 import com.korit.silverbutton.service.MessageService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

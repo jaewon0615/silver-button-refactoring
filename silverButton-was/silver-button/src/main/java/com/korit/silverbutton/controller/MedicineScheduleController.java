@@ -1,8 +1,10 @@
 package com.korit.silverbutton.controller;
 
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.medicine.MedicineScheduleRequestDto;
-import com.korit.silverbutton.dto.medicine.MedicineScheduleResponseDto;
+import com.korit.silverbutton.dto.medicine.response.MedicineScheduleResponseDto;
+
+import com.korit.silverbutton.dto.medicine.requset.MedicineScheduleRequestDto;
+
 import com.korit.silverbutton.principal.PrincipalUser;
 import com.korit.silverbutton.service.MedicineScheduleService;
 

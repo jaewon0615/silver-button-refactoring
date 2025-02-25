@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.SignUp.Response;
+package com.korit.silverbutton.dto.signUp.response;
 
 import com.korit.silverbutton.entity.User;
 import lombok.Data;

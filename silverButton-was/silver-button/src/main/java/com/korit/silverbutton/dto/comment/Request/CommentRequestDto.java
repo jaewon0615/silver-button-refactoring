@@ -1,7 +1,8 @@
-package com.korit.silverbutton.dto.comment.Request;
+package com.korit.silverbutton.dto.comment.request;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,6 +11,7 @@ import lombok.NoArgsConstructor;
 public class CommentRequestDto {
     @NotNull(message = "Board ID cannot be null")
     private Long boardId;
+
     @NotEmpty(message = "Content cannot be empty")
     private String content;
 }

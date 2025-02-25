@@ -1,15 +1,18 @@
 package com.korit.silverbutton.service.implement;
 
 import com.korit.silverbutton.common.constant.ResponseMessage;
-import com.korit.silverbutton.dto.Matching.Response.MatchingResponseDto;
+import com.korit.silverbutton.dto.matching.response.MatchingResponseDto;
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.User.Response.PartnerProfileDto;
+import com.korit.silverbutton.dto.user.response.PartnerProfileDto;
+
 import com.korit.silverbutton.entity.Matchings;
 import com.korit.silverbutton.entity.MatchingsId;
 import com.korit.silverbutton.entity.User;
+
 import com.korit.silverbutton.repository.MatchingRepository;
 import com.korit.silverbutton.repository.UserRepository;
 import com.korit.silverbutton.service.MatchingService;
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 

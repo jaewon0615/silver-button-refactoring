@@ -1,10 +1,10 @@
 package com.korit.silverbutton.service.implement;
 
 import com.korit.silverbutton.common.constant.ResponseMessage;
-import com.korit.silverbutton.dto.Dependent.ResponseDto.DependentResponseDto;
+import com.korit.silverbutton.dto.dependent.response.DependentResponseDto;
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.SignIn.Request.SignInRequestDto;
-import com.korit.silverbutton.dto.SignIn.Response.SignInResponseDto;
+import com.korit.silverbutton.dto.signIn.request.SignInRequestDto;
+import com.korit.silverbutton.dto.signIn.response.SignInResponseDto;
 
 import com.korit.silverbutton.dto.UpdateRequestDto;
 import com.korit.silverbutton.entity.User;

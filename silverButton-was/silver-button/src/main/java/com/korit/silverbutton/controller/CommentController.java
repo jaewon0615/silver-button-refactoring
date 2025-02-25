@@ -1,13 +1,17 @@
 package com.korit.silverbutton.controller;
 
 import com.korit.silverbutton.common.constant.ApiMappingPattern;
+
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.comment.Request.CommentRequestDto;
-import com.korit.silverbutton.dto.comment.Response.CommentResponseDto;
+import com.korit.silverbutton.dto.comment.response.CommentResponseDto;
+
+import com.korit.silverbutton.dto.comment.request.CommentRequestDto;
+
 import com.korit.silverbutton.principal.PrincipalUser;
 import com.korit.silverbutton.service.CommentService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

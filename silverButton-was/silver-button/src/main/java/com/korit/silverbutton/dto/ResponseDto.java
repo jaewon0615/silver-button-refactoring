@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor(staticName= "set")
 public class ResponseDto<D> {
     private boolean result;
+
     private String message;
+
     private D data;
 
 

@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.HealthMagazine.request;
+package com.korit.silverbutton.dto.healthMagazine.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,21 +12,15 @@ import java.time.LocalDateTime;
 public class HealthMagazineRequestDto {
     private Long id;
 
-
     private String thumbnailImageUrl;
-
 
     private String title;
 
-
     private String content;
-
 
     private String source;
 
-
     private LocalDateTime publishedDate;
-
 
     private int viewCount;
 

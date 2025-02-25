@@ -1,9 +1,11 @@
-package com.korit.silverbutton.dto.SignUp.Request;
+package com.korit.silverbutton.dto.signUp.request;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Past;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;

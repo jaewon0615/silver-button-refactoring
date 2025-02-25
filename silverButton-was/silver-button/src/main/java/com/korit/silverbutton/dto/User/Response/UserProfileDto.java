@@ -1,6 +1,7 @@
-package com.korit.silverbutton.dto.User.Response;
+package com.korit.silverbutton.dto.user.response;
 
 import com.korit.silverbutton.entity.User;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,15 +11,18 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserProfileDto {
     private String userId;
+
     private String password;
+
     private String name;
+
     private String phone;
+
     private String email;
+
     private String nickname;
 
-    private  Long protectorId; // 노인의 경우 요양사 아이디
-
-
+    private  Long protectorId;
 
     public UserProfileDto(User user){
 

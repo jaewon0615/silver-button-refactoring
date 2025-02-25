@@ -1,10 +1,11 @@
 package com.korit.silverbutton.controller;
 
-import com.korit.silverbutton.dto.HealthMagazine.request.HealthMagazineRequestDto;
-import com.korit.silverbutton.dto.HealthMagazine.response.HealthMagazineResponseDto;
+import com.korit.silverbutton.dto.healthMagazine.request.HealthMagazineRequestDto;
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.service.HealthMagazineService;
 
+import com.korit.silverbutton.dto.healthMagazine.response.HealthMagazineResponseDto;
+
+import com.korit.silverbutton.service.HealthMagazineService;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.http.HttpStatus;

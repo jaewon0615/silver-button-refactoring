@@ -10,7 +10,6 @@ public class SnsLoginResponseDto {
     private boolean isPasswordResetRequired;
     private String message;
 
-    // 생성자
     public SnsLoginResponseDto(String userId, String email, boolean isPasswordResetRequired, String message) {
         this.userId = userId;
         this.email = email;
@@ -18,7 +17,6 @@ public class SnsLoginResponseDto {
         this.message = message;
     }
 
-    // 팩토리 메서드
     public static SnsLoginResponseDto fromUser(String userId, String email, boolean isPasswordResetRequired, String message) {
         return new SnsLoginResponseDto(userId, email, isPasswordResetRequired, message);
 

@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.Schedule.Request;
+package com.korit.silverbutton.dto.schedule.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -13,6 +13,8 @@ import java.util.Date;
 @AllArgsConstructor
 public class ScheduleCreateRequestDto {
     private Long dependentId;
+
     private Date scheduleDate;
+
     private String task;
 }

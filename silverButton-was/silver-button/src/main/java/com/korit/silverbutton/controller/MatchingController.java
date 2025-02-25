@@ -1,16 +1,16 @@
 package com.korit.silverbutton.controller;
 
 import com.korit.silverbutton.common.constant.ApiMappingPattern;
-import com.korit.silverbutton.dto.Matching.Request.MatchingRequestDto;
-import com.korit.silverbutton.dto.Matching.Response.MatchingResponseDto;
+
+import com.korit.silverbutton.dto.matching.response.MatchingResponseDto;
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.User.Response.PartnerProfileDto;
-import com.korit.silverbutton.dto.User.Response.UserProfileDto;
+import com.korit.silverbutton.dto.user.response.PartnerProfileDto;
+
 import com.korit.silverbutton.entity.User;
 import com.korit.silverbutton.principal.PrincipalUser;
 import com.korit.silverbutton.service.MatchingService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;

@@ -4,17 +4,20 @@ import com.google.cloud.storage.Blob;
 import com.google.cloud.storage.BlobId;
 import com.google.cloud.storage.BlobInfo;
 import com.google.cloud.storage.Storage;
+
 import com.korit.silverbutton.common.constant.ResponseMessage;
+
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.User.Response.UserProfileDto;
-import com.korit.silverbutton.dto.User.Response.UserResponseDto;
+import com.korit.silverbutton.dto.user.response.UserProfileDto;
+import com.korit.silverbutton.dto.user.response.UserResponseDto;
+
 import com.korit.silverbutton.entity.User;
+
 import com.korit.silverbutton.repository.UserRepository;
 import com.korit.silverbutton.service.MailService;
 import com.korit.silverbutton.service.ProfileImgService;
 import com.korit.silverbutton.service.UserService;
 
-import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -199,7 +202,7 @@ public class UserServiceImpl implements UserService {
                 Blob blob = storage.get(BlobId.of(bucketName, fileName));
 
                 if (blob != null && blob.exists()) {
-                    blob.delete();  // 파일 삭제
+                    blob.delete();
                 } else {
                     System.out.println("null");
                 }

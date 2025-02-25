@@ -1,10 +1,12 @@
 package com.korit.silverbutton.service;
 
 import com.korit.silverbutton.common.constant.ResponseMessage;
+
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.Schedule.Request.ScheduleCreateRequestDto;
-import com.korit.silverbutton.dto.Schedule.Response.ScheduleCreateResponseDto;
-import com.korit.silverbutton.dto.Schedule.Response.ScheduleResponseDto;
+import com.korit.silverbutton.dto.schedule.response.ScheduleCreateResponseDto;
+import com.korit.silverbutton.dto.schedule.response.ScheduleResponseDto;
+
+import com.korit.silverbutton.dto.schedule.request.ScheduleCreateRequestDto;
 
 import com.korit.silverbutton.entity.Schedules;
 import com.korit.silverbutton.repository.ScheduleCreateRepository;

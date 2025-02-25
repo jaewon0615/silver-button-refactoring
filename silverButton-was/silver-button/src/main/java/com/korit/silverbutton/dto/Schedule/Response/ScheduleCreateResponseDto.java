@@ -1,6 +1,7 @@
-package com.korit.silverbutton.dto.Schedule.Response;
+package com.korit.silverbutton.dto.schedule.response;
 
 import com.korit.silverbutton.entity.Schedules;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,8 +13,11 @@ import java.util.Date;
 @NoArgsConstructor
 public class ScheduleCreateResponseDto {
     private Long id;
+
     private Long dependentId;
+
     private Date scheduleDate;
+
     private String task;
 
     public ScheduleCreateResponseDto(Schedules schedule) {

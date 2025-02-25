@@ -1,17 +1,23 @@
 package com.korit.silverbutton.service.implement;
 
 import com.korit.silverbutton.common.constant.ResponseMessage;
+
 import com.korit.silverbutton.dto.ResponseDto;
-import com.korit.silverbutton.dto.boardlike.Request.BoardLikeRequestDto;
-import com.korit.silverbutton.dto.boardlike.Response.BoardLikeResponseDto;
+import com.korit.silverbutton.dto.boardlike.response.BoardLikeResponseDto;
+
+import com.korit.silverbutton.dto.boardlike.request.BoardLikeRequestDto;
+
 import com.korit.silverbutton.entity.Board;
 import com.korit.silverbutton.entity.BoardLike;
 import com.korit.silverbutton.entity.User;
+
 import com.korit.silverbutton.repository.BoardLikeRepository;
 import com.korit.silverbutton.repository.BoardRepository;
 import com.korit.silverbutton.repository.UserRepository;
+
 import com.korit.silverbutton.service.BoardLikeService;
 import lombok.RequiredArgsConstructor;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

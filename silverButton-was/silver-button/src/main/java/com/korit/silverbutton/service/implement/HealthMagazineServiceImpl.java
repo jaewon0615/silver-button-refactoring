@@ -1,10 +1,14 @@
 package com.korit.silverbutton.service.implement;
 
 import com.korit.silverbutton.common.constant.ResponseMessage;
-import com.korit.silverbutton.dto.HealthMagazine.request.HealthMagazineRequestDto;
-import com.korit.silverbutton.dto.HealthMagazine.response.HealthMagazineResponseDto;
+
 import com.korit.silverbutton.dto.ResponseDto;
+import com.korit.silverbutton.dto.healthMagazine.request.HealthMagazineRequestDto;
+
+import com.korit.silverbutton.dto.healthMagazine.response.HealthMagazineResponseDto;
+
 import com.korit.silverbutton.entity.HealthMagazine;
+
 import com.korit.silverbutton.repository.HealthMagazineRepository;
 import com.korit.silverbutton.service.HealthMagazineService;
 

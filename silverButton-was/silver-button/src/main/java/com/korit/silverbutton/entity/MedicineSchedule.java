@@ -1,6 +1,7 @@
 package com.korit.silverbutton.entity;
 
 import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -14,7 +15,6 @@ import lombok.NoArgsConstructor;
 @Table(name = "medicine_schedule")
 @Builder
 public class MedicineSchedule {
-
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         @Column(name = "id")
@@ -49,5 +49,4 @@ public class MedicineSchedule {
 
         @Column(name="medicine_image")
         private String medicineImage;
-
 }
