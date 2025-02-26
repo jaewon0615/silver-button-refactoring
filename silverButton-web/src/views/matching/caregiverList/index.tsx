@@ -23,7 +23,7 @@ const CaregiverList = () => {
   const { user } = useAuthStore();
   const role = useAuthStore(state => state.user?.role);
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 4;
+  const itemsPerPage = 6;
 
   const getTokenFromCookies = () => {
     const cookies = document.cookie.split(";");
@@ -54,7 +54,7 @@ const CaregiverList = () => {
       });
 
       if (!response.ok) {
-        throw new Error('등록된 회원만 요양사 리스트 확인이 가능합니다.');
+        throw new Error('요양사 리스트를 확인하려면 로그인 해주세요.');
       }
 
       const data = await response.json();

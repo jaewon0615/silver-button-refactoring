@@ -108,53 +108,57 @@ export default function CreatePost() {
 
   return (
     <div css={S.formWrapper}>
-      <form
-        css={S.formContainer}
-        onSubmit={handleSubmit}
-        onKeyDown={handleKeyDown}
-      >
-        <div>
-          <input
-            css={S.titleInput}
-            type="text"
-            value={title}
-            onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
-              setTitle(e.target.value)
-            }
-            placeholder="제목"
-            required
-          />
-        </div>
-
-        <div>
-          <div
-            css={S.contentTextarea}
-            contentEditable
-            ref={contentEditableRef}
-            onInput={handleContentChange}
-            style={{ minHeight: '200px', padding: '10px', border: '1px solid #ccc', width: '100%' }}
-          />
-        </div>
-
-        <div>
-          <input
-            css={S.fileInput}
-            type="file"
-            accept="image/*"
-            multiple
-            onChange={handleFileChange} 
-          />
-        </div>
-
-        <div css={S.buttonContainer}>
-          <button css={S.submitButton} type="submit">
-            게시글 작성
-          </button>
-          <button css={S.exitButton} type="button" onClick={handleExit}>
-            나가기
-          </button>
-        </div>
-      </form>
+  <h1 css={S.pageTitle}>게시글 작성</h1> {/* 제목 추가 */}
+  <form
+    css={S.formContainer}
+    onSubmit={handleSubmit}
+    onKeyDown={handleKeyDown}
+  >
+    <div>
+      <input
+        css={S.titleInput}
+        type="text"
+        value={title}
+        onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+          setTitle(e.target.value)
+        }
+        placeholder="제목"
+        required
+      />
     </div>
+
+    <div>
+      <div
+        css={S.contentTextarea}
+        contentEditable
+        ref={contentEditableRef}
+        onInput={handleContentChange}
+        style={{ minHeight: '200px', padding: '10px', border: '1px solid #ccc', width: '100%' }}
+      />
+    </div>
+
+    <div>
+      <input
+        css={S.fileInput}
+        type="file"
+        accept="image/*"
+        multiple
+        onChange={handleFileChange} 
+      />
+    </div>
+
+    <div css={S.buttonContainer}>
+      <button css={S.exitButton} type="button" onClick={handleExit}>
+        작성 취소
+      </button>
+      <button css={S.submitButton}type="submit" >
+        게시글 작성
+      </button>
+    </div>
+  </form>
+</div>
+
+
+
   );
 }

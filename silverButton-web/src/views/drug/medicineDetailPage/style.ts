@@ -1,7 +1,4 @@
-
 import { css } from "@emotion/react";
-
-
 
 export const contSt = css`
   width: 100%;
@@ -10,12 +7,14 @@ export const contSt = css`
   justify-content: center;
   align-items: flex-start; /* 위쪽 정렬 */
   padding: 10px 150px;
+  background-color: #f9f9f9; /* 연한 회색 배경 */
+  font-family: 'Roboto', sans-serif; /* 기본 폰트 설정 */
 `;
 
 export const conttSt = css`
   width: 100%;
   height: auto; /* 자동 높이 조정 */
-  background-color: rgba(162, 143, 199, 0.15);
+  background-color: rgba(147, 129, 255, 0.15); /* 보라색 배경 */
   border-radius: 10px;
   padding: 20px;
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
@@ -37,7 +36,7 @@ export const medicineRow = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   padding-bottom: 10px;
   margin-bottom: 10px;
 `;
@@ -46,6 +45,7 @@ export const medicineName = css`
   font-size: 1.5rem;
   font-weight: bold;
   color: #333;
+  font-family: 'Montserrat', sans-serif; /* 약 이름 폰트 설정 */
 `;
 
 export const imageBox = css`
@@ -73,14 +73,14 @@ export const detailText = css`
 
 export const text = css`
   font-weight: 600;
-  color: #222;
+  color: #007BFF; /* 파란색 강조 */
   font-size: 25px;
-  color: blue;
+  font-family: 'Roboto', sans-serif; /* 텍스트 폰트 설정 */
 `;
 
 export const button = css`
   display: inline-block;
-  background-color: #007bff;
+  background-color: #007bff; /* 파란색 배경 */
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
@@ -89,9 +89,10 @@ export const button = css`
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  font-family: 'Roboto', sans-serif; /* 버튼 폰트 설정 */
 
   &:hover {
-    background-color: #0056b3;
+    background-color: #0056b3; /* 어두운 파란색 호버 효과 */
   }
 
   &:focus {
@@ -103,22 +104,25 @@ export const button = css`
 export const saveMessage = css`
   margin-top: 10px;
   font-size: 1rem;
-  color: #28a745;
+  color: #28a745; /* 녹색 메시지 */
   text-align: center;
+  font-family: 'Roboto', sans-serif; /* 메시지 폰트 설정 */
 `;
 
 export const error = css`
-  color: #dc3545;
+  color: #dc3545; /* 빨간색 에러 메시지 */
   text-align: center;
   font-size: 1.1rem;
   margin-top: 10px;
+  font-family: 'Roboto', sans-serif; /* 에러 메시지 폰트 설정 */
 `;
 
 export const loading = css`
-  color: #6c757d;
+  color: #6c757d; /* 회색 로딩 메시지 */
   text-align: center;
   font-size: 1.1rem;
   margin-top: 10px;
+  font-family: 'Roboto', sans-serif; /* 로딩 메시지 폰트 설정 */
 `;
 
 export const saveButton = css`
@@ -133,14 +137,16 @@ export const saveButton = css`
   margin-top: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border: 1px solid rgba(162, 143, 199, 0.8);
+  border: 1px solid rgba(147, 129, 255, 0.8);
+  font-family: 'Roboto', sans-serif; /* 저장 버튼 폰트 설정 */
+
   &:hover {
-    background-color: blue;
+    background-color: #007BFF; /* 파란색 호버 효과 */
     color: white;
   }
 
   &:active {
-    background-color: red;
+    background-color: red; /* 빨간색 클릭 효과 */
   }
 `;
 
@@ -155,7 +161,6 @@ export const modal = css`
   display: flex;
   justify-content: center;
   align-items: center;
-
 `;
 
 export const modalContent = css`
@@ -166,7 +171,7 @@ export const modalContent = css`
   text-align: center;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* 깔끔하고 세련된 그림자 */
   color: #333;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* 모던한 글꼴 */
+  font-family: 'Roboto', sans-serif; /* 모달 기본 폰트 설정 */
   border: none;
   transition: all 0.3s ease-in-out; /* 부드러운 애니메이션 */
 
@@ -186,6 +191,7 @@ export const modalButton = css`
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s ease;
+  font-family: 'Roboto', sans-serif; /* 모달 버튼 폰트 설정 */
 
   &:hover {
     background-color: #45a049; /* 호버 시 버튼 색상 */
@@ -204,6 +210,7 @@ export const closeButton = css`
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s ease;
   margin-left: 20px;
+  font-family: 'Roboto', sans-serif; /* 닫기 버튼 폰트 설정 */
 
   &:hover {
     background-color: #e0e0e0; /* 호버 시 버튼 색상 */
@@ -211,8 +218,8 @@ export const closeButton = css`
   }
 `;
 
-
-
 export const modalText = css`
-font-size: 20px;
+  font-size: 20px;
+  color: #333; /* 기본 텍스트 색상 */
+  font-family: 'Roboto', sans-serif; /* 모달 텍스트 폰트 설정 */
 `;

@@ -37,7 +37,7 @@ public class CommentController {
             @AuthenticationPrincipal PrincipalUser principalUser
     ) {
         ResponseDto<CommentResponseDto> response
-                = commentService.createComment(principalUser, principalUser, dto);
+                = commentService.createComment(principalUser, dto);
         HttpStatus status
                 = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);

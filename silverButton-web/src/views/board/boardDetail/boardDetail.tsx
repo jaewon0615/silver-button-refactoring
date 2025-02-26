@@ -295,8 +295,8 @@ const BoardDetail = () => {
                 <div css={S.boardStats}>
                   <div css={S.likeViewContainer}>
                     <div css={S.clickableIcon} onClick={handleLike}>
-                      💖 {board.likes}
-                      🔍 {board.views}
+                      추천  {board.likes}
+                      조회수  {board.views}
                     </div>
                   </div>
                   <div css={S.boardTime}>{formatDate(board.createdAt)}</div>

@@ -16,7 +16,6 @@ import "./Signin.css";
 interface Credentials {
   userId: string;
   password: string;
-  nickname: string;
 }
 
 interface ElderCredentials {
@@ -42,9 +41,9 @@ export default function SignIn() {
   const [credentials, setCredentials] = useState<Credentials>({
     userId: "",
     password: "",
-    nickname: "",
   });
-  const [elder_credentials, setElderCredentials] = useState<ElderCredentials>({
+
+  const [elderCredentials, setElderCredentials] = useState<ElderCredentials>({
     userId: "",
     name: "",
     phone: "",
@@ -52,27 +51,24 @@ export default function SignIn() {
 
   const [error, setError] = useState<string>("");
   const [, setCookies] = useCookies(["token"]);
-  const { login } = useAuthStore(); // 수정된 store에서 login 함수 사용
+  const { isAuthenticated, login } = useAuthStore(); // ✅ Zustand 상태 사용
   const navigate = useNavigate();
   const [isElder, setIsElder] = useState(false);
 
-  // 컴포넌트가 처음 렌더링될 때 token을 쿠키에서 확인
+  // ✅ Zustand의 `isAuthenticated`를 이용해 로그인 여부 체크
   useEffect(() => {
-    const token = document.cookie
-      .split(";")
-      .find((cookie) => cookie.trim().startsWith("token="));
-    if (token) {
+    if (isAuthenticated) {
       alert("이미 로그인된 상태입니다.");
       navigate("/");
     }
-  }, [navigate]);
+  }, [isAuthenticated, navigate]);
 
   const SignInSuccessResponse = (data: SignInResponseDto) => {
     if (data) {
       console.log(data);
       const { token, exprTime, user } = data;
       setToken(token, exprTime);
-      login(user, token);
+      login(user, token); // ✅ Zustand 상태 업데이트
       navigate("/");
     } else {
       setError("로그인 실패: 인증 정보를 확인해주세요.");
@@ -84,28 +80,11 @@ export default function SignIn() {
     setCookies("token", token, { path: "/", expires });
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const element = e.target;
-    setCredentials({
-      ...credentials,
-      [element.name]: element.value,
-    });
-  };
-
-  const handleElderInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const element = e.target;
-    setElderCredentials({
-      ...elder_credentials,
-      [element.name]: element.value,
-    });
-  };
-
-  // 로그인 버튼 클릭 시
+  // 로그인 요청
   const handleSignIn = async () => {
-    const { userId, password, nickname } = credentials;
-    const { name, phone } = elder_credentials;
+    const { userId, password } = credentials;
+    const { name, phone } = elderCredentials;
 
-    // 로그인 정보 체크
     if (isElder) {
       if (!name || !phone) {
         setError("이름과 전화번호를 모두 입력해주세요.");
@@ -113,29 +92,21 @@ export default function SignIn() {
       }
     } else {
       if (!userId || !password) {
-        setError("아이디, 비밀번호을 모두 입력해주세요.");
+        setError("아이디, 비밀번호를 모두 입력해주세요.");
         return;
       }
     }
 
     try {
-      let response;
-      if (isElder) {
-        // 간편 로그인 시
-        response = await axios.post(
-          "http://localhost:4040/api/v1/auth/dependent-login",
-          elder_credentials
-        );
-      } else {
-        // 일반 로그인 시
-        response = await axios.post(
-          "http://localhost:4040/api/v1/auth/login",
-          credentials
-        );
-      }
+      const url = isElder
+        ? "http://localhost:4040/api/v1/auth/dependent-login"
+        : "http://localhost:4040/api/v1/auth/login";
+
+      const payload = isElder ? elderCredentials : credentials;
+      const response = await axios.post(url, payload);
 
       if (response.data) {
-        console.log('응답 정보: ' + response.data.data);
+        console.log("응답 정보:", response.data.data);
         SignInSuccessResponse(response.data.data);
       }
     } catch (error) {
@@ -149,17 +120,9 @@ export default function SignIn() {
     }
   };
 
-  const handleFindId = () => {
-    navigate("/findId");
-  };
-
-  const handleFindPassword = () => {
-    navigate("/findPassword");
-  };
-
-  const handleSignUp = () => {
-    navigate("/signup");
-  };
+  const handleFindId = () => navigate("/findId");
+  const handleFindPassword = () => navigate("/findPassword");
+  const handleSignUp = () => navigate("/signup");
 
   return (
     <div className="signin-container">
@@ -169,63 +132,66 @@ export default function SignIn() {
             <div onClick={() => setIsElder(false)} className="signin-tab">
               일반 & 요양사 로그인
             </div>
-
             <div onClick={() => setIsElder(true)} className="signin-tab">
               노인 로그인
             </div>
           </div>
 
-          {/* 일반 로그인일 때 아이디 입력 필드 */}
+          {/* 일반 로그인 필드 */}
           {!isElder && (
-            <TextField
-              label="아이디"
-              name="userId"
-              variant="outlined"
-              value={credentials.userId}
-              onChange={handleInputChange}
-              fullWidth
-              margin="normal"
-            />
+            <>
+              <TextField
+                label="아이디"
+                name="userId"
+                variant="outlined"
+                value={credentials.userId}
+                onChange={(e) =>
+                  setCredentials({ ...credentials, userId: e.target.value })
+                }
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                label="비밀번호"
+                name="password"
+                type="password"
+                variant="outlined"
+                value={credentials.password}
+                onChange={(e) =>
+                  setCredentials({ ...credentials, password: e.target.value })
+                }
+                fullWidth
+                margin="normal"
+              />
+            </>
           )}
 
-          {/* 일반 로그인일 때 비밀번호 필드 */}
-          {!isElder && (
-            <TextField
-              label="비밀번호"
-              name="password"
-              type="password"
-              variant="outlined"
-              value={credentials.password}
-              onChange={handleInputChange}
-              fullWidth
-              margin="normal"
-            />
-          )}
-
-          {/* 간편 로그인일 때 이름 입력 필드 */}
+          {/* 노인 로그인 필드 */}
           {isElder && (
-            <TextField
-              label="이름"
-              name="name"
-              variant="outlined"
-              value={elder_credentials.name}
-              onChange={handleElderInputChange}
-              fullWidth
-              margin="normal"
-            />
-          )}
-
-          {/* 간편 로그인일 때 전화번호 입력 필드 */}
-          {isElder && (
-            <TextField
-              label="전화번호"
-              name="phone"
-              variant="outlined"
-              value={elder_credentials.phone}
-              onChange={handleElderInputChange}
-              fullWidth
-              margin="normal"
-            />
+            <>
+              <TextField
+                label="이름"
+                name="name"
+                variant="outlined"
+                value={elderCredentials.name}
+                onChange={(e) =>
+                  setElderCredentials({ ...elderCredentials, name: e.target.value })
+                }
+                fullWidth
+                margin="normal"
+              />
+              <TextField
+                label="전화번호"
+                name="phone"
+                variant="outlined"
+                value={elderCredentials.phone}
+                onChange={(e) =>
+                  setElderCredentials({ ...elderCredentials, phone: e.target.value })
+                }
+                fullWidth
+                margin="normal"
+              />
+            </>
           )}
 
           {/* 에러 메시지 */}
@@ -237,32 +203,19 @@ export default function SignIn() {
         </CardContent>
 
         <CardActions>
-          <Button
-            onClick={handleSignIn}
-            fullWidth
-            variant="contained"
-            // color="primary"
-            className="a"
-          >
+          <Button onClick={handleSignIn} fullWidth variant="contained">
             로그인
           </Button>
         </CardActions>
         
         <CardActions className="kakao">
-          <Button 
-            onClick={handleSignIn}
-            fullWidth
-            variant="contained"
-          >
+          <Button onClick={handleSignIn} fullWidth variant="contained">
             카카오 로그인
           </Button>
         </CardActions>
+
         <CardActions className="naver">
-          <Button 
-            onClick={handleSignIn}
-            fullWidth
-            variant="contained"
-          >
+          <Button onClick={handleSignIn} fullWidth variant="contained">
             네이버 로그인
           </Button>
         </CardActions>

@@ -169,10 +169,16 @@ export const pagination = css`
 
 /* 에러 메시지 스타일 */
 export const errorMessage = css`
-  color: red;
-  font-size: 14px;
-  margin-top: 15px;
-  text-align: center;
+text-align: center;
+  font-size: 16px;
+  color: #d32f2f; /* 빨간색 */
+  font-weight: bold;
+  background: #ffccbc; /* 연한 빨간색 배경 */
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #e57373; /* 연한 빨간색 테두리 */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 `;
 
 /* 로딩 메시지 스타일 */
@@ -481,6 +487,8 @@ export const messageStyle = css`
     box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.15);
   }
 `;
+
+
 
 export const contSt = css`
   width: 100%;

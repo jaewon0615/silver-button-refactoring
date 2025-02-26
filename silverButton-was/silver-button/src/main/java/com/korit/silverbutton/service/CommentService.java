@@ -11,7 +11,7 @@ import jakarta.validation.Valid;
 import java.util.List;
 
 public interface CommentService {
-    ResponseDto<CommentResponseDto> createComment(PrincipalUser name, PrincipalUser phone, @Valid CommentRequestDto dto);
+    ResponseDto<CommentResponseDto> createComment(PrincipalUser principalUser ,CommentRequestDto dto);
 
     ResponseDto<List<CommentResponseDto>> getAllComments(Long boardId);
 

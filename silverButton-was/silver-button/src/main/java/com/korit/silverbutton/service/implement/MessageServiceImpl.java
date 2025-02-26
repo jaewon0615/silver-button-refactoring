@@ -74,7 +74,7 @@ public class MessageServiceImpl implements MessageService {
 
         } catch (Exception e){
             e.printStackTrace();
-            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+            return ResponseDto.setFailed(ResponseMessage.NOT_EXIST_USER);
 
         }
 

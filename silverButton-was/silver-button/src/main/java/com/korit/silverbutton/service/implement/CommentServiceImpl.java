@@ -34,25 +34,24 @@ public class CommentServiceImpl implements CommentService {
 
     @Override
     public ResponseDto<CommentResponseDto> createComment(
-            PrincipalUser name,
-            PrincipalUser phone,
+            PrincipalUser principalUser, // ✅ PrincipalUser 객체 하나로 변경
             CommentRequestDto dto
     ) {
-        CommentResponseDto data = null;
         String content = dto.getContent();
         Long boardId = dto.getBoardId();
-
-        User user = userRepository.findByNameAndPhone(name.getName(), phone.getPhone())
-                .orElseThrow(() -> new IllegalArgumentException(ResponseMessage.NOT_EXIST_USER));
 
         if (boardId == null) {
             return ResponseDto.setFailed(ResponseMessage.INVALID_POST_ID);
         }
-        Optional<Board> boardOptional = boardRepository.findById(boardId);
-        if (boardOptional.isEmpty()) {
-            return ResponseDto.setFailed(ResponseMessage.INVALID_POST_ID);
-        }
-        Board board = boardOptional.get();
+
+        // ✅ PrincipalUser에서 직접 이름과 전화번호 가져오기
+        User user = userRepository.findByNameAndPhone(principalUser.getName(), principalUser.getPhone())
+                .orElseThrow(() -> new IllegalArgumentException(ResponseMessage.NOT_EXIST_USER));
+
+        // ✅ Optional 제거하고 바로 예외 던지기
+        Board board = boardRepository.findById(boardId)
+                .orElseThrow(() -> new IllegalArgumentException(ResponseMessage.INVALID_POST_ID));
+
         try {
             Comment comment = Comment.builder()
                     .content(content)
@@ -60,13 +59,14 @@ public class CommentServiceImpl implements CommentService {
                     .writer(user)
                     .build();
             commentRepository.save(comment);
-            data = new CommentResponseDto(comment);
-            return ResponseDto.setSuccess(ResponseMessage.POST_COMMENT_CREATION_SUCCESS, data);
+
+            return ResponseDto.setSuccess(ResponseMessage.POST_COMMENT_CREATION_SUCCESS, new CommentResponseDto(comment));
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseDto.setFailed(ResponseMessage.POST_COMMENT_CREATION_FAILED);
         }
     }
+
 
 
     @Override

@@ -6,9 +6,7 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import BasicImage from "../../views/board/BasicImage.png";
-import useAuthStore from "../../stores/auth.store";
 import { CgLayoutGrid } from "react-icons/cg";
-import { image } from "../../components/HealthMagazine/style";
 
 interface Post {
   id: number;
@@ -18,6 +16,7 @@ interface Post {
   createdAt: string;
   likes: number;
   views: number;
+  commentCount: number; // 댓글 수 추가
   imageUrl?: string;
 }
 
@@ -26,10 +25,22 @@ export default function Board() {
   const [currentPage, setCurrentPage] = useState<number>(1);
   const [totalPages, setTotalPages] = useState<number>(1);
   const [cookies] = useCookies(["token"]);
-  const [searchType, setSearchType] = useState<string>("title"); 
-  const [searchQuery, setSearchQuery] = useState<string>(""); 
-  const navigate = useNavigate(); 
+  const [searchType, setSearchType] = useState<string>("title");
+  const [searchQuery, setSearchQuery] = useState<string>("");
+  const navigate = useNavigate();
 
+  // 댓글 수를 가져오는 함수
+  const fetchCommentCount = async (postId: number) => {
+    try {
+      const response = await axios.get(`http://localhost:4040/api/v1/comments/count/${postId}`);
+      return response.data.count || 0; // 댓글 수가 없다면 0으로 반환
+    } catch (error) {
+      console.error("댓글 수를 가져오는 데 실패했습니다.", error);
+      return 0; // 댓글 수를 가져오지 못하면 0으로 처리
+    }
+  };
+
+  // 게시글을 가져오는 함수 (댓글 수 포함)
   const fetchPosts = async (page: number) => {
     if (page < 1 || (totalPages > 0 && page > totalPages)) {
       console.warn("Invalid page number:", page);
@@ -37,8 +48,8 @@ export default function Board() {
     }
 
     try {
-      const params: any = { page: page - 1, size: 10, sort: "createdAt,DESC",};
-      let url = "http://localhost:4040/api/v1/board/all"; 
+      const params: any = { page: page - 1, size: 10, sort: "createdAt,DESC" };
+      let url = "http://localhost:4040/api/v1/board/all";
 
       if (searchQuery.trim()) {
         console.log("검색어", searchQuery);
@@ -46,8 +57,8 @@ export default function Board() {
           params["keyword"] = searchQuery.trim();
           url = "http://localhost:4040/api/v1/board/search/title";
         } else if (searchType === "author") {
-          params["name"] = searchQuery.trim(); 
-          url = "http://localhost:4040/api/v1/board/search/name"; 
+          params["name"] = searchQuery.trim();
+          url = "http://localhost:4040/api/v1/board/search/name";
         }
       }
 
@@ -67,17 +78,17 @@ export default function Board() {
       console.log("게시글 데이터:", data.content);
 
       if (data && data.content) {
-        const postsWithLikedStatus = data.content.map((post: Post) => ({
-          ...post,
-          liked: false, // 초기 상태는 좋아요 안 눌림
-        }));
+        // 댓글 수를 추가하여 게시글 데이터를 처리
+        const postsWithCommentCount = await Promise.all(
+          data.content.map(async (post: Post) => {
+            const commentCount = await fetchCommentCount(post.id); // 댓글 수를 가져옵니다
+            return { ...post, commentCount }; // 댓글 수를 포함한 게시글 객체
+          })
+        );
 
-        setPosts(postsWithLikedStatus);
+        setPosts(postsWithCommentCount); // 댓글 수를 포함한 게시글 목록 설정
         setTotalPages(data.totalPages); // 백엔드에서 totalPages 제공 필요
 
-        console.log("전체 데이터:", data); // data 값 전체 출력
-        console.log("게시글 목록:", data.content); // data.content 값 출력
-        console.log("게시글 :", data.content.content); // data.content 값 출력
         console.log("전체 페이지 수:", data.totalPages); // data.totalPages 값 출력
       } else {
         setPosts([]); // 검색 결과가 없으면 빈 배열로 설정
@@ -120,6 +131,7 @@ export default function Board() {
       handleSearch();
     }
   };
+
   // 게시글 데이터 출력
   useEffect(() => {
     console.log("Posts after fetch:", posts); // 상태 값이 변경된 후 출력
@@ -148,6 +160,7 @@ export default function Board() {
       navigate("/board/create"); // 게시글 작성 페이지로 이동
     }
   };
+
   const extractImagesFromHtml = (content: string): string[] => {
     if (!content) return [];
 
@@ -189,17 +202,11 @@ export default function Board() {
   };
 
   const displayedPosts = useMemo(() => posts, [posts]);
-  // 전체 게시글 조회 (검색 조건 초기화)
-  const handleBoardClick = () => {
-    setSearchQuery(""); // 검색어 초기화
-    setSearchType("title"); // 검색 조건을 제목으로 초기화
-    setCurrentPage(1); // 페이지 1로 초기화
-    fetchPosts(1); // 전체 게시글 조회
-  };
 
   return (
     <div css={S.containerStyle}>
       <div css={S.contentBoxStyle}>
+        <h1 css={S.pageTitle}>게시판</h1>
         <div css={S.headerContainerStyle}>
           <div css={S.searchContainerStyle}>
             <select
@@ -226,10 +233,7 @@ export default function Board() {
 
             <div css={S.buttonContainerStyle}>
               <div css={S.boardLinkStyle} onClick={handleCreatePostClick}>
-                ✏️
-              </div>
-              <div css={S.boardLinkStyle} onClick={handleBoardClick}>
-                📝
+                게시글 작성
               </div>
             </div>
           </div>
@@ -244,13 +248,6 @@ export default function Board() {
                 const contentSummary = getSummary(post.content);
                 const contentHtml = post.content; // 전체 HTML을 받아옵니다
                 const images = extractImagesFromHtml(contentHtml); // HTML에서 이미지 URL을 추출
-                console.log("Content HTML:", contentHtml); // HTML 내용 확인
-                console.log("Extracted Images:", images); // 추출된 이미지 목록 확인
-                // 디버깅: 각 게시글에 대해 이미지 확인
-                console.log("게시글 이미지 확인:", {
-                  title: post.title,
-                  images,
-                });
 
                 return (
                   <div
@@ -275,15 +272,16 @@ export default function Board() {
                         <div css={S.createdAtStyle}>
                           {new Date(post.createdAt).toLocaleString()}
                         </div>
-                        <div css={S.likesStyle}>💖 {post.likes}</div>
-                        <div css={S.viewsStyle}>🔍 {post.views}</div>
+                        <div css={S.likesStyle}>추천 {post.likes}</div>
+                        <div css={S.viewsStyle}>조회수 {post.views}</div>
+                        <div css={S.likesStyle}>댓글 수 {post.commentCount}</div> {/* 댓글 수 표시 */}
                       </div>
                     </div>
 
                     <div>
                       <img
-                        css={S.boardImageStyle} // 기존의 boardImageStyle을 사용
-                        src={images.length > 0 ? images[0] : BasicImage} // 이미지가 있으면 첫 번째 이미지를, 없으면 기본 이미지 사용
+                        css={S.boardImageStyle}
+                        src={images.length > 0 ? images[0] : BasicImage}
                         alt="게시글 미리보기 이미지"
                       />
                     </div>

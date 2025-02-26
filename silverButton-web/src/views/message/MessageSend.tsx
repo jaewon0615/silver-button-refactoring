@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { css } from "@emotion/react";
-import { useNavigate } from "react-router-dom"; // useNavigate 임포트
+import { useNavigate } from "react-router-dom";
 import * as s from "./style";
 
 const MessageSend: React.FC = () => {
@@ -11,14 +11,25 @@ const MessageSend: React.FC = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [message, setMessage] = useState("");
-  const [cookies] = useCookies(["token"]); // 쿠키에서 토큰 가져오기
-  const navigate = useNavigate(); // navigate 훅 사용
+  const [cookies] = useCookies(["token"]);
+  const navigate = useNavigate();
 
   const handleSend = async () => {
-    const token = cookies.token; // 쿠키에서 토큰 가져오기
+    const token = cookies.token;
+    
+    if (!token) {
+      setMessage("로그인한 사용자만 메세지를 전송할 수 있습니다.");
+      return;
+    }
+
+    if (!receiverUserId.trim()) {
+      setMessage("ID를 다시 확인해주세요.");
+      return;
+    }
+
     try {
       const response = await axios.post(
-        "http://localhost:4040/api/v1/message",
+        "http://localhost:4040/api/v1/message/",
         {
           receiverUserId,
           title,
@@ -26,30 +37,37 @@ const MessageSend: React.FC = () => {
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // 토큰을 헤더에 추가
+            Authorization: `Bearer ${token}`,
           },
         }
       );
 
       if (response.status === 201) {
         setMessage("쪽지가 성공적으로 전송되었습니다.");
-        // 입력 필드 초기화
         setReceiverUserId("");
         setTitle("");
         setContent("");
       }
-    } catch (error) {
-      setMessage("쪽지 전송 중 오류가 발생했습니다.");
+    } catch (error: any) {
+      if (error.response) {
+        if (error.response.status === 400) {
+          setMessage("존재하지 않는 ID입니다. 다시 확인해주세요.");
+        } else {
+          setMessage(`오류 발생: ${error.response.data?.message || "쪽지 전송 중 오류가 발생했습니다."}`);
+        }
+      } else {
+        setMessage("네트워크 오류 또는 알 수 없는 오류가 발생했습니다.");
+      }
     }
   };
 
   const handleReceivedMessages = () => {
-    navigate("/message/receive"); // 수신함 페이지로 이동
+    navigate("/message/receive");
   };
 
-  const handleOutgoingMessages = () =>{
+  const handleOutgoingMessages = () => {
     navigate("/message/sender");
-  }
+  };
 
   return (
     <div css={s.containerStyle}>
@@ -77,7 +95,7 @@ const MessageSend: React.FC = () => {
         css={s.textareaStyle}
       />
       <button onClick={handleSend} css={s.buttonStyle1}>전송</button>
-      {message && <p css={s.messageStyle}>{message}</p>}
+      {message && <p css={s.errorMessage}>{message}</p>}
     </div>
   );
 };

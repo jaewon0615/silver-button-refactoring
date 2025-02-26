@@ -4,8 +4,9 @@ export const mainBox = css`
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 100vh;
+  height: 100%;
   padding: 20px;
+  padding-bottom: 50px;
   box-sizing: border-box;
   border: 1px solid #ddd;
   border-radius: 10px; /* 둥근 모서리 */
@@ -187,10 +188,6 @@ export const commentInputBox = css`
 export const commentActionBox = css`
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100%; /* FixedButtonContainer 너비와 동일 */
-  height: 100%; /* FixedButtonContainer 높이와 동일 */
-  background-color: transparent; /* 배경 제거 */
 `;
 
 export const commentInputStyle = css`
@@ -235,34 +232,37 @@ export const buttonContainer = css`
 `;
 
 export const exitButtonContainer = css`
-  position: absolute; /* ActionBox 내에서 절대 위치 지정 */
-  right: 5%; /* ActionBox 오른쪽 끝에 위치 */
   display: flex;
-  align-items: center;
+  justify-content: center; /* 버튼을 가로로 중앙에 배치 */
+  margin-top: 20px;
 `;
 
 export const exitButton = css`
-  padding: 8px 16px;
-  font-size: 14px;
-  border: none;
-  border-radius: 5px;
-  background: linear-gradient(to right, #f97316, #f43f5e);  /* 나가기 버튼에만 그라디언트 배경 */
+  padding: 12px 20px;
+  background-color: #d9534f; /* 빨간색 배경 */
   color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
 
   &:hover {
-    background-color: #e63946; /* 호버 시 색상 */
+    background-color: #c9302c; /* 호버 시 색상 조정 */
+  }
+
+  &:active {
+    background-color: #ac2925; /* 클릭 시 색상 조정 */
   }
 `;
 
+
 export const fixedButtonContainer = css`
-  flex: 3; /* 7:3 비율 설정 */
   display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  height: 100%;
-  background-color: transparent; /* 배경 제거 */
+  justify-content: center; /* 버튼을 가로로 중앙에 배치 */
+  margin-top: 20px;
 `;
 
 export const actionButtons = css`
@@ -276,17 +276,23 @@ export const editDeleteButtons = css`
 `;
 
 export const button = css`
-  padding: 8px 16px;
-  font-size: 14px;
-  border: none; /* 테두리 제거 */
-  border-radius: 5px; /* 약간의 둥근 모서리 */
-  background-color: #007bff; /* 버튼 배경색 */
-  color: #fff; /* 버튼 글자색 */
+  padding: 12px 20px;
+  background-color: #5cb85c; /* 초록색 배경 */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
 
   &:hover {
-    background-color: #0056b3; /* 호버 시 색상 */
+    background-color: #4cae4f; /* 호버 시 색상 조정 */
+  }
+
+  &:active {
+    background-color: #449d44; /* 클릭 시 색상 조정 */
   }
 `;
 
