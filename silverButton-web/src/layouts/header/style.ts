@@ -145,10 +145,10 @@ export const naviTitle = css`
 `;
 
 export const roleImage = css`
-  width: 2em;   
-  height: 2em;   
+  width: 2em;
+  height: 2em;
   margin-right: 8px;
-  vertical-align: middle; 
+  vertical-align: middle;
 `;
 
 export const profile = css`

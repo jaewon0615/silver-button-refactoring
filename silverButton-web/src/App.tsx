@@ -6,7 +6,6 @@ import "./App.css";
 import MedicineSearch from "./views/drug/medicineSearch";
 import MedicineSearchList from "./views/drug/medicineListPage";
 import MedicineDetailPage from "./views/drug/medicineDetailPage";
-import MedicineList from "./views/drug/MedicineList"
 
 import Authentication from "./views/authentication";
 import SignUp from "./views/authentication/signUp";
@@ -24,15 +23,15 @@ import MyPage from "./views/authentication/myPage";
 import Resign from "./views/authentication/resign";
 import Calendar from "./views/calendar/Calendar";
 import SaveMedicine from "./views/authentication/myPage/saveMedicine";
+import HealthRecord from "./views/authentication/myPage/healthRecord";
 
 import RootLayout from "./layouts/rootLayout/RootLayout";
 import Header from "./layouts/header/Header";
 import Footer from "./layouts/footer/Footer";
-
 import HeaderLayout from "./layouts/headerLayout/HeaderLayout";
 import FooterLayout from "./layouts/footerLayout/FooterLayout";
 import MainLayout from "./layouts/mainLayout/MainLayout";
-import MessageBox from "./views/message/MessageBox";
+
 
 import HealthMagazineList from "./views/healthMagazine/healthMagazineList";
 import HealthMagazineDetail from "./views/healthMagazine/healthMagazineDetail";
@@ -42,16 +41,19 @@ import useAuthStore from "./stores/auth.store";
 import CaregiverList from "./views/matching/caregiverList";
 import MatchingProfile from "./views/matching/matchingProfile";
 
-import MessageReceive from "./views/message/MessageReceive"
-import MessageOutgoing from "./views/message/MessageOutgoing"
+import MessageReceive from "./views/message/MessageReceive";
+import MessageOutgoing from "./views/message/MessageOutgoing";
 import MessageAll from "./views/message/MessageAll";
-import Map from './views/map';
+import MessageBox from "./views/message/MessageBox";
+
+import Map from "./views/map";
+
 
 export default function App() {
-  const { isAuthenticated, loadFromLocalStorage } = useAuthStore(); // 로그인 상태 가져오기
+  const { isAuthenticated, loadFromLocalStorage } = useAuthStore();
 
   useEffect(() => {
-    loadFromLocalStorage(); // 컴포넌트가 마운트될 때 로컬스토리지에서 로그인 상태 복원
+    loadFromLocalStorage();
   }, [loadFromLocalStorage]);
 
   return (
@@ -96,7 +98,6 @@ export default function App() {
           <Route path="/verifyPassword" element={<VerifyPassword />} />
 
           {/* 게시판 - 로그인 필요 X */}
-
           <Route
             path="/board/*"
             element={
@@ -123,20 +124,22 @@ export default function App() {
                   path="/save-medicine/:userId"
                   element={<SaveMedicine />}
                 />
+                <Route path="/health-record/:id" element={<HealthRecord />} />
               </Routes>
             }
           />
 
           {/* 메시지 */}
           <Route path="/message" element={<MessageBox />} />
-          <Route path="/message/receive" element={<MessageReceive/> } />
-          <Route path="/message/sender" element={<MessageOutgoing/> } />
-          <Route path="/message/All/:id" element={<MessageAll/> } />
+          <Route path="/message/receive" element={<MessageReceive />} />
+          <Route path="/message/sender" element={<MessageOutgoing />} />
+          <Route path="/message/All/:id" element={<MessageAll />} />
           {/* <Route path="/message/:id" element={<MessageDetails />} />
         <Route path="/message/compose" element={<MessageCompose />} />
         <Route path="/message/sent" element={<MessageSent />} />
         <Route path="/message/receive" element={<MessageReceive />} />  */}
 
+          {/*매칭 기능*/}  
           <Route
             path="/matching/*"
             element={
@@ -146,8 +149,9 @@ export default function App() {
               </Routes>
             }
           />
-             {/* 지도 */}
-             <Route path="/map" element={<Map />} />
+
+          {/* 지도 */}
+          <Route path="/map" element={<Map />} />
         </Routes>
       </MainLayout>
 

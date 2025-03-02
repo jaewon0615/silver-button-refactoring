@@ -20,7 +20,7 @@ function HeaderToolWrap() {
   const navigate = useNavigate();
 
   const [editUser, setEditUser] = useState({
-    profileImg: user?.profileImg || "/images/profile.png", // 기본 이미지 경로 설정
+    profileImg: user?.profileImg || "/images/profile.png", 
   });
 
   useEffect(() => {
@@ -33,7 +33,7 @@ function HeaderToolWrap() {
     setCookies("token", "", { expires: new Date(0), path: "/" });
     logout();
     alert("로그아웃 되었습니다.");
-    navigate("/")
+    navigate("/");
   };
 
   const getRoleImage = (role: string) => {
@@ -49,44 +49,9 @@ function HeaderToolWrap() {
     }
   };
 
-  const homeclick=()=>{
+  const homeclick = () => {
     navigate("/");
-  }
-
-  // 페이지 로드 시 프로필 이미지 조회 (useEffect 사용)
-  // useEffect(() => {
-  //   const fetchProfileImg = async () => {
-  //     try {
-  //       const response = await axios.get("http://localhost:4040/api/v1/manage/profile-img", {
-  //         headers: {
-  //           "Content-Type": "multipart/form-data",
-  //           Authorization: `Bearer ${cookies.token}` 
-  //         }
-  //       });
-    
-  //       console.log(response); // 응답 내용 확인
-    
-  //       if (response.data && response.data.data) {
-  //         setEditUser((prev) => ({
-  //           ...prev,
-  //           profileImg: response.data.data,
-  //         }));
-  //       } else {
-  //         setEditUser((prev) => ({
-  //           ...prev,
-  //           profileImg: "/images/profile.png",
-  //         }));
-  //       }
-  //     } catch (err) {
-  //       console.error("프로필 이미지 조회 중 오류 발생:", err);
-  //       setError("프로필 이미지를 조회하는 데 오류가 발생했습니다.");
-  //     }
-  //   };
-
-  //   fetchProfileImg(); // API 호출
-  // }, []);
-
-
+  };
   return (
     <div css={s.headerToolWrap}>
       <div css={s.headerLogo} onClick={homeclick}>
@@ -96,25 +61,27 @@ function HeaderToolWrap() {
       <div css={s.headerToolKit}>
         {isAuthenticated ? (
           <>
-            <div css={s.profile}>{user && (
+            <div css={s.profile}>
+              {user && (
                 <>
-                <img
-              src={editUser.profileImg} // 수정된 프로필 이미지 반영
-              alt="Profile"
-              style={{
-                width: "20%",
-                height: "auto",
-                borderRadius: "100%",
-              }}
-            />
                   <img
-                    src={getRoleImage(user.role)} // role에 맞는 이미지 출력
+                    src={editUser.profileImg}
+                    alt="Profile"
+                    style={{
+                      width: "20%",
+                      height: "auto",
+                      borderRadius: "100%",
+                    }}
+                  />
+                  <img
+                    src={getRoleImage(user.role)}
                     alt={user.role}
-                    css={s.roleImage} // CSS로 이미지 크기 조정
+                    css={s.roleImage}
                   />
                   <span>{user.nickname}님</span>
                 </>
-              )}</div>
+              )}
+            </div>
             <button onClick={handleLogOutClick} css={s.logOutButton}>
               로그아웃
             </button>
@@ -155,22 +122,25 @@ function HeaderNaviWrap() {
           css={s.haderNaviButton}
           onClick={() => navigateTo("/medicine/search")}
         >
-          <AiOutlineMedicineBox css={s.naviIcon}/>
+          <AiOutlineMedicineBox css={s.naviIcon} />
           <div css={s.naviTitle}>약품 검색</div>
         </div>
         <div
           css={s.haderNaviButton}
           onClick={() => navigateTo("/my-page/calendar")}
         >
-          <RiCalendarTodoLine css={s.naviIcon}/>
+          <RiCalendarTodoLine css={s.naviIcon} />
           <div css={s.naviTitle}>할 일 목록</div>
         </div>
         <div css={s.haderNaviButton} onClick={() => navigateTo("/board")}>
-          <LuClipboardPenLine css={s.naviIcon}/>
+          <LuClipboardPenLine css={s.naviIcon} />
           <div css={s.naviTitle}>게시판</div>
         </div>
-        <div css={s.haderNaviButton} onClick={() => navigateTo("/health-magazine")}>
-          <RiHealthBookLine css={s.naviIcon}/>
+        <div
+          css={s.haderNaviButton}
+          onClick={() => navigateTo("/health-magazine")}
+        >
+          <RiHealthBookLine css={s.naviIcon} />
           <div css={s.naviTitle}>헬스매거진</div>
         </div>
       </div>

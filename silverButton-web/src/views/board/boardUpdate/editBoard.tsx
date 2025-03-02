@@ -6,35 +6,31 @@ import { useNavigate, useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 
 export default function EditPost() {
-  const { id } = useParams<{ id: string }>(); // URL에서 id 값을 가져옵니다.
+  const { id } = useParams<{ id: string }>();
   const [post, setPost] = useState({
     title: "",
     content: "",
-    imageUrl: "", // 기존 이미지 URL
+    imageUrl: "",
   });
   const [cookies] = useCookies(["token"]);
   const navigate = useNavigate();
   const contentEditableRef = useRef<HTMLDivElement | null>(null);
 
   const sanitizeContent = (content: string, imageUrl?: string) => {
-    // 로컬 이미지 경로(C:\)를 제거하는 정규식 처리
     let sanitizedContent = content.replace(/!\[.*?\]\(.*?\)/g, (match) => {
-      // 이미지 URL만 추출하여 img 태그로 반환
-      const imgUrl = match.match(/\(.*?\)/)?.[0].slice(1, -1); // ()안의 URL을 추출
+      const imgUrl = match.match(/\(.*?\)/)?.[0].slice(1, -1);
       if (imgUrl) {
         return `<img src="${imgUrl}" alt="게시글 이미지" style="width:100%; height:auto;"/>`;
       }
-      return ''; // 이미지 경로가 없으면 빈 문자열 반환
+      return "";
     });
-  
-    // imageUrl이 제공된 경우, 이를 삽입하지만 이미 content에 이미지가 포함되었으면 중복되지 않게 처리
+
     if (imageUrl && !sanitizedContent.includes(imageUrl)) {
       sanitizedContent = `<img src="${imageUrl}" alt="게시글 이미지" style="width:100%; height:auto;"/><br/>${sanitizedContent}`;
     }
-  
+
     return sanitizedContent;
   };
-  
 
   useEffect(() => {
     const fetchPost = async () => {
@@ -52,11 +48,14 @@ export default function EditPost() {
         setPost({
           title: postData.title,
           content: sanitizeContent(postData.content, postData.imageUrl),
-          imageUrl: postData.imageUrl || "", // 기존 이미지 URL 설정
+          imageUrl: postData.imageUrl || "",
         });
 
         if (contentEditableRef.current) {
-          contentEditableRef.current.innerHTML = sanitizeContent(postData.content, postData.imageUrl);
+          contentEditableRef.current.innerHTML = sanitizeContent(
+            postData.content,
+            postData.imageUrl
+          );
         }
       } catch (error) {
         console.error("Failed to fetch post:", error);
@@ -67,7 +66,6 @@ export default function EditPost() {
     if (id) fetchPost();
   }, [id, cookies.token]);
 
-  // 내용 변경 시 상태 업데이트
   const handleContentChange = () => {
     const editor = contentEditableRef.current;
     if (editor) {
@@ -75,7 +73,6 @@ export default function EditPost() {
     }
   };
 
-  // 파일 변경 핸들러
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
 
@@ -123,7 +120,7 @@ export default function EditPost() {
         }
       );
       alert("게시글이 수정되었습니다.");
-      navigate(`/board/${id}`); // 수정된 게시글의 상세 페이지로 이동
+      navigate(`/board/${id}`);
     } catch (error) {
       console.error("Failed to update post:", error);
       alert("게시글 수정에 실패했습니다.");
@@ -131,13 +128,13 @@ export default function EditPost() {
   };
 
   const handleExit = () => {
-    navigate(`/board/${id}`); // 상세페이지로 이동
+    navigate(`/board/${id}`);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      handleSubmit(e); // 엔터 키를 누르면 제출
+      handleSubmit(e);
     }
   };
 

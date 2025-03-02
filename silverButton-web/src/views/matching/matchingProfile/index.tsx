@@ -21,7 +21,7 @@ interface Dependent {
   phone: string;
   birthDate: string;
   email: string;
-  nickName:string;
+  nickName: string;
 }
 
 const MatchingProfile = () => {
@@ -43,9 +43,11 @@ const MatchingProfile = () => {
   const { user } = useAuthStore();
 
   const role = useAuthStore((state) => state.user?.role);
-  
-  // location.state를 Caregiver와 Dependent 타입으로 명시
-  const { caregiver, dependent } = location.state as { caregiver: Caregiver; dependent: Dependent } || {
+
+  const { caregiver, dependent } = (location.state as {
+    caregiver: Caregiver;
+    dependent: Dependent;
+  }) || {
     caregiver: null,
     dependent: null,
   };
@@ -65,14 +67,12 @@ const MatchingProfile = () => {
   }
 
   const handlePreviousPage = () => {
-    // 요양사 리스트 페이지로 이동
     navigate("/matching/caregiverList");
   };
 
   const handleCompleteMatching = () => {
-    // 매칭 신청 완료 후 메인 페이지로 이동
     alert("매칭 신청이 완료되었습니다.");
-    navigate("/"); // 메인 페이지로 리디렉션
+    navigate("/");
   };
 
   return (
@@ -80,34 +80,28 @@ const MatchingProfile = () => {
       <h1>매칭 프로필</h1>
 
       <div css={s.MatchingProfileContent}>
-      <div css={s.CaregiverInfo}>
-    <h2 css={s.InfoHeader}>매칭된 요양사</h2>
-    <p css={s.InfoText}>이름: {caregiver.name}</p>
-    <p css={s.InfoText}>닉네임: {caregiver.nickname}</p>
-    <p css={s.InfoText}>전화번호: {caregiver.phone}</p>
-    <p css={s.InfoText}>이메일: {caregiver.email}</p>
-    <p css={s.InfoText}>생년월일: {caregiver.birthDate.slice(0, 10)}</p>
-    <p css={s.InfoText}>요양사 인증번호: {caregiver.licenseNumber}</p>
-  </div>
+        <div css={s.CaregiverInfo}>
+          <h2 css={s.InfoHeader}>매칭된 요양사</h2>
+          <p css={s.InfoText}>이름: {caregiver.name}</p>
+          <p css={s.InfoText}>닉네임: {caregiver.nickname}</p>
+          <p css={s.InfoText}>전화번호: {caregiver.phone}</p>
+          <p css={s.InfoText}>이메일: {caregiver.email}</p>
+          <p css={s.InfoText}>생년월일: {caregiver.birthDate.slice(0, 10)}</p>
+          <p css={s.InfoText}>요양사 인증번호: {caregiver.licenseNumber}</p>
+        </div>
 
-  <div css={s.DependentInfo}>
-    <h2 css={s.InfoHeader}>회원님</h2>
-    <p css={s.InfoText}>이름: {dependent.name}</p>
-    <p css={s.InfoText}>전화번호: {dependent.phone}</p>
-  </div>
+        <div css={s.DependentInfo}>
+          <h2 css={s.InfoHeader}>회원님</h2>
+          <p css={s.InfoText}>이름: {dependent.name}</p>
+          <p css={s.InfoText}>전화번호: {dependent.phone}</p>
+        </div>
       </div>
 
       <div css={s.ButtonsContainer}>
-        <button
-          css={s.Button}
-          onClick={handlePreviousPage} // 함수로 변경
-        >
+        <button css={s.Button} onClick={handlePreviousPage}>
           이전 페이지
         </button>
-        <button
-          css={s.Button}
-          onClick={handleCompleteMatching} // 함수로 변경
-        >
+        <button css={s.Button} onClick={handleCompleteMatching}>
           신청 완료
         </button>
       </div>

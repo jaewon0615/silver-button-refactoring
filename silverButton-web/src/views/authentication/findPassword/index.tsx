@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import "../../../stores/auth.store";
 
 const FindPassword = () => {
-  const [step, setStep] = useState(1); // 현재 단계 (1: 이메일 입력, 2: 인증 코드 확인, 3: 새 비밀번호 설정)
+  const [step, setStep] = useState(1);
   const [email, setEmail] = useState("");
   const [verificationCode, setVerificationCode] = useState("");
   const [newPassword, setNewPassword] = useState("");
@@ -24,7 +24,7 @@ const FindPassword = () => {
         body: JSON.stringify({ email }),
       });
 
-      setStep(2); // 인증 코드 입력 단계로 이동
+      setStep(2);
     } catch (err) {
       setError("인증 코드를 전송할 수 없습니다. 이메일을 확인해주세요.");
     }
@@ -39,7 +39,6 @@ const FindPassword = () => {
     }
 
     try {
-      // 인증 코드 확인 (API 요청)
       const response = await fetch("/api/auth/verify-code", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -50,7 +49,7 @@ const FindPassword = () => {
         throw new Error("인증 코드가 올바르지 않습니다.");
       }
 
-      setStep(3); // 새 비밀번호 설정 단계로 이동
+      setStep(3);
     } catch (err) {
       setError("인증 코드 확인에 실패했습니다.");
     }
@@ -65,7 +64,6 @@ const FindPassword = () => {
     }
 
     try {
-      // 새 비밀번호 설정 (API 요청)
       await fetch("/api/auth/reset-password", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -73,7 +71,7 @@ const FindPassword = () => {
       });
 
       alert("비밀번호가 성공적으로 변경되었습니다.");
-      setStep(1); // 처음 단계로 이동
+      setStep(1);
     } catch (err) {
       setError("비밀번호 변경에 실패했습니다.");
     }
@@ -95,7 +93,9 @@ const FindPassword = () => {
               required
             />
             {error && <p className="error-message">{error}</p>}
-            <button className="confirm" type="submit">인증 코드 받기</button>
+            <button className="confirm" type="submit">
+              인증 코드 받기
+            </button>
           </form>
         )}
 
@@ -112,7 +112,9 @@ const FindPassword = () => {
               required
             />
             {error && <p className="error-message">{error}</p>}
-            <button className="confirm" type="submit">인증 코드 확인</button>
+            <button className="confirm" type="submit">
+              인증 코드 확인
+            </button>
           </form>
         )}
 
@@ -129,7 +131,9 @@ const FindPassword = () => {
               required
             />
             {error && <p className="error-message">{error}</p>}
-            <button className="confirm" type="submit">비밀번호 변경</button>
+            <button className="confirm" type="submit">
+              비밀번호 변경
+            </button>
           </form>
         )}
       </div>
@@ -138,4 +142,3 @@ const FindPassword = () => {
 };
 
 export default FindPassword;
-

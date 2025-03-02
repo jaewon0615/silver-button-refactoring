@@ -11,8 +11,6 @@ import axios from "axios";
 import SaveMedicineHome from "../../components/saveMedicine/saveMedicineHome";
 import { useCookies } from "react-cookie";
 
-
-
 const getTokenFromCookies = (): string | null => {
   const cookies = document.cookie.split("; ");
   for (let i = 0; i < cookies.length; i++) {
@@ -27,7 +25,6 @@ const getTokenFromCookies = (): string | null => {
 export default function SaveMedicineHomeList() {
   const { userId } = useParams<{ userId: string }>();
 
-
   const [cookies] = useCookies(["token"]);
 
   const navigate = useNavigate();
@@ -35,27 +32,26 @@ export default function SaveMedicineHomeList() {
   const [scheduleData, setScheduleData] = useState<any[]>([]);
   const [error, setError] = useState<string>("");
 
-
-
-
-  
   const loginNavigate = () => {
     navigate("/auth");
   };
-  
-  const { isAuthenticated} = useAuthStore();
+
+  const { isAuthenticated } = useAuthStore();
   const token = getTokenFromCookies();
 
   const fetchSchedule = async () => {
-    if (!token) return; // 토큰이 없으면 일정 불러오지 않음
+    if (!token) return;
 
     setLoading(true);
     try {
-      const response = await axios.get("http://localhost:4040/api/v1/schedule/today", {
-        headers: {
-          Authorization: `Bearer ${token}`, // 인증 헤더 추가
-        },
-      });
+      const response = await axios.get(
+        "http://localhost:4040/api/v1/schedule/today",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       if (response.data.result) {
         setScheduleData(response.data.data);
@@ -70,14 +66,13 @@ export default function SaveMedicineHomeList() {
     }
   };
 
-  // 인증 상태가 변경될 때마다 일정 불러오기
   useEffect(() => {
     if (isAuthenticated) {
       fetchSchedule();
     }
   }, [isAuthenticated]);
 
-  console.log(isAuthenticated+"인증");
+  console.log(isAuthenticated + "인증");
   return (
     <div css={s.main}>
       <div css={s.video}>
@@ -90,11 +85,12 @@ export default function SaveMedicineHomeList() {
         <div css={s.healthMegazineTop5}>
           <div css={s.top5Box}>
             <div css={s.top5Title}>헬스매거진 TOP5</div>
-            <div css={s.magazineBox}><HealthMegazineTop5 /></div>
+            <div css={s.magazineBox}>
+              <HealthMegazineTop5 />
+            </div>
           </div>
         </div>
 
-        {/* 로그인 상태에 따라 다른 UI 표시 */}
         <div css={s.snsLogin}>
           <div css={s.loginBox}>
             {isAuthenticated ? (
@@ -115,7 +111,6 @@ export default function SaveMedicineHomeList() {
                     <div>오늘의 일정이 없습니다.</div>
                   )}
                 </div>
-                
               </>
             ) : (
               <>

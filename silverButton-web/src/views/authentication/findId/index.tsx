@@ -8,7 +8,7 @@ const FindId = () => {
     name: "",
     email: "",
   });
-  
+
   console.log(formData.name);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -26,7 +26,6 @@ const FindId = () => {
     e.preventDefault();
 
     if (!formData.name || !formData.email) {
-
       console.log(formData.email);
       setError("이름과 이메일을 모두 입력해주세요.");
       setSuccess("");
@@ -41,8 +40,8 @@ const FindId = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:4040/api/v1/mail/send", // 서버 API
-        formData // 이메일 값은 잇는데 이름이 없어서 null 찍힘 
+        "http://localhost:4040/api/v1/mail/send",
+        formData
       );
 
       if (response.status === 200) {
@@ -53,7 +52,9 @@ const FindId = () => {
         setSuccess("");
       }
     } catch (err) {
-      setError("아이디 찾기 요청 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요.");
+      setError(
+        "아이디 찾기 요청 중 문제가 발생했습니다. 잠시 후 다시 시도해주세요."
+      );
       setSuccess("");
     }
   };

@@ -1,5 +1,5 @@
 import React from "react";
-import MessageSend from "./MessageSend"; // 경로를 조정하세요
+import MessageSend from "./MessageSend"; 
 import * as s from "./style";
 
 const App: React.FC = () => {

@@ -10,7 +10,7 @@ import {
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "../../../stores/auth.store"; 
+import useAuthStore from "../../../stores/auth.store";
 import "./Signin.css";
 
 interface Credentials {
@@ -51,11 +51,10 @@ export default function SignIn() {
 
   const [error, setError] = useState<string>("");
   const [, setCookies] = useCookies(["token"]);
-  const { isAuthenticated, login } = useAuthStore(); // ✅ Zustand 상태 사용
+  const { isAuthenticated, login } = useAuthStore();
   const navigate = useNavigate();
   const [isElder, setIsElder] = useState(false);
 
-  // ✅ Zustand의 `isAuthenticated`를 이용해 로그인 여부 체크
   useEffect(() => {
     if (isAuthenticated) {
       alert("이미 로그인된 상태입니다.");
@@ -68,7 +67,7 @@ export default function SignIn() {
       console.log(data);
       const { token, exprTime, user } = data;
       setToken(token, exprTime);
-      login(user, token); // ✅ Zustand 상태 업데이트
+      login(user, token);
       navigate("/");
     } else {
       setError("로그인 실패: 인증 정보를 확인해주세요.");
@@ -80,7 +79,6 @@ export default function SignIn() {
     setCookies("token", token, { path: "/", expires });
   };
 
-  // 로그인 요청
   const handleSignIn = async () => {
     const { userId, password } = credentials;
     const { name, phone } = elderCredentials;
@@ -137,7 +135,6 @@ export default function SignIn() {
             </div>
           </div>
 
-          {/* 일반 로그인 필드 */}
           {!isElder && (
             <>
               <TextField
@@ -166,7 +163,6 @@ export default function SignIn() {
             </>
           )}
 
-          {/* 노인 로그인 필드 */}
           {isElder && (
             <>
               <TextField
@@ -175,7 +171,10 @@ export default function SignIn() {
                 variant="outlined"
                 value={elderCredentials.name}
                 onChange={(e) =>
-                  setElderCredentials({ ...elderCredentials, name: e.target.value })
+                  setElderCredentials({
+                    ...elderCredentials,
+                    name: e.target.value,
+                  })
                 }
                 fullWidth
                 margin="normal"
@@ -186,7 +185,10 @@ export default function SignIn() {
                 variant="outlined"
                 value={elderCredentials.phone}
                 onChange={(e) =>
-                  setElderCredentials({ ...elderCredentials, phone: e.target.value })
+                  setElderCredentials({
+                    ...elderCredentials,
+                    phone: e.target.value,
+                  })
                 }
                 fullWidth
                 margin="normal"
@@ -194,7 +196,6 @@ export default function SignIn() {
             </>
           )}
 
-          {/* 에러 메시지 */}
           {error && (
             <Typography color="error" className="error-message">
               {error}
@@ -207,7 +208,7 @@ export default function SignIn() {
             로그인
           </Button>
         </CardActions>
-        
+
         <CardActions className="kakao">
           <Button onClick={handleSignIn} fullWidth variant="contained">
             카카오 로그인
@@ -220,7 +221,6 @@ export default function SignIn() {
           </Button>
         </CardActions>
 
-        {/* 아이디 찾기, 비밀번호 찾기, 회원가입 버튼 */}
         <CardActions className="footer-actions">
           <Button onClick={handleFindId} fullWidth variant="text">
             아이디 찾기

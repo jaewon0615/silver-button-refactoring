@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // URL에서 ID를 가져오기 위해 사용
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import * as s from "./medicineSearch/style"; // 스타일 파일 경로
+import * as s from "./medicineSearch/style";
 
 interface Medicine {
   id: number;
@@ -17,39 +17,41 @@ interface Medicine {
 }
 
 const MedicineDetail: React.FC = () => {
-  const { id } = useParams<{ id: string }>(); // URL 파라미터에서 ID 가져오기
-  const [medicineData, setMedicineData] = useState<Medicine | null>(null); // 약품 데이터 상태
-  const [loading, setLoading] = useState<boolean>(true); // 로딩 상태
-  const [error, setError] = useState<string | null>(null); // 오류 상태
+  const { id } = useParams<{ id: string }>();
+  const [medicineData, setMedicineData] = useState<Medicine | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string | null>(null);
 
   const fetchMedicineDetail = async () => {
     try {
-      const response = await axios.get<Medicine>(`http://localhost:4040/api/v1/medicine/${id}`); // API 호출
-      setMedicineData(response.data); // 데이터 상태 업데이트
+      const response = await axios.get<Medicine>(
+        `http://localhost:4040/api/v1/medicine/${id}`
+      );
+      setMedicineData(response.data);
     } catch (e) {
-      setError("약품 정보를 불러오는 중 오류가 발생했습니다."); // 오류 메시지 설정
+      setError("약품 정보를 불러오는 중 오류가 발생했습니다.");
     } finally {
-      setLoading(false); // 로딩 종료
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    fetchMedicineDetail(); // 컴포넌트 마운트 시 API 호출
+    fetchMedicineDetail();
   }, [id]);
 
   if (loading) {
-    return <p>로딩 중...</p>; // 로딩 중 메시지
+    return <p>로딩 중...</p>;
   }
 
   if (error) {
-    return <p>{error}</p>; // 오류 메시지
+    return <p>{error}</p>;
   }
 
   return (
     <div>
       <h2>약품 상세 정보</h2>
       {medicineData ? (
-        <div >
+        <div>
           <h3>{medicineData.itemName}</h3>
           <p>약품 고유 번호: {medicineData.itemSeq}</p>
           <p>사용 방법: {medicineData.useMethodQesitm}</p>

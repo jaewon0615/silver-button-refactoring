@@ -28,10 +28,7 @@ export default function SaveMedicineList({
           <div key={medicine.id}>
             <div css={s.listCt}>
               <div css={s.imageBox}>
-                <img
-                  src={medicine.medicineImage}
-                  alt={medicine.itemName}
-                />
+                <img src={medicine.medicineImage} alt={medicine.itemName} />
               </div>
               <div css={s.medicineAll}>
                 <div css={s.medicineRow}>

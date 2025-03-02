@@ -3,7 +3,7 @@ import React from "react";
 import * as s from "./style";
 
 interface FooterLayoutProps {
-  children: React.ReactNode; // children 타입 정의
+  children: React.ReactNode;
 }
 
 export default function HeaderLayout({ children }: FooterLayoutProps) {

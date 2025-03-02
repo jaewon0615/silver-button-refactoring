@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
-import * as s from './style';
-import React from 'react'
+import * as s from "./style";
+import React from "react";
 
 interface Message {
   id: number;
@@ -16,12 +16,17 @@ interface MessageListProps {
   onSelectMessage: (message: Message) => void;
 }
 
-const MessageList: React.FC<MessageListProps> = ({ messages, onSelectMessage }) => {
+const MessageList: React.FC<MessageListProps> = ({
+  messages,
+  onSelectMessage,
+}) => {
   return (
     <ul>
       {messages.map((message) => (
         <li key={message.id} onClick={() => onSelectMessage(message)}>
-          <h3>{message.title} {message.isRead ? '' : '⚪'}</h3>
+          <h3>
+            {message.title} {message.isRead ? "" : "⚪"}
+          </h3>
           <p>보낸 사람: {message.sender}</p>
           <small>{new Date(message.date).toLocaleDateString()}</small>
         </li>
@@ -29,6 +34,5 @@ const MessageList: React.FC<MessageListProps> = ({ messages, onSelectMessage }) 
     </ul>
   );
 };
-
 
 export default MessageList;

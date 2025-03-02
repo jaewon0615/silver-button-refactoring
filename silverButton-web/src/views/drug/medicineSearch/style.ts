@@ -61,4 +61,3 @@ export const image = css`
 export const details = css`
   padding: 16px;
 `;
-

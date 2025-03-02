@@ -2,8 +2,8 @@
     width: 60%;
     height: 100vh;
     margin: 0 auto;
-    overflow-y: auto;  /* 일정이 많을 경우 세로 스크롤 생성 */
-    overflow-x: hidden; /* 가로 스크롤 방지 */
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 .calendar-header {
@@ -124,19 +124,16 @@
     background-color: #e6895724;
 }
 
-/* 요일 헤더에 대해 스크롤 숨기기 */
 .fc .fc-daygrid-header {
-    overflow: hidden;  /* 요일 영역에 스크롤 숨기기 */
+    overflow: hidden;
 }
 
-/* 일정이 많을 경우 셀 크기 설정 */
 .fc .fc-daygrid-day-frame {
     padding: 10px;
-    flex: 1 1 auto;  /* 셀 크기가 유동적으로 늘어나도록 설정 */
-    overflow-y: auto;  /* 일정이 많을 경우 세로 스크롤 생성 */
+    flex: 1 1 auto;
+    overflow-y: auto;
 }
 
-/* 일정 항목 크기 설정 */
 .fc .fc-event {
     padding: 5px 10px;
     margin-bottom: 5px;
@@ -211,8 +208,8 @@
 
 .modal-right {
     flex: 1;
-    padding-left: 10px; 
-    border-left: 1px solid #ccc;  
+    padding-left: 10px;
+    border-left: 1px solid #ccc;
     flex-direction: column;
     align-items: flex-start;
 }
@@ -269,7 +266,7 @@
     background-color: #76c3c5;
     color: white;
     border-radius: 4px;
-    cursor: pointer; 
+    cursor: pointer;
     margin-left: 10px;
 }
 
@@ -284,5 +281,3 @@
 .modal-right button:hover {
     background-color: #5fa2a2;
 }
-
-

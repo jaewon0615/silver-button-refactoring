@@ -8,7 +8,6 @@ const PasswordPage = () => {
   const [error, setError] = useState("");
   const navigate = useNavigate();
 
-  // 쿠키에서 토큰을 가져오는 함수
   const getTokenFromCookies = () => {
     const cookies = document.cookie.split(";");
     for (let i = 0; i < cookies.length; i++) {
@@ -30,7 +29,6 @@ const PasswordPage = () => {
 
     console.log("입력된 비밀번호:", password);
     try {
-      // 비밀번호 검증 API 요청 (axios 사용)
       const response = await axios.post(
         "http://localhost:4040/api/v1/manage/verify-password",
         { currentPassword: password },
@@ -42,20 +40,16 @@ const PasswordPage = () => {
         }
       );
 
-      // 응답 처리
       const result = response.data;
-      console.log("응답 결과:", result); 
+      console.log("응답 결과:", result);
 
       if (result.result) {
-        // 비밀번호 검증 성공
         alert("비밀번호 인증 성공!");
         navigate("/my-page/mypage");
       } else {
-        // 비밀번호 검증 실패
         setError("비밀번호가 일치하지 않습니다.");
       }
     } catch (error) {
-      // 오류 처리
       setError("오류가 발생하였습니다. 다시 시도해 주세요");
       console.error("API 요청 중 오류 발생:", error);
     }
@@ -76,7 +70,10 @@ const PasswordPage = () => {
           />
           {error && <p className="error-message">{error}</p>}
         </div>
-        <button className="password-submit-button" onClick={handlePasswordSubmit}>
+        <button
+          className="password-submit-button"
+          onClick={handlePasswordSubmit}
+        >
           확인
         </button>
       </div>

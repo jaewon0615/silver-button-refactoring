@@ -16,7 +16,7 @@ const MessageSend: React.FC = () => {
 
   const handleSend = async () => {
     const token = cookies.token;
-    
+
     if (!token) {
       setMessage("로그인한 사용자만 메세지를 전송할 수 있습니다.");
       return;
@@ -53,7 +53,12 @@ const MessageSend: React.FC = () => {
         if (error.response.status === 400) {
           setMessage("존재하지 않는 ID입니다. 다시 확인해주세요.");
         } else {
-          setMessage(`오류 발생: ${error.response.data?.message || "쪽지 전송 중 오류가 발생했습니다."}`);
+          setMessage(
+            `오류 발생: ${
+              error.response.data?.message ||
+              "쪽지 전송 중 오류가 발생했습니다."
+            }`
+          );
         }
       } else {
         setMessage("네트워크 오류 또는 알 수 없는 오류가 발생했습니다.");
@@ -73,8 +78,12 @@ const MessageSend: React.FC = () => {
     <div css={s.containerStyle}>
       <div css={s.headerStyle}>메세지 전송</div>
       <div css={s.buttonDiv}>
-        <button css={s.buttonStyle2} onClick={handleReceivedMessages}>수신함</button>
-        <button css={s.buttonStyle2} onClick={handleOutgoingMessages}>발신함</button>
+        <button css={s.buttonStyle2} onClick={handleReceivedMessages}>
+          수신함
+        </button>
+        <button css={s.buttonStyle2} onClick={handleOutgoingMessages}>
+          발신함
+        </button>
       </div>
       <input
         value={receiverUserId}
@@ -94,7 +103,9 @@ const MessageSend: React.FC = () => {
         placeholder="내용"
         css={s.textareaStyle}
       />
-      <button onClick={handleSend} css={s.buttonStyle1}>전송</button>
+      <button onClick={handleSend} css={s.buttonStyle1}>
+        전송
+      </button>
       {message && <p css={s.errorMessage}>{message}</p>}
     </div>
   );

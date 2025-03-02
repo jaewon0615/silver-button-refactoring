@@ -26,9 +26,21 @@ const MessageCompose: React.FC<MessageComposeProps> = ({ onCancel }) => {
   return (
     <div>
       <h2>쪽지 작성</h2>
-      <input value={recipient} onChange={(e) => setRecipient(e.target.value)} placeholder="수신인" />
-      <input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="제목" />
-      <textarea value={content} onChange={(e) => setContent(e.target.value)} placeholder="내용" />
+      <input
+        value={recipient}
+        onChange={(e) => setRecipient(e.target.value)}
+        placeholder="수신인"
+      />
+      <input
+        value={title}
+        onChange={(e) => setTitle(e.target.value)}
+        placeholder="제목"
+      />
+      <textarea
+        value={content}
+        onChange={(e) => setContent(e.target.value)}
+        placeholder="내용"
+      />
       <button onClick={handleSend}>보내기</button>
       <button onClick={onCancel}>취소</button>
     </div>

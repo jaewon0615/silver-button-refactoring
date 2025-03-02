@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 import HealthMagazineDetail from "../../../components/HealthMagazine/HealthMagazineDetail";
 import { useParams } from "react-router-dom";
 import axios from "axios";
@@ -18,20 +18,23 @@ export interface HealthMagazineDetailType {
 export default function Index() {
   const { id } = useParams<{ id: string }>();
   console.log(id);
-  
-  const [healthDetailItem, setHealthDetailItem] = useState<HealthMagazineDetailType>();
-  const [loading, setLoading] = useState(true); 
+
+  const [healthDetailItem, setHealthDetailItem] =
+    useState<HealthMagazineDetailType>();
+  const [loading, setLoading] = useState(true);
 
   const fetchHealthDetail = async () => {
     if (id) {
       try {
-        const response = await axios.get(`http://localhost:4040/api/v1/health-magazine/${id}`);
-        console.log(response); 
-        setHealthDetailItem(response.data.data); 
-        setLoading(false); 
+        const response = await axios.get(
+          `http://localhost:4040/api/v1/health-magazine/${id}`
+        );
+        console.log(response);
+        setHealthDetailItem(response.data.data);
+        setLoading(false);
       } catch (e) {
         console.error("매거진 데이터를 가져오는 데 실패했습니다", e);
-        setLoading(false); 
+        setLoading(false);
       }
     }
   };
@@ -40,19 +43,19 @@ export default function Index() {
     if (id) {
       fetchHealthDetail();
     }
-  }, [id]); 
+  }, [id]);
 
   if (loading) {
-    return <p>로딩 중...</p>; 
+    return <p>로딩 중...</p>;
   }
-  
+
   return (
     <div css={s.contSt}>
       <div css={s.conttSt}>
         {healthDetailItem && (
-          <HealthMagazineDetail healthDetailItem={healthDetailItem}/>
+          <HealthMagazineDetail healthDetailItem={healthDetailItem} />
         )}
-      </div> 
+      </div>
     </div>
-  )
+  );
 }

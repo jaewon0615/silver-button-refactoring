@@ -11,10 +11,12 @@ export interface HealthMagazineItemType {
 }
 
 interface HealthMagazineItemListProps {
-  currentItems: HealthMagazineItemType[]
+  currentItems: HealthMagazineItemType[];
 }
 
-export default function HealthMagazineItemList({currentItems}: HealthMagazineItemListProps) {
+export default function HealthMagazineItemList({
+  currentItems,
+}: HealthMagazineItemListProps) {
   const navigate = useNavigate();
   console.log(currentItems);
 

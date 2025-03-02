@@ -12,11 +12,11 @@ interface Post {
   id: number;
   title: string;
   content: string;
-  username: string; // 작성자 이름 포함
+  username: string;
   createdAt: string;
   likes: number;
   views: number;
-  commentCount: number; // 댓글 수 추가
+  commentCount: number;
   imageUrl?: string;
 }
 
@@ -29,18 +29,18 @@ export default function Board() {
   const [searchQuery, setSearchQuery] = useState<string>("");
   const navigate = useNavigate();
 
-  // 댓글 수를 가져오는 함수
   const fetchCommentCount = async (postId: number) => {
     try {
-      const response = await axios.get(`http://localhost:4040/api/v1/comments/count/${postId}`);
-      return response.data.count || 0; // 댓글 수가 없다면 0으로 반환
+      const response = await axios.get(
+        `http://localhost:4040/api/v1/comments/count/${postId}`
+      );
+      return response.data.count || 0;
     } catch (error) {
       console.error("댓글 수를 가져오는 데 실패했습니다.", error);
-      return 0; // 댓글 수를 가져오지 못하면 0으로 처리
+      return 0;
     }
   };
 
-  // 게시글을 가져오는 함수 (댓글 수 포함)
   const fetchPosts = async (page: number) => {
     if (page < 1 || (totalPages > 0 && page > totalPages)) {
       console.warn("Invalid page number:", page);
@@ -64,40 +64,37 @@ export default function Board() {
 
       const headers = cookies.token
         ? { Authorization: `Bearer ${cookies.token}` }
-        : {}; // Authorization 헤더 포함
+        : {};
 
       const response = await axios.get(url, {
         params,
-        headers, // 헤더에 토큰 추가
+        headers,
       });
 
       const data = response.data.data;
 
-      // 디버깅: API 응답 데이터 확인
       console.log("API Response 전체 데이터:", response.data);
       console.log("게시글 데이터:", data.content);
 
       if (data && data.content) {
-        // 댓글 수를 추가하여 게시글 데이터를 처리
         const postsWithCommentCount = await Promise.all(
           data.content.map(async (post: Post) => {
-            const commentCount = await fetchCommentCount(post.id); // 댓글 수를 가져옵니다
-            return { ...post, commentCount }; // 댓글 수를 포함한 게시글 객체
+            const commentCount = await fetchCommentCount(post.id);
+            return { ...post, commentCount };
           })
         );
 
-        setPosts(postsWithCommentCount); // 댓글 수를 포함한 게시글 목록 설정
-        setTotalPages(data.totalPages); // 백엔드에서 totalPages 제공 필요
+        setPosts(postsWithCommentCount);
+        setTotalPages(data.totalPages);
 
-        console.log("전체 페이지 수:", data.totalPages); // data.totalPages 값 출력
+        console.log("전체 페이지 수:", data.totalPages);
       } else {
-        setPosts([]); // 검색 결과가 없으면 빈 배열로 설정
-        setTotalPages(1); // 페이지는 1로 설정
-        console.log("게시글이 없습니다."); // 결과 없을 때 출력
+        setPosts([]);
+        setTotalPages(1);
+        console.log("게시글이 없습니다.");
       }
     } catch (e: any) {
       console.error("Failed to fetch posts data", e);
-      // HTTP 상태 코드 404 처리
       if (e.response && e.response.status === 404) {
         console.warn("No posts found for the given query");
         setPosts([]);
@@ -106,24 +103,21 @@ export default function Board() {
     }
   };
 
-  // 첫 로딩 시 전체 게시글 조회
   useEffect(() => {
-    fetchPosts(1); // 초기 상태로 전체 게시글 조회
+    fetchPosts(1);
   }, []);
 
-  // 게시글 클릭 시 상세 페이지로 이동
   const handlePostClick = (id: number) => {
-    navigate(`/board/${id}`); // 게시글 ID를 경로에 포함
+    navigate(`/board/${id}`);
   };
 
-  // 검색 처리
   const handleSearch = () => {
     if (!searchQuery.trim()) {
       alert("검색어를 입력해주세요.");
       return;
     }
-    setCurrentPage(1); // 검색 시 페이지를 1로 초기화
-    fetchPosts(1); // 검색 조건 적용
+    setCurrentPage(1);
+    fetchPosts(1);
   };
 
   const handleSearchKeyDown = (event: React.KeyboardEvent) => {
@@ -132,15 +126,13 @@ export default function Board() {
     }
   };
 
-  // 게시글 데이터 출력
   useEffect(() => {
-    console.log("Posts after fetch:", posts); // 상태 값이 변경된 후 출력
+    console.log("Posts after fetch:", posts);
   }, [posts]);
 
-  // 페이지 클릭 핸들러
   const handlePageClick = (page: number) => {
     setCurrentPage(page);
-    fetchPosts(page); // 페이지 변경 시 게시글 다시 불러오기
+    fetchPosts(page);
   };
 
   const handlePreGroupClick = () => {
@@ -152,22 +144,19 @@ export default function Board() {
   };
 
   const handleCreatePostClick = () => {
-    // 로그인 여부 확인
     if (!cookies.token) {
       alert("로그인 후 게시글을 작성할 수 있습니다.");
-      navigate("/auth"); // 로그인 페이지로 이동
+      navigate("/auth");
     } else {
-      navigate("/board/create"); // 게시글 작성 페이지로 이동
+      navigate("/board/create");
     }
   };
 
   const extractImagesFromHtml = (content: string): string[] => {
     if (!content) return [];
 
-    // Markdown 형식에서 이미지 URL을 추출하는 정규식
     const markdownImageRegex = /!\[.*?\]\((.*?)\)/g;
 
-    // Markdown에서 이미지 URL을 추출
     const imageUrls = [];
     let match;
     while ((match = markdownImageRegex.exec(content)) !== null) {
@@ -180,22 +169,16 @@ export default function Board() {
   const removeImagesFromHtml = (htmlContent: string): string => {
     const doc = new DOMParser().parseFromString(htmlContent, "text/html");
 
-    // 이미지 태그만 제거
     const images = doc.querySelectorAll("img");
     images.forEach((img) => img.remove());
 
-    // 수정된 HTML 반환
     return doc.body.innerHTML;
   };
 
   const getSummary = (content: string) => {
-    // HTML 태그 제거 후 텍스트만 추출
     const textContent = removeImagesFromHtml(content);
-
-    // 첫 번째 문장만 추출 (문장 끝은 . 또는 ? 또는 !로 간주)
     const firstSentence = textContent.split(/[.!?]/)[0];
 
-    // 15자까지만 잘라서 반환
     return firstSentence.length > 15
       ? `${firstSentence.slice(0, 15)}`
       : firstSentence;
@@ -246,9 +229,8 @@ export default function Board() {
             <div css={S.boardContainerStyle}>
               {posts.map((post) => {
                 const contentSummary = getSummary(post.content);
-                const contentHtml = post.content; // 전체 HTML을 받아옵니다
-                const images = extractImagesFromHtml(contentHtml); // HTML에서 이미지 URL을 추출
-
+                const contentHtml = post.content;
+                const images = extractImagesFromHtml(contentHtml);
                 return (
                   <div
                     css={S.boardItemStyle}
@@ -274,7 +256,9 @@ export default function Board() {
                         </div>
                         <div css={S.likesStyle}>추천 {post.likes}</div>
                         <div css={S.viewsStyle}>조회수 {post.views}</div>
-                        <div css={S.likesStyle}>댓글 수 {post.commentCount}</div> {/* 댓글 수 표시 */}
+                        <div css={S.likesStyle}>
+                          댓글 수 {post.commentCount}
+                        </div>
                       </div>
                     </div>
 

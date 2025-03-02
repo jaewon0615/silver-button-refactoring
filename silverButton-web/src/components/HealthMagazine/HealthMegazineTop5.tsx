@@ -41,7 +41,8 @@ export default function HealthMagazineTop5() {
         {healthMagazines.map((magazine, index) => (
           <li key={magazine.id} css={s.listStyle}>
             <div css={s.title} onClick={() => handleBoxClick(magazine.id)}>
-              <span css={s.titleText}>{index + 1}.</span> <span css={s.under}>{magazine.title}</span>
+              <span css={s.titleText}>{index + 1}.</span>{" "}
+              <span css={s.under}>{magazine.title}</span>
             </div>
           </li>
         ))}

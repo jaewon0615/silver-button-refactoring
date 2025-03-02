@@ -9,24 +9,24 @@ export const mainBox = css`
   padding-bottom: 50px;
   box-sizing: border-box;
   border: 1px solid #ddd;
-  border-radius: 10px; /* 둥근 모서리 */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* 그림자 */
-  background-color: #fff; /* 흰색 배경 */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 `;
 
 export const upperBox = css`
   display: flex;
   flex-direction: column;
   width: 100%;
-  flex: 9; /* 상단 박스가 9의 비율 */
+  flex: 9;
 `;
 
 export const lowerBox = css`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 8%; /* mainBox 높이의 10% */
-  width: 100%; /* mainBox 너비와 동일 */
+  height: 8%;
+  width: 100%;
 `;
 
 export const contentContainer = css`
@@ -44,25 +44,24 @@ export const boardBox = css`
   width: 70%;
   flex: 7;
   border: 1px solid #ccc;
-  border-radius: 10px; 
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 15px;
   box-sizing: border-box;
-  
 `;
 
 export const boardHeader = css`
   display: flex;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 15px;  /* 제목과 작성자 구간 간격 추가 */
-  border-bottom: 1px solid #ddd;  /* 연한 밑줄 추가 */
-  padding-bottom: 10px;  /* 밑줄과 내용 간 간격 */
+  margin-bottom: 15px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 10px;
 `;
 
 export const boardTitle = css`
   font-size: 24px;
-  font-weight: bold; /* 제목을 굵게 */
+  font-weight: bold;
   color: #333;
   margin: 0;
 `;
@@ -71,19 +70,19 @@ export const boardAuthor = css`
   font-size: 16px;
   color: #666;
   margin: 0;
-  padding-top: 5px; /* 작성자와 제목 간 간격 */
+  padding-top: 5px;
 `;
 
 export const boardContent = css`
   padding-right: 20px;
   margin-bottom: 10px;
-  flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
-  overflow-y: auto; /* 스크롤 활성화 */
-  scrollbar-width: none; /* 스크롤바 제거 (Firefox) */
-  -ms-overflow-style: none; /* 스크롤바 제거 (IE, Edge) */
-  
+  flex-grow: 1;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
   &::-webkit-scrollbar {
-    display: none; /* 스크롤바 제거 (Chrome, Safari) */
+    display: none;
   }
 `;
 
@@ -102,13 +101,13 @@ export const likeViewContainer = css`
 `;
 
 export const boardTime = css`
-  font-size: 12px; /* 글자 크기 줄이기 */
+  font-size: 12px;
   color: #aaa;
-  width: 300px; /* 너비 조정 */
-  white-space: nowrap; /* 내용이 넘치지 않도록 처리 */
-  text-overflow: ellipsis; /* 넘칠 경우 "..."으로 표시 */
-  letter-spacing: -0.6px; /* 글자 간격 좁히기 */
-  padding-left: 100px; /* 왼쪽 여백을 약간 추가하여 오른쪽으로 이동 */
+  width: 300px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  letter-spacing: -0.6px;
+  padding-left: 100px;
 `;
 
 export const commentsBox = css`
@@ -121,19 +120,19 @@ export const commentsBox = css`
   padding: 15px;
   box-sizing: border-box;
 
-  height: 85vh; /* 화면 비율에 맞게 높이 설정 */
-  overflow-y: hidden; /* 스크롤바를 표시하지 않음 */
+  height: 85vh;
+  overflow-y: hidden;
 `;
 
 export const commentList = css`
- flex:8;
-height: 85%;
-  overflow-y: auto; /* 댓글 목록이 넘칠 경우 스크롤 활성화 */
-  scrollbar-width: none; /* Firefox에서 스크롤바 숨기기 */
-  -ms-overflow-style: none; /* IE, Edge에서 스크롤바 숨기기 */
-  
+  flex: 8;
+  height: 85%;
+  overflow-y: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
   &::-webkit-scrollbar {
-    display: none; /* Chrome, Safari에서 스크롤바 숨기기 */
+    display: none;
   }
 `;
 export const commentItem = css`
@@ -143,7 +142,6 @@ export const commentItem = css`
   padding: 10px;
   width: 100%;
   border-bottom: 1px solid #ddd;
-  
 `;
 
 export const commentHeader = css`
@@ -158,32 +156,29 @@ export const commentContent = css`
   display: flex;
   justify-content: flex-start;
   width: 100%;
-  min-height: 80px; /* 높이 설정 */
-  max-height: 200px; /* 최대 높이 설정 (필요 시) */
+  min-height: 80px;
+  max-height: 200px;
 `;
-
 
 export const deleteButton = css`
   background: none;
   border: none;
-  color: #e53e3e; /* 빨강 계열 색상 */
+  color: #e53e3e;
   font-size: 14px;
   cursor: pointer;
   &:hover {
-    color: #c53030; /* 삭제 버튼 호버시 색상 */
+    color: #c53030;
   }
 `;
 
 export const commentInputBox = css`
-  
   display: flex;
   flex-direction: column;
-  justify-content: flex-end; /* 입력창을 하단에 배치 */
+  justify-content: flex-end;
   padding: 10px;
   box-sizing: border-box;
-  width: 100%; /* 부모 컨테이너 너비에 맞춤 */
+  width: 100%;
 `;
-
 
 export const commentActionBox = css`
   display: flex;
@@ -195,13 +190,13 @@ export const commentInputStyle = css`
   padding: 10px;
   border: 1px solid #ddd;
   border-radius: 5px;
-  resize: none; /* 크기 조절 불가능 */
-  height: 80px; /* 고정 높이 설정 */
+  resize: none;
+  height: 80px;
 
   &:focus {
-    border-color: #6ee7b7; /* 포커스 시 테두리 색상 */
-    box-shadow: 0 0 4px rgba(110, 231, 183, 0.5); /* 포커스 시 그림자 */
-    outline: none; /* 기본 outline 제거 */
+    border-color: #6ee7b7;
+    box-shadow: 0 0 4px rgba(110, 231, 183, 0.5);
+    outline: none;
   }
 `;
 
@@ -211,35 +206,35 @@ export const commentInput = css`
   border: 1px solid #ddd;
   border-radius: 5px;
   resize: none;
-  height: 80px; /* 고정 높이 설정 */
+  height: 80px;
 `;
 
 export const actionBox = css`
-  flex: 7; /* 7:3 비율 설정 */
+  flex: 7;
   position: relative;
   display: flex;
   align-items: center;
   height: 100%;
-  background-color: transparent; /* 배경 제거 */
+  background-color: transparent;
 `;
 
 export const buttonContainer = css`
-  position: absolute; /* ActionBox 내에서 절대 위치 지정 */
-  left: 2%; /* ActionBox 너비의 10% 지점에 위치 */
+  position: absolute;
+  left: 2%;
   display: flex;
-  gap: 100px; /* 버튼 간격 */
+  gap: 100px;
   align-items: center;
 `;
 
 export const exitButtonContainer = css`
   display: flex;
-  justify-content: center; /* 버튼을 가로로 중앙에 배치 */
+  justify-content: center;
   margin-top: 20px;
 `;
 
 export const exitButton = css`
   padding: 12px 20px;
-  background-color: #d9534f; /* 빨간색 배경 */
+  background-color: #d9534f;
   color: white;
   border: none;
   border-radius: 8px;
@@ -250,18 +245,17 @@ export const exitButton = css`
   text-align: center;
 
   &:hover {
-    background-color: #c9302c; /* 호버 시 색상 조정 */
+    background-color: #c9302c;
   }
 
   &:active {
-    background-color: #ac2925; /* 클릭 시 색상 조정 */
+    background-color: #ac2925;
   }
 `;
 
-
 export const fixedButtonContainer = css`
   display: flex;
-  justify-content: center; /* 버튼을 가로로 중앙에 배치 */
+  justify-content: center;
   margin-top: 20px;
 `;
 
@@ -277,7 +271,7 @@ export const editDeleteButtons = css`
 
 export const button = css`
   padding: 12px 20px;
-  background-color: #5cb85c; /* 초록색 배경 */
+  background-color: #5cb85c;
   color: white;
   border: none;
   border-radius: 8px;
@@ -288,11 +282,11 @@ export const button = css`
   text-align: center;
 
   &:hover {
-    background-color: #4cae4f; /* 호버 시 색상 조정 */
+    background-color: #4cae4f;
   }
 
   &:active {
-    background-color: #449d44; /* 클릭 시 색상 조정 */
+    background-color: #449d44;
   }
 `;
 

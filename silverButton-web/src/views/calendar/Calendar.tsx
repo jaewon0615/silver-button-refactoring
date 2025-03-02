@@ -7,7 +7,7 @@ import "../../styles/Calendar.css";
 import { EventClickArg } from "@fullcalendar/core";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import useAuthStore from "../../stores/auth.store"; // 사용자 인증 상태 가져오기
+import useAuthStore from "../../stores/auth.store";
 
 interface Event {
   id: string;
@@ -22,9 +22,13 @@ interface ModalProps {
   eventToEdit: Event | null;
   events: Event[];
   onSave: (date: string | null, title: string, eventId?: string) => void;
-  onDelete: (eventId: string) => void
-  savePatientSchedule?: (date: string | null, title: string, eventId?: string) => void; // 요양사 일정에 추가를 위한 함수 추가
-  userRole: string; // 사용자 역할을 받도록 추가
+  onDelete: (eventId: string) => void;
+  savePatientSchedule?: (
+    date: string | null,
+    title: string,
+    eventId?: string
+  ) => void;
+  userRole: string;
 }
 
 const Modal: React.FC<ModalProps> = ({
@@ -36,10 +40,14 @@ const Modal: React.FC<ModalProps> = ({
   onSave,
   onDelete,
   savePatientSchedule,
-  userRole, // 사용자 역할
+  userRole,
 }) => {
-  const [eventTitle, setEventTitle] = useState<string>(eventToEdit ? eventToEdit.title : "");
-  const [selectedEventId, setSelectedEventId] = useState<string | null>(eventToEdit?.id || null);
+  const [eventTitle, setEventTitle] = useState<string>(
+    eventToEdit ? eventToEdit.title : ""
+  );
+  const [selectedEventId, setSelectedEventId] = useState<string | null>(
+    eventToEdit?.id || null
+  );
 
   useEffect(() => {
     if (eventToEdit) {
@@ -60,7 +68,11 @@ const Modal: React.FC<ModalProps> = ({
 
   const handleAddToPatientSchedule = () => {
     if (eventTitle && savePatientSchedule) {
-      savePatientSchedule(selectedDate, eventTitle, selectedEventId ?? undefined);
+      savePatientSchedule(
+        selectedDate,
+        eventTitle,
+        selectedEventId ?? undefined
+      );
       onClose();
     }
   };
@@ -164,7 +176,7 @@ const Modal: React.FC<ModalProps> = ({
 };
 
 const CalendarComponent: React.FC = () => {
-  const { isAuthenticated, user } = useAuthStore(); // 사용자 인증 상태 및 role 가져오기
+  const { isAuthenticated, user } = useAuthStore();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const [events, setEvents] = useState<Event[]>([]);
@@ -194,7 +206,7 @@ const CalendarComponent: React.FC = () => {
 
   useEffect(() => {
     if (user && user.role) {
-      console.log("User Role:", user.role); // user.role을 콘솔에 출력
+      console.log("User Role:", user.role);
     }
   }, [user]);
 
@@ -237,7 +249,7 @@ const CalendarComponent: React.FC = () => {
           (event: { id: string; scheduleDate: string; task: string }) => {
             const startDate = new Date(event.scheduleDate);
             const eventId = `${startDate.toISOString()}@${event.id}`;
-            let tempTask= event.task;
+            let tempTask = event.task;
             if (tempTask.includes("(depen)")) {
               tempTask = tempTask.replace("(depen)", "👴");
             }
@@ -283,7 +295,6 @@ const CalendarComponent: React.FC = () => {
     eventId?: string
   ) => {
     if (eventId) {
-      // 수정 로직
       try {
         const temp = eventId.indexOf("@");
         eventId = eventId.substring(temp + 1);
@@ -298,7 +309,6 @@ const CalendarComponent: React.FC = () => {
         );
 
         if (response.status === 200) {
-          // 이벤트 리스트에서 수정된 항목을 업데이트
           setEvents((prevEvents) =>
             prevEvents.map((event) =>
               event.id === eventId ? { ...event, title } : event
@@ -310,7 +320,6 @@ const CalendarComponent: React.FC = () => {
         console.error("일정 수정 실패:", error);
       }
     } else {
-      // 새 일정 추가 로직
       const newEvent = { scheduleDate: date || "", task: title };
 
       try {
@@ -369,28 +378,28 @@ const CalendarComponent: React.FC = () => {
   ) => {
     const newEvent = { scheduleDate: date || "", task: title };
 
-      try {
-        const response = await axios.post(
-          "http://localhost:4040/api/v1/schedule/dependent-create",
-          newEvent,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
-          }
-        );
+    try {
+      const response = await axios.post(
+        "http://localhost:4040/api/v1/schedule/dependent-create",
+        newEvent,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
-        const addedEvent = {
-          id: `${Date.now()}`,
-          title: title,
-          date: date || "",
-        };
+      const addedEvent = {
+        id: `${Date.now()}`,
+        title: title,
+        date: date || "",
+      };
 
-        setEvents((prevEvents) => [...prevEvents, addedEvent]);
-        fetchEvents(new Date().getFullYear(), new Date().getMonth() + 1);
-      } catch (error) {
-        console.error("매칭된 환자의 일정에 추가 실패:", error);
-      }
+      setEvents((prevEvents) => [...prevEvents, addedEvent]);
+      fetchEvents(new Date().getFullYear(), new Date().getMonth() + 1);
+    } catch (error) {
+      console.error("매칭된 환자의 일정에 추가 실패:", error);
+    }
   };
 
   return (
@@ -426,4 +435,3 @@ const CalendarComponent: React.FC = () => {
 };
 
 export default CalendarComponent;
-//end

@@ -7,10 +7,5 @@ interface RootLayoutProps {
 }
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  return (
-    <div css={s.fullDiv}>
-      {/* children은 동영상 위에 렌더링 */}
-      {children}
-    </div>
-  );
+  return <div css={s.fullDiv}>{children}</div>;
 }

@@ -14,6 +14,9 @@ public class ResponseDto<D> {
 
     private D data;
 
+    public ResponseDto(D b, D responseDtoList) {
+    }
+
 
     public static <D> ResponseDto<D> setSuccess(String message, D data){
         return ResponseDto.set(true, message, data);

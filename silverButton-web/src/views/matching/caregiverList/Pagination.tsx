@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState } from "react";
 
 interface PaginationProps {
   currentPage: number;
@@ -6,10 +6,14 @@ interface PaginationProps {
   setCurrentPage: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, setCurrentPage }) => {
+const Pagination: React.FC<PaginationProps> = ({
+  currentPage,
+  totalPages,
+  setCurrentPage,
+}) => {
   const handlePrev = () => currentPage > 0 && setCurrentPage(currentPage - 1);
-  const handleNext = () => currentPage < totalPages - 1 && setCurrentPage(currentPage + 1);
-
+  const handleNext = () =>
+    currentPage < totalPages - 1 && setCurrentPage(currentPage + 1);
 
   return (
     <div>
@@ -20,7 +24,7 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, setCur
         <button
           key={index}
           onClick={() => setCurrentPage(index)}
-          style={{ fontWeight: currentPage === index ? 'bold' : 'normal' }}
+          style={{ fontWeight: currentPage === index ? "bold" : "normal" }}
         >
           {index + 1}
         </button>
@@ -33,7 +37,3 @@ const Pagination: React.FC<PaginationProps> = ({ currentPage, totalPages, setCur
 };
 
 export default Pagination;
-
-
-
-

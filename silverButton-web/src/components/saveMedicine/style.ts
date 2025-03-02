@@ -18,9 +18,9 @@ export const listCt = css`
   justify-content: center;
   margin-top: 30px;
   &:hover {
-      cursor: pointer;
-      background-color: rgba(147, 129, 255, 0.05);
-    }
+    cursor: pointer;
+    background-color: rgba(147, 129, 255, 0.05);
+  }
 `;
 
 export const medicinePr = css`
@@ -29,12 +29,12 @@ export const medicinePr = css`
   border: 2px solid black;
 
   border-radius: 8px;
-  margin-left:2%;
+  margin-left: 2%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-    color: #aaa;
+  color: #aaa;
   cursor: pointer;
 `;
 
@@ -91,7 +91,7 @@ export const detailText = css`
 
 export const text = css`
   font-weight: bold;
-  color: #007BFF;
+  color: #007bff;
 `;
 
 export const imageBox = css`
@@ -99,12 +99,12 @@ export const imageBox = css`
   height: 210px;
   border: 1px solid transparent;
   border-radius: 10px;
-  margin-left:1%;
+  margin-left: 1%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 12px;
-    color: #aaa;
+  color: #aaa;
   cursor: pointer;
 
   img {

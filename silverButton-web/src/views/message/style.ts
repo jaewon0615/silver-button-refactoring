@@ -8,15 +8,12 @@ export const layout = css`
   height: 100%;
 `;
 
-/*제목*/
 export const header = css`
   font-size: 26px;
   color: #333;
   margin-bottom: 30px;
   text-align: center;
 `;
-
-
 
 export const messageTab = css`
   padding: 10px 20px;
@@ -43,30 +40,6 @@ export const messageList = css`
   gap: 10px;
 `;
 
-
-
-const paginationStyle = {
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  marginTop: '20px',
-  gap: '10px',
-};
-
-const buttonStyle = {
-  padding: '10px 20px',
-  border: '1px solid #ccc',
-  backgroundColor: '#fff',
-  cursor: 'pointer',
-};
-
-const disabledButtonStyle = {
-  ...buttonStyle,
-  backgroundColor: '#eee',
-  color: '#aaa',
-  cursor: 'not-allowed',
-};
-
 export const container = css`
   width: 100%;
   padding: 12px;
@@ -82,8 +55,6 @@ export const container = css`
     box-shadow: 0 0 5px rgba(74, 144, 226, 0.5);
   }
 `;
-
-
 
 export const tabs = css`
   display: flex;
@@ -109,7 +80,6 @@ export const tabButton = css`
     background-color: #0056b3;
   }
 
-  /*활성화된 버튼*/
   &[data-active="true"] {
     background-color: #0056b3;
     color: white;
@@ -137,7 +107,6 @@ export const messageItem = css`
     color: #555;
   }
 `;
-
 
 export const pagination = css`
   display: flex;
@@ -167,21 +136,19 @@ export const pagination = css`
   }
 `;
 
-/* 에러 메시지 스타일 */
 export const errorMessage = css`
 text-align: center;
   font-size: 16px;
-  color: #d32f2f; /* 빨간색 */
+  color: #d32f2f; 
   font-weight: bold;
-  background: #ffccbc; /* 연한 빨간색 배경 */
+  background: #ffccbc;
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid #e57373; /* 연한 빨간색 테두리 */
+  border: 1px solid #e57373; 
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 `;
 
-/* 로딩 메시지 스타일 */
 export const loadingMessage = css`
   color: #333;
   font-size: 16px;
@@ -189,7 +156,6 @@ export const loadingMessage = css`
   margin-bottom: 20px;
 `;
 
-/* 메시지 카드 스타일 */
 export const messageBox = css`
   background-color: #fff;
   width: 800px;
@@ -223,8 +189,6 @@ export const createButton = css`
     background-color: #0056b3;
   }
 `;
-
-
 
 export const composeContainer = css`
   padding: 20px;
@@ -391,7 +355,7 @@ export const inputStyle = css`
 
 export const textareaStyle = css`
   width: 100%;
-  height: 400px; /* 기존 크기 유지 */
+  height: 400px; 
   padding: 12px;
   margin-bottom: 10px;
   border: 2px solid #d1d9e6;
@@ -429,7 +393,7 @@ export const buttonStyle1 = css`
 `;
 
 export const deleteButton = css`
-  background: linear-gradient(to right, #ff6b6b, #ff4757); /* 레드 그라데이션 */
+  background: linear-gradient(to right, #ff6b6b, #ff4757); 
   color: white;
   border: none;
   padding: 10px 14px;
@@ -488,8 +452,6 @@ export const messageStyle = css`
   }
 `;
 
-
-
 export const contSt = css`
   width: 100%;
   height: 100%;
@@ -507,7 +469,7 @@ export const conttSt = css`
   border-radius: 12px;
   overflow: hidden;
   padding: 20px;
-  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1); /* 부드러운 그림자 */
+  box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
 `;
 
 export const buttonDiv = css`
@@ -549,19 +511,19 @@ background-color: rgba(162, 143, 199, 0.2);
 `;
 
 export const paginationButtonActive = css`
-background-color: rgba(162, 143, 199, 0.8); /* 활성화된 버튼의 배경 */
-    color: #ffffff; /* 텍스트 색상 */
+background-color: rgba(162, 143, 199, 0.8); 
+    color: #ffffff;
     border-color: rgba(162, 143, 199, 1);
 
     &:hover {
-      background-color: rgba(162, 143, 199, 1); /* 호버 시 더 짙은 색 */
+      background-color: rgba(162, 143, 199, 1); 
     }
 `;
 
 export const arrowButton = css`
-background-color: rgba(162, 143, 199, 0.2); /* 버튼 배경 */
-    border: 1px solid rgba(162, 143, 199, 0.5); /* 테두리 */
-    color: rgba(162, 143, 199, 0.8); /* 텍스트 색상 */
+background-color: rgba(162, 143, 199, 0.2);
+    border: 1px solid rgba(162, 143, 199, 0.5);
+    color: rgba(162, 143, 199, 0.8); 
     border-radius: 4px;
     padding: 8px 12px;
     font-size: 14px;
@@ -569,7 +531,7 @@ background-color: rgba(162, 143, 199, 0.2); /* 버튼 배경 */
     transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 
     &:hover:not(:disabled) {
-      background-color: rgba(162, 143, 199, 0.3); /* 호버 시 밝은 색상 */
+      background-color: rgba(162, 143, 199, 0.3);
       border-color: rgba(162, 143, 199, 0.8);
       color: #ffffff;
     }
@@ -584,11 +546,11 @@ background-color: rgba(162, 143, 199, 0.2); /* 버튼 배경 */
 
 export const messageLink = css`
   text-decoration: none;
-  color: #1e88e5; /* 좀 더 선명한 블루 */
+  color: #1e88e5; 
   font-weight: bold;
   
   &:hover {
     text-decoration: underline;
-    color: #1565c0; /* 어두운 블루 */
+    color: #1565c0; 
   }
 `;

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import "./Signup.css";
+import * as s from "./style";
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -102,10 +103,8 @@ const SignUp = () => {
       return;
     }
 
-    // confirmPassword와 agree를 제외한 객체 생성
     const { confirmPassword, agree, ...submitData } = formData;
 
-    // 비밀번호 정규식 검사
     const passwordRegex =
       /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@#$%^&*()-_=+[\]{}|;:'",.<>?/]).{8,16}$/;
     if (!passwordRegex.test(formData.password)) {
@@ -113,20 +112,17 @@ const SignUp = () => {
       return;
     }
 
-    // 전화번호 정규식 검사
     if (!/^\d{3}-?\d{3,4}-?\d{4}$/.test(formData.phone)) {
       alert("전화번호 형식이 올바르지 않습니다.");
       return;
     }
 
-    // 비밀번호 일치 여부 검사
     if (formData.password !== formData.confirmPassword) {
       alert("비밀번호와 확인이 일치하지 않습니다.");
       return;
     }
 
     try {
-      // submitData를 JSON 형태로 변환하여 전송
       const response = await axios.post("http://localhost:4040/api/v1/auth/signup", submitData, {
         headers: { "Content-Type": "application/json" },
       });
@@ -148,7 +144,6 @@ const SignUp = () => {
     <div className="signup-container">
       <h1>회원가입</h1>
       <form className="signup-form" onSubmit={handleSubmit}>
-        {/* 이름 */}
         <div className="input-group">
           <label htmlFor="username">이름</label>
           <input
@@ -162,7 +157,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* 아이디 */}
+       
         <div className="input-group">
           <label htmlFor="userId">아이디</label>
           <div className="user-id-wrapper">
@@ -184,7 +179,7 @@ const SignUp = () => {
           </p>
         </div>
 
-        {/* 이메일 */}
+       
         <div className="input-group">
           <label htmlFor="email">이메일</label>
           <input
@@ -198,7 +193,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* 비밀번호 */}
+        
         <div className="input-group">
           <label htmlFor="password">비밀번호</label>
           <input
@@ -212,7 +207,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* 비밀번호 확인 */}
+        
         <div className="input-group">
           <label htmlFor="confirmPassword">비밀번호 확인</label>
           <input
@@ -226,7 +221,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* 성별 */}
+        
         <div className="input-group">
           <label>성별</label>
           <div className="gender-options">
@@ -249,7 +244,7 @@ const SignUp = () => {
           </div>
         </div>
 
-        {/* 핸드폰 번호 */}
+       
         <div className="input-group">
           <label htmlFor="phone">핸드폰 번호</label>
           <input
@@ -263,7 +258,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* 닉네임 */}
+       
         <div className="input-group">
           <label htmlFor="nickname">닉네임</label>
           <div className="user-id-wrapper">
@@ -285,7 +280,7 @@ const SignUp = () => {
           </p>
         </div>
 
-        {/* 생년월일 */}
+        
         <div className="input-group">
           <label htmlFor="birthDate">생년월일</label>
           <input
@@ -298,7 +293,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* 요양사 인증 번호 */}
+       
         <div className="input-group">
           <label htmlFor="licenseNumber">요양사 인증 번호 (선택)</label>
           <input
@@ -311,7 +306,7 @@ const SignUp = () => {
           />
         </div>
 
-        {/* 이용약관 */}
+        
         <div className="input-group terms">
           <input
             type="checkbox"
@@ -326,7 +321,7 @@ const SignUp = () => {
           </label>
         </div>
 
-        {/* 모달 */}
+       
         {showModal && (
           <div className="modal">
             <div className="modal-content">
@@ -341,7 +336,7 @@ const SignUp = () => {
           </div>
         )}
 
-        {/* 회원가입 완료 및 이전 화면 버튼 */}
+        
         <div className="button-container">
           <button type="button" className="back-btn" onClick={() => navigate(-1)}>
             이전 화면

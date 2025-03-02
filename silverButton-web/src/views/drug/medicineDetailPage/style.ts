@@ -2,22 +2,21 @@ import { css } from "@emotion/react";
 
 export const contSt = css`
   width: 100%;
-  min-height: 100vh; /* 최소 높이를 화면 전체로 설정 */
+  min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: flex-start; /* 위쪽 정렬 */
+  align-items: flex-start;
   padding: 10px 150px;
-  background-color: #f9f9f9; /* 연한 회색 배경 */
-  font-family: 'Roboto', sans-serif; /* 기본 폰트 설정 */
+  font-family: "Roboto", sans-serif;
 `;
 
 export const conttSt = css`
   width: 100%;
-  height: auto; /* 자동 높이 조정 */
-  background-color: rgba(147, 129, 255, 0.15); /* 보라색 배경 */
+  height: auto;
+  background-color: rgba(147, 129, 255, 0.08);
   border-radius: 10px;
   padding: 20px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* 그림자 추가 */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const listCt = css`
@@ -45,7 +44,7 @@ export const medicineName = css`
   font-size: 1.5rem;
   font-weight: bold;
   color: #333;
-  font-family: 'Montserrat', sans-serif; /* 약 이름 폰트 설정 */
+  font-family: "Montserrat", sans-serif;
 `;
 
 export const imageBox = css`
@@ -73,14 +72,14 @@ export const detailText = css`
 
 export const text = css`
   font-weight: 600;
-  color: #007BFF; /* 파란색 강조 */
+  color: #007bff;
   font-size: 25px;
-  font-family: 'Roboto', sans-serif; /* 텍스트 폰트 설정 */
+  font-family: "Roboto", sans-serif;
 `;
 
 export const button = css`
   display: inline-block;
-  background-color: #007bff; /* 파란색 배경 */
+  background-color: #007bff;
   color: #fff;
   padding: 10px 20px;
   border-radius: 5px;
@@ -89,10 +88,10 @@ export const button = css`
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  font-family: 'Roboto', sans-serif; /* 버튼 폰트 설정 */
+  font-family: "Roboto", sans-serif;
 
   &:hover {
-    background-color: #0056b3; /* 어두운 파란색 호버 효과 */
+    background-color: #0056b3;
   }
 
   &:focus {
@@ -104,25 +103,25 @@ export const button = css`
 export const saveMessage = css`
   margin-top: 10px;
   font-size: 1rem;
-  color: #28a745; /* 녹색 메시지 */
+  color: #28a745;
   text-align: center;
-  font-family: 'Roboto', sans-serif; /* 메시지 폰트 설정 */
+  font-family: "Roboto", sans-serif;
 `;
 
 export const error = css`
-  color: #dc3545; /* 빨간색 에러 메시지 */
+  color: #dc3545;
   text-align: center;
   font-size: 1.1rem;
   margin-top: 10px;
-  font-family: 'Roboto', sans-serif; /* 에러 메시지 폰트 설정 */
+  font-family: "Roboto", sans-serif;
 `;
 
 export const loading = css`
-  color: #6c757d; /* 회색 로딩 메시지 */
+  color: #6c757d;
   text-align: center;
   font-size: 1.1rem;
   margin-top: 10px;
-  font-family: 'Roboto', sans-serif; /* 로딩 메시지 폰트 설정 */
+  font-family: "Roboto", sans-serif;
 `;
 
 export const saveButton = css`
@@ -138,19 +137,18 @@ export const saveButton = css`
   cursor: pointer;
   transition: background-color 0.3s ease;
   border: 1px solid rgba(147, 129, 255, 0.8);
-  font-family: 'Roboto', sans-serif; /* 저장 버튼 폰트 설정 */
+  font-family: "Roboto", sans-serif;
 
   &:hover {
-    background-color: #007BFF; /* 파란색 호버 효과 */
+    background-color: #007bff;
     color: white;
   }
 
   &:active {
-    background-color: red; /* 빨간색 클릭 효과 */
+    background-color: red;
   }
 `;
 
-// 모달 스타일
 export const modal = css`
   position: fixed;
   top: 0;
@@ -166,41 +164,41 @@ export const modal = css`
 export const modalContent = css`
   background-color: #ffffff;
   padding: 40px;
-  border-radius: 12px; /* 매끈한 모서리 */
-  width: 500px; /* 적당한 너비 */
+  border-radius: 12px;
+  width: 500px;
   text-align: center;
-  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1); /* 깔끔하고 세련된 그림자 */
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
   color: #333;
-  font-family: 'Roboto', sans-serif; /* 모달 기본 폰트 설정 */
+  font-family: "Roboto", sans-serif;
   border: none;
-  transition: all 0.3s ease-in-out; /* 부드러운 애니메이션 */
+  transition: all 0.3s ease-in-out;
 
   &:hover {
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15); /* 호버 시 더 부드러운 그림자 효과 */
-    transform: translateY(-5px); /* 모달이 살짝 올라오는 효과 */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    transform: translateY(-5px);
   }
 `;
 
 export const modalButton = css`
-  background-color: #4CAF50; /* 세련된 녹색 */
+  background-color: #4caf50;
   color: white;
   border: none;
   padding: 12px 24px;
   margin: 15px 0;
-  border-radius: 8px; /* 둥글고 깔끔한 버튼 */
+  border-radius: 8px;
   font-size: 16px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s ease;
-  font-family: 'Roboto', sans-serif; /* 모달 버튼 폰트 설정 */
+  font-family: "Roboto", sans-serif;
 
   &:hover {
-    background-color: #45a049; /* 호버 시 버튼 색상 */
-    transform: translateY(-2px); /* 버튼 호버 효과 */
+    background-color: #45a049;
+    transform: translateY(-2px);
   }
 `;
 
 export const closeButton = css`
-  background-color: #f1f1f1; /* 부드러운 회색 */
+  background-color: #f1f1f1;
   color: #333;
   padding: 12px 24px;
   border: none;
@@ -210,16 +208,16 @@ export const closeButton = css`
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s ease;
   margin-left: 20px;
-  font-family: 'Roboto', sans-serif; /* 닫기 버튼 폰트 설정 */
+  font-family: "Roboto", sans-serif;
 
   &:hover {
-    background-color: #e0e0e0; /* 호버 시 버튼 색상 */
-    transform: translateY(-2px); /* 버튼 호버 효과 */
+    background-color: #e0e0e0;
+    transform: translateY(-2px);
   }
 `;
 
 export const modalText = css`
   font-size: 20px;
-  color: #333; /* 기본 텍스트 색상 */
-  font-family: 'Roboto', sans-serif; /* 모달 텍스트 폰트 설정 */
+  color: #333;
+  font-family: "Roboto", sans-serif;
 `;

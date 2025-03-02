@@ -16,7 +16,8 @@ export default function Footer() {
           <p css={s.companyInfoText}>(주) 실버버튼 | 대표자명 : 정재원</p>
           <p css={s.companyInfoText}>사업자등록번호 : 000-00-00000</p>
           <div css={s.companyInfoAddress}>
-            주소 : 12345 부산광역시 부산진구 부산 부산진구 중앙대로 668(부전동 229) 대표전화 : 1588-5890
+            주소 : 12345 부산광역시 부산진구 부산 부산진구 중앙대로 668(부전동
+            229) 대표전화 : 1588-5890
           </div>
         </div>
         <div>COPYRIGHT © 2025 SILVER BUTTON PROJECT. ALL RIGHTS RESERVED</div>

@@ -1,17 +1,15 @@
 import { create } from "zustand";
 
-// 사용자 정보를 담을 interface 정의
 interface User {
-    id: number;
-    userId: string;
-    nickname: string;
-    name?: string;
-    role: string;
-    phone: string;
-    profileImg: string;
+  id: number;
+  userId: string;
+  nickname: string;
+  name?: string;
+  role: string;
+  phone: string;
+  profileImg: string;
 }
 
-// 인증 상태의 interface 정의
 interface AuthStateType {
   isAuthenticated: boolean;
   user: User | null;
@@ -28,8 +26,8 @@ const useAuthStore = create<AuthStateType>((set) => ({
   token: null,
 
   loadFromLocalStorage: () => {
-    const token = localStorage.getItem('authToken');
-    const user = localStorage.getItem('user');
+    const token = localStorage.getItem("authToken");
+    const user = localStorage.getItem("user");
     if (token && user) {
       const parsedUser = JSON.parse(user);
       set({ isAuthenticated: true, user: parsedUser, token });
@@ -37,14 +35,14 @@ const useAuthStore = create<AuthStateType>((set) => ({
   },
 
   login: (user, token) => {
-    localStorage.setItem('authToken', token);
-    localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem("authToken", token);
+    localStorage.setItem("user", JSON.stringify(user));
     set({ isAuthenticated: true, user, token });
   },
 
   logout: () => {
-    localStorage.removeItem('authToken');
-    localStorage.removeItem('user');
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
     set({ isAuthenticated: false, user: null, token: null });
   },
 }));

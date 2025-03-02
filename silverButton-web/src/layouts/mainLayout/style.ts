@@ -1,8 +1,8 @@
 import { css } from "@emotion/react";
 
 export const mainLayout = css`
-  flex-grow: 1; /* 남은 공간을 차지하도록 설정 */
-  overflow-y: auto; /* 내용이 많으면 스크롤 가능하도록 설정 */
+  flex-grow: 1;
+  overflow-y: auto;
   display: flex;
   justify-content: center;
   width: 100%;

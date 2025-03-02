@@ -28,15 +28,15 @@ interface Comment {
 }
 
 const BoardDetail = () => {
-  const { id } = useParams<{ id: string }>(); // URL 파라미터에서 ID 추출
+  const { id } = useParams<{ id: string }>();
   const [board, setBoard] = useState<Board | null>(null);
   const [comments, setComments] = useState<Comment[]>([]);
   const [newComment, setNewComment] = useState<string>("");
   const navigate = useNavigate();
-  const [isLoading, setIsLoading] = useState<boolean>(true); // 로딩 상태 추가
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [cookies] = useCookies(["token"]);
-  const { user, isAuthenticated } = useAuthStore(); // useAuthStore에서 user 정보 가져오기
-  const currentUserId = user?.id || null; // 인증된 사용자의 ID
+  const { user, isAuthenticated } = useAuthStore();
+  const currentUserId = user?.id || null;
 
   useEffect(() => {
     const fetchBoard = async () => {
@@ -68,7 +68,7 @@ const BoardDetail = () => {
           `http://localhost:4040/api/v1/comment/all?boardId=${id}`,
           {
             headers: {
-              Authorization: `Bearer ${cookies.token}`, // Authorization 헤더에 토큰 추가
+              Authorization: `Bearer ${cookies.token}`,
             },
           }
         );
@@ -78,18 +78,17 @@ const BoardDetail = () => {
       }
     };
 
-    if (id) fetchComments(); // id가 있을 경우에만 fetch 실행
-  }, [id, cookies.token]); // id나 cookies.token이 변경될 때마다 실행
+    if (id) fetchComments();
+  }, [id, cookies.token]);
 
   useEffect(() => {
     console.log("Updated commentData ->>", comments);
-  }, [comments]); // comments 값이 변경될 때마다 출력
+  }, [comments]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
-      // Shift+Enter가 아니면 댓글 작성
-      e.preventDefault(); // 기본 엔터키 동작을 막고
-      handleAddComment(); // 댓글 추가 함수 호출
+      e.preventDefault();
+      handleAddComment();
     }
   };
 
@@ -101,7 +100,7 @@ const BoardDetail = () => {
 
     const commentData = {
       content: newComment,
-      boardId: id, // 게시글 ID
+      boardId: id,
       writerId: user?.id,
     };
 
@@ -117,11 +116,10 @@ const BoardDetail = () => {
         }
       );
 
-      // 댓글 작성 후, 댓글 목록을 갱신
       if (response.data.result) {
         console.log("댓글 추가 성공:", response.data.data);
-        setComments((prevComments) => [...prevComments, response.data.data]); // 기존 댓글에 새 댓글 추가
-        setNewComment(""); // 댓글 입력창 초기화
+        setComments((prevComments) => [...prevComments, response.data.data]);
+        setNewComment("");
       } else {
         console.error("댓글 추가 실패:", response.data.message);
         alert("댓글 작성에 실패했습니다.");
@@ -206,7 +204,7 @@ const BoardDetail = () => {
           "삭제 요청 URL:",
           `http://localhost:4040/api/v1/board/delete/${id}`
         );
-  
+
         await axios.delete(`http://localhost:4040/api/v1/board/delete/${id}`, {
           headers: {
             Authorization: `Bearer ${cookies.token}`,
@@ -244,28 +242,21 @@ const BoardDetail = () => {
   };
 
   const sanitizeContent = (content: string, imageUrl?: string) => {
-    // 로컬 이미지 경로(C:\)를 제거하는 정규식 처리
     let sanitizedContent = content.replace(/!\[.*?\]\(.*?\)/g, (match) => {
-      // 이미지 URL만 추출하여 img 태그로 반환
-      const imgUrl = match.match(/\(.*?\)/)?.[0].slice(1, -1); // ()안의 URL을 추출
+      const imgUrl = match.match(/\(.*?\)/)?.[0].slice(1, -1);
       if (imgUrl) {
-        return `<img src="${imgUrl}" alt="게시글 이미지" style="width:100%; height:auto;"/>`; 
+        return `<img src="${imgUrl}" alt="게시글 이미지" style="width:100%; height:auto;"/>`;
       }
-      return ''; // 이미지 경로가 없으면 빈 문자열 반환
+      return "";
     });
-  
-    // imageUrl이 제공된 경우, 이를 삽입하지만 이미 content에 이미지가 포함되었으면 중복되지 않게 처리
+
     if (imageUrl && !sanitizedContent.includes(imageUrl)) {
       sanitizedContent = `<img src="${imageUrl}" alt="게시글 이미지" style="width:100%; height:auto;"/><br/>${sanitizedContent}`;
     }
-  
+
     return sanitizedContent;
   };
-  
-  
 
-
-  
   if (isLoading) return <p>게시글을 불러오는 중...</p>;
   if (!board) return <p>게시글이 없습니다.</p>;
 
@@ -285,18 +276,17 @@ const BoardDetail = () => {
                   <div>
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: sanitizeContent(board.content, board.imageUrl), // sanitizeContent 호출
+                        __html: sanitizeContent(board.content, board.imageUrl),
                       }}
                     />
-                    
                   </div>
                 </div>
 
                 <div css={S.boardStats}>
                   <div css={S.likeViewContainer}>
                     <div css={S.clickableIcon} onClick={handleLike}>
-                      추천  {board.likes}
-                      조회수  {board.views}
+                      추천 {board.likes}
+                      조회수 {board.views}
                     </div>
                   </div>
                   <div css={S.boardTime}>{formatDate(board.createdAt)}</div>
@@ -340,10 +330,10 @@ const BoardDetail = () => {
             {isAuthenticated && (
               <div css={S.commentInputBox}>
                 <textarea
-                  css={S.commentInputStyle} // 텍스트 입력창 스타일
-                  value={newComment} // 입력된 댓글 값
-                  onChange={(e) => setNewComment(e.target.value)} // 값 변경 처리
-                  placeholder="댓글을 작성하세요." // 안내 텍스트
+                  css={S.commentInputStyle}
+                  value={newComment}
+                  onChange={(e) => setNewComment(e.target.value)}
+                  placeholder="댓글을 작성하세요."
                   onKeyDown={handleKeyDown}
                 />
               </div>

@@ -62,54 +62,52 @@ export default function Index() {
     <div css={s.contSt}>
       <div css={s.conttSt}>
         <div css={s.headerBox}>
-        <div css={s.magazineHeader}>
-          <span css={s.magazineTitle}>실버니즈 헬스 매거진</span>
-        </div>
-        <div css={s.selectBox}>
-          <select
-            onChange={handleSortChange}
-            value={sortOption}
-            css={s.selectData}
-          >
-            <option value="latest">최신순</option>
-            <option value="popular">조회순</option>
-          </select>
-        </div>
+          <div css={s.magazineHeader}>
+            <span css={s.magazineTitle}>실버니즈 헬스 매거진</span>
+          </div>
+          <div css={s.selectBox}>
+            <select
+              onChange={handleSortChange}
+              value={sortOption}
+              css={s.selectData}
+            >
+              <option value="latest">최신순</option>
+              <option value="popular">조회순</option>
+            </select>
+          </div>
         </div>
 
         <div css={s.HealthMagazineItemBox}>
           <HealthMagazineItemList currentItems={currentItems} />
-        {/* 페이지네이션 */}
-        <div css={s.paginationContainer}>
-          <button
-            onClick={() => handlePageClick(currentPage - 1)}
-            css={s.arrowButton}
-            disabled={currentPage === 1}
-          >
-            &lt;
-          </button>
-          {[...Array(totalPages)].map((_, index) => (
+          <div css={s.paginationContainer}>
             <button
-              key={index}
-              onClick={() => handlePageClick(index + 1)}
-              css={[
-                s.paginationButton,
-                currentPage === index + 1 && s.paginationButtonActive,
-              ]}
+              onClick={() => handlePageClick(currentPage - 1)}
+              css={s.arrowButton}
+              disabled={currentPage === 1}
             >
-              {index + 1}
+              &lt;
             </button>
-          ))}
-          <button
-            onClick={() => handlePageClick(currentPage + 1)}
-            css={s.arrowButton}
-            disabled={currentPage === totalPages}
-          >
-            &gt;
-          </button>
-        </div>
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handlePageClick(index + 1)}
+                css={[
+                  s.paginationButton,
+                  currentPage === index + 1 && s.paginationButtonActive,
+                ]}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => handlePageClick(currentPage + 1)}
+              css={s.arrowButton}
+              disabled={currentPage === totalPages}
+            >
+              &gt;
+            </button>
           </div>
-        
+        </div>
       </div>
     </div>
   );

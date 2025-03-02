@@ -7,7 +7,7 @@ import useAuthStore from "../../stores/auth.store";
 
 export default function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const { isAuthenticated} = useAuthStore();
+  const { isAuthenticated } = useAuthStore();
 
   const navigate = useNavigate();
 
@@ -32,7 +32,10 @@ export default function SideBar() {
         </div>
         <div css={s.sidebarButtons}>
           {!isAuthenticated ? (
-            <button css={s.sidebarButton} onClick={() => handleNavigate("/auth")}>
+            <button
+              css={s.sidebarButton}
+              onClick={() => handleNavigate("/auth")}
+            >
               로그인
             </button>
           ) : (
@@ -43,8 +46,7 @@ export default function SideBar() {
               마이 페이지
             </button>
           )}
-          
-          {/* 로그인 상태에 관계없이 항상 표시되는 버튼들 */}
+
           <button
             css={s.sidebarButton}
             onClick={() => handleNavigate("/medicine/search")}
@@ -75,10 +77,7 @@ export default function SideBar() {
           >
             캘린더
           </button>
-          <button
-            css={s.sidebarButton}
-            onClick={() => handleNavigate("/map")}
-          >
+          <button css={s.sidebarButton} onClick={() => handleNavigate("/map")}>
             지도
           </button>
         </div>

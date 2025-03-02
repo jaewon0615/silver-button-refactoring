@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCookies } from "react-cookie";
-import { Link } from "react-router-dom"; // Link 임포트
+import { Link } from "react-router-dom";
 import * as s from "./style";
 
 interface Message {
@@ -31,11 +31,14 @@ const OutgoingMessages: React.FC = () => {
     }
 
     try {
-      const response = await axios.get("http://localhost:4040/api/v1/message/sender", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await axios.get(
+        "http://localhost:4040/api/v1/message/sender",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       setMessages(response.data.data);
     } catch (e) {
       setError("쪽지를 불러오는 중 오류가 발생했습니다.");
@@ -64,8 +67,10 @@ const OutgoingMessages: React.FC = () => {
           Authorization: `Bearer ${token}`,
         },
       });
-      setMessages((prevMessages) => prevMessages.filter((message) => message.id !== id));
-      alert("쪽지가 삭제되었습니다."); // 삭제 알림 추가
+      setMessages((prevMessages) =>
+        prevMessages.filter((message) => message.id !== id)
+      );
+      alert("쪽지가 삭제되었습니다.");
     } catch (e) {
       setError("쪽지를 삭제하는 중 오류가 발생했습니다.");
     } finally {
@@ -104,7 +109,9 @@ const OutgoingMessages: React.FC = () => {
                 <h3>제목: {message.title}</h3>
               </Link>
               <p>받을 사람: {message.receiverName}</p>
-              <small>보낸 시간: {new Date(message.createdAt).toLocaleString()}</small>
+              <small>
+                보낸 시간: {new Date(message.createdAt).toLocaleString()}
+              </small>
               <p>{message.content}</p>
               <button
                 css={s.deleteButton}

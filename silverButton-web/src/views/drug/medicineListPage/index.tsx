@@ -4,11 +4,10 @@ import { useLocation, useNavigate } from "react-router-dom"; // useNavigate 추�
 import axios from "axios";
 import * as s from "./style";
 
-// Define the type for the medicine data
 interface MedicineData {
-  id:number
+  id: number;
   itemName: string;
-  medicineId: string; // medicineId 추가
+  medicineId: string;
   efcyQesitm: string | null;
   useMethodQesitm: string | null;
   depositMethodQesitm: string | null;
@@ -18,13 +17,13 @@ interface MedicineData {
 
 export default function ResultPage() {
   const location = useLocation();
-  const navigate = useNavigate(); // navigate 사용
+  const navigate = useNavigate();
   const [data, setData] = useState<MedicineData[]>([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const itemName = location.state?.itemName;
   const [currentPage, setCurrentPage] = useState(1);
-  const itemsPerPage = 5;
+  const itemsPerPage = 4;
 
   useEffect(() => {
     if (itemName) {
@@ -53,7 +52,6 @@ export default function ResultPage() {
   };
 
   const handleMedicineClick = (id: number) => {
-    // 약품 ID를 클릭하면 해당 약품의 상세 페이지로 이동
     navigate(`/medicine/medicineId/${id}`);
   };
 
@@ -62,13 +60,16 @@ export default function ResultPage() {
       <div css={s.conttSt}>
         {loading && <div>Loading...</div>}
         {error && <div>{error}</div>}
-        
+
         <div css={s.scrollableContent}>
           {currentItems.length === 0 ? (
             <div>No results found</div>
           ) : (
             currentItems.map((medicine) => (
-              <div key={medicine.medicineId} onClick={() => handleMedicineClick(medicine.id)}>
+              <div
+                key={medicine.medicineId}
+                onClick={() => handleMedicineClick(medicine.id)}
+              >
                 {medicine.medicineImage && (
                   <div css={s.listCt}>
                     <img
@@ -79,9 +80,19 @@ export default function ResultPage() {
                     <div css={s.medicineAll}>
                       <div css={s.medicineRow}>
                         <div css={s.medicineName}>{medicine.itemName}</div>
-                        <div css={s.text}>효능: <span css={s.textdiv}>{medicine.intrcQesitm ?? "정보 없음"}</span></div>
-                        <div css={s.text}>복용 방법: <span css={s.textdiv}>{medicine.useMethodQesitm ?? "정보 없음"}</span></div>
-                        <div css={s.text}>보관 방법: <span css={s.textdiv}>{medicine.depositMethodQesitm ?? "정보 없음"}</span> </div>
+                        <div css={s.text}>
+                          효능:{" "}
+                          <span css={s.textdiv}>
+                            {medicine.efcyQesitm ?? "정보 없음"}
+                          </span>
+                        </div>
+                        <div css={s.text}>
+                          복용 방법:{" "}
+                          <span css={s.textdiv}>
+                            {medicine.useMethodQesitm ?? "정보 없음"}
+                          </span>
+                        </div>
+                        
                       </div>
                     </div>
                   </div>
@@ -90,7 +101,7 @@ export default function ResultPage() {
             ))
           )}
         </div>
-        
+
         <div css={s.paginationContainer}>
           <button
             onClick={() => handlePageClick(currentPage - 1)}

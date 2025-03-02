@@ -26,11 +26,13 @@ interface SaveMedicineProps {
 export default function SaveMedicineUserId({
   saveMedicineItem: initialSaveMedicineItem,
 }: SaveMedicineProps) {
-  const [saveMedicineItem, setSaveMedicineItem] = useState(initialSaveMedicineItem);
+  const [saveMedicineItem, setSaveMedicineItem] = useState(
+    initialSaveMedicineItem
+  );
 
   const [cookies] = useCookies(["token"]);
 
-  const navigate = useNavigate(); // navigate 사용
+  const navigate = useNavigate();
 
   const handleSaveMedicine = async (itemSeq: number, itemName: string) => {
     const token = cookies.token;
@@ -39,19 +41,23 @@ export default function SaveMedicineUserId({
       return;
     }
 
-    const confirmDelete = window.confirm(`${itemName} 약품을 삭제하시겠습니까?`);
+    const confirmDelete = window.confirm(
+      `${itemName} 약품을 삭제하시겠습니까?`
+    );
     if (!confirmDelete) return;
 
     try {
-      await axios.delete(`http://localhost:4040/api/v1/medicine-schedule/${itemSeq}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.delete(
+        `http://localhost:4040/api/v1/medicine-schedule/${itemSeq}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
 
       alert(`${itemName} 약품이 삭제되었습니다.`);
 
-      // 삭제 후 상태 업데이트
       setSaveMedicineItem((prevItems) =>
         prevItems.filter((item) => item.itemSeq !== itemSeq)
       );
@@ -61,12 +67,9 @@ export default function SaveMedicineUserId({
     }
 
     const handleMedicineClick = (id: number) => {
-      // 약품 ID를 클릭하면 해당 약품의 상세 페이지로 이동
       navigate(`/medicine/medicineId/${id}`);
     };
   };
-
-  
 
   return (
     <div>
@@ -83,10 +86,12 @@ export default function SaveMedicineUserId({
                 </div>
                 <div css={s.medicineAll}>
                   <div css={s.medicineRow}>
-                    <div css={s.medicineName} >{medicine.itemName}</div>
+                    <div css={s.medicineName}>{medicine.itemName}</div>
                     <button
                       css={s.saveButton}
-                      onClick={() => handleSaveMedicine(medicine.itemSeq, medicine.itemName)}
+                      onClick={() =>
+                        handleSaveMedicine(medicine.itemSeq, medicine.itemName)
+                      }
                     >
                       약품 삭제
                     </button>

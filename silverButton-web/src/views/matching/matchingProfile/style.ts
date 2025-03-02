@@ -1,8 +1,8 @@
 /** @jsxImportSource @emotion/react */
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 export const MatchingProfileContainer = css`
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
   padding: 40px;
   text-align: center;
 `;
@@ -23,7 +23,7 @@ export const CaregiverInfo = css`
   min-width: 400px;
   max-width: 800px;
   box-sizing: border-box;
-  border: 1px solid #add8e6; /* 연한 파란색 테두리 */
+  border: 1px solid #add8e6;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 `;
 
@@ -36,23 +36,23 @@ export const DependentInfo = css`
   min-width: 400px;
   max-width: 800px;
   box-sizing: border-box;
-  border: 1px solid #add8e6; /* 연한 파란색 테두리 */
+  border: 1px solid #add8e6;
   box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const InfoHeader = css`
   font-size: 1.8rem;
   margin-bottom: 15px;
-  color: #003366; /* 다크 블루 */
-  font-weight: bold; /* 굵게 */
+  color: #003366;
+  font-weight: bold;
 `;
 
 export const InfoText = css`
   font-size: 1.2rem;
   margin: 10px 0;
-  color: #5a5d8f; /* 중간 블루 */
-  line-height: 1.5; /* 줄 간격 조정 */
-  font-family: 'Arial', sans-serif; /* 폰트 패밀리 */
+  color: #5a5d8f;
+  line-height: 1.5;
+  font-family: "Arial", sans-serif;
 `;
 
 export const ButtonsContainer = css`
@@ -64,48 +64,46 @@ export const ButtonsContainer = css`
 export const Button = css`
   padding: 12px 30px;
   font-size: 1.2rem;
-  border: 2px solid #3b82f6; /* 테두리 추가 */
+  border: 2px solid #3b82f6;
   border-radius: 12px;
   cursor: pointer;
-  color: #3b82f6; /* 텍스트 색상 */
+  color: #3b82f6;
   font-weight: bold;
-  background: white; /* 흰색 배경 */
+  background: white;
   margin-right: 20px;
   transition: background 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
-
-  /* 기본 상태에서 그림자 효과 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 
   &:hover {
-    background: #3b82f6; /* 호버 시 배경색 변경 */
-    color: white; /* 호버 시 텍스트 색상 변경 */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); /* 호버 시 그림자 효과 증가 */
+    background: #3b82f6;
+    color: white;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
   }
 
   &:active {
-    background: #1e40af; /* 클릭 시 배경색 변경 */
+    background: #1e40af;
   }
 `;
 
 export const NoDataMessage = css`
   text-align: center;
   font-size: 18px;
-  color: #5a5d8f; /* 중간 블루 */
+  color: #5a5d8f;
   font-style: italic;
   padding: 12px;
   border-radius: 10px;
-  background: #e6f7ff; /* 연한 파란색 배경 */
-  border: 1px solid #a3bffa; /* 연한 파란색 테두리 */
+  background: #e6f7ff;
+  border: 1px solid #a3bffa;
 `;
 
 export const ErrorMessage = css`
   text-align: center;
   font-size: 16px;
-  color: #d32f2f; /* 빨간색 */
+  color: #d32f2f;
   font-weight: bold;
-  background: #ffccbc; /* 연한 빨간색 배경 */
+  background: #ffccbc;
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid #e57373; /* 연한 빨간색 테두리 */
+  border: 1px solid #e57373;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 `;

@@ -71,10 +71,10 @@ const ButtonWrap = ({
       {pageNumbers.map((page) => (
         <div
           key={page}
-          css={pageStyle(page === currentPage)} // 현재 페이지 강조
-          onClick={() => handlePageClick(page)} // 클릭 시 0-based 변환
+          css={pageStyle(page === currentPage)}
+          onClick={() => handlePageClick(page)}
         >
-          {page} {/* 1-based 페이지 번호 */}
+          {page}
         </div>
       ))}
     </div>
@@ -88,13 +88,11 @@ export default function Pagination({
   handlePreGroupClick,
   handleNextGroupClick,
 }: PaginationProps) {
-  // 현재 페이지 그룹 계산 (예: 1~10, 11~20 등)
-  const groupSize = 10; // 한 그룹에 표시할 페이지 수
+  const groupSize = 10;
   const currentGroup = Math.floor((currentPage - 1) / groupSize);
   const startPage = currentGroup * groupSize + 1;
   const endPage = Math.min(startPage + groupSize - 1, totalPages);
 
-  // 현재 그룹의 페이지 번호 생성
   const pageNumbers = [];
   for (let i = startPage; i <= endPage; i++) {
     pageNumbers.push(i);
@@ -103,7 +101,6 @@ export default function Pagination({
   console.log("렌더링 중인 페이지 번호:", pageNumbers);
   return (
     <div css={paginationBoxStyle}>
-      {/* 이전 페이지 그룹 버튼 */}
       <button
         css={buttonStyle}
         onClick={handlePreGroupClick}
@@ -112,14 +109,12 @@ export default function Pagination({
         <AiOutlineLeft size={24} />
       </button>
 
-      {/* 페이지 숫자 */}
       <ButtonWrap
         pageNumbers={pageNumbers}
         currentPage={currentPage}
         handlePageClick={handlePageClick}
       />
 
-      {/* 다음 페이지 그룹 버튼 */}
       <button
         css={buttonStyle}
         onClick={handleNextGroupClick}

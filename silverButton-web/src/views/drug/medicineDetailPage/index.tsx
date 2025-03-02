@@ -29,7 +29,7 @@ export default function MedicineDetailPage() {
   const [cookies] = useCookies(["token", "userId"]);
   const [saveMessage, setSaveMessage] = useState<string | null>(null);
   const { user } = useAuthStore();
-  const [showModal, setShowModal] = useState(false); // 모달 상태 추가
+  const [showModal, setShowModal] = useState(false);
 
   const userId = cookies.userId;
 
@@ -67,7 +67,6 @@ export default function MedicineDetailPage() {
       console.log(token);
       console.log("userId: " + user?.userId);
 
-      // 모달 띄우기
       setShowModal(true);
       return;
     }
@@ -105,8 +104,8 @@ export default function MedicineDetailPage() {
   };
 
   const handleLoginRedirect = () => {
-    navigate("/auth"); // 로그인 페이지로 이동
-    setShowModal(false); // 모달 닫기
+    navigate("/auth");
+    setShowModal(false);
   };
 
   return (
@@ -125,7 +124,10 @@ export default function MedicineDetailPage() {
                 {saveMessage && <div css={s.saveMessage}>{saveMessage}</div>}
               </div>
               <div css={s.imageBox}>
-                <img src={medicine.medicineImage || ""} alt={medicine.itemName} />
+                <img
+                  src={medicine.medicineImage || ""}
+                  alt={medicine.itemName}
+                />
               </div>
               <div css={s.medicneDeatail}>
                 <div css={s.detailText}>
@@ -164,11 +166,12 @@ export default function MedicineDetailPage() {
         )}
       </div>
 
-      {/* 모달 */}
       {showModal && (
         <div css={s.modal}>
           <div css={s.modalContent}>
-            <p css={s.modalText}>등록된 회원만 저장 가능합니다. 로그인 화면으로 이동하시겠습니까?</p>
+            <p css={s.modalText}>
+              등록된 회원만 저장 가능합니다. 로그인 화면으로 이동하시겠습니까?
+            </p>
             <button onClick={handleLoginRedirect} css={s.modalButton}>
               예
             </button>
@@ -181,5 +184,3 @@ export default function MedicineDetailPage() {
     </div>
   );
 }
-
-

@@ -2,10 +2,10 @@ import { css } from "@emotion/react";
 
 export const formWrapper = css`
   display: flex;
-  flex-direction: column; /* 세로 방향으로 정렬 */
-  align-items: center; /* 중앙 정렬 */
-  width: 100%; /* 전체 너비 */
-  padding: 20px; /* 여백 추가 */
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  padding: 20px;
 `;
 
 export const formContainer = css`
@@ -36,36 +36,33 @@ export const titleInput = css`
 
 export const fileInput = css`
   margin-bottom: 1px;
-  padding: 12px; /* 패딩 증가 */
-  font-size: 16px; /* 폰트 크기 유지 */
+  padding: 12px;
+  font-size: 16px;
   width: 100%;
-  border: 2px solid #3b82f6; /* 강조된 테두리 색상 */
-  border-radius: 4px; /* 둥글게 설정 */
-  background-color: #e7f3ff; /* 연한 파란색 배경색 */
-  color: #3b82f6; /* 텍스트 색상 */
-  cursor: pointer; /* 커서 포인터로 설정 */
-  transition: border-color 0.3s, box-shadow 0.3s; /* 부드러운 전환 효과 */
+  border: 2px solid #3b82f6;
+  border-radius: 4px;
+  background-color: #e7f3ff;
+  color: #3b82f6;
+  cursor: pointer;
+  transition: border-color 0.3s, box-shadow 0.3s;
 
   &:focus {
-    border-color: #1e88e5; /* 포커스 시 더 진한 파란색 */
-    box-shadow: 0 0 4px rgba(30, 136, 229, 0.5); /* 강조된 그림자 */
-    outline: none; /* 기본 아웃라인 제거 */
+    border-color: #1e88e5;
+    box-shadow: 0 0 4px rgba(30, 136, 229, 0.5);
+    outline: none;
   }
 
   &:hover {
-    border-color: #1e88e5; /* 호버 시 테두리 색상 변경 */
-    background-color: #d1e8ff; /* 호버 시 배경색 변경 */
+    border-color: #1e88e5;
+    background-color: #d1e8ff;
   }
 `;
 
-
-
-// 이미지 스타일 (이미지가 삽입될 위치 설정)
 export const imagePreview = css`
   margin-top: 16px;
   max-width: 100%;
-  max-height: 400px; /* 이미지의 최대 높이를 설정하여 화면에 적당히 표시 */
-  object-fit: contain; /* 이미지의 비율을 유지하며 크기를 조정 */
+  max-height: 400px;
+  object-fit: contain;
   border-radius: 8px;
   border: 1px solid #ccc;
 `;
@@ -118,7 +115,7 @@ export const submitButton = css`
 export const exitButton = css`
   width: 10%;
   padding: 12px;
-  background-color: #ff4d4d; /* 부드러운 빨간색 */
+  background-color: #ff4d4d;
   color: white;
   border: none;
   border-radius: 8px;
@@ -129,11 +126,11 @@ export const exitButton = css`
   text-align: center;
 
   &:hover {
-    background-color: #ff1a1a; /* 호버 시 더 진한 빨간색 */
+    background-color: #ff1a1a;
   }
 
   &:active {
-    background-color: #e60000; /* 클릭 시 더욱 진한 빨간색 */
+    background-color: #e60000;
   }
 `;
 
@@ -144,12 +141,11 @@ export const pageTitle = css`
   font-weight: bold;
   border-bottom: 2px solid #64b5f6;
   padding-bottom: 5px;
-  width: 90%; /* 전체 너비를 차지하도록 설정 */
-  text-align: center; /* 중앙 정렬 */
+  width: 90%;
+  text-align: center;
 `;
 
 export const titleContainer = css`
-  text-align: center; /* 중앙 정렬 */
-  margin-bottom: 20px; /* 아래 여백 */
+  text-align: center;
+  margin-bottom: 20px;
 `;
-

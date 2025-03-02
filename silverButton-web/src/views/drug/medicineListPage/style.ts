@@ -7,31 +7,28 @@ export const contSt = css`
   justify-content: center;
   align-items: center;
   padding: 20px 150px;
-  background-color: #f9f9f9; /* 연한 회색 배경 */
 `;
 
 export const conttSt = css`
   width: 100%;
   height: 100%;
-  background: white;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 `;
 
 export const userId = css`
   font-size: 40px;
   font-weight: bold;
-  border-bottom: 3px solid #007BFF; /* 파란색 강조 */
+  border-bottom: 3px solid #007bff;
   padding-bottom: 10px;
 `;
 
 export const listCt = css`
   width: 100%;
   height: 250px;
-  border: 2px solid rgba(147, 129, 255, 0.8); /* 보라색 테두리 */
+  border: 2px solid rgba(147, 129, 255, 0.8);
   border-radius: 8px;
-  background-color: #ffffff; /* 흰색 배경 */
+  background-color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -40,14 +37,14 @@ export const listCt = css`
 
   &:hover {
     cursor: pointer;
-    background-color: rgba(147, 129, 255, 0.1); /* 보라색 호버 효과 */
+    background-color: rgba(147, 129, 255, 0.1);
   }
 `;
 
 export const medicinePr = css`
   width: 10%;
   height: 160px;
-  border: 2px solid #007BFF; /* 파란색 테두리 */
+  border: 2px solid #007bff;
   border-radius: 8px;
   margin-left: 2%;
   display: flex;
@@ -80,7 +77,7 @@ export const medicineRow = css`
 `;
 
 export const medicineName = css`
-  border-bottom: 2.5px solid #007BFF; /* 파란색 강조 */
+  border-bottom: 2.5px solid #007bff;
   display: flex;
   font-size: 30px;
   font-weight: bold;
@@ -109,7 +106,7 @@ export const detailText = css`
 
 export const text = css`
   font-weight: bold;
-  color: #007BFF; /* 파란색 강조 */
+  color: #007bff;
   font-size: 20px;
   margin-top: 13px;
 `;
@@ -142,11 +139,11 @@ export const paginationContainer = css`
   gap: 10px;
   padding: 16px;
   border-radius: 8px;
-  background-color: #f9f9f9; /* 연한 회색 배경 */
+  background-color: #f9f9f9;
 `;
 
 export const paginationButton = css`
-  background-color: rgba(147, 129, 255, 0.2); /* 보라색 배경 */
+  background-color: rgba(147, 129, 255, 0.2);
   border: 1px solid rgba(147, 129, 255, 0.5);
   border-radius: 4px;
   padding: 8px 12px;
@@ -163,19 +160,19 @@ export const paginationButton = css`
 `;
 
 export const paginationButtonActive = css`
-  background-color: rgba(147, 129, 255, 0.8); /* 활성화된 버튼의 배경 */
-  color: #ffffff; /* 텍스트 색상 */
+  background-color: rgba(147, 129, 255, 0.8);
+  color: #ffffff;
   border-color: rgba(147, 129, 255, 1);
 
   &:hover {
-    background-color: rgba(147, 129, 255, 1); /* 호버 시 더 진한 색 */
+    background-color: rgba(147, 129, 255, 1);
   }
 `;
 
 export const arrowButton = css`
-  background-color: rgba(147, 129, 255, 0.2); /* 버튼 배경 */
-  border: 1px solid rgba(147, 129, 255, 0.5); /* 테두리 */
-  color: rgba(147, 129, 255, 0.8); /* 텍스트 색상 */
+  background-color: rgba(147, 129, 255, 0.2);
+  border: 1px solid rgba(147, 129, 255, 0.5);
+  color: rgba(147, 129, 255, 0.8);
   border-radius: 4px;
   padding: 8px 12px;
   font-size: 14px;
@@ -183,7 +180,7 @@ export const arrowButton = css`
   transition: background-color 0.3s, color 0.3s, border-color 0.3s;
 
   &:hover:not(:disabled) {
-    background-color: rgba(147, 129, 255, 0.3); /* 호버 시 밝은 색상 */
+    background-color: rgba(147, 129, 255, 0.3);
     border-color: rgba(147, 129, 255, 0.8);
     color: #ffffff;
   }
@@ -197,9 +194,9 @@ export const arrowButton = css`
 `;
 
 export const scrollableContent = css`
-  max-height: 1000px; 
-  overflow-y: auto; 
-  padding-bottom: 20px; 
+  max-height: 1000px;
+  overflow-y: auto;
+  padding-bottom: 20px;
   &::-webkit-scrollbar {
     display: none;
   }

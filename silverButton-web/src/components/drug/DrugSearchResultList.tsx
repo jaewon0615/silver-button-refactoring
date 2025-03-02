@@ -11,7 +11,7 @@ export interface SearchMedicineType {
   useMethodQesitm: string;
   seQesitm: string;
   depositMethodQesitm: string;
-  intrcQesitm:string;
+  intrcQesitm: string;
   medicineImage: string;
 }
 
@@ -30,8 +30,6 @@ export default function SearchMedicineUserId({
     navigate("/medicine/detail-page");
   };
 
-
-
   return (
     <div css={s.scroll}>
       {searchMedicineItem.length > 0 && (
@@ -46,8 +44,6 @@ export default function SearchMedicineUserId({
                 <div css={s.medicineAll}>
                   <div css={s.medicineRow}>
                     <div css={s.medicineName}>{medicine.itemName}</div>
-                    
-                    
                   </div>
                   <div css={s.medicneDeatail}>
                     <div css={s.detailText}>
@@ -62,7 +58,6 @@ export default function SearchMedicineUserId({
                       <span css={s.text}>약품 보관방법: </span>
                       {medicine.depositMethodQesitm}
                     </div>
-                    
                   </div>
                 </div>
               </div>
@@ -70,9 +65,7 @@ export default function SearchMedicineUserId({
           ))}
         </div>
       )}
-      {searchMedicineItem.length === 0 && (
-        <div>복용 중인 약품이 없습니다.</div>
-      )}
+      {searchMedicineItem.length === 0 && <div>복용 중인 약품이 없습니다.</div>}
     </div>
   );
 }
