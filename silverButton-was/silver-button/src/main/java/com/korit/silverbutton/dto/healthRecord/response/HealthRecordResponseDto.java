@@ -39,4 +39,18 @@ public class HealthRecordResponseDto {
         this.createdAt = healthRecord.getCreatedAt();
         this.updatedAt = healthRecord.getUpdatedAt();
     }
+
+    public HealthRecordResponseDto(HealthRecordResponseDto healthRecordResponseDto) {
+        this.id = healthRecordResponseDto.getId();
+        this.userId = healthRecordResponseDto.getUserId();
+        this.recordDate = healthRecordResponseDto.getRecordDate();
+        this.bloodPressureDiastolic = healthRecordResponseDto.getBloodPressureDiastolic();
+        this.bloodPressureSystolic = healthRecordResponseDto.getBloodPressureSystolic();
+        this.bloodSugar = healthRecordResponseDto.getBloodSugar();
+        this.weight = healthRecordResponseDto.getWeight();
+        this.notes = healthRecordResponseDto.getNotes();
+        this.createdAt = healthRecordResponseDto.getCreatedAt();
+        this.updatedAt = healthRecordResponseDto.getUpdatedAt();
+
+    }
 }

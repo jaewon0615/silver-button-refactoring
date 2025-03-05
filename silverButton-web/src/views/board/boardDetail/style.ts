@@ -5,20 +5,15 @@ export const mainBox = css`
   flex-direction: column;
   width: 100%;
   height: 100%;
-  padding: 20px;
-  padding-bottom: 50px;
-  box-sizing: border-box;
-  border: 1px solid #ddd;
+  padding: 0 150px 20px 150px;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #fff;
 `;
 
 export const upperBox = css`
   display: flex;
   flex-direction: column;
   width: 100%;
-  flex: 9;
+  height: 95%;
 `;
 
 export const lowerBox = css`
@@ -32,6 +27,7 @@ export const lowerBox = css`
 export const contentContainer = css`
   display: flex;
   width: 100%;
+  height: 95%;
   flex-direction: row;
   justify-content: space-between;
   gap: 20px;
@@ -120,7 +116,7 @@ export const commentsBox = css`
   padding: 15px;
   box-sizing: border-box;
 
-  height: 85vh;
+  height: 100%;
   overflow-y: hidden;
 `;
 
@@ -135,6 +131,7 @@ export const commentList = css`
     display: none;
   }
 `;
+
 export const commentItem = css`
   display: flex;
   flex-direction: column;
@@ -182,7 +179,9 @@ export const commentInputBox = css`
 
 export const commentActionBox = css`
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: 20px; /* Space between comment and other actions */
 `;
 
 export const commentInputStyle = css`
@@ -234,7 +233,7 @@ export const exitButtonContainer = css`
 
 export const exitButton = css`
   padding: 12px 20px;
-  background-color: #d9534f;
+  background-color: #6c757d; /* Gray */
   color: white;
   border: none;
   border-radius: 8px;
@@ -245,13 +244,14 @@ export const exitButton = css`
   text-align: center;
 
   &:hover {
-    background-color: #c9302c;
+    background-color: #5a6268; /* Darker gray */
   }
 
   &:active {
-    background-color: #ac2925;
+    background-color: #494e52; /* Even darker gray */
   }
 `;
+
 
 export const fixedButtonContainer = css`
   display: flex;
@@ -262,16 +262,65 @@ export const fixedButtonContainer = css`
 export const actionButtons = css`
   display: flex;
   justify-content: space-between;
+  width: 100%;
+  gap: 20px; /* Add space between buttons */
 `;
 
-export const editDeleteButtons = css`
-  display: flex;
-  gap: 10px;
-`;
-
-export const button = css`
+export const editButton = css`
   padding: 12px 20px;
-  background-color: #5cb85c;
+  background-color: #4caf50; /* Green */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  width: auto; /* Adjust width to auto */
+  margin-left: 50%;
+  display: inline-block; /* Align horizontally */
+  white-space: nowrap; /* Prevent text from wrapping */
+  margin-top: 8%;
+
+  &:hover {
+    background-color: #45a049; /* Darker green */
+  }
+
+  &:active {
+    background-color: #388e3c; /* Even darker green */
+  }
+`;
+
+
+export const deleteButton1 = css`
+  padding: 12px 20px;
+  background-color: #e53935; /* Red */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  width: auto;
+  display: inline-block; /* Align horizontally */
+  white-space: nowrap; /* Prevent text from wrapping */
+  margin-top: 8%;
+
+  &:hover {
+    background-color: #d32f2f; /* Darker red */
+  }
+
+  &:active {
+    background-color: #c62828; /* Even darker red */
+  }
+`;
+
+export const commentButton = css`
+  padding: 12px 20px;
+  background-color: #03a9f4; /* Blue */
   color: white;
   border: none;
   border-radius: 8px;
@@ -282,11 +331,11 @@ export const button = css`
   text-align: center;
 
   &:hover {
-    background-color: #4cae4f;
+    background-color: #0288d1; /* Darker blue */
   }
 
   &:active {
-    background-color: #449d44;
+    background-color: #0277bd; /* Even darker blue */
   }
 `;
 

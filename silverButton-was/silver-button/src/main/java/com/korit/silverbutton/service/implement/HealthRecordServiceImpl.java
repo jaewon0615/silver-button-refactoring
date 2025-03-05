@@ -19,6 +19,8 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+
+
 @Service
 @Transactional
 @RequiredArgsConstructor
@@ -94,35 +96,23 @@ public class HealthRecordServiceImpl implements HealthRecordService {
     }
 
     @Override
-    public ResponseDto<HealthRecordResponseDto> getHealthRecordById(Long id
-    ) {
-        HealthRecordResponseDto data = null;
-        try {
-            Optional<HealthRecord> optionalHealthRecord = healthRecordRepository.findById(id);
-            if (optionalHealthRecord.isEmpty()) {
-                return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
-            }
-            HealthRecord healthRecord = optionalHealthRecord.get();
-            healthRecordRepository.save(healthRecord);
-            data = new HealthRecordResponseDto(healthRecord);
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
-        }
-        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
-    }
+    public List<HealthRecordResponseDto> findHealthRecordsByUserId(Long id) {
+        // 사용자 ID에 해당하는 모든 건강 기록을 DB에서 조회
+        List<HealthRecordResponseDto> healthRecords = healthRecordRepository.findHealthRecordsByUserId(id);
 
-    @Override
-    public List<HealthRecordResponseDto> getHealthRecordsByUserId(Long userId) {
-        {
-            List<HealthRecord> records = healthRecordRepository.findByUserId(userId); // 사용자의 건강 기록 조회
-            List<HealthRecordResponseDto> responseDtoList = records.stream()
-                    .map(record -> new HealthRecordResponseDto(record))
-                    .collect(Collectors.toList());
-
-            return (List<HealthRecordResponseDto>) new ResponseDto<>(true, responseDtoList);
-        }
+        // 엔티티 목록을 DTO 목록으로 변환하여 반환
+        return healthRecords.stream()
+                .map(HealthRecordResponseDto::new)  // HealthRecord -> HealthRecordResponseDto
+                .collect(Collectors.toList());
     }
 
 
-}
+
+
+
+
+    }
+
+
+
+

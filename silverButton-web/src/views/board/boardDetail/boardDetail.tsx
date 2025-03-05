@@ -81,10 +81,6 @@ const BoardDetail = () => {
     if (id) fetchComments();
   }, [id, cookies.token]);
 
-  useEffect(() => {
-    console.log("Updated commentData ->>", comments);
-  }, [comments]);
-
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
@@ -104,7 +100,6 @@ const BoardDetail = () => {
       writerId: user?.id,
     };
 
-    console.log("commentData :: ", commentData);
     try {
       const response = await axios.post(
         `http://localhost:4040/api/v1/comment/create`,
@@ -117,18 +112,16 @@ const BoardDetail = () => {
       );
 
       if (response.data.result) {
-        console.log("댓글 추가 성공:", response.data.data);
         setComments((prevComments) => [...prevComments, response.data.data]);
         setNewComment("");
       } else {
-        console.error("댓글 추가 실패:", response.data.message);
         alert("댓글 작성에 실패했습니다.");
       }
     } catch (error) {
-      console.error("댓글 추가에 실패했습니다.", error);
       alert("서버와의 연결에 문제가 발생했습니다.");
     }
   };
+
   const handleDeleteComment = async (commentId: number) => {
     try {
       await axios.delete(
@@ -168,7 +161,7 @@ const BoardDetail = () => {
         likes: prevBoard?.liked ? prevBoard!.likes - 1 : prevBoard!.likes + 1,
       }));
     } catch (error) {
-      console.error("좋아요 처리에 실패했습니다.", error);
+      alert("좋아요 처리에 실패했습니다.");
     }
   };
 
@@ -200,11 +193,6 @@ const BoardDetail = () => {
 
     if (window.confirm("게시글을 삭제하시겠습니까?")) {
       try {
-        console.log(
-          "삭제 요청 URL:",
-          `http://localhost:4040/api/v1/board/delete/${id}`
-        );
-
         await axios.delete(`http://localhost:4040/api/v1/board/delete/${id}`, {
           headers: {
             Authorization: `Bearer ${cookies.token}`,
@@ -217,7 +205,6 @@ const BoardDetail = () => {
         alert("게시글이 삭제되었습니다.");
         navigate("/board");
       } catch (error) {
-        console.error("게시글 삭제에 실패했습니다.", error);
         alert("게시글 삭제에 실패했습니다.");
       }
     }
@@ -268,18 +255,16 @@ const BoardDetail = () => {
             {board ? (
               <>
                 <div css={S.boardHeader}>
-                  <div css={S.boardTitle}>{board.title}</div>
-                  <div css={S.boardAuthor}>{board.username}</div>
+                  <div css={S.boardTitle}>제목: {board.title}</div>
+                  <div css={S.boardAuthor}>작성자: {board.username}</div>
                 </div>
 
                 <div css={S.boardContent}>
-                  <div>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: sanitizeContent(board.content, board.imageUrl),
-                      }}
-                    />
-                  </div>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: sanitizeContent(board.content, board.imageUrl),
+                    }}
+                  />
                 </div>
 
                 <div css={S.boardStats}>
@@ -342,15 +327,15 @@ const BoardDetail = () => {
         </div>
       </div>
 
-      <div css={S.lowerBox}>
+      <div css={S.fixedButtonContainer}>
         <div css={S.actionBox}>
           <div css={S.buttonContainer}>
             {currentUserId === board?.writerId && (
               <>
-                <div css={S.button} onClick={handleEdit}>
+                <div css={S.editButton} onClick={handleEdit}>
                   수정
                 </div>
-                <div css={S.button} onClick={handleDelete}>
+                <div css={S.deleteButton1} onClick={handleDelete}>
                   삭제
                 </div>
               </>
@@ -358,7 +343,7 @@ const BoardDetail = () => {
           </div>
           <div css={S.exitButtonContainer}>
             <div css={S.exitButton} onClick={handleExit}>
-              나가기
+              이전
             </div>
           </div>
         </div>
@@ -366,7 +351,7 @@ const BoardDetail = () => {
         {isAuthenticated && (
           <div css={S.fixedButtonContainer}>
             <div css={S.commentActionBox}>
-              <div css={S.button} onClick={handleAddComment}>
+              <div css={S.commentButton} onClick={handleAddComment}>
                 댓글 작성
               </div>
             </div>

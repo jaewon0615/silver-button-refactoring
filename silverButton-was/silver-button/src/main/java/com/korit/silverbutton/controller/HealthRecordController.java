@@ -4,7 +4,9 @@ import com.korit.silverbutton.common.constant.ResponseMessage;
 import com.korit.silverbutton.dto.ResponseDto;
 import com.korit.silverbutton.dto.healthRecord.requset.HealthRecordRequestDto;
 import com.korit.silverbutton.dto.healthRecord.response.HealthRecordResponseDto;
+import com.korit.silverbutton.entity.HealthRecord;
 import com.korit.silverbutton.principal.PrincipalUser;
+import com.korit.silverbutton.repository.HealthRecordRepository;
 import com.korit.silverbutton.service.HealthRecordService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -22,9 +24,10 @@ import static com.korit.silverbutton.common.constant.ApiMappingPattern.HEALTH_RE
 public class HealthRecordController {
     private static final String HEARTH_RECORD_POST = "/";
     private static final String HEARTH_RECORD_PUT = "/{id}";
-    private static final String HEARTH_RECORD_GET = "/{id}";
+    private static final String HEARTH_RECORD_GET = "/";
 
     private final HealthRecordService healthRecordService;
+    private final HealthRecordRepository healthRecordRepository;
 
     @PostMapping(HEARTH_RECORD_POST)
     public ResponseEntity<ResponseDto<HealthRecordResponseDto>> postHealthRecord(
@@ -58,16 +61,30 @@ public class HealthRecordController {
     }
 
     @GetMapping(HEARTH_RECORD_GET)
-    public ResponseEntity<ResponseDto<HealthRecordResponseDto>> getHealthRecordById(@PathVariable Long id) {
-        ResponseDto<HealthRecordResponseDto> response = healthRecordService.getHealthRecordById(id);
-        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-        return ResponseEntity.status(status).body(response);
+    public ResponseDto<List<HealthRecordResponseDto>> getHealthRecords(@AuthenticationPrincipal PrincipalUser principalUser) {
+        // 로그인된 사용자 정보에서 userId 추출
+        Long id = principalUser.getId(); // User 객체에서 사용자 ID 또는 이메일을 가져올 수 있습니다.
+
+        // 서비스 계층에서 해당 사용자의 건강 기록 조회
+        List<HealthRecordResponseDto> healthRecords = healthRecordRepository.findHealthRecordsByUserId(id);
+
+        // 조회된 건강 기록을 ResponseDto로 반환
+        return ResponseDto.setSuccess(healthRecords);
+    }
     }
 
-    @GetMapping("/health-records/user/{userId}") // 사용자 ID로 건강 기록 조회
-    public ResponseEntity<ResponseDto<List<HealthRecordResponseDto>>> getHealthRecordsByUserId(@PathVariable Long userId) {
-        ResponseDto<List<HealthRecordResponseDto>> response = (ResponseDto<List<HealthRecordResponseDto>>) healthRecordService.getHealthRecordsByUserId(userId);
-        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-        return ResponseEntity.status(status).body(response);
-    }
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
