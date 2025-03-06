@@ -20,6 +20,7 @@ public class HealthRecordRequestDto {
     private Integer bloodPressureDiastolic; // 이완기 혈압 (선택)
     private Integer bloodSugar;  // 혈당 (선택)
     private BigDecimal weight;  // 체중 (소수점 저장)
+    private BigDecimal height;
 
     private String notes;  // 추가 메모 (선택)
 }

@@ -1,7 +1,8 @@
+/** @jsxImportSource @emotion/react */
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import "./passwordPage.css";
+import * as s from "./style"; // 스타일 파일 임포트
 
 const PasswordPage = () => {
   const [password, setPassword] = useState("");
@@ -56,22 +57,23 @@ const PasswordPage = () => {
   };
 
   return (
-    <div className="password-container">
-      <div className="password-card">
-        <h1>비밀번호 입력</h1>
-        <p>마이페이지에 접근하려면 비밀번호를 입력하세요</p>
-        <div className="password-item">
+    <div css={s.passwordContainer}>
+      <div css={s.passwordCard}>
+        <h1 css={s.passwordCardTitle}>비밀번호 입력</h1>
+        <p css={s.passwordCardDescription}>마이페이지에 접근하려면 비밀번호를 입력하세요</p>
+        <div css={s.passwordItem}>
           <input
             type="password"
             id="password"
             placeholder="비밀번호를 입력하세요🙇‍♀️"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
+            css={s.inputField}
           />
-          {error && <p className="error-message">{error}</p>}
+          {error && <p css={s.errorMessage}>{error}</p>}
         </div>
         <button
-          className="password-submit-button"
+          css={s.passwordSubmitButton}
           onClick={handlePasswordSubmit}
         >
           확인

@@ -21,6 +21,7 @@ public class HealthRecordResponseDto {
     private Integer bloodPressureDiastolic; // 이완기 혈압
     private Integer bloodSugar;  // 혈당
     private BigDecimal weight;  // 체중
+    private BigDecimal height;
 
     private String notes;  // 추가 메모
 
@@ -38,6 +39,7 @@ public class HealthRecordResponseDto {
         this.notes = healthRecord.getNotes();
         this.createdAt = healthRecord.getCreatedAt();
         this.updatedAt = healthRecord.getUpdatedAt();
+        this.height = healthRecord.getHeight();
     }
 
     public HealthRecordResponseDto(HealthRecordResponseDto healthRecordResponseDto) {
@@ -51,6 +53,7 @@ public class HealthRecordResponseDto {
         this.notes = healthRecordResponseDto.getNotes();
         this.createdAt = healthRecordResponseDto.getCreatedAt();
         this.updatedAt = healthRecordResponseDto.getUpdatedAt();
+        this.height = healthRecordResponseDto.getHeight();
 
     }
 }

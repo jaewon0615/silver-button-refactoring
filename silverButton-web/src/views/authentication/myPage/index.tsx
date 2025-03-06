@@ -1,8 +1,12 @@
+/** @jsxImportSource @emotion/react */
+import * as s from "./style";
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../../stores/auth.store";
-import "./myPage.css";
 import axios from "axios";
+import { MdOutlineMessage } from "react-icons/md";
+import { AiOutlineMedicineBox } from "react-icons/ai";
+import { MdOutlineHealthAndSafety } from "react-icons/md";
 
 const MyPage = () => {
   const { isAuthenticated, user, login, logout } = useAuthStore();
@@ -41,8 +45,6 @@ const MyPage = () => {
             },
           }
         );
-
-        console.log(response);
 
         if (response.data && response.data.data) {
           setEditUser((prev) => ({
@@ -143,12 +145,6 @@ const MyPage = () => {
 
   const handleSaveChanges = async () => {
     try {
-      console.log("전송된 데이터:", {
-        nickname: editUser.nickname,
-        phone: editUser.phone,
-        password: editUser.password,
-      });
-
       const response = await axios.put(
         "http://localhost:4040/api/v1/manage/update",
         {
@@ -177,12 +173,12 @@ const MyPage = () => {
   };
 
   return (
-    <div className="mypage-container">
-      <div className="mypage-header">
-        <h1>My Page</h1>
+    <div css={s.myPageContainer}>
+      <div css={s.myPageHeader}>
+        <h1>내 정보</h1>
       </div>
-      <div className="mypage-main">
-        <div className="mypage-left">
+      <div css={s.myPageMain}>
+        <div css={s.myPageLeft}>
           <div className="profileImg">
             <img
               src={editUser.profileImg}
@@ -200,78 +196,79 @@ const MyPage = () => {
               style={{ display: "none" }}
               onChange={handleProfileImgChange}
             />
-            <button className="edit-button" onClick={handleProfileImgEdit}>
+            <button css={s.editButton} onClick={handleProfileImgEdit}>
               수정하기
             </button>
           </div>
         </div>
-        <div className="mypage-right">
-          <div className="item">
-            <label htmlFor="nickname">변경하실 닉네임</label>
+        <div css={s.myPageRight}>
+          <div css={s.formItem}>
+            <label htmlFor="nickname" css={s.text}>변경하실 닉네임</label>
             <input
               type="text"
               id="nickname"
               placeholder="변경할 닉네임을 입력하세요"
-              className="input-field"
+              css={s.inputField}
               value={editUser.nickname}
               onChange={(e) =>
                 setEditUser({ ...editUser, nickname: e.target.value })
               }
             />
           </div>
-          <div className="item">
-            <label htmlFor="phone">변경하실 전화번호</label>
+          <div css={s.formItem}>
+            <label htmlFor="phone" css={s.text}>변경하실 전화번호</label>  
             <input
               type="text"
               id="phone"
               placeholder="변경할 전화번호를 입력하세요"
-              className="input-field"
+              css={s.inputField}
               value={editUser.phone}
               onChange={(e) => {
                 if (e.target.value.length <= 11) {
                   setEditUser({ ...editUser, phone: e.target.value });
                 }
               }}
+              
             />
           </div>
-          <div className="item">
-            <label htmlFor="password">변경하실 비밀번호</label>
+          <div css={s.formItem}>
+            <label htmlFor="password" css={s.text}>변경하실 비밀번호</label>
             <input
               type="password"
               id="password"
               placeholder="변경할 비밀번호를 입력하세요"
-              className="input-field"
+              css={s.inputField}
               value={editUser.password}
               onChange={handlePasswordChange}
             />
-            <small>
+            <small css={s.small}>
               비밀번호는 8-16자, 대소문자 및 특수문자를 포함해야 합니다.
             </small>
 
-            {error && <p className="error-message">{error}</p>}
-          </div>
-          <div className="tmi-buttons">
-            <button className="tmi-button" onClick={handleMessageClick}>
-              내 쪽지함 가기
-            </button>
-            <button className="tmi-button" onClick={handleSaveMedicineClick}>
-              저장된 약품 정보보기
-            </button>
-            <button className="tmi-button" onClick={handleHealthRecordClick}>
-              건강 기록 관리
-            </button>
+            {error && <p css={s.errorMessage}>{error}</p>}
           </div>
         </div>
       </div>
-      <div className="mypage-footer">
-        <button className="save-button" onClick={handleSaveChanges}>
+      <div css={s.tmiButtons}>
+            <button css={s.tmiButton} onClick={handleMessageClick}>
+            <MdOutlineMessage css={s.messageIcon} />내 쪽지함 가기
+            </button>
+            <button css={s.tmiButton} onClick={handleSaveMedicineClick}>
+            <AiOutlineMedicineBox css={s.messageIcon} /> 저장된 약품 정보보기
+            </button>
+            <button css={s.tmiButton} onClick={handleHealthRecordClick}>
+            <MdOutlineHealthAndSafety css={s.messageIcon} />건강 기록 관리
+            </button>
+            <div css={s.myPageFooter}>
+        <button css={s.saveButton} onClick={handleSaveChanges}>
           변경사항 저장하기
         </button>
-        <button className="save-button" onClick={handleResignClick}>
+        <button css={s.saveButton} onClick={handleResignClick}>
           회원탈퇴하기
         </button>
       </div>
-    </div>
+            </div>
+          </div>
   );
 };
 

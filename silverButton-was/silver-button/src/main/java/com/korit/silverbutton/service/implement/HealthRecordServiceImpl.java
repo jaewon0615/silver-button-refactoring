@@ -38,6 +38,7 @@ public class HealthRecordServiceImpl implements HealthRecordService {
         Integer bloodSugar = dto.getBloodSugar();
         BigDecimal weight = dto.getWeight();
         String notes = dto.getNotes();
+        BigDecimal height = dto.getHeight();
 
         try {
             // User 객체를 데이터베이스에서 가져옵니다.
@@ -52,6 +53,7 @@ public class HealthRecordServiceImpl implements HealthRecordService {
                     .bloodPressureDiastolic(bloodPressureDiastolic)
                     .bloodSugar(bloodSugar)
                     .weight(weight)
+                    .height(height)
                     .notes(notes)
                     .build();
 
@@ -96,22 +98,48 @@ public class HealthRecordServiceImpl implements HealthRecordService {
     }
 
     @Override
-    public List<HealthRecordResponseDto> findHealthRecordsByUserId(Long id) {
-        // 사용자 ID에 해당하는 모든 건강 기록을 DB에서 조회
-        List<HealthRecordResponseDto> healthRecords = healthRecordRepository.findHealthRecordsByUserId(id);
-
-        // 엔티티 목록을 DTO 목록으로 변환하여 반환
-        return healthRecords.stream()
-                .map(HealthRecordResponseDto::new)  // HealthRecord -> HealthRecordResponseDto
-                .collect(Collectors.toList());
+    public ResponseDto<List<HealthRecordResponseDto>> getHealthRecordByUserId(Long userId) {
+        List<HealthRecordResponseDto> data = null;
+        try {
+            List<HealthRecord> healthRecords = healthRecordRepository.getHealthRecordsByUserId(userId);
+            if (healthRecords.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+            }
+            data = healthRecords.stream().map(HealthRecordResponseDto::new).collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 
-
-
-
-
-
+    @Override
+    public ResponseDto<Boolean> deleteHealthRecordById(Long id) {
+        try {
+            healthRecordRepository.deleteHealthRecordById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, true);
     }
+
+    @Override
+    public ResponseDto<List<HealthRecordResponseDto>> getLatestHealthRecordByUserId(Long userId) {
+        List<HealthRecordResponseDto> data = null;
+        try {
+            List<HealthRecord> healthRecords = healthRecordRepository.getLatestHealthRecordByUserId(userId);
+            if (healthRecords.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+            }
+            data = healthRecords.stream().map(HealthRecordResponseDto::new).collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+    }
+}
 
 
 

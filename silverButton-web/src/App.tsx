@@ -19,7 +19,7 @@ import CreateBoard from "./views/board/boardCreate/createBoard";
 import BoardDetail from "./views/board/boardDetail/boardDetail";
 import EditBoard from "./views/board/boardUpdate/editBoard";
 
-import MyPage from "./views/authentication/myPage";
+import MyPage from "./views/authentication/myPage"
 import Resign from "./views/authentication/resign";
 import Calendar from "./views/calendar/Calendar";
 import SaveMedicine from "./views/authentication/myPage/saveMedicine";

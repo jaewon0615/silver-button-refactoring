@@ -12,8 +12,15 @@ import java.util.Optional;
 
 public interface HealthRecordRepository extends JpaRepository<HealthRecord, Long> {
     Optional<HealthRecord> getHealthRecordById(Long id);
-    @Query("SELECT new com.korit.silverbutton.dto.healthRecord.response.HealthRecordResponseDto(h.id, h.date, h.details) FROM HealthRecord h WHERE h.user.id = :userId")
-    List<HealthRecordResponseDto> findHealthRecordsByUserId(@Param("userId") Long userId);
+
+    @Query(value = "SELECT * FROM health_record ORDER BY created_at DESC",nativeQuery = true)
+    List<HealthRecord> getHealthRecordsByUserId(Long userId);
+
+    void deleteHealthRecordById(Long id);
+
+    @Query(value = "SELECT * FROM health_record ORDER BY created_at DESC",nativeQuery = true)
+    List<HealthRecord> getLatestHealthRecordByUserId(Long userId);
+
 
 
 

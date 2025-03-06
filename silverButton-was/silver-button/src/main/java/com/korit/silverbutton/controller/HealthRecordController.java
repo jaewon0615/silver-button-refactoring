@@ -24,7 +24,9 @@ import static com.korit.silverbutton.common.constant.ApiMappingPattern.HEALTH_RE
 public class HealthRecordController {
     private static final String HEARTH_RECORD_POST = "/";
     private static final String HEARTH_RECORD_PUT = "/{id}";
-    private static final String HEARTH_RECORD_GET = "/";
+    private static final String HEARTH_RECORD_GET = "/{userId}";
+    private static final String HEARTH_RECORD_DELETE = "/{id}";
+    private static final String HEALTH_RECORD_GET_LATEST = "/latest";
 
     private final HealthRecordService healthRecordService;
     private final HealthRecordRepository healthRecordRepository;
@@ -61,17 +63,28 @@ public class HealthRecordController {
     }
 
     @GetMapping(HEARTH_RECORD_GET)
-    public ResponseDto<List<HealthRecordResponseDto>> getHealthRecords(@AuthenticationPrincipal PrincipalUser principalUser) {
-        // 로그인된 사용자 정보에서 userId 추출
-        Long id = principalUser.getId(); // User 객체에서 사용자 ID 또는 이메일을 가져올 수 있습니다.
-
-        // 서비스 계층에서 해당 사용자의 건강 기록 조회
-        List<HealthRecordResponseDto> healthRecords = healthRecordRepository.findHealthRecordsByUserId(id);
-
-        // 조회된 건강 기록을 ResponseDto로 반환
-        return ResponseDto.setSuccess(healthRecords);
+    public ResponseEntity<ResponseDto<List<HealthRecordResponseDto>>> getHealthRecordByUserId(
+            @AuthenticationPrincipal PrincipalUser principalUser
+    ){
+        ResponseDto<List<HealthRecordResponseDto>> response = healthRecordService.getHealthRecordByUserId(principalUser.getId());
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
     }
+
+    @DeleteMapping(HEARTH_RECORD_DELETE)
+    public ResponseEntity<ResponseDto<Boolean>> deleteHealthRecordById(@PathVariable Long id){
+        ResponseDto<Boolean> response = healthRecordService.deleteHealthRecordById(id);
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
     }
+
+    @GetMapping(HEALTH_RECORD_GET_LATEST)
+    public ResponseEntity<ResponseDto<List<HealthRecordResponseDto>>> getLatestHealthRecordByUserId(@AuthenticationPrincipal PrincipalUser principalUser){
+        ResponseDto<List<HealthRecordResponseDto>> response = healthRecordService.getLatestHealthRecordByUserId(principalUser.getId());
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+}
 
 
 
