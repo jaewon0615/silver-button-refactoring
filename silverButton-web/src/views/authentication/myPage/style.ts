@@ -87,17 +87,23 @@ export const myPageRight = css`
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 `;
 
+
 export const formItem = css`
-  display: flex;
+display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
+  margin-bottom: 20px;
 `;
 
 export const small = css`
 font-size: 12px;
-  color: #888;
-  margin-top: 5px;
+  color: red;
+  font-weight: bold;
+
 `;
+
+
+
 
 export const item = css`
   display: flex;
@@ -106,31 +112,36 @@ export const item = css`
 `;
 
 export const inputField = css`
-  padding: 10px;
+  padding: 12px;
   font-size: 20px;
   border: 1px solid #d1d5db;  // Light grey border
   border-radius: 15px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+  background-color: white;
 
   &:focus {
-    border-color: #3b82f6;  // Blue focus border
-    box-shadow: 0 0 4px rgba(59, 130, 246, 0.5);  // Blue glow effect
-    outline: none;
+    border-color: #3b82f6;  // Blue border on focus
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.5);  // Blue glow
   }
-`;
+
+  &::placeholder {
+    color: #a1a1a1;  // Placeholder color
+  }
+  `;
 
 export const tmiButtons = css`
   display: flex;
   flex-direction: column;
-  gap: 15px;
-  margin-top: 20px;
-  align-items: flex-start;
-  width: 100%;
+  justify-content: space-between;
+  gap: 20px;
+  margin-top: 40px;
 `;
 
+
 export const tmiButton = css`
-  background-color: #6b5bff;  // Purple color
+background-color: #6b5bff;  // Purple color
   color: white;
   font-size: 25px;
   font-weight: bold;
@@ -140,6 +151,7 @@ export const tmiButton = css`
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: center;
+  width: 100%;  // Ensuring buttons have equal width
 
   &:hover {
     transform: scale(1.05);
@@ -153,30 +165,40 @@ export const tmiButton = css`
 `;
 
 export const myPageFooter = css`
-  margin-top: 20px;
-  display: flex;
-  width: 100%;
-  text-align: center;
-  flex-direction: column;
+display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex: 1;
 `;
 
 // Save button style for saving changes
 export const saveButton = css`
-  padding: 12px 20px;
+background-color: #3b82f6;  // Blue color
+  color: white;
   font-size: 25px;
-  background-color: #3b82f6;  // Blue color
-  color: #fff;
-  border: none;
-  border-radius: 14px;
-  cursor: pointer;
-  transition: transform 0.3s ease;
   font-weight: bold;
-  margin-top: 30px;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  justify-content: space-between;
+  height: 130px;
+  width: 45%;  // Ensuring buttons have equal width
 
   &:hover {
     transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
 `;
+
+
 
 export const errorMessage = css`
   color: #ff4d4d;  // Red for errors
@@ -215,5 +237,40 @@ export const messageIcon = css`
 
 export const text = css`
   font-size: 20px;
+  font-weight: bold;
+  color: #3b82f6;  // Blue color
+  margin-bottom: 8px;
 `;
 
+export const footerBox = css`
+display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex: 1;
+`;
+
+export const deleteButton = css`
+  background-color: #f44336;  // Red color for delete
+  color: white;
+  font-size: 25px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-align: center;
+  justify-content: space-between;
+  height: 130px;
+  width: 45%;  // Ensuring buttons have equal width
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+`;

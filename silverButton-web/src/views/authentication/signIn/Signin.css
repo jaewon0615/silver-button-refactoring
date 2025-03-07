@@ -1,12 +1,12 @@
 /* 전체 컨테이너 스타일 */
 .signin-container {
-  /* display: flex;
+  display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   background: linear-gradient(135deg, #6a11cb, #2575fc);
   padding: 20px;
-  box-sizing: border-box; */
+  box-sizing: border-box;
 }
 
 /* 카드 스타일 */

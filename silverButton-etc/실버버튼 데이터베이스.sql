@@ -97,3 +97,29 @@ CREATE TABLE message (
   FOREIGN KEY (sender_id) REFERENCES users(id),
   FOREIGN KEY (receiver_id) REFERENCES users(id)
 );
+
+CREATE TABLE health_records (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT NOT NULL,
+    record_date DATE NOT NULL,
+    blood_pressure_systolic INT,
+    blood_pressure_diastolic INT,
+    blood_sugar INT,
+    weight DECIMAL(5,2),
+    notes VARCHAR(255),
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    height DECIMAL(5,2)
+);
+
+CREATE TABLE meal_records (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    meal_date DATE NOT NULL,  -- 식사 날짜
+    meal_time VARCHAR(10) NOT NULL,  -- 식사 시간 (아침, 점심, 저녁, 간식)
+    food_items TEXT NOT NULL,  -- 먹은 음식 목록
+    calories INT,  -- 대략적인 칼로리 (선택 사항)
+    created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
+    updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);

@@ -106,10 +106,6 @@ export default function SaveMedicineUserId({
                       {medicine.efcyQesitm}
                     </div>
                     <div css={s.detailText}>
-                      <span css={s.text}>약품 부작용: </span>
-                      {medicine.seQesitm}
-                    </div>
-                    <div css={s.detailText}>
                       <span css={s.text}>약품 보관방법: </span>
                       {medicine.depositMethodQesitm}
                     </div>

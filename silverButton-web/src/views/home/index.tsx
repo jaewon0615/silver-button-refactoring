@@ -2,7 +2,7 @@
 import HealthMegazineTop5 from "../../components/HealthMagazine/HealthMegazineTop5";
 import * as s from "./style";
 import { useNavigate, useParams } from "react-router-dom";
-import kakaoIcon2 from "./kakaoIcon2.png";
+import kakaoLogins from "./kakaoLogins.png";
 import naverIcom from "./naverIcom.png";
 import mainIcon from "./mainIcon.png";
 import useAuthStore from "../../stores/auth.store";
@@ -124,7 +124,7 @@ export default function SaveMedicineHomeList() {
                     네이버로 로그인
                   </div>
                   <div css={s.kakaoLogin}>
-                    <img src={kakaoIcon2} alt="" css={s.kakaoIcon} />
+                    <img src={kakaoLogins} alt="" css={s.kakaoIcon} />
                     카카오로 로그인
                   </div>
                   <div css={s.generalLogin} onClick={loginNavigate}>

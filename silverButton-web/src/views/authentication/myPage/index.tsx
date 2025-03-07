@@ -7,6 +7,8 @@ import axios from "axios";
 import { MdOutlineMessage } from "react-icons/md";
 import { AiOutlineMedicineBox } from "react-icons/ai";
 import { MdOutlineHealthAndSafety } from "react-icons/md";
+import { MdOutlineChangeCircle } from "react-icons/md";
+import { MdOutlineDeleteForever } from "react-icons/md";
 
 const MyPage = () => {
   const { isAuthenticated, user, login, logout } = useAuthStore();
@@ -228,7 +230,6 @@ const MyPage = () => {
                   setEditUser({ ...editUser, phone: e.target.value });
                 }
               }}
-              
             />
           </div>
           <div css={s.formItem}>
@@ -249,26 +250,29 @@ const MyPage = () => {
           </div>
         </div>
       </div>
+
       <div css={s.tmiButtons}>
-            <button css={s.tmiButton} onClick={handleMessageClick}>
-            <MdOutlineMessage css={s.messageIcon} />내 쪽지함 가기
-            </button>
-            <button css={s.tmiButton} onClick={handleSaveMedicineClick}>
-            <AiOutlineMedicineBox css={s.messageIcon} /> 저장된 약품 정보보기
-            </button>
-            <button css={s.tmiButton} onClick={handleHealthRecordClick}>
-            <MdOutlineHealthAndSafety css={s.messageIcon} />건강 기록 관리
-            </button>
-            <div css={s.myPageFooter}>
-        <button css={s.saveButton} onClick={handleSaveChanges}>
-          변경사항 저장하기
+        <div css={s.footerBox}>
+        <button css={s.tmiButton} onClick={handleMessageClick}>
+          <MdOutlineMessage css={s.messageIcon} />내 쪽지함 가기
         </button>
-        <button css={s.saveButton} onClick={handleResignClick}>
-          회원탈퇴하기
+        <button css={s.tmiButton} onClick={handleSaveMedicineClick}>
+          <AiOutlineMedicineBox css={s.messageIcon} /> 저장된 약품 정보보기
         </button>
+        <button css={s.tmiButton} onClick={handleHealthRecordClick}>
+          <MdOutlineHealthAndSafety css={s.messageIcon} />건강 기록 관리
+        </button>
+        </div>
+        <div css={s.myPageFooter}>
+          <button css={s.saveButton} onClick={handleSaveChanges}>
+            <MdOutlineChangeCircle css={s.messageIcon} /> 변경사항 저장하기
+          </button>
+          <button css={s.deleteButton} onClick={handleResignClick}>
+            <MdOutlineDeleteForever css={s.messageIcon} /> 회원탈퇴하기
+          </button>
+        </div>
       </div>
-            </div>
-          </div>
+    </div>
   );
 };
 

@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, { useState, useEffect } from "react";
 import {
   Button,
@@ -12,6 +13,10 @@ import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../../stores/auth.store";
 import "./Signin.css";
+import kakaoIcon from "./kakaoIcon.png";
+import naverIcom from "./naverIcom.png";
+import mainIcon from "./mainIcon.png";
+import * as s from "./style";
 
 interface Credentials {
   userId: string;
@@ -120,21 +125,12 @@ export default function SignIn() {
 
   const handleFindId = () => navigate("/findId");
   const handleFindPassword = () => navigate("/findPassword");
-  const handleSignUp = () => navigate("/signup");
+  const handleSignUp = () => navigate("/auth/signup");
 
   return (
-    <div className="signin-container">
-      <Card className="signin-card">
+    <div css={s.signinContainer}>
+      <Card css={s.signinCard}>
         <CardContent>
-          <div className="signin-tabs">
-            <div onClick={() => setIsElder(false)} className="signin-tab">
-              일반 & 요양사 로그인
-            </div>
-            <div onClick={() => setIsElder(true)} className="signin-tab">
-              노인 로그인
-            </div>
-          </div>
-
           {!isElder && (
             <>
               <TextField
@@ -197,38 +193,48 @@ export default function SignIn() {
           )}
 
           {error && (
-            <Typography color="error" className="error-message">
+            <Typography color="error" css={s.errorMessage}>
               {error}
             </Typography>
           )}
         </CardContent>
+        <Button
+          onClick={handleSignIn}
+          fullWidth
+          variant="contained"
+          css={s.loginButton}
+        >
+          <img src={mainIcon} alt="" css={s.mainIcon} /> 로그인
+        </Button>
 
-        <CardActions>
-          <Button onClick={handleSignIn} fullWidth variant="contained">
-            로그인
-          </Button>
-        </CardActions>
+        <Button
+          onClick={handleSignIn}
+          fullWidth
+          variant="contained"
+          css={s.kakaoButton}
+        >
+          <img src={kakaoIcon} alt="" css={s.kakaoIcon} />
+          카카오 로그인
+        </Button>
 
-        <CardActions className="kakao">
-          <Button onClick={handleSignIn} fullWidth variant="contained">
-            카카오 로그인
-          </Button>
-        </CardActions>
+        <Button
+          onClick={handleSignIn}
+          fullWidth
+          variant="contained"
+          css={s.naverButton}
+        >
+          <img src={naverIcom} alt="" css={s.naverIcon} />
+          네이버 로그인
+        </Button>
 
-        <CardActions className="naver">
-          <Button onClick={handleSignIn} fullWidth variant="contained">
-            네이버 로그인
-          </Button>
-        </CardActions>
-
-        <CardActions className="footer-actions">
-          <Button onClick={handleFindId} fullWidth variant="text">
+        <CardActions css={s.footerButtonContainer} >
+          <Button onClick={handleFindId} fullWidth variant="text" css={s.footerButton}>
             아이디 찾기
           </Button>
-          <Button onClick={handleFindPassword} fullWidth variant="text">
+          <Button onClick={handleFindPassword} fullWidth variant="text" css={s.footerButton}>
             비밀번호 찾기
           </Button>
-          <Button onClick={handleSignUp} fullWidth variant="text">
+          <Button onClick={handleSignUp} fullWidth variant="text" css={s.footerButton}>
             회원가입
           </Button>
         </CardActions>

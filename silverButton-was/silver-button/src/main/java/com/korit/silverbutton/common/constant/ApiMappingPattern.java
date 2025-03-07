@@ -17,4 +17,5 @@ public class ApiMappingPattern {
     public static final String MAIL = "/api/v1/mail";
     public static final String HEALTH_MAGAZINE = "/api/v1/health-magazine";
     public static final String HEALTH_RECORD = "/api/v1/health-record";
+    public static final String MEAL_RECORD = "/api/v1/meal-record";
 }
