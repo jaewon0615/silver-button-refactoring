@@ -201,3 +201,116 @@ export const listStyle = css`
   margin-left: 1%;
   margin-bottom: 20px;
 `;
+
+export const levelText = (level: number) => css`
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+  color: ${level < 6 ? "#333" : level < 11 ? "#ff9800" : "#e91e63"};
+  transition: color 0.3s ease-in-out;
+  cursor: pointer;
+
+  :hover{
+    text-decoration: underline;
+  }
+
+  ${level >= 11 &&
+  `animation: pulse 1s infinite alternate;
+   @keyframes pulse {
+     0% { transform: scale(1); }
+     100% { transform: scale(1.1); }
+   }`}
+`;
+
+export const scheduleContainer = css`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-top: 20px;
+`;
+
+// ✅ 일정 카드 스타일 (흰색 배경 + 파란색 테두리 + 그림자)
+export const scheduleBox = css`
+  width: 90%;
+  max-width: 500px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 2px solid #4682b4;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  text-align: center;
+`;
+
+// ✅ 일정 제목 (굵은 파란색)
+export const scheduleTitle = css`
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #4682b4;
+  margin-bottom: 10px;
+`;
+
+// ✅ 일정 내용 스타일
+export const scheduleContent = css`
+  font-size: 1.2rem;
+  color: #555;
+  min-height: 50px;
+`;
+
+// ✅ 일정이 없을 때
+export const emptySchedule = css`
+  font-size: 1.2rem;
+  color: #aaa;
+`;
+
+// ✅ 게임 단계 박스 (보라색 테두리 + 흰색 배경)
+export const gameLevelBox = css`
+  width: 90%;
+  max-width: 500px;
+  background: #ffffff;
+  border-radius: 12px;
+  border: 2px solid #7b68ee;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.15);
+  padding: 15px;
+  text-align: center;
+`;
+
+// // ✅ 리스트 스타일 (검은색 대신 어두운 파란색)
+// export const listStyle = css`
+//   font-size: 1.3rem;
+//   font-weight: 500;
+//   color: #2c3e50;
+//   margin-bottom: 10px;
+// `;
+
+// // ✅ 로그인 타이틀 (보라색)
+// export const loginTitle = css`
+//   font-size: 2rem;
+//   font-weight: bold;
+//   color: #7b68ee;
+//   text-align: center;
+//   margin-bottom: 10px;
+// `;
+
+// // ✅ 로그인 버튼 배경 색상 조정 (보라색 & 파란색 조합)
+// export const generalLogin = css`
+//   width: 85%;
+//   height: 70px;
+//   font-size: 25px;
+//   text-align: center;
+//   background: linear-gradient(135deg, #9370db, #4682b4);
+//   color: white;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+//   cursor: pointer;
+//   font-weight: bold;
+//   border-radius: 5px;
+//   transition: 0.3s;
+
+//   &:hover {
+//     background: linear-gradient(135deg, #7b68ee, #5a9bd5);
+//   }
+// `;

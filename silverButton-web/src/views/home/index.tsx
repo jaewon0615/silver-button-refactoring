@@ -31,10 +31,15 @@ export default function SaveMedicineHomeList() {
   const [loading, setLoading] = useState<boolean>(false);
   const [scheduleData, setScheduleData] = useState<any[]>([]);
   const [error, setError] = useState<string>("");
+  const [gameLevel, setGameLevel] = useState<number | null>(null); // 게임 레벨 상태 추가
 
   const loginNavigate = () => {
     navigate("/auth");
   };
+
+  const gameNavigate = () => {
+    navigate("/cardGame")
+  }
 
   const { isAuthenticated } = useAuthStore();
   const token = getTokenFromCookies();
@@ -66,13 +71,22 @@ export default function SaveMedicineHomeList() {
     }
   };
 
+  // 게임 레벨을 가져오는 함수 (예: localStorage에서 가져오기)
+  const getGameLevel = () => {
+    const savedLevel = localStorage.getItem("gameLevel");
+    return savedLevel ? Number(savedLevel) : null; // 게임 레벨이 없으면 null 반환
+  };
+
   useEffect(() => {
     if (isAuthenticated) {
       fetchSchedule();
+      const level = getGameLevel();
+      setGameLevel(level); // 게임 레벨 설정
     }
   }, [isAuthenticated]);
 
   console.log(isAuthenticated + "인증");
+
   return (
     <div css={s.main}>
       <div css={s.video}>
@@ -92,26 +106,37 @@ export default function SaveMedicineHomeList() {
         </div>
 
         <div css={s.snsLogin}>
-          <div css={s.loginBox}>
-            {isAuthenticated ? (
-              <>
-                <div css={s.loginTitle}>오늘의 일정</div>
-                <div>
-                  {loading ? (
-                    <div>일정을 불러오는 중...</div>
-                  ) : error ? (
-                    <div>{error}</div>
-                  ) : scheduleData.length > 0 ? (
-                    scheduleData.map((schedule) => (
-                      <div key={schedule.id}>
-                        <div css={s.listStyle}>📅{schedule.task}</div>
-                      </div>
-                    ))
-                  ) : (
-                    <div>오늘의 일정이 없습니다.</div>
-                  )}
-                </div>
-              </>
+  <div css={s.loginBox}>
+    {isAuthenticated ? (
+      <>
+        <div css={s.scheduleContainer}>
+          <div css={s.scheduleBox}>
+            <h2 css={s.scheduleTitle}>오늘의 일정</h2>
+            <div css={s.scheduleContent}>
+              {loading ? (
+                <div>일정을 불러오는 중...</div>
+              ) : error ? (
+                <div>{error}</div>
+              ) : scheduleData.length > 0 ? (
+                scheduleData.map((schedule) => (
+                  <div key={schedule.id} css={s.listStyle}>
+                    📅 {schedule.task}
+                  </div>
+                ))
+              ) : (
+                <div css={s.emptySchedule}>오늘의 일정이 없습니다.</div>
+              )}
+            </div>
+          </div>
+
+          {/* 🔹 게임 진행 단계 */}
+          {gameLevel !== null && (
+            <div css={s.gameLevelBox}>
+              <h2 css={s.levelText(gameLevel)} onClick={gameNavigate}>현재 미니 게임 단계: {gameLevel}단계</h2>
+            </div>
+          )}
+        </div>
+      </>
             ) : (
               <>
                 <div css={s.loginTitle}>간편 SNS 로그인 서비스</div>

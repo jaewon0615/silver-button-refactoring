@@ -80,6 +80,9 @@ export default function SideBar() {
           <button css={s.sidebarButton} onClick={() => handleNavigate("/map")}>
             지도
           </button>
+          <button css={s.sidebarButton} onClick={() => handleNavigate("/cardGame")}>
+            미니 카드 게임
+          </button>
         </div>
         <div css={s.sidebarCloseButtonContainer}>
           <button css={s.sidebarCloseButton} onClick={toggleSide}>

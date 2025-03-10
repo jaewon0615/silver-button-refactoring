@@ -48,6 +48,8 @@ import MessageBox from "./views/message/MessageBox";
 
 import Map from "./views/map";
 
+import CardGame from "./views/cardGame"
+
 
 export default function App() {
   const { isAuthenticated, loadFromLocalStorage } = useAuthStore();
@@ -152,6 +154,8 @@ export default function App() {
 
           {/* 지도 */}
           <Route path="/map" element={<Map />} />
+
+          <Route path="/cardGame" element={<CardGame/>}/>
         </Routes>
       </MainLayout>
 
