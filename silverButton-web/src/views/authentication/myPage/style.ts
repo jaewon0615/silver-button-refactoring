@@ -89,26 +89,16 @@ export const myPageRight = css`
 
 
 export const formItem = css`
-display: flex;
+  display: flex;
   flex-direction: column;
   gap: 12px;
   margin-bottom: 20px;
 `;
 
 export const small = css`
-font-size: 12px;
+  font-size: 12px;
   color: red;
   font-weight: bold;
-
-`;
-
-
-
-
-export const item = css`
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
 `;
 
 export const inputField = css`
@@ -129,7 +119,7 @@ export const inputField = css`
   &::placeholder {
     color: #a1a1a1;  // Placeholder color
   }
-  `;
+`;
 
 export const tmiButtons = css`
   display: flex;
@@ -139,19 +129,17 @@ export const tmiButtons = css`
   margin-top: 40px;
 `;
 
-
-export const tmiButton = css`
-background-color: #6b5bff;  // Purple color
+export const messageButton = css`
+  background-color: #4F93F5;  // Purple color
   color: white;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
   padding: 10px 15px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-  width: 100%;  // Ensuring buttons have equal width
+  width: 35%;
 
   &:hover {
     transform: scale(1.05);
@@ -164,28 +152,17 @@ background-color: #6b5bff;  // Purple color
   }
 `;
 
-export const myPageFooter = css`
-display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex: 1;
-`;
-
-// Save button style for saving changes
-export const saveButton = css`
-background-color: #3b82f6;  // Blue color
+export const medicineButton = css`
+  background-color: #F59E0B;  // Purple color
   color: white;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
   padding: 10px 15px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-  justify-content: space-between;
-  height: 130px;
-  width: 45%;  // Ensuring buttons have equal width
+  width: 35%;
 
   &:hover {
     transform: scale(1.05);
@@ -198,24 +175,17 @@ background-color: #3b82f6;  // Blue color
   }
 `;
 
-
-
-export const errorMessage = css`
-  color: #ff4d4d;  // Red for errors
-  font-size: 12px;
-  margin-top: 5px;
-`;
-
-export const passwordSubmitButton = css`
-  background-color: #6b5bff;  // Purple color
+export const recordButton = css`
+  background-color: #34D399;  // Purple color
   color: white;
-  font-size: 25px;
+  font-size: 30px;
   font-weight: bold;
   padding: 10px 15px;
   border: none;
   border-radius: 15px;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 35%;
 
   &:hover {
     transform: scale(1.05);
@@ -229,40 +199,26 @@ export const passwordSubmitButton = css`
 `;
 
 export const messageIcon = css`
-  width: 20%;
-  height: 90px;
+  margin-right: 10px;
+`;
+
+export const myPageFooter = css`
   display: flex;
-  align-self: flex-start;
+  gap: 10px;
+  margin-top: 20px;
+  justify-content: flex-end;
 `;
 
-export const text = css`
-  font-size: 20px;
-  font-weight: bold;
-  color: #3b82f6;  // Blue color
-  margin-bottom: 8px;
-`;
-
-export const footerBox = css`
-display: flex;
-  justify-content: space-between;
-  gap: 20px;
-  flex: 1;
-`;
-
-export const deleteButton = css`
-  background-color: #f44336;  // Red color for delete
+export const saveButton = css`
+  background-color: #22c55e;  // Green color
   color: white;
-  font-size: 25px;
-  font-weight: bold;
-  padding: 10px 15px;
+  font-size: 23px;
+  padding: 10px 20px;
   border: none;
-  border-radius: 15px;
+  border-radius: 23px;
   cursor: pointer;
+  font-weight: bold;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-align: center;
-  justify-content: space-between;
-  height: 130px;
-  width: 45%;  // Ensuring buttons have equal width
 
   &:hover {
     transform: scale(1.05);
@@ -273,4 +229,47 @@ export const deleteButton = css`
     transform: scale(0.98);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   }
+`;
+
+export const deleteButton = css`
+  background-color: #ef4444;  // Red color
+  color: white;
+  font-size: 23px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 23px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+export const errorMessage = css`
+  color: red;
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 14px;
+`;
+
+export const text = css`
+font-size: 20px;
+  font-weight: bold;
+  color: #3b82f6;  // Blue color
+  margin-bottom: 8px;
+`;
+
+export const footerBox = css`
+display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  flex: 1;
 `;

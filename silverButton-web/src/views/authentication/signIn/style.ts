@@ -6,7 +6,7 @@ export const signinContainer = css`
   display: flex;
   justify-content: center;
   /* align-items: center; */
-  height: 100vh;
+  height: 100%;
   padding: 20px;
   width: 100%;
 `;
@@ -14,7 +14,6 @@ export const signinContainer = css`
 // 로그인 카드 스타일 (더 컴팩트하게 조정)
 export const signinCard = css`
   width:40%;
-  background: #ffffff;
   border-radius: 12px;
   text-align: center;
 `;
@@ -48,7 +47,7 @@ export const loginButton = css`
   font-weight: bold;
   border-radius: 8px;
   width: 100%;
-  height: 73px;
+  height: 75px;
   margin-top: 10px;
   justify-content: space-between;
 
@@ -132,14 +131,14 @@ export const mainIcon = css`
 `;
 
 export const kakaoIcon = css`
-  width: 15%;
+  width: 13%;
   height: 50px;
   display: flex;
   align-items: flex-start;
 `;
 
 export const naverIcon = css`
-  width: 15%;
+  width: 13%;
   height: 50px;
   display: flex;
   align-items: flex-start;
@@ -174,7 +173,6 @@ export const footerButton = css`
   text-align: center;
   cursor: pointer;
   transition: all 0.3s ease;  /* Smooth transition for hover effects */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);  /* Subtle shadow for depth */
 
   &:hover {
     background-color: #357ae8;  /* Darker blue on hover */

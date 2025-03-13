@@ -161,56 +161,61 @@ export default function MemoryGame() {
     setIsModalOpen(!isModalOpen);
   };
 
-  return (
-    <div css={s.gameContainer}>
-      <h1 css={s.gameTitle}>미니 카드 짝 맞추기 게임</h1>
-      <div>
-        <button onClick={handleRestart} css={s.restartButton}>게임 초기화</button>
-        <button onClick={toggleModal} css={s.infoButton}>게임 설명</button>
-      </div>
-     
-      <h2 css={s.levelText(level)}>{level}단계</h2>
-      <h3 css={s.timerText}>시간: {time}초</h3> {/* 시간이 표시될 부분 */}
-      
-      <div css={s.cardGrid}>
-        {cards.map((card: Card, index: number) => (
-          <motion.div 
-            key={card.id} 
-            css={[s.card, card.matched && s.matched]}
-            onClick={() => handleCardClick(index)}
-            whileTap={{ scale: 0.9 }}
-          >
-            {card.flipped || card.matched ? card.emoji : "❓"}
-          </motion.div>
-        ))}
-      </div>
-      {matchedCount === cards.length && (
-        <h2 css={s.winMessage}>🎉 레벨 업! 🎉</h2>
-      )}
+  // 시간이 20초 이상일 때 빨간색, 아니면 초록색
+  const timerColor = time > 30 ? 'red' : 'green';
 
-      {isModalOpen && (
-        <div css={s.modalOverlay} onClick={toggleModal}>
-          <motion.div
-            css={s.modalContent}
-            onClick={(e) => e.stopPropagation()}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          >
-            <h2>게임 설명</h2>
-            <ul css={s.list}>
-              <li css={s.listStyle}><strong css={s.indexStyle}>게임의 목표는 뭐예요?</strong><br /> 게임의 목표는 두 개의 같은 그림을 찾는 것이에요. 그림이 똑같은 카드 두 개를 찾아서 맞추면, 그 카드는 더 이상 나오지 않아요. 모든 카드의 그림을 다 맞추면 레벨이 올라가고, 게임에서 이긴 거예요!</li>
-              <li css={s.listStyle}><strong css={s.indexStyle}>게임 시작은 어떻게 하나요?</strong><br /> 게임을 시작하면 여러 개의 카드가 화면에 보여요. 카드들은 뒤집혀 있어서 그림을 볼 수 없어요. 카드들을 한 장씩 클릭해서, 그 카드에 어떤 그림이 있는지 확인해 보세요. 두 개의 카드를 확인하고 나면, 그 카드가 같은 그림이면 맞춘 거예요! 만약 두 카드가 다르면, 다시 뒤집어지기 전에 잠깐 시간이 주어져요.</li>
-              <li css={s.listStyle}><strong css={s.indexStyle}>게임을 진행하는 방법은요?</strong><br /> 카드 클릭: 카드 한 장을 클릭하면 그 카드가 뒤집혀서 그림이 보여요. 두 번째 카드를 클릭해서 그림이 같은지 비교해보세요. 맞다면: 두 카드는 계속 보여요. <br /> 다르면: 두 카드는 다시 뒤집혀요. 이런 식으로 카드를 하나씩 맞추면서, 모든 카드를 다 맞추면 레벨이 올라갑니다.</li>
-              <li css={s.listStyle}><strong css={s.indexStyle}>게임을 다시 시작하려면?</strong><br /> 만약 다시 처음부터 시작하고 싶다면, “게임 다시 시작” 버튼을 눌러주세요. 그러면 레벨은 1로 돌아가고, 카드도 처음 상태로 돌아가요.</li>
-              <li css={s.listStyle}><strong css={s.indexStyle}>레벨 업은 어떻게 하나요?</strong><br /> 모든 카드를 다 맞추면, 레벨이 하나씩 올라가요. 그때마다 더 어려운 카드들이 나오겠죠? 레벨이 올라가면 더 많은 카드를 맞춰야 하니까 점점 더 도전이 될 거예요!</li>
-              <li css={s.listStyle}><strong css={s.indexStyle}>게임의 장점은 뭐예요?</strong><br /> 이 게임은 기억력과 집중력을 향상시킬 수 있어요. 재미있게 게임을 하면서 뇌를 활성화시킬 수 있어요.</li>
-              <li css={s.listStyle}><strong css={s.indexStyle}>게임을 멈추고 싶으면 어떻게 하나요?</strong> <br />언제든지 게임을 멈추고 싶으면, 그냥 게임 창을 닫거나, 다른 일을 하시면 돼요!</li>
-            </ul>
-            <button onClick={toggleModal} css={s.closeButton}>닫기</button>
-          </motion.div>
+  return (
+    <div css={s.contailner}>
+      <div css={s.gameContainer}>
+        <h1 css={s.gameTitle}>미니 카드 짝 맞추기 게임</h1>
+        <div>
+          <button onClick={handleRestart} css={s.restartButton}>게임 초기화</button>
+          <button onClick={toggleModal} css={s.infoButton}>게임 설명</button>
         </div>
-      )}
+
+        <h2 css={s.levelText(level)}>{level}단계</h2>
+        <h3 css={[s.timerText, { color: timerColor }]}>소요시간: {time}초</h3> {/* 시간이 표시될 부분 */}
+        
+        <div css={s.cardGrid}>
+          {cards.map((card: Card, index: number) => (
+            <motion.div 
+              key={card.id} 
+              css={[s.card, card.matched && s.matched]}
+              onClick={() => handleCardClick(index)}
+              whileTap={{ scale: 0.9 }}
+            >
+              {card.flipped || card.matched ? card.emoji : "❓"}
+            </motion.div>
+          ))}
+        </div>
+        {matchedCount === cards.length && (
+          <h2 css={s.winMessage}>🎉 레벨 업! 🎉</h2>
+        )}
+
+        {isModalOpen && (
+          <div css={s.modalOverlay} onClick={toggleModal}>
+            <motion.div
+              css={s.modalContent}
+              onClick={(e) => e.stopPropagation()}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.3 }}
+            >
+              <h2>게임 설명</h2>
+              <ul css={s.list}>
+              <li css={s.listStyle}><strong css={s.indexStyle}>1.게임의 목표는 뭐예요?</strong><br /> 게임의 목표는 두 개의 같은 그림을 찾는 것이에요. 그림이 똑같은 카드 두 개를 찾아서 맞추면, 그 카드는 더 이상 나오지 않아요. 모든 카드의 그림을 다 맞추면 레벨이 올라가고, 게임에서 이긴 거예요!</li>
+              <li css={s.listStyle}><strong css={s.indexStyle}>2.게임 시작은 어떻게 하나요?</strong><br /> 게임을 시작하면 여러 개의 카드가 화면에 보여요. 카드들은 뒤집혀 있어서 그림을 볼 수 없어요. 카드들을 한 장씩 클릭해서, 그 카드에 어떤 그림이 있는지 확인해 보세요. 두 개의 카드를 확인하고 나면, 그 카드가 같은 그림이면 맞춘 거예요! 만약 두 카드가 다르면, 다시 뒤집어지기 전에 잠깐 시간이 주어져요.</li>
+              <li css={s.listStyle}><strong css={s.indexStyle}>3.게임을 진행하는 방법은요?</strong><br /> 카드 클릭: 카드 한 장을 클릭하면 그 카드가 뒤집혀서 그림이 보여요. 두 번째 카드를 클릭해서 그림이 같은지 비교해보세요. 맞다면: 두 카드는 계속 보여요. <br /> 다르면: 두 카드는 다시 뒤집혀요. 이런 식으로 카드를 하나씩 맞추면서, 모든 카드를 다 맞추면 레벨이 올라갑니다.</li>
+              <li css={s.listStyle}><strong css={s.indexStyle}>4.게임을 다시 시작하려면?</strong><br /> 만약 다시 처음부터 시작하고 싶다면, “게임 다시 시작” 버튼을 눌러주세요. 그러면 레벨은 1로 돌아가고, 카드도 처음 상태로 돌아가요.</li>
+              <li css={s.listStyle}><strong css={s.indexStyle}>5.레벨 업은 어떻게 하나요?</strong><br /> 모든 카드를 다 맞추면, 레벨이 하나씩 올라가요. 그때마다 더 어려운 카드들이 나오겠죠? 레벨이 올라가면 더 많은 카드를 맞춰야 하니까 점점 더 도전이 될 거예요!</li>
+              <li css={s.listStyle}><strong css={s.indexStyle}>6.게임의 장점은 뭐예요?</strong><br /> 이 게임은 기억력과 집중력을 향상시킬 수 있어요. 재미있게 게임을 하면서 뇌를 활성화시킬 수 있어요.</li>
+              <li css={s.listStyle}><strong css={s.indexStyle}>7.게임을 멈추고 싶으면 어떻게 하나요?</strong> <br />언제든지 게임을 멈추고 싶으면, 그냥 게임 창을 닫거나, 다른 일을 하시면 돼요!</li>
+            </ul>
+              <button onClick={toggleModal} css={s.closeButton}>닫기</button>
+            </motion.div>
+          </div>
+        )}
+      </div>
     </div>
   );
 }

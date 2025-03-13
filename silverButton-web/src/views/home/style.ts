@@ -277,6 +277,19 @@ export const gameLevelBox = css`
   text-align: center;
 `;
 
+export const startButton = css`
+  width: 90%;
+  max-width: 500px;
+  border-radius: 12px;
+  border: 2px solid #7b68ee;
+  padding: 15px;
+  text-align: center;
+  background-color: white;
+  font-size: 30px;
+  font-weight: bold;
+  color: #7b68ee;
+`;
+
 // // ✅ 리스트 스타일 (검은색 대신 어두운 파란색)
 // export const listStyle = css`
 //   font-size: 1.3rem;
@@ -314,3 +327,21 @@ export const gameLevelBox = css`
 //     background: linear-gradient(135deg, #7b68ee, #5a9bd5);
 //   }
 // `;
+
+export const startGameButton = css`
+  text-align: center;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 10px;
+  font-size: 25px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: 0.3s;
+  width: 100%;
+  height: 100%;
+
+  &:hover {
+    
+  }
+`;

@@ -126,6 +126,12 @@ const MyPage = () => {
     }
   };
 
+  const handleEmergenctContactClick = () => {
+    if (user) {
+      navigate(`/my-page/emergency-contact/${user.id}`);
+    }
+  };
+
   const handleMessageClick = () => {
     navigate("/message");
   };
@@ -253,14 +259,17 @@ const MyPage = () => {
 
       <div css={s.tmiButtons}>
         <div css={s.footerBox}>
-        <button css={s.tmiButton} onClick={handleMessageClick}>
+        <button css={s.messageButton} onClick={handleMessageClick}>
           <MdOutlineMessage css={s.messageIcon} />내 쪽지함 가기
         </button>
-        <button css={s.tmiButton} onClick={handleSaveMedicineClick}>
+        <button css={s.medicineButton} onClick={handleSaveMedicineClick}>
           <AiOutlineMedicineBox css={s.messageIcon} /> 저장된 약품 정보보기
         </button>
-        <button css={s.tmiButton} onClick={handleHealthRecordClick}>
+        <button css={s.recordButton} onClick={handleHealthRecordClick}>
           <MdOutlineHealthAndSafety css={s.messageIcon} />건강 기록 관리
+        </button>
+        <button css={s.recordButton} onClick={handleEmergenctContactClick}>
+          <MdOutlineHealthAndSafety css={s.messageIcon} />비상연락망 등록 / 조회
         </button>
         </div>
         <div css={s.myPageFooter}>

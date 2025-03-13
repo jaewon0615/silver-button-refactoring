@@ -1,3 +1,4 @@
+/** @jsxImportSource @emotion/react */
 import React, { useState, useEffect, useRef } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
@@ -8,6 +9,8 @@ import { EventClickArg } from "@fullcalendar/core";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../stores/auth.store";
+import * as s from "./style"; // CSS 이모션 스타일 파일 추가
+
 
 interface Event {
   id: string;
@@ -102,38 +105,37 @@ const Modal: React.FC<ModalProps> = ({
 
   return isOpen ? (
     <div
-      id="modal-overlay"
-      className="modal-overlay"
+      css={s.modalOverlay}
       onClick={handleOutsideClick}
     >
-      <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-        <div className="modal-left">
+      <div css={s.modalContent} onClick={(e) => e.stopPropagation()}>
+        <div css={s.modalLeft}>
           <h4>{selectedDate}</h4>
-          <div className="event-list">
+          <div css={s.eventList}>
             {events
               .filter((event) => event.date === selectedDate)
               .map((event) => (
                 <div
                   key={event.id}
-                  className="event-item"
+                  css={s.eventItem}
                   onClick={() => handleEventClick(event)}
                 >
                   {event.title}
                   <button
-                    className="delete-btn"
+                    css={s.deleteButton}
                     onClick={() => onDelete(event.id)}
                   >
-                    X
+                    삭제
                   </button>
                 </div>
               ))}
-            <div className="add-event" onClick={handleAddNewEvent}>
+            <div css={s.addEvent} onClick={handleAddNewEvent}>
               + 일정 추가
             </div>
           </div>
         </div>
 
-        <div className="modal-right">
+        <div css={s.modalRight}>
           <h4>
             {selectedEventId ? (
               "일정 수정"
@@ -141,7 +143,7 @@ const Modal: React.FC<ModalProps> = ({
               <>
                 일정 추가
                 <button
-                  id="add-to-patient-schedule"
+                  css={s.addEvent}
                   onClick={handleAddToPatientSchedule}
                 >
                   환자의 일정에 추가
@@ -157,16 +159,16 @@ const Modal: React.FC<ModalProps> = ({
             placeholder="일정"
             autoFocus
           />
-          <button id="save" onClick={handleSave} disabled={!eventTitle}>
+          <button css={s.saveButton} onClick={handleSave} disabled={!eventTitle}>
             저장
           </button>
           {selectedEventId && (
-            <button id="delete" onClick={handleDelete}>
+            <button css={s.deleteButton} onClick={handleDelete}>
               삭제
             </button>
           )}
 
-          <button id="close" onClick={onClose}>
+          <button css={s.closeButton} onClick={onClose}>
             닫기
           </button>
         </div>
@@ -403,7 +405,7 @@ const CalendarComponent: React.FC = () => {
   };
 
   return (
-    <div id="calendar-container">
+    <div css={s.calendarContainer}>
       <FullCalendar
         ref={calendarRef}
         plugins={[dayGridPlugin, interactionPlugin]}

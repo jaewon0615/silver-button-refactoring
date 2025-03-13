@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-export const gameContainer = css`
+export const contailner = css`
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -9,8 +9,18 @@ export const gameContainer = css`
   background: #ffffff;
   padding: 20px 150px;
   border-radius: 10px;
+`;
+
+export const gameContainer = css`
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #ffffff;
+  padding: 20px 150px;
+  border-radius: 10px;
   border: 2px solid #4a148c;
-  margin-bottom: 20px;
 `;
 
 export const gameTitle = css`
@@ -98,13 +108,14 @@ export const modalOverlay = css`
 
 export const modalContent = css`
   background: #fff;
-  padding: 25px;
+  padding: 40px; /* Increased padding for more space */
   border-radius: 12px;
-  width: 80%;
-  max-width: 600px;
+  width: 90%; /* Increased width to 90% for a larger modal */
+  max-width: 800px; /* Increased max-width */
   text-align: center;
-  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.3); /* Increased shadow for better emphasis */
 `;
+
 
 export const infoButton = css`
   padding: 12px 25px;
@@ -116,6 +127,7 @@ export const infoButton = css`
   font-weight: bold;
   transition: background 0.3s;
   margin-left: 20px;
+  font-size: 20px;
 
   &:hover {
     background: #283593;
@@ -131,6 +143,7 @@ export const restartButton = css`
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s;
+  font-size: 20px;
 
   &:hover {
     background: #b71c1c;
@@ -146,6 +159,7 @@ export const closeButton = css`
   cursor: pointer;
   font-weight: bold;
   transition: background 0.3s;
+  font-size: 20px;
 
   &:hover {
     background: #2e7d32;
@@ -153,9 +167,10 @@ export const closeButton = css`
 `;
 
 export const listStyle = css`
-  margin-top: 12px;
+  margin-top: 40px;
   font-weight: bold;
   color: black;
+  font-size: 20px;
 `;
 
 export const list = css`
@@ -164,7 +179,7 @@ export const list = css`
 `;
 
 export const indexStyle = css`
-  color: #283593;
+  color: #FF5722;
   font-weight: bold;
 `;
 

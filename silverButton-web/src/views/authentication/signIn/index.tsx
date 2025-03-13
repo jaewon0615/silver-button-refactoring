@@ -12,7 +12,6 @@ import axios from "axios";
 import { useCookies } from "react-cookie";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../../stores/auth.store";
-import "./Signin.css";
 import kakaoIcon from "./kakaoIcon.png";
 import naverIcom from "./naverIcom.png";
 import mainIcon from "./mainIcon.png";
@@ -129,7 +128,7 @@ export default function SignIn() {
 
   return (
     <div css={s.signinContainer}>
-      <Card css={s.signinCard}>
+      <div css={s.signinCard}>
         <CardContent>
           {!isElder && (
             <>
@@ -238,7 +237,7 @@ export default function SignIn() {
             회원가입
           </Button>
         </CardActions>
-      </Card>
+      </div>
     </div>
   );
 }

@@ -24,6 +24,7 @@ import Resign from "./views/authentication/resign";
 import Calendar from "./views/calendar/Calendar";
 import SaveMedicine from "./views/authentication/myPage/saveMedicine";
 import HealthRecord from "./views/authentication/myPage/healthRecord";
+import EmergencyContact from "./views/authentication/myPage/emergencyContact"
 
 import RootLayout from "./layouts/rootLayout/RootLayout";
 import Header from "./layouts/header/Header";
@@ -127,6 +128,7 @@ export default function App() {
                   element={<SaveMedicine />}
                 />
                 <Route path="/health-record/:id" element={<HealthRecord />} />
+                <Route path="/emergency-contact/:id" element={<EmergencyContact/>} />
               </Routes>
             }
           />
