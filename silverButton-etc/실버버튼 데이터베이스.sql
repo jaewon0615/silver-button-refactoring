@@ -124,14 +124,27 @@ CREATE TABLE meal_records (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
-CREATE TABLE Emergency_Contacts (
+CREATE TABLE emergency_contacts (
   id BIGINT PRIMARY KEY AUTO_INCREMENT,
   user_id BIGINT NOT NULL,
   name VARCHAR(100) NOT NULL,
   relation VARCHAR(50) NOT NULL,
   phone VARCHAR(15) NOT NULL,
   address VARCHAR(255),
+  memo VARCHAR(20),
   created_at DATETIME DEFAULT CURRENT_TIMESTAMP,
   updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE diary (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,   -- 일기 항목의 고유 ID
+    user_id BIGINT NOT NULL,
+    title VARCHAR(100) NOT NULL,          -- 일기의 제목
+    weather VARCHAR(50),
+    content TEXT NOT NULL,                 -- 일기 내용
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP,  -- 일기 작성일시
+    updatedAt DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 일기 수정일시
+    mood  VARCHAR(50),-- 감정 상태
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );

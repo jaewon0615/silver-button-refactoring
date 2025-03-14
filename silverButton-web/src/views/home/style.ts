@@ -288,6 +288,10 @@ export const startButton = css`
   font-size: 30px;
   font-weight: bold;
   color: #7b68ee;
+  :hover{
+    cursor: pointer;
+    text-decoration: underline;
+  }
 `;
 
 // // ✅ 리스트 스타일 (검은색 대신 어두운 파란색)

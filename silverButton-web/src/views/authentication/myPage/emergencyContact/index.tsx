@@ -3,7 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useParams } from "react-router-dom";
-import * as s from "./style"; // 스타일 파일 임포트
+import * as s from "./style";
 
 export interface EmergencyContactType {
   id: number;
@@ -13,6 +13,7 @@ export interface EmergencyContactType {
   phone: string;
   address: string;
   createdAt: number;
+  memo: string;
 }
 
 export default function EmergencyContact() {
@@ -27,18 +28,16 @@ export default function EmergencyContact() {
     phone: "",
     address: "",
     createdAt: Date.now(),
+    memo: "",
   });
   
-  const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 3;
+  const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
 
-  // 📌 id 값 확인 (디버깅)
   useEffect(() => {
     console.log("useParams()로 받은 id:", id);
     fetchEmergencyContacts();
   }, [id, cookies.token]);
 
-  // 🚀 비상 연락망 데이터 불러오기
   const fetchEmergencyContacts = async () => {
     const token = cookies.token;
 
@@ -59,13 +58,15 @@ export default function EmergencyContact() {
     }
   };
 
-  // 🚀 입력 값 변경 핸들러
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setNewContact({ ...newContact, [name]: value });
   };
 
-  // 🚀 비상 연락망 추가
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value); // 검색어 상태 업데이트
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const token = cookies.token;
@@ -89,6 +90,7 @@ export default function EmergencyContact() {
         phone: "",
         address: "",
         createdAt: Date.now(),
+        memo: "",
       });
 
       fetchEmergencyContacts(); // 새로 등록 후 목록 갱신
@@ -98,7 +100,6 @@ export default function EmergencyContact() {
     }
   };
 
-  // 🚀 비상 연락망 삭제
   const handleDelete = async (contactId: number) => {
     const token = cookies.token;
 
@@ -117,15 +118,10 @@ export default function EmergencyContact() {
     }
   };
 
-  // 🚀 페이지네이션
-  const indexOfLastRecord = currentPage * recordsPerPage;
-  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-  const currentRecords = emergencyContacts.slice(indexOfFirstRecord, indexOfLastRecord);
-  const totalPages = Math.ceil(emergencyContacts.length / recordsPerPage);
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
-  };
+  // 검색어에 따른 필터링
+  const filteredContacts = emergencyContacts.filter(contact =>
+    contact.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
 
   return (
     <div css={s.container}>
@@ -148,38 +144,42 @@ export default function EmergencyContact() {
             <label css={s.label}>주소</label>
             <input type="text" name="address" value={newContact.address} onChange={handleInputChange} placeholder="예: 00시 00구 00동 00로" required css={s.input} />
           </div>
+          <div css={s.inputGroup}>
+            <label css={s.label}>메모</label>
+            <input type="text" name="memo" value={newContact.memo} onChange={handleInputChange} placeholder="예: 기타 메모" required css={s.input} />
+          </div>
           <button type="submit" css={s.submitButton}>비상 연락망 등록</button>
         </form>
       </div>
 
       <div css={s.recordContainer}>
         <h1 css={s.resultText}>비상 연락망 목록</h1>
-        {currentRecords.length > 0 ? (
-          currentRecords.map((record) => (
-            <div key={record.id} css={s.recordItem}>
-              <div>
-                <h3 css={s.resultPageText}>이름: {record.name}</h3>
-                <h3 css={s.resultPageText}>관계: {record.relation}</h3>
-                <h3 css={s.resultPageText}>휴대폰: {record.phone}</h3>
-                <h3 css={s.resultPageText}>주소: {record.address}</h3>
-                <h3 css={s.resultPageText}>기록 일시: {new Date(record.createdAt).toLocaleDateString()}</h3>
+        <input
+          type="text"
+          placeholder="이름으로 검색..."
+          value={searchTerm}
+          onChange={handleSearchChange}
+          css={s.searchInput} // 기존 CSS 사용
+        />
+        <div css={{ maxHeight: '70%', overflowY: 'auto' }}> {/* 스크롤을 위한 컨테이너 */}
+          {filteredContacts.length > 0 ? (
+            filteredContacts.map((record) => (
+              <div key={record.id} css={s.recordItem}>
+                <div>
+                  <h3 css={s.nameText}>이름: {record.name}</h3>
+                  <h3 css={s.resultPageText}>관계: {record.relation}</h3>
+                  <h3 css={s.resultPageText}>휴대폰: {record.phone}</h3>
+                  <h3 css={s.resultPageText}>주소: {record.address}</h3>
+                  <h3 css={s.resultPageText}>기타메모: {record.memo}</h3>
+                  <h3 css={s.resultPageText}>기록 일시: {new Date(record.createdAt).toLocaleDateString()}</h3>
+                </div>
+                <button onClick={() => handleDelete(record.id)} css={s.deleteButton}>삭제</button>
               </div>
-              <button onClick={() => handleDelete(record.id)} css={s.deleteButton}>삭제</button>
-            </div>
-          ))
-        ) : (
-          <p>등록된 연락처가 없습니다.</p>
-        )}
-
-        {totalPages > 1 && (
-          <div css={s.paginationContainer}>
-            <button onClick={() => handlePageChange(currentPage - 1)} css={s.paginationButton} disabled={currentPage === 1}>&lt; 이전</button>
-            {[...Array(totalPages)].map((_, index) => (
-              <button key={index} onClick={() => handlePageChange(index + 1)} css={s.paginationButton}>{index + 1}</button>
-            ))}
-            <button onClick={() => handlePageChange(currentPage + 1)} css={s.paginationButton} disabled={currentPage === totalPages}>다음 &gt;</button>
-          </div>
-        )}
+            ))
+          ) : (
+            <p>등록된 연락처가 없습니다.</p>
+          )}
+        </div>
       </div>
     </div>
   );

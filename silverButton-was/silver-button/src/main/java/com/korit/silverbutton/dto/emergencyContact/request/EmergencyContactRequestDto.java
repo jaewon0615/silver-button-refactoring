@@ -15,4 +15,6 @@ public class EmergencyContactRequestDto {
     private String phone;       // 연락처 전화번호
 
     private String address;     // 연락처 주소 (선택사항)
+
+    private String memo;
 }

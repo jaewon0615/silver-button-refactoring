@@ -38,8 +38,8 @@ export default function SaveMedicineHomeList() {
   };
 
   const gameNavigate = () => {
-    navigate("/cardGame")
-  }
+    navigate("/cardGame");
+  };
 
   const { isAuthenticated } = useAuthStore();
   const token = getTokenFromCookies();
@@ -131,9 +131,9 @@ export default function SaveMedicineHomeList() {
 
                   {/* 🔹 게임 진행 단계 */}
                   {gameLevel === null ? (
-                
-                      <button css={s.startButton}  onClick={gameNavigate} >미니 카드 게임 시작</button>
-                   
+                    <button css={s.startButton} onClick={gameNavigate}>
+                      미니 카드 게임 시작
+                    </button>
                   ) : (
                     <div css={s.gameLevelBox}>
                       <h2 css={s.levelText(gameLevel)} onClick={gameNavigate}>

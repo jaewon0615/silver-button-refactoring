@@ -2,6 +2,7 @@ package com.korit.silverbutton.repository;
 
 import com.korit.silverbutton.entity.EmergencyContact;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -11,5 +12,6 @@ public interface EmergencyContactRepository extends JpaRepository<EmergencyConta
 
     void deleteEmergencyContactById(Long id);
 
+    @Query(value = "SELECT * FROM emergency_contacts ORDER BY created_at DESC",nativeQuery = true)
     List<EmergencyContact> getEmergencyContactByUserId(Long userId);
 }

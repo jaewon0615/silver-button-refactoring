@@ -10,9 +10,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "emergency_contacts")
+@Table(name = "diary")
 @Builder
-public class EmergencyContact {
+public class Diary {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -21,19 +21,18 @@ public class EmergencyContact {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    private String name;
+    private String title;
 
-    private String relation;
+    private String content;
 
-    private String phone;
+    private String weather;
 
-    private String address;
-
-    private String memo;
+    private String mood;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
 
 
 }

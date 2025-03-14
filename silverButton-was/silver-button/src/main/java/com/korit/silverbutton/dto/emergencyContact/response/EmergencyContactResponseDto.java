@@ -23,6 +23,8 @@ public class EmergencyContactResponseDto {
 
     private String address;     // 연락처 주소
 
+    private String memo;
+
     private LocalDateTime createdAt;  // 연락처 생성일
 
     private LocalDateTime updatedAt;  // 연락처 수정일
@@ -36,5 +38,6 @@ public class EmergencyContactResponseDto {
         this.address = emergencyContact.getAddress();
         this.createdAt = emergencyContact.getCreatedAt();
         this.updatedAt = emergencyContact.getUpdatedAt();
+        this.memo = emergencyContact.getMemo();
     }
 }

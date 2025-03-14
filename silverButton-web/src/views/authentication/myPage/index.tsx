@@ -9,6 +9,7 @@ import { AiOutlineMedicineBox } from "react-icons/ai";
 import { MdOutlineHealthAndSafety } from "react-icons/md";
 import { MdOutlineChangeCircle } from "react-icons/md";
 import { MdOutlineDeleteForever } from "react-icons/md";
+import { IoIosContacts } from "react-icons/io";
 
 const MyPage = () => {
   const { isAuthenticated, user, login, logout } = useAuthStore();
@@ -129,6 +130,12 @@ const MyPage = () => {
   const handleEmergenctContactClick = () => {
     if (user) {
       navigate(`/my-page/emergency-contact/${user.id}`);
+    }
+  };
+
+  const handleDiaryClick = () => {
+    if (user) {
+      navigate(`/my-page/diary/${user.id}`);
     }
   };
 
@@ -269,7 +276,10 @@ const MyPage = () => {
           <MdOutlineHealthAndSafety css={s.messageIcon} />건강 기록 관리
         </button>
         <button css={s.recordButton} onClick={handleEmergenctContactClick}>
-          <MdOutlineHealthAndSafety css={s.messageIcon} />비상연락망 등록 / 조회
+        <IoIosContacts  css={s.messageIcon}/>비상연락망 등록 / 조회
+        </button>
+        <button css={s.recordButton} onClick={handleDiaryClick}>
+        <IoIosContacts  css={s.messageIcon}/>오늘의 일기
         </button>
         </div>
         <div css={s.myPageFooter}>

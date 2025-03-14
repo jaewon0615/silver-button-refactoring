@@ -221,7 +221,26 @@ export const resultPageText = css`
   font-weight: bold;
 `;
 
+export const nameText = css`
+  font-weight: bold;
+  color: orange;
+`;
+
 export const dataText = css`
   font-weight: bold;
   color: red;
 `
+export const searchInput = css`
+  width:100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border:1px solid #ccc;
+    border-radius:5px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+    :focus{
+      border-color: '#007BFF', // 포커스 시 테두리 색상 변경
+
+    }
+`;

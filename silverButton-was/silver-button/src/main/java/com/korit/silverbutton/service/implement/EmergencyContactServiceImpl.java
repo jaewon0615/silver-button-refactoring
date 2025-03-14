@@ -33,7 +33,7 @@ public class EmergencyContactServiceImpl implements EmergencyContactService {
         String relation = dto.getRelation();
         String phone = dto.getPhone();
         String address = dto.getAddress();
-
+        String memo = dto.getMemo();
         try {
             // User 객체를 데이터베이스에서 가져옵니다.
             User user = userRepository.findById(userId)
@@ -47,6 +47,7 @@ public class EmergencyContactServiceImpl implements EmergencyContactService {
                     .address(address)
                     .relation(relation)
                     .createdAt(date.atStartOfDay())
+                    .memo(memo)
                     .build();
 
             emergencyContactRepository.save(emergencyContact);
