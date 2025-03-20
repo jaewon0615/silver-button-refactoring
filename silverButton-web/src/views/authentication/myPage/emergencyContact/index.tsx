@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useParams } from "react-router-dom";
 import * as s from "./style";
+import { userId } from "../../../drug/medicineListPage/style";
 
 export interface EmergencyContactType {
   id: number;
@@ -47,7 +48,7 @@ export default function EmergencyContact() {
     }
 
     try {
-      const response = await axios.get(`http://localhost:4040/api/v1/emergency-contact/${id}`, {
+      const response = await axios.get(`http://localhost:4040/api/v1/emergency-contact/${userId}`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -154,6 +155,7 @@ export default function EmergencyContact() {
 
       <div css={s.recordContainer}>
         <h1 css={s.resultText}>비상 연락망 목록</h1>
+        <label css={s.label}>검색</label>
         <input
           type="text"
           placeholder="이름으로 검색..."
@@ -177,7 +179,7 @@ export default function EmergencyContact() {
               </div>
             ))
           ) : (
-            <p>등록된 연락처가 없습니다.</p>
+            <p css={s.errorMessage}>등록된 연락처가 없습니다.</p>
           )}
         </div>
       </div>

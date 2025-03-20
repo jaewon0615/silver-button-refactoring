@@ -10,6 +10,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import SaveMedicineHome from "../../components/saveMedicine/saveMedicineHome";
 import { useCookies } from "react-cookie";
+import { format } from "date-fns"; // 날짜 포맷을 위한 라이브러리
 
 const getTokenFromCookies = (): string | null => {
   const cookies = document.cookie.split("; ");
@@ -24,14 +25,13 @@ const getTokenFromCookies = (): string | null => {
 
 export default function SaveMedicineHomeList() {
   const { userId } = useParams<{ userId: string }>();
-
   const [cookies] = useCookies(["token"]);
-
   const navigate = useNavigate();
   const [loading, setLoading] = useState<boolean>(false);
   const [scheduleData, setScheduleData] = useState<any[]>([]);
   const [error, setError] = useState<string>("");
   const [gameLevel, setGameLevel] = useState<number | null>(null); // 게임 레벨 상태 추가
+  const [diaryExists, setDiaryExists] = useState<boolean>(false); // 일기 작성 여부 상태 추가
 
   const loginNavigate = () => {
     navigate("/auth");
@@ -60,7 +60,6 @@ export default function SaveMedicineHomeList() {
 
       if (response.data.result) {
         setScheduleData(response.data.data);
-        console.log(response.data.data);
       } else {
         setError("일정을 불러오는 데 문제가 발생했습니다.");
       }
@@ -71,10 +70,36 @@ export default function SaveMedicineHomeList() {
     }
   };
 
-  // 게임 레벨을 가져오는 함수 (예: localStorage에서 가져오기)
   const getGameLevel = () => {
     const savedLevel = localStorage.getItem("gameLevel");
-    return savedLevel ? Number(savedLevel) : null; // 게임 레벨이 없으면 null 반환
+    return savedLevel ? Number(savedLevel) : null;
+  };
+
+  // 오늘의 일기 확인 함수
+  const checkDiaryExistence = async () => {
+    const todayDate = format(new Date(), "yyyy-MM-dd"); // 오늘 날짜를 yyyy-MM-dd 형식으로 가져오기
+
+    if (!token) return;
+
+    try {
+      const response = await axios.get(
+        `http://localhost:4040/api/v1/diary/check/${todayDate}`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      // 응답 값 확인 후 diaryExists 설정
+      if (response.data.exists) {
+        setDiaryExists(true);
+      } else {
+        setDiaryExists(false);
+      }
+    } catch (err) {
+      console.error("일기 확인 중 오류 발생", err);
+    }
   };
 
   useEffect(() => {
@@ -82,10 +107,9 @@ export default function SaveMedicineHomeList() {
       fetchSchedule();
       const level = getGameLevel();
       setGameLevel(level); // 게임 레벨 설정
+      checkDiaryExistence(); // 오늘의 일기 존재 여부 확인
     }
   }, [isAuthenticated]);
-
-  console.log(isAuthenticated + "인증");
 
   return (
     <div css={s.main}>
@@ -140,6 +164,18 @@ export default function SaveMedicineHomeList() {
                         현재 미니 게임 단계: {gameLevel}단계
                       </h2>
                     </div>
+                  )}
+
+                  {/* 🔹 오늘의 일기 */}
+                  {diaryExists ? (
+                    <div css={s.gameLevelBox}>오늘의 일기 작성 완료</div>
+                  ) : (
+                    <button
+                      css={s.startButton}
+                      onClick={() => navigate(`/passwordPage`)}
+                    >
+                      일기 작성하러 가기
+                    </button>
                   )}
                 </div>
               </>

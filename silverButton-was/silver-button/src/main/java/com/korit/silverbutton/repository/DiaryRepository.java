@@ -10,7 +10,7 @@ import java.util.Optional;
 
 @Repository
 public interface DiaryRepository extends JpaRepository<Diary, Long> {
-    @Query(value = "SELECT * FROM diary ORDER BY created_at DESC",nativeQuery = true)
+    @Query(value = "SELECT * FROM diary WHERE user_id = :userId ORDER BY created_at DESC", nativeQuery = true)
     List<Diary> getDiaryByUserId(Long userId);
 
     Optional<Diary> getDiaryById(Long id);

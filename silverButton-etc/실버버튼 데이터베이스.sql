@@ -148,3 +148,20 @@ CREATE TABLE diary (
     mood  VARCHAR(50),-- 감정 상태
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+CREATE TABLE exercise (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,         -- 고유 ID
+    user_id BIGINT NOT NULL,
+    exercise_type VARCHAR(255) NOT NULL,        -- 운동 종류
+    duration INT NOT NULL,                     -- 운동 시간 (분 단위)
+    calories_burned INT NOT NULL,              -- 칼로리 소모
+    intensity VARCHAR(50) NOT NULL,            -- 운동 강도 (낮음, 중간, 높음)
+    exercise_date DATE NOT NULL,               -- 운동 날짜
+    location VARCHAR(255),                     -- 운동 장소
+    notes TEXT,                                -- 메모
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP, -- 기록 생성 시간
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP, -- 기록 수정 시간
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+

@@ -56,6 +56,11 @@ public class User {
 
     private Long protectorId;
 
+    @Column(nullable = true)
+    private String secondPassword;  // 2차 비밀번호
+
+
+
     public void setProfileImg(String filePath) {
     }
 

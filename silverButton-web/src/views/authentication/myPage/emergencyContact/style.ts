@@ -233,14 +233,27 @@ export const dataText = css`
 export const searchInput = css`
   width:100%;
     padding: 10px;
-    margin-bottom: 20px;
     border:1px solid #ccc;
     border-radius:5px;
     font-size: 16px;
     outline: none;
     transition: border-color 0.3s;
+    margin-top: 10px;
     :focus{
       border-color: '#007BFF', // 포커스 시 테두리 색상 변경
 
     }
+`;
+
+export const errorMessage = css`
+text-align: center;
+  font-size: 16px;
+  color: #d32f2f; 
+  font-weight: bold;
+  background: #ffccbc;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #e57373; 
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
 `;

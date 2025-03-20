@@ -6,6 +6,7 @@ import com.korit.silverbutton.entity.HealthRecord;
 import org.apache.coyote.Response;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,12 +14,15 @@ import java.util.Optional;
 public interface HealthRecordRepository extends JpaRepository<HealthRecord, Long> {
     Optional<HealthRecord> getHealthRecordById(Long id);
 
-    @Query(value = "SELECT * FROM health_record ORDER BY created_at DESC",nativeQuery = true)
-    List<HealthRecord> getHealthRecordsByUserId(Long userId);
+//    Optional<HealthRecord> getHealthRecordsForAuthenticatedUser(Long userId);
+
+    @Query(value = "SELECT * FROM health_record WHERE user_id = :userId ORDER BY created_at DESC", nativeQuery = true)
+    List<HealthRecord> getHealthRecordsForAuthenticatedUser(@Param("userId") Long userId);
+
 
     void deleteHealthRecordById(Long id);
 
-    @Query(value = "SELECT * FROM health_record ORDER BY created_at DESC",nativeQuery = true)
+    @Query(value = "SELECT * FROM health_record WHERE user_id = :userId ORDER BY created_at DESC", nativeQuery = true)
     List<HealthRecord> getLatestHealthRecordByUserId(Long userId);
 
 

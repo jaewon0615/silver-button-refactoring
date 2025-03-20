@@ -10,6 +10,7 @@ import { MdOutlineHealthAndSafety } from "react-icons/md";
 import { MdOutlineChangeCircle } from "react-icons/md";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { IoIosContacts } from "react-icons/io";
+import { IoIosJournal } from "react-icons/io";
 
 const MyPage = () => {
   const { isAuthenticated, user, login, logout } = useAuthStore();
@@ -136,6 +137,12 @@ const MyPage = () => {
   const handleDiaryClick = () => {
     if (user) {
       navigate(`/my-page/diary/${user.id}`);
+    }
+  };
+
+  const handleExerciseClick = () => {
+    if (user) {
+      navigate(`/my-page/exercise/${user.id}`);
     }
   };
 
@@ -275,11 +282,14 @@ const MyPage = () => {
         <button css={s.recordButton} onClick={handleHealthRecordClick}>
           <MdOutlineHealthAndSafety css={s.messageIcon} />건강 기록 관리
         </button>
-        <button css={s.recordButton} onClick={handleEmergenctContactClick}>
+        <button css={s.emergencyButton} onClick={handleEmergenctContactClick}>
         <IoIosContacts  css={s.messageIcon}/>비상연락망 등록 / 조회
         </button>
-        <button css={s.recordButton} onClick={handleDiaryClick}>
-        <IoIosContacts  css={s.messageIcon}/>오늘의 일기
+        <button css={s.diaryButton} onClick={handleDiaryClick}>
+        <IoIosJournal css={s.messageIcon} />오늘의 일기
+        </button>
+        <button css={s.diaryButton} onClick={handleExerciseClick}>
+        <IoIosJournal css={s.messageIcon} /> 운동 기록 일지
         </button>
         </div>
         <div css={s.myPageFooter}>

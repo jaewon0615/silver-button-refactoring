@@ -3,7 +3,7 @@ import axios from "axios";
 import * as s from "./style"; // 스타일 파일 임포트
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom"; // useNavigate 추가
 
 export interface HealthRecordType {
   id: number;
@@ -34,7 +34,9 @@ export default function HealthRecord() {
 
   const [cookies] = useCookies(["token"]);
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 3; // 페이지당 5개씩 표시
+  const recordsPerPage = 3; // 페이지당 3개씩 표시
+
+  const navigate = useNavigate(); // useNavigate 훅 사용
 
   const fetchHealthRecords = async () => {
     const token = cookies.token;
@@ -125,6 +127,13 @@ export default function HealthRecord() {
         console.error("Failed to delete health record", e);
         alert("건강 기록 삭제에 실패했습니다.");
       }
+    }
+  };
+
+  const handleGraphView = () => {
+    // 버튼 클릭 시 'health-record/:userId' 페이지로 이동
+    if (id) {
+      navigate(`/health-record/${id}`);
     }
   };
 
@@ -243,8 +252,11 @@ export default function HealthRecord() {
             </div>
           ))
         ) : (
-          <p>등록된 건강 기록이 없습니다.</p>
+          <p css={s.errorMessage}>등록된 건강 기록이 없습니다.</p>
         )}
+
+        {/* 그래프 보기 버튼 추가 */}
+        <button onClick={handleGraphView} css={s.chartButton}>그래프 보기</button>
 
         {/* 페이지네이션 UI */}
         {totalPages > 1 && (

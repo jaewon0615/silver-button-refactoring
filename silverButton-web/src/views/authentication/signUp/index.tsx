@@ -19,6 +19,7 @@ const SignUp = () => {
     gender: "",
     licenseNumber: "",
     agree: false,
+    secondPassword:""
   });
 
   const [error, setError] = useState("");
@@ -122,6 +123,11 @@ const SignUp = () => {
       return;
     }
 
+    if (formData.secondPassword) {
+      localStorage.setItem("secondPassword", formData.secondPassword);
+    }
+
+
     try {
       const response = await axios.post("http://localhost:4040/api/v1/auth/signup", submitData, {
         headers: { "Content-Type": "application/json" },
@@ -220,6 +226,34 @@ const SignUp = () => {
             placeholder="비밀번호를 확인하세요"
           />
         </div>
+
+        <div className="input-group">
+          <label htmlFor="secondPassword">2차 비밀번호</label>
+          <input
+            type="secondPassword"
+            id="secondPassword"
+            name="secondPassword"
+            value={formData.secondPassword}
+            onChange={handleChange}
+            required
+            placeholder="비밀번호를 입력하세요"
+          />
+        </div>
+
+                <div className="input-group">
+          <label htmlFor="confirmPassword">비밀번호 확인</label>
+          <input
+            type="password"
+            id="confirmPassword"
+            name="confirmPassword"
+            value={formData.confirmPassword}
+            onChange={handleChange}
+            required
+            placeholder="비밀번호를 확인하세요"
+          />
+        </div>
+
+
 
         
         <div className="input-group">

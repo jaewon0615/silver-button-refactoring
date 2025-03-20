@@ -9,8 +9,7 @@ import java.util.List;
 
 @Repository
 public interface MealRecordRepository extends JpaRepository<MealRecord, Long> {
-
-    @Query(value = "SELECT * FROM meal_record ORDER BY created_at DESC",nativeQuery = true)
+    @Query(value = "SELECT * FROM meal_record WHERE user_id = :userId ORDER BY created_at DESC", nativeQuery = true)
     List<MealRecord> getMealRecordByUserId(Long userId);
 
     void deleteMealRecordById(Long id);

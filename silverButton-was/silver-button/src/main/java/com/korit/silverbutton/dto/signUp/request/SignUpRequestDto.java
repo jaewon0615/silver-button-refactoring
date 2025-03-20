@@ -48,4 +48,6 @@ public class SignUpRequestDto {
     private String specialization;
 
     private Long protectorId;
+
+    private String secondPassword;
 }

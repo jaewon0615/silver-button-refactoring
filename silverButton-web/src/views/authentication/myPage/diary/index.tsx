@@ -1,57 +1,193 @@
-import axios from 'axios';
-import React, { useState } from 'react'
-import { useCookies } from 'react-cookie';
-import { useParams } from 'react-router-dom';
+/** @jsxImportSource @emotion/react */
+import React, { useEffect, useState } from "react";
+import { useCookies } from "react-cookie";
+import { useNavigate, useParams } from "react-router-dom"; 
+import axios from "axios";
+import * as s from "./style";
+import { userId } from "../../../drug/medicineListPage/style";
 
-export interface DiaryType{
-  id:number;
-  userId:string;
-  title:string;
-  content:string;
-  weather:string;
-  mood:string;
-  createdAt:number;
+export interface DiaryType {
+  id: number;
+  userId: string;
+  title: string;
+  content: string;
+  weather: string;
+  mood: string;
+  createdAt: number;
 }
 
 export default function Diary() {
-  const { id } = useParams<{ id:string}>();
-  const [diarys, setDiarys] = useState<DiaryType[]>([]);
+  const { id } = useParams<{ id: string }>();
+  // const { userId } = useParams<{ userId: string}>;
+  const [diaries, setDiaries] = useState<DiaryType[]>([]);
   const [cookies] = useCookies(["token"]);
-  const [ newDiatry, setNewDiary] = useState<DiaryType>
-  ({
-    id:0,
+  const [searchTerm, setSearchTerm] = useState("");
+  const [currentPage, setCurrentPage] = useState(1);
+  const recordPerPage = 4;
+  const [newDiary, setNewDiary] = useState<DiaryType>({
+    id: 0,
     userId: id || "",
-    title:"",
-    content:"",
-    weather:"",
-    mood:"",
-    createdAt:Date.now(),
+    title: "",
+    content: "",
+    weather: "",
+    mood: "",
+    createdAt: Date.now(),
   });
 
-  const fetchDiarys = async() => {
+  const navigate = useNavigate(); 
+
+  useEffect(() => {
+    fetchDiaries();
+  }, [id, cookies.token]);
+
+  const fetchDiaries = async () => {
     const token = cookies.token;
 
-    if(!id){
-      console.error("Error: id값이 없습니다");
+    if (!id) {
+      console.error("Error: id 값이 없습니다");
       return;
     }
 
-    try{
-      const response = await axios.get(`http://localhost:4040/api/v1/diary/${id}`,{
-        headers:{
-          Authorization:`Bearer ${token}`
-        },
+    try {
+      const response = await axios.get(`http://localhost:4040/api/v1/diary/userId/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
       });
-      console.log("API 응답 데이터:", response.data);
-      setDiarys(response.data.data || []);
-    } catch(error){
-      console.error("error");
+      setDiaries(response.data.data || []);
+    } catch (error) {
+      console.error("Failed to fetch diaries", error);
     }
   };
 
-  
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setNewDiary({ ...newDiary, [name]: value });
+  };
+
+  const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(e.target.value);
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const token = cookies.token;
+
+    if (!id) {
+      alert("유효하지 않은 사용자입니다.");
+      return;
+    }
+
+    try {
+      await axios.post(`http://localhost:4040/api/v1/diary/`, newDiary, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+
+      alert("일기 등록 완료");
+      setNewDiary({
+        id: 0,
+        userId: id,
+        title: "",
+        content: "",
+        weather: "",
+        mood: "",
+        createdAt: Date.now(),
+      });
+      fetchDiaries();
+    } catch (error) {
+      console.error("Failed to save diary", error);
+      alert("일기 등록에 실패했습니다.");
+    }
+  };
+
+  const handleDelete = async (diaryId: number) => {
+    const token = cookies.token;
+
+    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+
+    try {
+      await axios.delete(`http://localhost:4040/api/v1/diary/${diaryId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setDiaries((prev) => prev.filter((diary) => diary.id !== diaryId));
+      alert("일기가 삭제되었습니다.");
+    } catch (error) {
+      console.error("Failed to delete diary", error);
+      alert("일기 삭제에 실패했습니다.");
+    }
+  };
+
+  const filteredDiaries = diaries.filter((diary) =>
+    diary.title.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  const indexOfLastRecord = currentPage * recordPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordPerPage;
+  const currentRecords = filteredDiaries.slice(indexOfFirstRecord, indexOfLastRecord);
+  const totalPages = Math.ceil(filteredDiaries.length / recordPerPage);
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+  };
+
+  // 제목 클릭 시 상세 페이지로 이동하는 함수 수정
+  const navigateToDiaryDetail = (diaryId: number) => {
+    navigate(`/my-page/diary/diaryId/${diaryId}`); // 경로를 수정하여 이동합니다.
+  };
 
   return (
-    <div>오늘의 일기</div>
-  )
+    <div css={s.container}>
+      <div css={s.recordContainer}>
+        <h1 css={s.title}>오늘의 일기</h1>
+        <form onSubmit={handleSubmit} css={s.form}>
+          <div css={s.inputGroup}>
+            <label css={s.label}>제목</label>
+            <input type="text" name="title" value={newDiary.title} onChange={handleInputChange} placeholder="제목" required css={s.input} />
+            <label css={s.label}>날씨</label>
+            <input type="text" name="weather" value={newDiary.weather} onChange={handleInputChange} placeholder="예) 눈,비,맑음,흐림" required css={s.input} />
+            <label css={s.label}>기분</label>
+            <input type="text" name="mood" value={newDiary.mood} onChange={handleInputChange} placeholder="예)행복,좋음,슬픔,화남,무기력" required css={s.input} />
+            <label css={s.label}>내용</label>
+            <textarea name="content" value={newDiary.content} onChange={handleInputChange} placeholder="내용" required css={s.contentInput} />
+
+            <button type="submit" css={s.submitButton}>일기 등록</button>
+          </div>
+        </form>
+      </div>
+
+      <div css={s.recordContainer}>
+        <h1 css={s.resultText}>일기 목록</h1>
+        <label css={s.labels}>검색</label>
+        <input type="text" placeholder="제목 검색..." value={searchTerm} onChange={handleSearchChange} css={s.searchInput} />
+        <ul>
+          {currentRecords.length > 0 ? (
+            currentRecords.map((diary) => (
+              <div key={diary.id} css={s.recordItem}>
+                <p onClick={() => navigateToDiaryDetail(diary.id)} css={s.linkStyle}>
+                  제목: {diary.title}
+                </p>
+                <p css={s.resultPageText}>작성일: {new Date(diary.createdAt).toLocaleDateString()}</p>
+                <button onClick={() => handleDelete(diary.id)} css={s.deleteButton}>삭제</button>
+              </div>
+            ))
+          ) : (
+            <p css={s.errorMessage}>등록된 일기가 없습니다.</p>
+          )}
+        </ul>
+        {totalPages > 1 && (
+          <div css={s.paginationContainer}>
+            <button onClick={() => handlePageChange(currentPage - 1)} css={s.paginationButton} disabled={currentPage === 1}>
+              &lt; 이전
+            </button>
+            {[...Array(totalPages)].map((_, index) => (
+              <button key={index} onClick={() => handlePageChange(index + 1)} css={s.paginationButton}>
+                {index + 1}
+              </button>
+            ))}
+            <button onClick={() => handlePageChange(currentPage + 1)} css={s.paginationButton} disabled={currentPage === totalPages}>
+              다음 &gt;
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 }

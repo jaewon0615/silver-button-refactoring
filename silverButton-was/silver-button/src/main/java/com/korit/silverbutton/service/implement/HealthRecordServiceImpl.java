@@ -97,21 +97,7 @@ public class HealthRecordServiceImpl implements HealthRecordService {
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 
-    @Override
-    public ResponseDto<List<HealthRecordResponseDto>> getHealthRecordByUserId(Long userId) {
-        List<HealthRecordResponseDto> data = null;
-        try {
-            List<HealthRecord> healthRecords = healthRecordRepository.getHealthRecordsByUserId(userId);
-            if (healthRecords.isEmpty()) {
-                return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
-            }
-            data = healthRecords.stream().map(HealthRecordResponseDto::new).collect(Collectors.toList());
-        } catch (Exception e) {
-            e.printStackTrace();
-            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
-        }
-        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
-    }
+
 
     @Override
     public ResponseDto<Boolean> deleteHealthRecordById(Long id) {
@@ -126,19 +112,47 @@ public class HealthRecordServiceImpl implements HealthRecordService {
 
     @Override
     public ResponseDto<List<HealthRecordResponseDto>> getLatestHealthRecordByUserId(Long userId) {
-        List<HealthRecordResponseDto> data = null;
         try {
             List<HealthRecord> healthRecords = healthRecordRepository.getLatestHealthRecordByUserId(userId);
-            if (healthRecords.isEmpty()) {
+
+            if (healthRecords == null || healthRecords.isEmpty()) {
                 return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
             }
-            data = healthRecords.stream().map(HealthRecordResponseDto::new).collect(Collectors.toList());
+
+            List<HealthRecordResponseDto> data = healthRecords.stream()
+                    .map(HealthRecordResponseDto::new)
+                    .collect(Collectors.toList());
+
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
         } catch (Exception e) {
             e.printStackTrace();
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
-        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
+
+
+    @Override
+    public ResponseDto<List<HealthRecordResponseDto>> getHealthRecordsForAuthenticatedUser(Long userId) {
+        try {
+            List<HealthRecord> healthRecords = healthRecordRepository.getHealthRecordsForAuthenticatedUser(userId);
+
+            if (healthRecords.isEmpty()) {
+                return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+            }
+
+            List<HealthRecordResponseDto> data = healthRecords.stream()
+                    .map(HealthRecordResponseDto::new)
+                    .collect(Collectors.toList());
+
+            return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
+        } catch (Exception e) {
+           e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+    }
+
+
+
 }
 
 

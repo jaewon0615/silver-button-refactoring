@@ -19,13 +19,16 @@ import CreateBoard from "./views/board/boardCreate/createBoard";
 import BoardDetail from "./views/board/boardDetail/boardDetail";
 import EditBoard from "./views/board/boardUpdate/editBoard";
 
-import MyPage from "./views/authentication/myPage"
+import MyPage from "./views/authentication/myPage";
 import Resign from "./views/authentication/resign";
 import Calendar from "./views/calendar/Calendar";
 import SaveMedicine from "./views/authentication/myPage/saveMedicine";
 import HealthRecord from "./views/authentication/myPage/healthRecord";
-import EmergencyContact from "./views/authentication/myPage/emergencyContact"
-import Diary from "./views/authentication/myPage/diary"
+import RecordChart from "./views/authentication/myPage/healthRecord/recordChart";
+import EmergencyContact from "./views/authentication/myPage/emergencyContact";
+import Diary from "./views/authentication/myPage/diary";
+import DiaryDetail from "./views/authentication/myPage/diary/diaryDetail";
+import Exercise from "./views/authentication/myPage/exercise"
 
 import RootLayout from "./layouts/rootLayout/RootLayout";
 import Header from "./layouts/header/Header";
@@ -33,7 +36,6 @@ import Footer from "./layouts/footer/Footer";
 import HeaderLayout from "./layouts/headerLayout/HeaderLayout";
 import FooterLayout from "./layouts/footerLayout/FooterLayout";
 import MainLayout from "./layouts/mainLayout/MainLayout";
-
 
 import HealthMagazineList from "./views/healthMagazine/healthMagazineList";
 import HealthMagazineDetail from "./views/healthMagazine/healthMagazineDetail";
@@ -50,8 +52,7 @@ import MessageBox from "./views/message/MessageBox";
 
 import Map from "./views/map";
 
-import CardGame from "./views/cardGame"
-
+import CardGame from "./views/cardGame";
 
 export default function App() {
   const { isAuthenticated, loadFromLocalStorage } = useAuthStore();
@@ -129,8 +130,14 @@ export default function App() {
                   element={<SaveMedicine />}
                 />
                 <Route path="/health-record/:id" element={<HealthRecord />} />
-                <Route path="/emergency-contact/:id" element={<EmergencyContact/>} />
-                <Route path="/diary/:id" element={<Diary/>}/>
+
+                <Route
+                  path="/emergency-contact/:id"
+                  element={<EmergencyContact />}
+                />
+                <Route path="diary/:id" element={<Diary />} />
+                <Route path="diary/diaryId/:id" element={<DiaryDetail />} />
+                <Route path="exercise/:id" element={<Exercise/>}/>
               </Routes>
             }
           />
@@ -145,7 +152,7 @@ export default function App() {
         <Route path="/message/sent" element={<MessageSent />} />
         <Route path="/message/receive" element={<MessageReceive />} />  */}
 
-          {/*매칭 기능*/}  
+          {/*매칭 기능*/}
           <Route
             path="/matching/*"
             element={
@@ -159,7 +166,9 @@ export default function App() {
           {/* 지도 */}
           <Route path="/map" element={<Map />} />
 
-          <Route path="/cardGame" element={<CardGame/>}/>
+          <Route path="health-record/:id" element={<RecordChart />} />
+
+          <Route path="/cardGame" element={<CardGame />} />
         </Routes>
       </MainLayout>
 

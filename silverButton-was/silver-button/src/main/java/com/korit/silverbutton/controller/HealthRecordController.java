@@ -63,13 +63,20 @@ public class HealthRecordController {
     }
 
     @GetMapping(HEARTH_RECORD_GET)
-    public ResponseEntity<ResponseDto<List<HealthRecordResponseDto>>> getHealthRecordByUserId(
+    public ResponseEntity<ResponseDto<List<HealthRecordResponseDto>>> getLatestHealthRecordsByUserId(
             @AuthenticationPrincipal PrincipalUser principalUser
-    ){
-        ResponseDto<List<HealthRecordResponseDto>> response = healthRecordService.getHealthRecordByUserId(principalUser.getId());
-        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
-        return ResponseEntity.status(status).body(response);
+    ) {
+        if (principalUser == null || principalUser.getId() == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED)
+                    .body(ResponseDto.setFailed(ResponseMessage.UNAUTHORIZED));
+        }
+
+        ResponseDto<List<HealthRecordResponseDto>> response = healthRecordService.getLatestHealthRecordByUserId(principalUser.getId());
+
+        return ResponseEntity.status(response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST).body(response);
     }
+
+
 
     @DeleteMapping(HEARTH_RECORD_DELETE)
     public ResponseEntity<ResponseDto<Boolean>> deleteHealthRecordById(@PathVariable Long id){

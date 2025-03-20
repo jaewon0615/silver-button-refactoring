@@ -554,3 +554,29 @@ export const messageLink = css`
     color: #1565c0; 
   }
 `;
+
+export const exitMessage = css`
+  text-align: center;
+  font-size: 16px;
+  color: #333333;  /* 텍스트 색을 어두운 회색으로 변경 */
+  font-weight: bold;
+  background: #fff9c4; /* 배경색을 밝은 노란색으로 변경 */
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #ffeb3b;  /* 노란색 경계선 추가 */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+`;
+
+export const successMessage = css`
+  text-align: center;
+  font-size: 16px;
+  color: #ffffff; /* 텍스트 색을 흰색으로 */
+  font-weight: bold;
+  background: #388e3c; /* 초록색 배경 */
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #4caf50;  /* 초록색 경계선 */
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+`;

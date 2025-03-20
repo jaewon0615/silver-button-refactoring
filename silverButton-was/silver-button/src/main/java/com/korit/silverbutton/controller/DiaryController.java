@@ -25,7 +25,7 @@ public class DiaryController {
 
     private static final String DIARY_POST = "/";
     private static final String DIARY_GET_USERID = "/userId/{userId}";
-    private static final String DIARY_GET = "/id/{id}";
+    private static final String DIARY_GET = "/diaryId/{id}";
     private static final String DIARY_DELETE = "/{id}";
 
     @PostMapping(DIARY_POST)

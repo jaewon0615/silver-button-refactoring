@@ -41,7 +41,7 @@ const ReceivedMessages: React.FC = () => {
       );
       setMessages(response.data.data);
     } catch (e) {
-      setError("쪽지를 불러오는 중 오류가 발생했습니다.");
+      setError( "수신한 쪽지가 없습니다.");
     } finally {
       setLoading(false);
     }
@@ -100,9 +100,10 @@ const ReceivedMessages: React.FC = () => {
     <div css={s.contSt}>
       <div css={s.conttSt}>
         <h2 css={s.headerStyle}>수신한 쪽지</h2>
-        {error && <p css={s.errorStyle}>{error}</p>}
-        {currentItems.length === 0 ? (
-          <p>수신한 쪽지가 없습니다.</p>
+        {error ? (
+          <p css={s.exitMessage}>{error}</p>
+        ) : currentItems.length === 0 ? (
+          <p css={s.exitMessage}>수신한 쪽지가 없습니다.</p>
         ) : (
           currentItems.map((message) => (
             <div key={message.id} css={s.messageStyle}>

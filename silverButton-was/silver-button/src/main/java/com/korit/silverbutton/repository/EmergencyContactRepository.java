@@ -12,6 +12,6 @@ public interface EmergencyContactRepository extends JpaRepository<EmergencyConta
 
     void deleteEmergencyContactById(Long id);
 
-    @Query(value = "SELECT * FROM emergency_contacts ORDER BY created_at DESC",nativeQuery = true)
+    @Query(value = "SELECT * FROM emergency_contacts WHERE user_id = :userId ORDER BY created_at DESC", nativeQuery = true)
     List<EmergencyContact> getEmergencyContactByUserId(Long userId);
 }

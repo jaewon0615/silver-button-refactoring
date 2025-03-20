@@ -20,4 +20,6 @@ public class ApiMappingPattern {
     public static final String MEAL_RECORD = "/api/v1/meal-record";
     public static final String EMERGENCY_CONTACT = "/api/v1/emergency-contact";
     public static final String DIARY = "/api/v1/diary";
+    public static final String TEST_QUESTION = "/api/v1/test-question";
+    public static final String Exercise = "/api/v1/exercise";
 }

@@ -8,7 +8,9 @@ import com.korit.silverbutton.dto.user.response.UserResponseDto;
 
 import com.korit.silverbutton.dto.user.request.*;
 
+import com.korit.silverbutton.entity.User;
 import com.korit.silverbutton.principal.PrincipalUser;
+import com.korit.silverbutton.repository.UserRepository;
 import com.korit.silverbutton.service.UserService;
 
 import jakarta.validation.Valid;
@@ -18,6 +20,7 @@ import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,8 +38,12 @@ public class UserController {
     private static final String MANAGE_DELETE = "/delete-account";
     private static final String MANAGE_UPLOAD_PROFILE_IMG = "/upload-profile-img";
     private static final String MANAGE_GET_PROFILE_IMG = "profile-img";
+    private static final String MANAGE_SECOND_PASSWORD = "/register-second-password";
 
     private final @Lazy UserService userService;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
+
 
     @GetMapping(MANAGE_GET_ALL)
     public ResponseEntity<ResponseDto<List<UserResponseDto>>> getAllUsers(
@@ -127,4 +134,52 @@ public class UserController {
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.NOT_FOUND;
         return ResponseEntity.status(status).body(response);
     }
+
+    @PutMapping("/set-2nd-password")
+    public ResponseEntity<ResponseDto<Void>> setSecondPassword(
+            @AuthenticationPrincipal PrincipalUser principalUser,
+            @RequestBody @Valid SetSecondPasswordRequestDto dto
+    ) {
+        // 2차 비밀번호 설정
+        ResponseDto<Void> response = userService.setSecondPassword(Long.valueOf(principalUser.getUserId()), dto.getSecondPassword());
+        HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+    // 2차 비밀번호 검증
+    @PostMapping("/verify-second-password")
+    public ResponseEntity<?> verifySecondPassword(
+            @RequestParam String userId,
+            @RequestParam String secondPassword) {
+
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        if (user.getSecondPassword() == null) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Second password not set");
+        }
+
+        if (!passwordEncoder.matches(secondPassword, user.getSecondPassword())) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("Invalid second password");
+        }
+
+        return ResponseEntity.ok("Second password verified successfully");
+    }
+
+    // 2차 비밀번호 등록
+    @PostMapping("/register-second-password")
+    public ResponseEntity<?> registerSecondPassword(
+            @RequestParam String userId,
+            @RequestParam String secondPassword) {
+
+        User user = userRepository.findByUserId(userId)
+                .orElseThrow(() -> new RuntimeException("User not found"));
+
+        user.setSecondPassword(passwordEncoder.encode(secondPassword)); // 2차 비밀번호 암호화 후 저장
+        userRepository.save(user);
+
+        return ResponseEntity.ok("Second password registered successfully");
+    }
+
+
 }

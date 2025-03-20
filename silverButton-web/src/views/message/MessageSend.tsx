@@ -106,7 +106,7 @@ const MessageSend: React.FC = () => {
       <button onClick={handleSend} css={s.buttonStyle1}>
         전송
       </button>
-      {message && <p css={s.errorMessage}>{message}</p>}
+      {message && <p css={s.successMessage}>{message}</p>}
     </div>
   );
 };

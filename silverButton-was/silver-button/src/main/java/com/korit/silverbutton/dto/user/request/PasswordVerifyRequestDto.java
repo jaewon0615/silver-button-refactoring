@@ -1,10 +1,24 @@
 package com.korit.silverbutton.dto.user.request;
 
-import jakarta.validation.constraints.NotBlank;
-import lombok.Data;
-
-@Data
 public class PasswordVerifyRequestDto {
-    @NotBlank(message = "현재 비밀번호를 입력해주세요.")
-    private String currentPassword;
+    private String currentPassword;  // 기존 비밀번호
+    private String secondPassword;   // 2차 비밀번호
+
+    // 기존 비밀번호 getter/setter
+    public String getCurrentPassword() {
+        return currentPassword;
+    }
+
+    public void setCurrentPassword(String currentPassword) {
+        this.currentPassword = currentPassword;
+    }
+
+    // 2차 비밀번호 getter/setter
+    public String getSecondPassword() {
+        return secondPassword;
+    }
+
+    public void setSecondPassword(String secondPassword) {
+        this.secondPassword = secondPassword;
+    }
 }

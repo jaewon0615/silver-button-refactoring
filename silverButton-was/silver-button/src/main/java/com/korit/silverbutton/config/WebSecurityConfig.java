@@ -25,10 +25,8 @@ import java.util.List;
 
 import static org.springframework.security.config.Customizer.withDefaults;
 
-
 @Configuration
 @EnableWebSecurity
-
 @RequiredArgsConstructor
 public class WebSecurityConfig {
 
@@ -44,17 +42,19 @@ public class WebSecurityConfig {
                         new AntPathRequestMatcher("/api/v1/auth/**")
                 );
     }
+
     @Bean
     public CorsFilter corsFilter() {
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true); //
-        config.addAllowedOriginPattern("*");
+        config.setAllowCredentials(true);
+        config.addAllowedOriginPattern("*");  // 운영 환경에서는 특정 도메인만 허용
         config.addAllowedHeader("*");
         config.addAllowedMethod("*");
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         return http
@@ -75,29 +75,29 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/health-record/**"),
                                 new AntPathRequestMatcher("/api/v1/meal-record/**"),
                                 new AntPathRequestMatcher("/api/v1/emergency-contact/**"),
-                                new AntPathRequestMatcher("/api/v1/diary/**")
+                                new AntPathRequestMatcher("/api/v1/diary/**"),
+                                new AntPathRequestMatcher("/manage/register-second-password"),
+                                new AntPathRequestMatcher("/api/v1/test-question/**"),
+                                new AntPathRequestMatcher("/api/v1/exercise/**")
                         )
-                        .permitAll()
+                        .permitAll()  // 위의 엔드포인트는 모두 허용
                         .requestMatchers(
-
                                 new AntPathRequestMatcher("/api/v1/medicine-schedule/**")
-
-
                         ).authenticated()
                         .anyRequest().authenticated())
-                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)
+                .addFilterBefore(jwtAuthenticationFilter, UsernamePasswordAuthenticationFilter.class)  // JWT 필터가 인증 필터 전에 실행되도록 추가
                 .build();
     }
+
     @Bean
     public AuthenticationManager authenticationManager(BCryptPasswordEncoder bCryptpasswordEncoder) throws Exception {
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setPasswordEncoder(bCryptpasswordEncoder);
         return new ProviderManager(List.of(authProvider));
     }
+
     @Bean
     public BCryptPasswordEncoder bCryptpasswordEncoder() {
         return new BCryptPasswordEncoder();
     }
-
-
 }

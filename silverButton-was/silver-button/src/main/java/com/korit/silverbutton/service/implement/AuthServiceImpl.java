@@ -54,6 +54,7 @@ public class AuthServiceImpl implements AuthService {
         String profileImage= "image";
         String role;
         String licenseNumber= dto.getLicenseNumber();
+        String secondPassword = dto.getSecondPassword();
 
         int age = calculateAge(birthDate);
 
@@ -86,6 +87,7 @@ public class AuthServiceImpl implements AuthService {
                     .licenseNumber(licenseNumber)
                     .specialization(specialization)
                     .protectorId(protectorId)
+                    .secondPassword(secondPassword)
                     .build();
 
             userRepository.save(user);

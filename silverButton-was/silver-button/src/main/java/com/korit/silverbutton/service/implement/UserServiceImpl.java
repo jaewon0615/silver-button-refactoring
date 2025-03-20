@@ -18,11 +18,13 @@ import com.korit.silverbutton.service.MailService;
 import com.korit.silverbutton.service.ProfileImgService;
 import com.korit.silverbutton.service.UserService;
 
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,6 +40,7 @@ public class UserServiceImpl implements UserService {
     private final ProfileImgService profileImgService;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final MailService mailService;
+    private final PasswordEncoder passwordEncoder;
     @Value("${spring.cloud.gcp.storage.bucket}")
     private String bucketName;
 
@@ -277,6 +280,66 @@ public class UserServiceImpl implements UserService {
             e.printStackTrace();
             return ResponseDto.setFailed("PROFILE_IMG_NOT_FOUND");
         }
+    }
+
+    @Override
+    public ResponseDto<Void> setSecondPassword(Long userId, String secondPassword) {
+        // 2차 비밀번호가 4자리 숫자인지 확인
+        if (secondPassword.length() != 4 || !secondPassword.matches("\\d+")) {
+            return ResponseDto.setFailed("2차 비밀번호는 4자리 숫자여야 합니다.");
+        }
+
+        // 사용자가 존재하는지 확인
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        // 2차 비밀번호 암호화
+        String encodedPassword = passwordEncoder.encode(secondPassword);
+
+        // 2차 비밀번호 저장
+        user.setSecondPassword(encodedPassword);
+        userRepository.save(user);
+
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, null);
+    }
+
+    @Override
+    @Transactional
+    public ResponseDto<String> registerSecondPassword(Long userId, String secondPassword) {
+        // 2차 비밀번호가 4자리 숫자인지 확인
+        if (secondPassword.length() != 4 || !secondPassword.matches("\\d+")) {
+            return ResponseDto.setFailed("2차 비밀번호는 4자리 숫자여야 합니다.");
+        }
+
+        // 사용자 엔티티를 가져옵니다.
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("User not found with id: " + userId));
+
+        // 이미 2차 비밀번호가 설정되어 있으면 실패 처리
+        if (user.getSecondPassword() != null) {
+            return ResponseDto.setFailed("이미 2차 비밀번호가 설정되어 있습니다.");
+        }
+
+        // 2차 비밀번호를 암호화하여 설정합니다.
+        String encodedPassword = passwordEncoder.encode(secondPassword);
+        user.setSecondPassword(encodedPassword);
+
+        // 사용자 정보를 저장합니다.
+        userRepository.save(user);
+
+        return ResponseDto.setSuccess("2차 비밀번호가 등록되었습니다.", null);
+    }
+
+
+
+    @Override
+    public boolean verifySecondPassword(Long userId, String secondPassword) {
+        // 사용자가 존재하는지 확인
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new IllegalArgumentException("사용자를 찾을 수 없습니다."));
+
+        // 2차 비밀번호 비교
+        return passwordEncoder.matches(secondPassword, user.getSecondPassword());
     }
 }
 
