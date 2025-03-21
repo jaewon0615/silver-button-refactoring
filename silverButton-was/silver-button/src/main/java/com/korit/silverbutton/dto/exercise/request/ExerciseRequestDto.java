@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.Date;
 
 @Data
@@ -16,13 +17,17 @@ public class ExerciseRequestDto {
 
     private int caloriesBurned;
 
-    private String intensity;
+    private int intensity;
 
     private Date exerciseDate;
 
     private String location;
 
     private String notes;
+
+    private int heart;
+
+    private BigDecimal weight;
 
 
 }

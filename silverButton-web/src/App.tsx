@@ -29,6 +29,7 @@ import EmergencyContact from "./views/authentication/myPage/emergencyContact";
 import Diary from "./views/authentication/myPage/diary";
 import DiaryDetail from "./views/authentication/myPage/diary/diaryDetail";
 import Exercise from "./views/authentication/myPage/exercise"
+import ExerciseChart from "./views/authentication/myPage/exercise/exerciseChart"
 
 import RootLayout from "./layouts/rootLayout/RootLayout";
 import Header from "./layouts/header/Header";
@@ -167,6 +168,7 @@ export default function App() {
           <Route path="/map" element={<Map />} />
 
           <Route path="health-record/:id" element={<RecordChart />} />
+          <Route path="exercise/:id" element={<ExerciseChart/>}/>
 
           <Route path="/cardGame" element={<CardGame />} />
         </Routes>

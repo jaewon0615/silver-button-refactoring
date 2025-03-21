@@ -164,4 +164,17 @@ CREATE TABLE exercise (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE expense (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    date DATE NOT NULL, -- 지출 날짜
+    category VARCHAR(50) NOT NULL,  -- 카테고리
+    description VARCHAR(255) NOT NULL, -- 지출 항목 설명
+    amount DECIMAL(10,2) NOT NULL,  -- 지출 금액
+	payment_method VARCHAR(50) NOT NULL, -- 결제 수단 (현금, 카드, 계좌이체 등)
+    notes TEXT NULL, -- 추가 메모 (영수증 정보, 상세 내용 등)
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
 

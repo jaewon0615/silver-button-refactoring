@@ -14,6 +14,7 @@ import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Date;
@@ -34,9 +35,12 @@ public class ExerciseServiceImpl implements ExerciseService {
         String exerciseType = dto.getExerciseType();
         int duration = dto.getDuration();
         int caloriesBurned = dto.getCaloriesBurned();
-        String intensity = dto.getIntensity();
+        int intensity = dto.getIntensity();
         String location = dto.getLocation();
         Date exerciseDate = dto.getExerciseDate();
+        int heart = dto.getHeart();
+        BigDecimal weight = dto.getWeight();
+
         String notes = dto.getNotes();
         LocalDateTime createdDate = LocalDateTime.now();
         try {
@@ -51,6 +55,8 @@ public class ExerciseServiceImpl implements ExerciseService {
                     .location(location)
                     .exerciseDate(exerciseDate)
                     .notes(notes)
+                    .weight(weight)
+                    .heart(heart)
                     .createdAt(date.atStartOfDay())
                     .build();
 

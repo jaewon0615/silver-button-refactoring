@@ -11,6 +11,7 @@ import { MdOutlineChangeCircle } from "react-icons/md";
 import { MdOutlineDeleteForever } from "react-icons/md";
 import { IoIosContacts } from "react-icons/io";
 import { IoIosJournal } from "react-icons/io";
+import { MdOutlineDirectionsRun } from "react-icons/md";
 
 const MyPage = () => {
   const { isAuthenticated, user, login, logout } = useAuthStore();
@@ -288,8 +289,8 @@ const MyPage = () => {
         <button css={s.diaryButton} onClick={handleDiaryClick}>
         <IoIosJournal css={s.messageIcon} />오늘의 일기
         </button>
-        <button css={s.diaryButton} onClick={handleExerciseClick}>
-        <IoIosJournal css={s.messageIcon} /> 운동 기록 일지
+        <button css={s.exerciseButton} onClick={handleExerciseClick}>
+        <MdOutlineDirectionsRun css={s.messageIcon}/>  운동 기록 일지
         </button>
         </div>
         <div css={s.myPageFooter}>

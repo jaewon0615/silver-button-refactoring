@@ -22,4 +22,5 @@ public class ApiMappingPattern {
     public static final String DIARY = "/api/v1/diary";
     public static final String TEST_QUESTION = "/api/v1/test-question";
     public static final String Exercise = "/api/v1/exercise";
+    public static final String Expense = "/api/v1/expense";
 }

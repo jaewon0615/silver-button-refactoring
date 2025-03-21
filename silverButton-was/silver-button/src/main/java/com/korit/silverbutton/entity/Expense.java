@@ -14,9 +14,9 @@ import java.util.Date;
 @AllArgsConstructor
 @Getter
 @Setter
-@Table(name = "exercise")
+@Table(name = "expense")
 @Builder
-public class Exercise {
+public class Expense {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -26,17 +26,15 @@ public class Exercise {
     @JsonIgnore
     private User user;
 
-    private String exerciseType;
+    private Date paymentDate;
 
-    private int duration;
+    private String category;
 
-    private int caloriesBurned;
+    private String description;
 
-    private int intensity;
+    private BigDecimal amount;
 
-    private Date exerciseDate;
-
-    private String location;
+    private String paymentMethod;
 
     private String notes;
 
@@ -44,7 +42,6 @@ public class Exercise {
 
     private LocalDateTime updatedAt;
 
-    private int heart;
 
-    private BigDecimal weight;
+
 }

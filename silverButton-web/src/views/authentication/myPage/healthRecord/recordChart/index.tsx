@@ -86,6 +86,13 @@ export default function HealthRecord() {
         backgroundColor: "rgba(153, 102, 255, 0.2)",
         fill: true,
       },
+      {
+        label: "신장 (cm)",
+        data: healthRecordItem.map((record) => record.height),
+        borderColor: "rgb(255, 159, 64)",
+        backgroundColor: "rgba(255, 159, 64, 0.2)",
+        fill: true,
+      },
     ],
   };
 

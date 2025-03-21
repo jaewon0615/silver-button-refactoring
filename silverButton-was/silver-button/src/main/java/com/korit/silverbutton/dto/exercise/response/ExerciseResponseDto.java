@@ -7,6 +7,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Date;
 
@@ -24,7 +25,7 @@ public class ExerciseResponseDto {
 
     private int caloriesBurned;
 
-    private String intensity;
+    private int intensity;
 
     private String location;
 
@@ -35,6 +36,10 @@ public class ExerciseResponseDto {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    private int heart;
+
+    private BigDecimal weight;
 
     public ExerciseResponseDto(Exercise exercise) {
         this.id = exercise.getId();
@@ -48,5 +53,7 @@ public class ExerciseResponseDto {
         this.notes = exercise.getNotes();
         this.createdAt = exercise.getCreatedAt();
         this.updatedAt = exercise.getUpdatedAt();
+        this.heart = exercise.getHeart();
+        this.weight = exercise.getWeight();
     }
 }
