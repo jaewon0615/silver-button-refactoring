@@ -147,6 +147,12 @@ const MyPage = () => {
     }
   };
 
+  const handleExpenseClick = () => {
+    if (user) {
+      navigate(`/my-page/expense/${user.id}`);
+    }
+  };
+
   const handleMessageClick = () => {
     navigate("/message");
   };
@@ -291,6 +297,9 @@ const MyPage = () => {
         </button>
         <button css={s.exerciseButton} onClick={handleExerciseClick}>
         <MdOutlineDirectionsRun css={s.messageIcon}/>  운동 기록 일지
+        </button>
+        <button css={s.exerciseButton} onClick={handleExpenseClick}>
+        <MdOutlineDirectionsRun css={s.messageIcon}/>  가계부 관리
         </button>
         </div>
         <div css={s.myPageFooter}>

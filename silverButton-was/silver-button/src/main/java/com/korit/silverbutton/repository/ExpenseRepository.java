@@ -11,4 +11,6 @@ import java.util.List;
 public interface ExpenseRepository extends JpaRepository<Expense, Long> {
     @Query(value = "SELECT * FROM expense WHERE user_id = :userId ORDER BY created_at DESC", nativeQuery = true)
     List<Expense> getExpenseByUserId(Long userId);
+
+    void deleteExpenseById(Long id);
 }

@@ -24,6 +24,7 @@ public class ExpenseController {
 
     private static final String EXPENSE_POST = "/";
     private static final String EXPENSE_GET = "/{userId}";
+    private static final String EXPENSE_DELETE = "/{id}";
 
     @PostMapping(EXPENSE_POST)
     public ResponseEntity<ResponseDto<ExpenseResponseDto>> postExpense(
@@ -40,6 +41,15 @@ public class ExpenseController {
             @AuthenticationPrincipal PrincipalUser principalUser
     ){
         ResponseDto<List<ExpenseResponseDto>> response = expenseService.getExpenseByUserId(principalUser.getId());
+        HttpStatus status = response.isResult() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+    @DeleteMapping(EXPENSE_DELETE)
+    public ResponseEntity<ResponseDto<Boolean>> deleteExpenseById(
+            @PathVariable Long id
+    ){
+        ResponseDto<Boolean> response = expenseService.deleteExpenseById(id);
         HttpStatus status = response.isResult() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

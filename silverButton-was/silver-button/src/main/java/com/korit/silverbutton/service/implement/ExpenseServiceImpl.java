@@ -79,4 +79,15 @@ public class ExpenseServiceImpl implements ExpenseService {
         }
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS,data);
     }
+
+    @Override
+    public ResponseDto<Boolean> deleteExpenseById(Long id) {
+        try {
+            expenseRepository.deleteExpenseById(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS,true);
+    }
 }

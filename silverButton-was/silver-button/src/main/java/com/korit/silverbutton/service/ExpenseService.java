@@ -10,5 +10,6 @@ import java.util.List;
 public interface ExpenseService {
     ResponseDto<ExpenseResponseDto> postExpense(Long userId, ExpenseRequestDto dto);
     ResponseDto<List<ExpenseResponseDto>> getExpenseByUserId(Long userId);
+    ResponseDto<Boolean> deleteExpenseById(Long id);
 
 }
