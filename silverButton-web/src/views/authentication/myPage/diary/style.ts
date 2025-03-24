@@ -11,7 +11,6 @@ export const container = css`
   flex-direction: row;
   justify-content: space-between;
   gap: 35px;
-  background: #eef5ff;
 `;
 
 export const title = css`
@@ -31,20 +30,27 @@ export const form = css`
 export const inputGroup = css`
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 17px;
+`;
+
+export const contentGroup = css`
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
 `;
 
 export const label = css`
   margin-bottom: 5px;
   font-weight: bold;
   color: #1565c0;
-  font-size: 20px;
+  font-size: 25px;
 `;
 
 export const labels = css`
   font-weight: bold;
   color: #1565c0;
-  font-size: 20px;
+  font-size: 25px;
+  margin-top: 17px;
 `;
 
 export const input = css`
@@ -247,6 +253,11 @@ export const resultPageText = css`
   font-weight: bold;
 `;
 
+export const dateText = css`
+  font-weight: bold;
+  color: red;
+`;
+
 export const nameText = css`
   font-weight: bold;
   color: orange;
@@ -264,7 +275,7 @@ export const searchInput = css`
     font-size: 16px;
     outline: none;
     transition: border-color 0.3s;
-    margin-top: 10px;
+    margin-top: 5px;
     :focus{
       border-color: '#007BFF', // 포커스 시 테두리 색상 변경
 
@@ -273,8 +284,8 @@ export const searchInput = css`
 
 export const linkStyle = css`
   color: #007bff; /* 파란색 링크 */
-  font-weight: 600; /* 글자 굵게 */
-  font-size: 18px; /* 크기 조정 */
+  font-weight: bold; /* 글자 굵게 */
+  font-size: 25px; /* 크기 조정 */
   transition: color 0.3s, text-decoration 0.3s; /* 부드러운 호버 효과 */
   cursor: pointer;
   
@@ -301,4 +312,21 @@ text-align: center;
   border: 1px solid #e57373; 
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+`;
+
+export const conttSt = css`
+  width: 100%;
+  height: auto;
+  background-color: rgba(147, 129, 255, 0.08);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+`;
+
+export const icon = css`
+  width: auto;
+  height: auto;
 `;

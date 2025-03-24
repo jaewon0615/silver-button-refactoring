@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import { useParams } from "react-router-dom";
 import * as s from "./style";
 import { userId } from "../../../drug/medicineListPage/style";
+import { FaTrash } from "react-icons/fa";
 
 export interface EmergencyContactType {
   id: number;
@@ -126,6 +127,7 @@ export default function EmergencyContact() {
 
   return (
     <div css={s.container}>
+      <div css={s.conttSt}>
       <div css={s.recordContainer}>
         <h1 css={s.title}>비상 연락망 등록</h1>
         <form css={s.form} onSubmit={handleSubmit}>
@@ -147,7 +149,7 @@ export default function EmergencyContact() {
           </div>
           <div css={s.inputGroup}>
             <label css={s.label}>메모</label>
-            <input type="text" name="memo" value={newContact.memo} onChange={handleInputChange} placeholder="예: 기타 메모" required css={s.input} />
+            <input type="text" name="memo" value={newContact.memo} onChange={handleInputChange} placeholder="예: 기타 메모"  css={s.input} />
           </div>
           <button type="submit" css={s.submitButton}>비상 연락망 등록</button>
         </form>
@@ -155,7 +157,7 @@ export default function EmergencyContact() {
 
       <div css={s.recordContainer}>
         <h1 css={s.resultText}>비상 연락망 목록</h1>
-        <label css={s.label}>검색</label>
+        <h1 css={s.search}>검색</h1>
         <input
           type="text"
           placeholder="이름으로 검색..."
@@ -175,7 +177,11 @@ export default function EmergencyContact() {
                   <h3 css={s.resultPageText}>기타메모: {record.memo}</h3>
                   <h3 css={s.resultPageText}>기록 일시: {new Date(record.createdAt).toLocaleDateString()}</h3>
                 </div>
-                <button onClick={() => handleDelete(record.id)} css={s.deleteButton}>삭제</button>
+                <div>
+                <button onClick={() => handleDelete(record.id)} css={s.deleteButton}>
+            <FaTrash />
+          </button>
+                </div>
               </div>
             ))
           ) : (
@@ -183,6 +189,8 @@ export default function EmergencyContact() {
           )}
         </div>
       </div>
+      </div>
+      
     </div>
   );
 }

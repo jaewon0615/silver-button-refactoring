@@ -178,3 +178,23 @@ CREATE TABLE expense (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
 
+CREATE TABLE destination (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,        -- 여행지 고유 ID
+    name VARCHAR(255) NOT NULL,                -- 여행지 이름
+    category VARCHAR(100),                     -- 여행지 카테고리 (예: 자연, 역사, 문화 등)
+    description TEXT,                          -- 여행지에 대한 설명
+    location VARCHAR(255),                     -- 여행지의 위치 (예: 서울, 부산 등)
+    address VARCHAR(255),                      -- 여행지의 구체적인 주소
+    opening_hours VARCHAR(255),                -- 여행지의 운영 시간 (예: 09:00 ~ 18:00)
+    closing_hours varchar(255),
+    public_transportation varchar(255),
+    phone_number VARCHAR(15),                  -- 여행지 전화번호
+    website VARCHAR(255),                      -- 여행지의 공식 웹사이트 URL
+    ticket_price DECIMAL(10, 2),               -- 입장료
+    facilities TEXT,                           -- 제공되는 시설 (예: 화장실, 주차장, 카페 등)
+    rating DECIMAL(3, 2),                      -- 여행지 평균 평점 (1~5)
+    image_url TEXT,                    -- 여행지 이미지 URL
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 여행지 등록일
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  -- 여행지 마지막 수정일
+);
+

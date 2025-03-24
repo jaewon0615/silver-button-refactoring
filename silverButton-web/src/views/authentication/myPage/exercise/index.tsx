@@ -8,6 +8,7 @@ import { aX } from '@fullcalendar/core/internal-common';
 import { response } from 'express';
 import * as s from "./style";
 import "react-datepicker/dist/react-datepicker.css";
+import { FaTrash } from 'react-icons/fa';
 
 export interface ExerciseType{
   id:number;
@@ -44,7 +45,7 @@ export default function Exercise() {
 
   const [cookies] = useCookies(["token"]);
   const [currentPage, setCurrentPage] = useState(1);
-  const recordsPerPage = 3;
+  const recordsPerPage = 2;
 
   const navigate = useNavigate();
 
@@ -152,6 +153,7 @@ export default function Exercise() {
 
   return (
     <div css={s.container}>
+      <div css={s.conttSt}>
       <div css={s.recordContainer}>
         <h1 css={s.title}>운동 기록 추가</h1>
         <form css={s.form} onSubmit={handleSubmit}>
@@ -167,7 +169,7 @@ export default function Exercise() {
               css={s.input}
               />
           </div>
-          <div css={s.inputGroup}>
+          <div css={s.inputGroupunder}>
             <label css={s.label}>운동 시간</label>
             <input 
               type="number"
@@ -178,7 +180,7 @@ export default function Exercise() {
               required
               css={s.input}/>
           </div>
-          <div css={s.inputGroup}>
+          <div css={s.inputGroupunder}>
             <label css={s.label}>소모한 칼로리</label>
             <input 
               type="number"
@@ -189,7 +191,7 @@ export default function Exercise() {
               required
               css={s.input}/>
           </div>
-          <div css={s.inputGroup}>
+          <div css={s.inputGroupunder}>
             <label css={s.label}>운동 강도<span css={s.span}>(1 - 매우 낮음 | 2 - 낮음 | 3 - 보통 | 4 - 강함 | 5 - 매우 강함)
               </span> </label>
             <input 
@@ -201,7 +203,7 @@ export default function Exercise() {
               required
               css={s.input} />
           </div>
-          <div css={s.inputGroup}>
+          <div css={s.inputGroupunder}>
             <label css={s.label}>운동 장소</label>
             <input 
               type="text"
@@ -212,7 +214,7 @@ export default function Exercise() {
               required
               css={s.input} />
           </div>
-          <div css={s.inputGroup}>
+          <div css={s.inputGroupunder}>
             <label css={s.label}>운동 날짜</label>
             <input 
               type="date"
@@ -221,7 +223,7 @@ export default function Exercise() {
               required
               css={s.input} />
           </div>
-          <div css={s.inputGroup}>
+          <div css={s.inputGroupunder}>
             <label css={s.label}>평균 심박수</label>
             <input 
               type="number"
@@ -231,7 +233,7 @@ export default function Exercise() {
               required
               css={s.input} />
           </div>
-          <div css={s.inputGroup}>
+          <div css={s.inputGroupunder}>
             <label css={s.label}>체중</label>
             <input 
               type="number"
@@ -242,7 +244,7 @@ export default function Exercise() {
               css={s.input} />
           </div>
         
-          <div css={s.inputGroup}>
+          {/* <div css={s.inputGroupunder1}>
             <label css={s.label}>메모</label>
             <input 
               type="text"
@@ -252,7 +254,7 @@ export default function Exercise() {
               placeholder="예: 기타 메모"
               required
               css={s.input} />
-          </div>
+          </div> */}
           <button type="submit" css={s.submitButton}>
             운동 기록 제출
           </button>
@@ -265,6 +267,13 @@ export default function Exercise() {
           currentRecords.map((exercise) => (
             <div key={exercise.id} css={s.recordItem}>
               <div>
+              <h3 css={s.datePageText}>
+  운동 날짜: {new Date(exercise.exerciseDate).toLocaleString("ko-KR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  })}
+</h3>
                 <h3 css={s.resultPageText}> 운동 종류: {exercise.exerciseType}</h3>
                 <h3 css={s.resultPageText}>운동 시간:{exercise.duration}분</h3>
                 <h3 css={s.resultPageText}>소모한 칼로리:{exercise.caloriesBurned}kcal</h3>
@@ -272,21 +281,15 @@ export default function Exercise() {
                 <h3 css={s.resultPageText}>운동 장소:{exercise.location}</h3>
                 <h3 css={s.resultPageText}>평균 심박수:{exercise.heart}bpm</h3>
                 <h3 css={s.resultPageText}>체중:{exercise.weight}kg</h3>
-                <h3 css={s.resultPageText}>
-  운동 날짜: {new Date(exercise.exerciseDate).toLocaleString("ko-KR", {
-    year: "numeric",
-    month: "2-digit",
-    day: "2-digit",
-  })}
-</h3>
+                
                 <h3 css={s.resultPageText}>메모:{exercise.notes}</h3>
                 <h3 css={s.dataText}>제출 날짜: {new Date(exercise.createdAt).toLocaleDateString()}</h3>
               </div>
               <div>
-              <button onClick={() => handleDelete(exercise.id)} css={s.deleteButton}>
-                삭제
-              </button>
-              </div>
+                <button onClick={() => handleDelete(exercise.id)} css={s.deleteButton}>
+            <FaTrash />
+          </button>
+                </div>
             </div>
           ))
         
@@ -316,6 +319,8 @@ export default function Exercise() {
           </div>
         )}
       </div>
+      </div>
+      
     </div>
   );
 }

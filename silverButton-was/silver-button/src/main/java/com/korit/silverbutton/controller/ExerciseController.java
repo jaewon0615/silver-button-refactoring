@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.korit.silverbutton.common.constant.ApiMappingPattern.EMERGENCY_CONTACT;
-import static com.korit.silverbutton.common.constant.ApiMappingPattern.Exercise;
+import static com.korit.silverbutton.common.constant.ApiMappingPattern.*;
 
 @RestController
-@RequestMapping(Exercise)
+@RequestMapping(EXERCISE)
 @RequiredArgsConstructor
 public class ExerciseController {
     private static final String EXERCISE_POST = "/";

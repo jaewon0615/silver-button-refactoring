@@ -5,6 +5,9 @@ import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import * as s from "./style";
 import { userId } from "../../../drug/medicineListPage/style";
+import { SiAccuweather } from "react-icons/si";
+import { MdMood } from "react-icons/md";
+import { FaTrash } from "react-icons/fa";
 
 export interface DiaryType {
   id: number;
@@ -135,27 +138,37 @@ export default function Diary() {
 
   return (
     <div css={s.container}>
+      <div css={s.conttSt}>
       <div css={s.recordContainer}>
         <h1 css={s.title}>오늘의 일기</h1>
         <form onSubmit={handleSubmit} css={s.form}>
           <div css={s.inputGroup}>
             <label css={s.label}>제목</label>
             <input type="text" name="title" value={newDiary.title} onChange={handleInputChange} placeholder="제목" required css={s.input} />
-            <label css={s.label}>날씨</label>
+            </div>
+            <div css={s.inputGroup}>
+            <label css={s.label}><SiAccuweather css={s.icon} />날씨</label>
             <input type="text" name="weather" value={newDiary.weather} onChange={handleInputChange} placeholder="예) 눈,비,맑음,흐림" required css={s.input} />
-            <label css={s.label}>기분</label>
+            </div>
+            <div css={s.inputGroup}>
+            <label css={s.label}><MdMood css={s.icon} />기분</label>
             <input type="text" name="mood" value={newDiary.mood} onChange={handleInputChange} placeholder="예)행복,좋음,슬픔,화남,무기력" required css={s.input} />
+            </div>
+            <div css={s.contentGroup}>
             <label css={s.label}>내용</label>
             <textarea name="content" value={newDiary.content} onChange={handleInputChange} placeholder="내용" required css={s.contentInput} />
+            </div>
+            
+            
 
             <button type="submit" css={s.submitButton}>일기 등록</button>
-          </div>
+          
         </form>
       </div>
 
       <div css={s.recordContainer}>
         <h1 css={s.resultText}>일기 목록</h1>
-        <label css={s.labels}>검색</label>
+        <h1 css={s.labels}>검색</h1>
         <input type="text" placeholder="제목 검색..." value={searchTerm} onChange={handleSearchChange} css={s.searchInput} />
         <ul>
           {currentRecords.length > 0 ? (
@@ -164,8 +177,12 @@ export default function Diary() {
                 <p onClick={() => navigateToDiaryDetail(diary.id)} css={s.linkStyle}>
                   제목: {diary.title}
                 </p>
-                <p css={s.resultPageText}>작성일: {new Date(diary.createdAt).toLocaleDateString()}</p>
-                <button onClick={() => handleDelete(diary.id)} css={s.deleteButton}>삭제</button>
+                <p css={s.dataText}>작성일: {new Date(diary.createdAt).toLocaleDateString()}</p>
+                <div>
+                <button onClick={() => handleDelete(diary.id)} css={s.deleteButton}>
+            <FaTrash />
+          </button>
+                </div>
               </div>
             ))
           ) : (
@@ -188,6 +205,8 @@ export default function Diary() {
           </div>
         )}
       </div>
+      </div>
+     
     </div>
   );
 }

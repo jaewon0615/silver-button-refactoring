@@ -3,12 +3,13 @@ import { css } from "@emotion/react";
 
 export const detailContainer = css`
   width: 100%;
-  height: 100%;
-  padding: 30px 100px;
+  margin: 0 auto;
+  padding: 20px 150px;
+  border-radius: 8px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #f4f7fc; /* 밝은 배경색 */
+  flex-direction: row;
+  justify-content: center;
+  gap: 35px;
 `;
 
 export const diaryContainer = css`
@@ -115,4 +116,28 @@ export const time = css`
   color: #3498db; /* 파란색 */
   font-weight: bold;
   text-align: center;
+`;
+
+export const conttSt = css`
+  width: 100%;
+  height: auto;
+  background-color: rgba(147, 129, 255, 0.08);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
+  justify-content: center;
+`;
+
+export const container = css`
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px 150px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 35px;
 `;

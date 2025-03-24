@@ -38,7 +38,7 @@ export const hideCalculator = css`
 
 // 버튼 보이기 스타일
 export const showButtonStyle = css`
-  padding: 8px 16px;
+  padding: 15px 25px;
   background-color: #37474f; /* 다크 네이비 */
   color: white;
   border: none;
@@ -46,7 +46,8 @@ export const showButtonStyle = css`
   cursor: pointer;
   transition: background-color 0.3s ease;
   margin: 15px auto;
-  font-size: 16px;
+  font-size: 20px;
+  font-weight: bold;
 
   &:hover {
     background-color: #263238;
@@ -66,6 +67,7 @@ export const displayStyle = css`
   border-radius: 10px;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
   font-family: 'Roboto', sans-serif;
+  font-weight: bold;
 `;
 
 // 버튼 배치 스타일
@@ -80,11 +82,41 @@ export const buttonContainerStyle = css`
 // 버튼 스타일
 export const buttonStyle = css`
   height: 55px;
-  font-size: 24px;
+  font-size: 30px;
   background-color: #263238;
   border: 1px solid #1e1e1e;
   border-radius: 10px;
   color: #eceff1;
+  cursor: pointer;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s ease, box-shadow 0.3s;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background-color: #455a64;
+    transform: scale(1.05);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    background-color: #1e1e1e;
+    transform: scale(0.98);
+  }
+
+  &:focus {
+    outline: none;
+    border-color: #607d8b;
+  }
+`;
+
+export const cStyle = css`
+  height: 55px;
+  font-size: 15px;
+  background-color: #263238;
+  border: 1px solid #1e1e1e;
+  border-radius: 10px;
+  color: #eceff1;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s ease, box-shadow 0.3s;
   box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
@@ -140,7 +172,6 @@ export const container = css`
   flex-direction: row;
   justify-content: space-between;
   gap: 35px;
-  background: #eef5ff;
 `;
 
 export const title = css`
@@ -160,14 +191,13 @@ export const form = css`
 export const inputGroup = css`
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 20px;
 `;
 
 export const label = css`
-  margin-bottom: 5px;
   font-weight: bold;
   color: #1565c0;
-  font-size: 20px;
+  font-size: 25px;
 `;
 
 export const input = css`
@@ -245,16 +275,16 @@ export const recordList = css`
 `;
 
 export const recordItem = css`
-background-color: #f9f9f9;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: 'Nanum Gothic', sans-serif; /* 한글 폰트 설정 */
-  border: 1px solid rgba(147, 129, 255, 0.3);
-  margin-top: 30px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 10px 0;
+  transition: 0.3s;
+  margin-top: 50px;
+  &:hover {
+    transform: translateY(-5px);
+  }
 `;
 
 export const recordContainer = css`
@@ -265,7 +295,6 @@ export const recordContainer = css`
 export const resultContainer = css`
   width: 100%;
   height: 600px;
-  background: #f0f8ff;
 `;
 
 export const resultText = css`
@@ -290,6 +319,7 @@ export const deleteButton = css`
   width: auto;
   display: inline-block; /* Align horizontally */
   white-space: nowrap; /* Prevent text from wrapping */
+  margin-top: 14px;
 
   &:hover {
     background-color: #d32f2f; /* Darker red */
@@ -360,14 +390,14 @@ export const arrowButton = css`
   }
 `;
 
-export const recordDetails = css`
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-size: 14px;
-  color: #333;
-`;
+// export const recordDetails = css`
+//   flex: 1;
+//   display: flex;
+//   flex-direction: column;
+//   gap: 8px;
+//   font-size: 14px;
+//   color: #333;
+// `;
 
 export const recordLabel = css`
   font-weight: bold;
@@ -387,11 +417,27 @@ export const createdDate = css`
 
 export const resultPageText = css`
   font-weight: bold;
+  margin-top: 15px;
+  font-size: 23px;
+`;
+
+export const datePageText = css`
+  font-weight: bold;
+  margin-top: 15px;
+  font-size: 23px;
+  color: red;
+`;
+
+export const resultPageText2 = css`
+  font-weight: bold;
+  margin-top: 10px;
+  font-size: 15px;
 `;
 
 export const dataText = css`
   font-weight: bold;
   color: red;
+  margin-top: 10px;
 `
 export const errorMessage = css`
 text-align: center;
@@ -431,4 +477,77 @@ export const inputStyle = css`
 export const span = css`
   font-weight: bold;
   color: orange;
+`;
+
+export const recordCard = css`
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 16px;
+  margin: 10px 0;
+  transition: 0.3s;
+  &:hover {
+    transform: translateY(-5px);
+  }
+`;
+
+export const recordHeader = css`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  padding-bottom: 8px;
+  margin-bottom: 8px;
+`;
+
+export const recordDetails = css`
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+`;
+
+export const amount = css`
+  font-weight: bold;
+  font-size: 18px;
+  color: #e44d26;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+`;
+
+
+
+export const moreDetails = css`
+  margin-top: 8px;
+  summary {
+    cursor: pointer;
+    font-weight: bold;
+    color: #007bff;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+`;
+
+export const iconStyle = css`
+  margin-right: 5px;
+  font-size: 16px;
+  color: #555;
+`;
+
+export const icon = css`
+  height: 20px;
+`;
+
+export const conttSt = css`
+  width: 100%;
+  height: auto;
+  background-color: rgba(147, 129, 255, 0.08);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 `;

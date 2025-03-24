@@ -442,13 +442,21 @@ export const chartContainer = css`
   width: 80%;
   margin: 0 auto;
   padding: 20px;
-  background-color: #f9f9f9;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  
 
   h2 {
     color: #333;
     font-size: 20px;
     margin-bottom: 10px;
   }
+`;
+
+export const chartText = css`
+  text-align: center;
+  padding-bottom: 20px;
+  color: #1e88e5;
+  font-weight: bold;
+  border-bottom: 3px solid #1e88e5;
+ 
 `;

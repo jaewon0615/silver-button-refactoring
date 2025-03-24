@@ -11,7 +11,6 @@ export const container = css`
   flex-direction: row;
   justify-content: space-between;
   gap: 35px;
-  background: #eef5ff;
 `;
 
 export const title = css`
@@ -31,14 +30,32 @@ export const form = css`
 export const inputGroup = css`
   display: flex;
   flex-direction: column;
+  margin-top: 10px;
+`;
+
+export const inputGroupunder = css`
+  display: flex;
+  flex-direction: column;
   margin-top: 5px;
+`;
+
+export const inputGroupunder1 = css`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+`;
+
+export const inputGroup1 = css`
+  display: flex;
+  flex-direction: column;
+  margin-top: 3px;
 `;
 
 export const label = css`
   margin-bottom: 5px;
   font-weight: bold;
   color: #1565c0;
-  font-size: 20px;
+  font-size: 19px;
 `;
 
 export const input = css`
@@ -66,6 +83,7 @@ export const submitButton = css`
   font-weight: bold;  /* 글자 굵게 */
   transition: background-color 0.3s, transform 0.2s ease-in-out;  /* 배경색과 변환 애니메이션 */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* 버튼 그림자 */
+  margin-bottom: 10px;
 
   &:hover {
     background-color: #1565c0;  /* hover 상태일 때 배경색 */
@@ -136,7 +154,6 @@ export const recordContainer = css`
 export const resultContainer = css`
   width: 100%;
   height: 600px;
-  background: #f0f8ff;
 `;
 
 export const resultText = css`
@@ -258,6 +275,15 @@ export const createdDate = css`
 
 export const resultPageText = css`
   font-weight: bold;
+  margin-top: 10.3px;
+  font-size: 21px;
+`;
+
+export const datePageText = css`
+  font-weight: bold;
+  margin-top: 10.3px;
+  font-size: 21px;
+  color: orange;
 `;
 
 export const dataText = css`
@@ -302,4 +328,16 @@ export const inputStyle = css`
 export const span = css`
   font-weight: bold;
   color: orange;
+`;
+
+export const conttSt = css`
+  width: 100%;
+  height: auto;
+  background-color: rgba(147, 129, 255, 0.08);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 `;

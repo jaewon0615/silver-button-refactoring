@@ -61,7 +61,7 @@ export default function SignIn() {
 
   useEffect(() => {
     if (isAuthenticated) {
-      alert("이미 로그인된 상태입니다.");
+      alert("로그인 되었습니다.");
       navigate("/");
     }
   }, [isAuthenticated, navigate]);

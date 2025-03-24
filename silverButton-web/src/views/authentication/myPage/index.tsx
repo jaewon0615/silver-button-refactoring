@@ -12,6 +12,7 @@ import { MdOutlineDeleteForever } from "react-icons/md";
 import { IoIosContacts } from "react-icons/io";
 import { IoIosJournal } from "react-icons/io";
 import { MdOutlineDirectionsRun } from "react-icons/md";
+import { FaMoneyCheckDollar } from "react-icons/fa6";
 
 const MyPage = () => {
   const { isAuthenticated, user, login, logout } = useAuthStore();
@@ -298,8 +299,8 @@ const MyPage = () => {
         <button css={s.exerciseButton} onClick={handleExerciseClick}>
         <MdOutlineDirectionsRun css={s.messageIcon}/>  운동 기록 일지
         </button>
-        <button css={s.exerciseButton} onClick={handleExpenseClick}>
-        <MdOutlineDirectionsRun css={s.messageIcon}/>  가계부 관리
+        <button css={s.expenseButton} onClick={handleExpenseClick}>
+        <FaMoneyCheckDollar css={s.messageIcon} /> 가계부 관리
         </button>
         </div>
         <div css={s.myPageFooter}>

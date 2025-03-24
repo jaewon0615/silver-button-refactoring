@@ -4,6 +4,7 @@ import * as s from "./style"; // 스타일 파일 임포트
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { useParams, useNavigate } from "react-router-dom"; // useNavigate 추가
+import { FaTrash } from "react-icons/fa";
 
 export interface HealthRecordType {
   id: number;
@@ -153,11 +154,12 @@ export default function HealthRecord() {
 
   return (
     <div css={s.container}>
+      <div css={s.conttSt}>
       <div css={s.recordContainer}>
         <h1 css={s.title}>건강 기록 추가</h1>
         <form css={s.form} onSubmit={handleSubmit}>
           <div css={s.inputGroup}>
-            <label css={s.label}>수축기 혈압</label>
+            <label css={s.label}>수축기 혈압(mmhg)</label>
             <input
               type="number"
               name="bloodPressureSystolic"
@@ -169,7 +171,7 @@ export default function HealthRecord() {
             />
           </div>
           <div css={s.inputGroup}>
-            <label css={s.label}>이완기 혈압</label>
+            <label css={s.label}>이완기 혈압(mmhg)</label>
             <input
               type="number"
               name="bloodPressureDiastolic"
@@ -181,7 +183,7 @@ export default function HealthRecord() {
             />
           </div>
           <div css={s.inputGroup}>
-            <label css={s.label}>혈당</label>
+            <label css={s.label}>혈당(mg/dl)</label>
             <input
               type="number"
               name="bloodSugar"
@@ -193,7 +195,7 @@ export default function HealthRecord() {
             />
           </div>
           <div css={s.inputGroup}>
-            <label css={s.label}>체중</label>
+            <label css={s.label}>체중(kg)</label>
             <input
               type="number"
               name="weight"
@@ -205,7 +207,7 @@ export default function HealthRecord() {
             />
           </div>
           <div css={s.inputGroup}>
-            <label css={s.label}>신장</label>
+            <label css={s.label}>신장(cm)</label>
             <input
               type="number"
               name="height"
@@ -239,16 +241,18 @@ export default function HealthRecord() {
           currentRecords.map((record) => (
             <div key={record.id} css={s.recordItem}>
               <div>
+              <h3 css={s.dataText}>제출 날짜: {new Date(record.createdAt).toLocaleDateString()}</h3>
                 <h3 css={s.resultPageText}>수축기: {record.bloodPressureSystolic}mmhg | 이완기: {record.bloodPressureDiastolic}mmhg</h3>
                 <h3 css={s.resultPageText}>혈당: {record.bloodSugar}mg/dl</h3>
                 <h3 css={s.resultPageText}>체중: {record.weight}kg</h3>
                 <h3 css={s.resultPageText}>신장: {record.height}cm</h3>
                 <h3 css={s.resultPageText}>비고: {record.notes}</h3>
-                <h3 css={s.dataText}>제출 날짜: {new Date(record.createdAt).toLocaleDateString()}</h3>
               </div>
               <div>
-                <button onClick={() => handleDelete(record.id)} css={s.deleteButton}>삭제</button>
-              </div>
+                <button onClick={() => handleDelete(record.id)} css={s.deleteButton}>
+            <FaTrash />
+          </button>
+                </div>
             </div>
           ))
         ) : (
@@ -275,6 +279,8 @@ export default function HealthRecord() {
           </div>
         )}
       </div>
+      </div>
+     
     </div>
   );
 }

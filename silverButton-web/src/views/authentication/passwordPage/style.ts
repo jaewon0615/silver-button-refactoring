@@ -14,15 +14,17 @@ export const passwordCard = css`
   background: white;
   padding: 20px;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   text-align: center;
   width: 100%;
-  max-width: 400px;
+  max-width: 700px;
+  height: 300px;
+  border: 3px solid rgba(147, 129, 255, 0.5);
 `;
 
 export const passwordCardTitle = css`
-  font-size: 24px;
+  font-size: 30px;
   color: #333;
+  font-weight: bold;
   margin-bottom: 10px;
 `;
 

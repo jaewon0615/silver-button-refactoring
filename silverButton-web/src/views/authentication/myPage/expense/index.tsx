@@ -4,6 +4,8 @@ import * as s from "./style";
 import { useNavigate, useParams } from "react-router-dom";
 import { useCookies } from "react-cookie";
 import axios from "axios";
+import Draggable from "react-draggable";
+import { FaCalendarAlt, FaMoneyBillWave, FaTrash } from "react-icons/fa";
 
 export interface ExpenseType {
   id: number;
@@ -159,8 +161,9 @@ const Calculator = () => {
 
   return (
     <div css={s.container}>
+      <div css={s.conttSt}>
       <div css={s.recordContainer}>
-        <h1 css={s.title}>가계부 기록 추기</h1>
+        <h1 css={s.title}>가계부 기록 추가</h1>
         <form css={s.form} onSubmit={handleSubmit}>
           <div css={s.inputGroup}>
             <label css={s.label}>지출 날짜</label>
@@ -234,6 +237,9 @@ const Calculator = () => {
           <button type="submit" css={s.submitButton}>
             가계부 기록 제출
           </button>
+          <button onClick={toggleCalculator} css={s.showButtonStyle}>
+          {isVisible ? "계산기 닫기" : "계산기 열기"} {/* 버튼 텍스트 변경 */}
+        </button>
         </form>
       </div>
 
@@ -243,7 +249,7 @@ const Calculator = () => {
           currentRecords.map((expense) => (
             <div key={expense.id} css={s.recordItem}>
               <div>
-                <h3 css={s.resultPageText}>
+                <h3 css={s.datePageText}><FaCalendarAlt css={s.icon} />
                   지출 날짜: {new Date(expense.paymentDate).toLocaleString("ko-KR", {
                     year: "numeric",
                     month: "2-digit",
@@ -252,14 +258,20 @@ const Calculator = () => {
                 </h3>
                 <h3 css={s.resultPageText}>지출 종류: {expense.category}</h3>
                 <h3 css={s.resultPageText}>지출 항목 설명: {expense.description}</h3>
-                <h3 css={s.resultPageText}>지출 금액: {expense.amount}</h3>
+                <h3 css={s.resultPageText}> 
+  <FaMoneyBillWave css={s.icon} /> 
+  지출 금액: {expense.amount.toLocaleString()}원
+</h3>
                 <h3 css={s.resultPageText}>결제 수단: {expense.paymentMethod}</h3>
-                <h3 css={s.resultPageText}>추가 메모: {expense.notes}</h3>
-                <h3 css={s.dataText}>제출 날짜: {new Date(expense.createdAt).toLocaleDateString()}</h3>
+                <details css={s.moreDetails}>
+          <summary>추가 정보 보기</summary>
+          <p css={s.resultPageText2}><strong>추가 메모:</strong> {expense.notes}</p>
+          <p css={s.resultPageText2}><strong>제출 날짜:</strong> {new Date(expense.createdAt).toLocaleDateString()}</p>
+        </details>
                 <div>
-                  <button onClick={() => handleDelete(expense.id)} css={s.deleteButton}>
-                    삭제
-                  </button>
+                <button onClick={() => handleDelete(expense.id)} css={s.deleteButton}>
+            <FaTrash />
+          </button>
                 </div>
               </div>
             </div>
@@ -296,11 +308,10 @@ const Calculator = () => {
           </div>
         )}
 
-        <button onClick={toggleCalculator} css={s.showButtonStyle}>
-          {isVisible ? "계산기 닫기" : "계산기 열기"} {/* 버튼 텍스트 변경 */}
-        </button>
+        
 
         {/* 계산기 div, 애니메이션 적용 */}
+        <Draggable>
         <div
           css={[
             s.calculatorStyle,
@@ -309,7 +320,7 @@ const Calculator = () => {
         >
           <input type="text" value={display} disabled css={s.displayStyle} />
           <div css={s.buttonContainerStyle}>
-            <button onClick={clearDisplay} css={s.buttonStyle}>
+            <button onClick={clearDisplay} css={s.cStyle}>
               초기화
             </button>
             <button onClick={calculate} css={s.buttonStyle}>
@@ -343,7 +354,7 @@ const Calculator = () => {
               6
             </button>
             <button onClick={() => appendNumber("*")} css={s.buttonStyle}>
-              *
+              X
             </button>
             <button onClick={() => appendNumber("7")} css={s.buttonStyle}>
               7
@@ -359,7 +370,10 @@ const Calculator = () => {
             </button>
           </div>
         </div>
+        </Draggable>
       </div>
+      </div>
+
     </div>
   );
 };

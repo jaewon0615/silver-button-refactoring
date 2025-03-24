@@ -11,6 +11,8 @@ import { AiOutlineMedicineBox } from "react-icons/ai";
 import { LuClipboardPenLine } from "react-icons/lu";
 import { RiHealthBookLine } from "react-icons/ri";
 import { RiCalendarTodoLine } from "react-icons/ri";
+
+import { IoAirplaneOutline } from "react-icons/io5";
 import axios from "axios";
 
 function HeaderToolWrap() {
@@ -142,6 +144,13 @@ function HeaderNaviWrap() {
         >
           <RiHealthBookLine css={s.naviIcon} />
           <div css={s.naviTitle}>헬스매거진</div>
+        </div>
+        <div
+          css={s.haderNaviButton}
+          onClick={() => navigateTo("/destination")}
+        >
+          <IoAirplaneOutline  css={s.naviIcon}/>
+          <div css={s.naviTitle}>여행지</div>
         </div>
       </div>
     </div>

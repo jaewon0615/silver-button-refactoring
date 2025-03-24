@@ -13,11 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-import static com.korit.silverbutton.common.constant.ApiMappingPattern.Exercise;
-import static com.korit.silverbutton.common.constant.ApiMappingPattern.Expense;
+import static com.korit.silverbutton.common.constant.ApiMappingPattern.*;
 
 @RestController
-@RequestMapping(Expense)
+@RequestMapping(EXPENSE)
 @RequiredArgsConstructor
 public class ExpenseController {
     private final ExpenseService expenseService;

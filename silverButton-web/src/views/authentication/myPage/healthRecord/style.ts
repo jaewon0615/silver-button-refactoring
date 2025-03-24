@@ -11,7 +11,6 @@ export const container = css`
   flex-direction: row;
   justify-content: space-between;
   gap: 35px;
-  background: #eef5ff;
 `;
 
 export const title = css`
@@ -31,14 +30,14 @@ export const form = css`
 export const inputGroup = css`
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 30px;
 `;
 
 export const label = css`
   margin-bottom: 5px;
   font-weight: bold;
   color: #1565c0;
-  font-size: 20px;
+  font-size: 25px;
 `;
 
 export const input = css`
@@ -136,7 +135,6 @@ export const recordContainer = css`
 export const resultContainer = css`
   width: 100%;
   height: 600px;
-  background: #f0f8ff;
 `;
 
 export const resultText = css`
@@ -258,6 +256,7 @@ export const createdDate = css`
 
 export const resultPageText = css`
   font-weight: bold;
+  margin-top: 12.2px;
 `;
 
 export const dataText = css`
@@ -275,4 +274,16 @@ text-align: center;
   border: 1px solid #e57373; 
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+`;
+
+export const conttSt = css`
+  width: 100%;
+  height: auto;
+  background-color: rgba(147, 129, 255, 0.08);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 `;

@@ -9,9 +9,8 @@ const PasswordPage = () => {
   const [showPassword, setShowPassword] = useState(false); // 비밀번호 표시 여부 상태
   const navigate = useNavigate();
 
-  // localStorage에서 2차 비밀번호 가져오기
-  const storedSecondPassword = localStorage.getItem("secondPassword"); // 로컬 스토리지에서 2차 비밀번호 가져오기
-  console.log("저장된 2차 비밀번호:", storedSecondPassword);
+  // 2차 비밀번호 저장 예시
+  const storedSecondPassword = "1234"; // 데이터베이스에서 가져온 2차 비밀번호 예시
 
   // 2차 비밀번호 검증
   const handleSecondPasswordSubmit = () => {
@@ -21,10 +20,10 @@ const PasswordPage = () => {
       return;
     }
 
-    // 저장된 비밀번호와 비교: 숫자 문자열 형식으로 비교
-    if (secondPassword === String(storedSecondPassword)) {
+    // 저장된 비밀번호와 비교
+    if (secondPassword === storedSecondPassword) {
       alert("2차 비밀번호 인증 성공!");
-      navigate("/my-page/mypage");
+      navigate("/my-page/mypage"); // 인증 성공 후 페이지 이동
     } else {
       setError("2차 비밀번호가 일치하지 않습니다.");
     }

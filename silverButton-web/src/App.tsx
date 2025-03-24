@@ -57,6 +57,8 @@ import Map from "./views/map";
 
 import CardGame from "./views/cardGame";
 
+import Destination from "./views/destination"
+
 export default function App() {
   const { isAuthenticated, loadFromLocalStorage } = useAuthStore();
 
@@ -176,6 +178,10 @@ export default function App() {
           <Route path="expense/:id" element={<ExpenseChart/>}/>
           
           <Route path="/cardGame" element={<CardGame />} />
+
+          <Route path="/destination" element={<Destination/>}/>
+
+          
         </Routes>
       </MainLayout>
 

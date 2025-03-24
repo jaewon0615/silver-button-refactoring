@@ -11,7 +11,7 @@ export const container = css`
   flex-direction: row;
   justify-content: space-between;
   gap: 35px;
-  background: #eef5ff;
+
 `;
 
 export const title = css`
@@ -31,14 +31,21 @@ export const form = css`
 export const inputGroup = css`
   display: flex;
   flex-direction: column;
-  margin-top: 5px;
+  margin-top: 40px;
 `;
 
 export const label = css`
   margin-bottom: 5px;
   font-weight: bold;
   color: #1565c0;
-  font-size: 20px;
+  font-size: 25px;
+`;
+
+export const search = css`
+  font-weight: bold;
+  color: #1565c0;
+  font-size: 25px;
+  margin-top: 40px;
 `;
 
 export const input = css`
@@ -238,7 +245,7 @@ export const searchInput = css`
     font-size: 16px;
     outline: none;
     transition: border-color 0.3s;
-    margin-top: 10px;
+    margin-top: 5px;
     :focus{
       border-color: '#007BFF', // 포커스 시 테두리 색상 변경
 
@@ -256,4 +263,16 @@ text-align: center;
   border: 1px solid #e57373; 
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
+`;
+
+export const conttSt = css`
+  width: 100%;
+  height: auto;
+  background-color: rgba(147, 129, 255, 0.08);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: row;
+  gap: 30px;
 `;

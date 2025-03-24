@@ -79,7 +79,8 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/manage/register-second-password"),
                                 new AntPathRequestMatcher("/api/v1/test-question/**"),
                                 new AntPathRequestMatcher("/api/v1/exercise/**"),
-                                new AntPathRequestMatcher("/api/v1/expense/**")
+                                new AntPathRequestMatcher("/api/v1/expense/**"),
+                                new AntPathRequestMatcher("/api/v1/destination/**")
                         )
                         .permitAll()  // 위의 엔드포인트는 모두 허용
                         .requestMatchers(

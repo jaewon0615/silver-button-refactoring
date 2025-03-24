@@ -51,6 +51,7 @@ export default function DiaryDetail() {
 
   return (
     <div css={s.detailContainer}>
+      <div css={s.conttSt}>
       {loading ? (
         <p>일기를 불러오는 중...</p>
       ) : error ? (
@@ -79,6 +80,8 @@ export default function DiaryDetail() {
       ) : (
         <p>일기가 존재하지 않습니다.</p> // 일기가 없을 경우 메시지
       )}
+      </div>
+      
     </div>
   );
 }
