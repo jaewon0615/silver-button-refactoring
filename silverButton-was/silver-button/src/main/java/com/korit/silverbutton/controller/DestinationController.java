@@ -24,6 +24,7 @@ public class DestinationController {
     private static final String DESTINATION_GET_LOCATION = "location/{location}";
     private static final String DESTINATION_DELETE = "delete/{id}";
     private static final String DESTINATION_RATING = "/rating";
+    private static final String DESTINATION_GET_LOCATION_CITY = "/location/{location}/{city}";
 
     @PostMapping(DESTINATION_POST)
     public ResponseEntity<ResponseDto<DestinationResponseDto>> postDestination(
@@ -44,6 +45,13 @@ public class DestinationController {
     @GetMapping(DESTINATION_GET_LOCATION)
     public ResponseEntity<ResponseDto<List<DestinationResponseDto>> >getDestinationByLocation(@PathVariable String location){
         ResponseDto<List<DestinationResponseDto>> response = destinationService.getDestinationByLocation(location);
+        HttpStatus status = response.isResult() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+    @GetMapping(DESTINATION_GET_LOCATION_CITY)
+    public ResponseEntity<ResponseDto<List<DestinationResponseDto>> >getDestinationByLocationAndCity(@PathVariable String location,@PathVariable String city){
+        ResponseDto<List<DestinationResponseDto>> response = destinationService.getDestinationByLocationAndCity(location,city);
         HttpStatus status = response.isResult() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

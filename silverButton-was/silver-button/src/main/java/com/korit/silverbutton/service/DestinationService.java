@@ -15,10 +15,14 @@ public interface DestinationService {
 
     ResponseDto<List<DestinationResponseDto>> getDestinationByLocation(String location);
 
+    ResponseDto<List<DestinationResponseDto>> getDestinationByLocationAndCity(String location, String city);
+
     ResponseDto<List<DestinationResponseDto>> findAll(DestinationRequestDto dto);
 
     ResponseDto<List<DestinationResponseDto>> getDestinationByRating(DestinationRequestDto dto);
 
     ResponseDto<Boolean> deleteDestinationById (Long id);
+
+
 
 }

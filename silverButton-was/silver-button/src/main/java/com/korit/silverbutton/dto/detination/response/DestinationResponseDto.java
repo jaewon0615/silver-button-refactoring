@@ -55,6 +55,10 @@ public class DestinationResponseDto {
     // 여행지 평점
     private BigDecimal rating;
 
+    private int viewCount;
+
+    private String city;
+
     // 여행지 이미지 주소
     private String ImageUrl;
 
@@ -80,5 +84,7 @@ public class DestinationResponseDto {
         this.createdAt = destination.getCreatedAt();
         this.updatedAt = destination.getUpdatedAt();
         this.publicTransportation = destination.getPublicTransportation();
+        this.viewCount = destination.getViewCount();
+        this.city = destination.getCity();
     }
 }

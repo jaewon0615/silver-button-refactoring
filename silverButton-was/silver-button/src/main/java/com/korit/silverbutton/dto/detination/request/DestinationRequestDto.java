@@ -49,9 +49,15 @@ public class DestinationRequestDto {
     // 여행지 제공 시설
     private String facilities;
 
+    private String city;
+
     // 여행지 평점
     private BigDecimal rating;
 
     // 여행지 이미지 주소
     private String ImageUrl;
+
+    private int viewCount;
+
+
 }

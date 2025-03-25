@@ -58,6 +58,14 @@ import Map from "./views/map";
 import CardGame from "./views/cardGame";
 
 import Destination from "./views/destination"
+import LocationSeoul from "./views/destination/locationSeoul"
+import LocationSeoulJunggu from "./views/destination/locationSeoul/locationJunggu"
+import LocationBusan from "./views/destination/locationBusan"
+import LocationJeju from "./views/destination/locationJeju"
+import LocationGangwon from "./views/destination/locationGangwon"
+import LocationGyeongbuk from "./views/destination/locationGyeongbuk"
+import LocationGyeongnam from "./views/destination/locationGyeongnam"
+import LocationJeonnam from "./views/destination/locationJeonnam"
 
 export default function App() {
   const { isAuthenticated, loadFromLocalStorage } = useAuthStore();
@@ -180,6 +188,16 @@ export default function App() {
           <Route path="/cardGame" element={<CardGame />} />
 
           <Route path="/destination" element={<Destination/>}/>
+          <Route path="/destination/location/서울" element={<LocationSeoul/>}/>
+          <Route path="/destination/location/서울/중구" element={<LocationSeoulJunggu/>}/>
+
+          <Route path="/destination/location/부산"
+          element={<LocationBusan/>}/>
+          <Route path="/destination/location/제주" element={<LocationJeju/>}/>
+          <Route path="/destination/location/강원" element={<LocationGangwon/>}/>
+          <Route path="/destination/location/경북" element={<LocationGyeongbuk/>}/>
+          <Route path="/destination/location/경남" element={<LocationGyeongnam/>}/>
+          <Route path="/destination/location/전남" element={<LocationJeonnam/>}/>
 
           
         </Routes>

@@ -21,6 +21,7 @@ export interface DestinationType {
   rating: number;
   imageUrl: string;
   createdAt: number;
+  viewCount: number;
 }
 
 export default function Destination() {
@@ -61,51 +62,102 @@ export default function Destination() {
     setCurrentPage(page);
   };
 
+  const handleLocationSeoul = () => {
+    navigate(`/destination/location/서울`);
+};
+
+const handleLocationBusan = () => {
+  navigate(`/destination/location/부산`);
+};
+
+const handleLocationJeju = () => {
+  navigate(`/destination/location/제주`);
+};
+
+const handleLocationGangwon = () => {
+  navigate(`/destination/location/강원`);
+};
+
+const handleLocationGyeongbuk = () => {
+  navigate(`/destination/location/경북`);
+};
+
+const handleLocationGyeongnam = () => {
+  navigate(`/destination/location/경남`);
+};
+
+const handleLocationJeonnam = () => {
+  navigate(`/destination/location/전남`);
+};
+
   return (
     <div css={s.container}>
       <h1>여행지 목록</h1>
-      <input
+      {/* <input
         css={s.searchInput}
         type="text"
         placeholder="여행지 검색..."
         value={searchTerm}
         onChange={(e) => setSearchTerm(e.target.value)}
-      />
+      /> */}
+      <div css={s.buttonContainer}>
+      <button css={s.buttonStyleSeoul} onClick={handleLocationSeoul}><span>서울</span></button>
+      <button css={s.buttonStyleBusan} onClick={handleLocationBusan}><span>부산</span></button>
+      <button css={s.buttonStyleJeju} onClick={handleLocationJeju}><span>제주</span></button>
+      <button css={s.buttonStyleGangwon} onClick={handleLocationGangwon}><span>강원</span></button>
+      <button css={s.buttonStyleGyeongbuk} onClick={handleLocationGyeongbuk}><span>경북</span></button>
+      <button css={s.buttonStyleGyeongnam} onClick={handleLocationGyeongnam}><span>경남</span></button>
+      <button css={s.buttonStyleJeonnam} onClick={handleLocationJeonnam}><span>전남</span></button>
+      </div>
+      
+      
 
       <div css={s.gridContainer}>
         {currentRecords.length > 0 ? (
           currentRecords.map((destination) => (
             <div key={destination.id} css={s.card}>
-              <img src={destination.imageUrl} alt={destination.name} css={s.image} />
+              <img
+                src={destination.imageUrl}
+                alt={destination.name}
+                css={s.image}
+              />
               <h2 css={s.title}>{destination.name}</h2>
               <p css={s.category}>카테고리: {destination.category}</p>
               <p css={s.location}>지역: {destination.location}</p>
+              <p css={s.location}>조회수: {destination.viewCount}회</p>
               <p>{destination.address}</p>
             </div>
           ))
         ) : (
           <p>등록된 여행지가 없습니다</p>
         )}
-      </div>
-
-      <div css={s.pagination}>
-        <button
-          css={s.pageButton}
-          onClick={() => handlePageChange(currentPage - 1)}
-          disabled={currentPage === 1}
-        >
-          이전
-        </button>
-        <span>
-          {currentPage} / {totalPages}
-        </span>
-        <button
-          css={s.pageButton}
-          onClick={() => handlePageChange(currentPage + 1)}
-          disabled={currentPage === totalPages}
-        >
-          다음
-        </button>
+        {totalPages > 1 && (
+          <div css={s.paginationContainer}>
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              css={s.paginationButton}
+              disabled={currentPage === 1}
+            >
+              &lt; 이전
+            </button>
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handlePageChange(index + 1)}
+                css={s.paginationButton}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              css={s.paginationButton}
+              disabled={currentPage === totalPages}
+            >
+              다음 &gt;
+            </button>
+          </div>
+        )}
       </div>
     </div>
   );

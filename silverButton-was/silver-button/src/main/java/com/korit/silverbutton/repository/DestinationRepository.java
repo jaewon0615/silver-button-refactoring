@@ -24,6 +24,12 @@ public interface DestinationRepository extends JpaRepository<Destination, Long> 
     @Query(value = "SELECT * FROM destination WHERE rating >= :rating ORDER BY rating DESC", nativeQuery = true)
     List<Destination> getDestinationByRating(@Param("rating") BigDecimal rating);
 
+    @Query("SELECT d FROM Destination d WHERE d.location = :location AND d.city = :city")
+    List<Destination> getDestinationByLocationAndCity(@Param("location") String location, @Param("city") String city);
+
+
+
+
 
 
 

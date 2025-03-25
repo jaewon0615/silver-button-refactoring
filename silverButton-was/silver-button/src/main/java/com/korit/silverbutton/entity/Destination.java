@@ -43,6 +43,10 @@ public class Destination {
 
     private String publicTransportation;
 
+    private int viewCount;
+
+    private String city;
+
     // 여행지 번호
     private String phoneNumber;
 
