@@ -32,6 +32,7 @@ import Exercise from "./views/authentication/myPage/exercise"
 import ExerciseChart from "./views/authentication/myPage/exercise/exerciseChart"
 import Expense from "./views/authentication/myPage/expense"
 import ExpenseChart from "./views/authentication/myPage/expense/expenseChart"
+import SaveDestination from "./views/authentication/myPage/saveDestination"
 
 import RootLayout from "./layouts/rootLayout/RootLayout";
 import Header from "./layouts/header/Header";
@@ -58,6 +59,7 @@ import Map from "./views/map";
 import CardGame from "./views/cardGame";
 
 import Destination from "./views/destination"
+import DestinationDetail from "./views/destination/destinationDetail"
 import LocationSeoul from "./views/destination/locationSeoul"
 import LocationSeoulJunggu from "./views/destination/locationSeoul/locationJunggu"
 import LocationBusan from "./views/destination/locationBusan"
@@ -66,6 +68,10 @@ import LocationGangwon from "./views/destination/locationGangwon"
 import LocationGyeongbuk from "./views/destination/locationGyeongbuk"
 import LocationGyeongnam from "./views/destination/locationGyeongnam"
 import LocationJeonnam from "./views/destination/locationJeonnam"
+import LocationJeonbuk from "./views/destination/locationJeonbuk"
+import LocationChungbuk from "./views/destination/locationChungbuk"
+import LocationChungnam from "./views/destination/locationChungnam"
+import LocationGyeongki from "./views/destination/locationGyeongki"
 
 export default function App() {
   const { isAuthenticated, loadFromLocalStorage } = useAuthStore();
@@ -152,6 +158,7 @@ export default function App() {
                 <Route path="diary/diaryId/:id" element={<DiaryDetail />} />
                 <Route path="exercise/:id" element={<Exercise/>}/>
                 <Route path="expense/:id" element={<Expense/>}/>
+                <Route path="user-saved-destination/:id" element={<SaveDestination/>}/>
 
               </Routes>
             }
@@ -188,6 +195,9 @@ export default function App() {
           <Route path="/cardGame" element={<CardGame />} />
 
           <Route path="/destination" element={<Destination/>}/>
+
+          <Route path="my-page/destination/id/:id" element={<DestinationDetail/>}/>
+
           <Route path="/destination/location/서울" element={<LocationSeoul/>}/>
           <Route path="/destination/location/서울/중구" element={<LocationSeoulJunggu/>}/>
 
@@ -198,8 +208,11 @@ export default function App() {
           <Route path="/destination/location/경북" element={<LocationGyeongbuk/>}/>
           <Route path="/destination/location/경남" element={<LocationGyeongnam/>}/>
           <Route path="/destination/location/전남" element={<LocationJeonnam/>}/>
+          <Route path="/destination/location/전북" element={<LocationJeonbuk/>}/>
+          <Route path="/destination/location/충북" element={<LocationChungbuk/>}/>
+          <Route path="/destination/location/충남" element={<LocationChungnam/>}/>
+          <Route path="/destination/location/경기" element={<LocationGyeongki/>}/>
 
-          
         </Routes>
       </MainLayout>
 

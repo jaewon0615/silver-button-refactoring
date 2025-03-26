@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as s from "../locationSeoul/style";
+import { dE } from "@fullcalendar/core/internal-common";
 
 export interface DestinationType {
   id: number;
@@ -24,7 +25,7 @@ export interface DestinationType {
   viewCount: number;
 }
 
-export default function LocationJeju() {
+export default function LocationGyeongbuk() {
   const [destination, setDestination] = useState<DestinationType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -62,6 +63,10 @@ export default function LocationJeju() {
     setCurrentPage(page);
   };
 
+  const navigateToDestinationDetail = (destinationId: number) => {
+    navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
+  };
+
   return (
     <div css={s.container}>
       <h1>경북 여행지</h1>
@@ -76,7 +81,7 @@ export default function LocationJeju() {
         {currentRecords.length > 0 ? (
           currentRecords.map((destination) => (
             <div key={destination.id} css={s.card}>
-              <img src={destination.imageUrl} alt={destination.name} css={s.image} />
+              <img src={destination.imageUrl} alt={destination.name} css={s.image} onClick={() => navigateToDestinationDetail(destination.id)} />
               <div css={s.cardContent}>
                 <h2 css={s.title}>{destination.name}</h2>
                 <p css={s.category}>{destination.category}</p>

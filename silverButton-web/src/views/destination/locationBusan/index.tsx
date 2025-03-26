@@ -62,6 +62,10 @@ export default function LocationBusan() {
     setCurrentPage(page);
   };
 
+  const navigateToDestinationDetail = (destinationId: number) => {
+    navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
+  };
+
   return (
     <div css={s.container}>
       <h1>부산 여행지</h1>
@@ -76,7 +80,8 @@ export default function LocationBusan() {
         {currentRecords.length > 0 ? (
           currentRecords.map((destination) => (
             <div key={destination.id} css={s.card}>
-              <img src={destination.imageUrl} alt={destination.name} css={s.image} />
+              <img src={destination.imageUrl} alt={destination.name} css={s.image} 
+              onClick={() =>navigateToDestinationDetail(destination.id)}/>
               <div css={s.cardContent}>
                 <h2 css={s.title}>{destination.name}</h2>
                 <p css={s.category}>{destination.category}</p>

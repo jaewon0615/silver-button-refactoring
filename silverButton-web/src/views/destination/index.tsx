@@ -90,6 +90,26 @@ const handleLocationJeonnam = () => {
   navigate(`/destination/location/전남`);
 };
 
+const handleLocationJeonbuk = () => {
+  navigate(`/destination/location/전북`);
+};
+
+const handleLocationChungbuk = () => {
+  navigate(`/destination/location/충북`);
+};
+
+const handleLocationChungnam = () => {
+  navigate(`/destination/location/충남`);
+};
+
+const handleLocationGyeongki = () => {
+  navigate(`/destination/location/경기`);
+};
+
+const navigateToDestinationDetail = (destinationId: number) => {
+  navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
+};
+
   return (
     <div css={s.container}>
       <h1>여행지 목록</h1>
@@ -108,6 +128,10 @@ const handleLocationJeonnam = () => {
       <button css={s.buttonStyleGyeongbuk} onClick={handleLocationGyeongbuk}><span>경북</span></button>
       <button css={s.buttonStyleGyeongnam} onClick={handleLocationGyeongnam}><span>경남</span></button>
       <button css={s.buttonStyleJeonnam} onClick={handleLocationJeonnam}><span>전남</span></button>
+      <button css={s.buttonStyleJeonbuk} onClick={handleLocationJeonbuk}><span>전북</span></button>
+      <button css={s.buttonStyleChungbuk} onClick={handleLocationChungbuk}><span>충북</span></button>
+      <button css={s.buttonStyleChungnam} onClick={handleLocationChungnam}><span>충남</span></button>
+      <button css={s.buttonStyleGyeongki} onClick={handleLocationGyeongki}><span>경기</span></button>
       </div>
       
       
@@ -120,6 +144,7 @@ const handleLocationJeonnam = () => {
                 src={destination.imageUrl}
                 alt={destination.name}
                 css={s.image}
+                onClick={() => navigateToDestinationDetail(destination.id)}
               />
               <h2 css={s.title}>{destination.name}</h2>
               <p css={s.category}>카테고리: {destination.category}</p>

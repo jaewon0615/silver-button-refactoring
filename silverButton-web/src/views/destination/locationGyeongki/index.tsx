@@ -3,6 +3,7 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as s from "../locationSeoul/style";
+import { dE } from "@fullcalendar/core/internal-common";
 
 export interface DestinationType {
   id: number;
@@ -24,7 +25,7 @@ export interface DestinationType {
   viewCount: number;
 }
 
-export default function LocationJeonnam() {
+export default function LocationGyeongki() {
   const [destination, setDestination] = useState<DestinationType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,7 +39,7 @@ export default function LocationJeonnam() {
   const fetchDestination = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4040/api/v1/destination/location/전남`
+        `http://localhost:4040/api/v1/destination/location/경기`
       );
       setDestination(response.data.data);
     } catch (e) {
@@ -66,10 +67,9 @@ export default function LocationJeonnam() {
     navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
   };
 
-
   return (
     <div css={s.container}>
-      <h1>전남 여행지</h1>
+      <h1>경기 여행지</h1>
       <input
         type="text"
         placeholder="여행지 검색"
@@ -81,7 +81,7 @@ export default function LocationJeonnam() {
         {currentRecords.length > 0 ? (
           currentRecords.map((destination) => (
             <div key={destination.id} css={s.card}>
-              <img src={destination.imageUrl} alt={destination.name} css={s.image} onClick={() =>navigateToDestinationDetail(destination.id)}/>
+              <img src={destination.imageUrl} alt={destination.name} css={s.image} onClick={() => navigateToDestinationDetail(destination.id)} />
               <div css={s.cardContent}>
                 <h2 css={s.title}>{destination.name}</h2>
                 <p css={s.category}>{destination.category}</p>

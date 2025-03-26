@@ -24,7 +24,7 @@ export interface DestinationType {
   viewCount: number;
 }
 
-export default function LocationJeonnam() {
+export default function LocationChungnam() {
   const [destination, setDestination] = useState<DestinationType[]>([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
@@ -38,7 +38,7 @@ export default function LocationJeonnam() {
   const fetchDestination = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4040/api/v1/destination/location/전남`
+        `http://localhost:4040/api/v1/destination/location/충남`
       );
       setDestination(response.data.data);
     } catch (e) {
@@ -69,7 +69,7 @@ export default function LocationJeonnam() {
 
   return (
     <div css={s.container}>
-      <h1>전남 여행지</h1>
+      <h1>충남 여행지</h1>
       <input
         type="text"
         placeholder="여행지 검색"

@@ -486,7 +486,211 @@ export const buttonStyleJeonnam = css`
     left: 0;
     width: 100%;
     height: 100%;
-    background: url("https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2FMjAyMDExMDZfMTEx%2FMDAxNjA0NjU5MzE2NDYx.cNBTblGMVC7m7KzQ14AHZrKUkjue64DARU63UuJIkZUg.LnfFT3Hc2h9bDkx6L_FfrpBDIZ2k5nvozUijNKJcqxMg.JPEG.qiuyu1004%2FIMG%25A3%25DF20201105%25A3%25DF13.jpg&type=sc960_832") 
+    background: url("https://search.pstatic.net/common/?src=https%3A%2F%2Fldb-phinf.pstatic.net%2F20210625_56%2F16246205489709YoVt_JPEG%2FizIqv-ID2Xf40C83Y5UYToFP.jpg") 
+                no-repeat center center / cover;
+    opacity: 0.5; /* 배경 이미지만 50% 투명하게 설정 */
+    z-index: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 1; /* 글자가 배경 위에 위치하도록 설정 */
+    color: white; /* 텍스트 색깔을 원래대로 유지 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트에 그림자 추가하여 가독성 향상 */
+  }
+
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+`;
+
+export const buttonStyleJeonbuk = css`
+  width: 17%;
+  height: 80px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white; /* 텍스트 색깔을 선명하게 유지 */
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20150615_235%2Fpgu1224_14343484468201tYVi_JPEG%2F20150612_102029.jpg&type=sc960_832") 
+                no-repeat center center / cover;
+    opacity: 0.5; /* 배경 이미지만 50% 투명하게 설정 */
+    z-index: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 1; /* 글자가 배경 위에 위치하도록 설정 */
+    color: white; /* 텍스트 색깔을 원래대로 유지 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트에 그림자 추가하여 가독성 향상 */
+  }
+
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+`;
+
+export const buttonStyleChungbuk = css`
+  width: 17%;
+  height: 80px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white; /* 텍스트 색깔을 선명하게 유지 */
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("https://search.pstatic.net/common/?src=http%3A%2F%2Fblogfiles.naver.net%2F20131002_230%2F2990045_1380684871602FJMH4_JPEG%2F1380684010777_20130921_170204.jpg&type=sc960_832") 
+                no-repeat center center / cover;
+    opacity: 0.5; /* 배경 이미지만 50% 투명하게 설정 */
+    z-index: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 1; /* 글자가 배경 위에 위치하도록 설정 */
+    color: white; /* 텍스트 색깔을 원래대로 유지 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트에 그림자 추가하여 가독성 향상 */
+  }
+
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+`;
+
+export const buttonStyleChungnam = css`
+  width: 17%;
+  height: 80px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white; /* 텍스트 색깔을 선명하게 유지 */
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("https://search.pstatic.net/common/?src=http%3A%2F%2Fimgnews.naver.net%2Fimage%2F003%2F2018%2F10%2F22%2FNISI20181021_0000217193_web_20181021170743_20181022065054940.jpg&type=sc960_832") 
+                no-repeat center center / cover;
+    opacity: 0.5; /* 배경 이미지만 50% 투명하게 설정 */
+    z-index: 0;
+  }
+
+  span {
+    position: relative;
+    z-index: 1; /* 글자가 배경 위에 위치하도록 설정 */
+    color: white; /* 텍스트 색깔을 원래대로 유지 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트에 그림자 추가하여 가독성 향상 */
+  }
+
+  transition: transform 0.3s ease-in-out;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+
+  &:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+`;
+
+export const buttonStyleGyeongki = css`
+  width: 17%;
+  height: 80px;
+  font-size: 20px;
+  font-weight: bold;
+  color: white; /* 텍스트 색깔을 선명하게 유지 */
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url("https://news.tbs.seoul.kr/Upload/Image/20230520/00000000000001325124.jpg") 
                 no-repeat center center / cover;
     opacity: 0.5; /* 배경 이미지만 50% 투명하게 설정 */
     z-index: 0;

@@ -154,6 +154,14 @@ const MyPage = () => {
     }
   };
 
+  const handleDestinaionClick = () => {
+    if (user) {
+      navigate(`/my-page/user-saved-destination/${user.id}`);
+    }
+  };
+
+  
+
   const handleMessageClick = () => {
     navigate("/message");
   };
@@ -161,6 +169,8 @@ const MyPage = () => {
   const handleResignClick = () => {
     navigate("/my-page/resign");
   };
+
+  
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditUser({ ...editUser, password: e.target.value });
@@ -301,6 +311,9 @@ const MyPage = () => {
         </button>
         <button css={s.expenseButton} onClick={handleExpenseClick}>
         <FaMoneyCheckDollar css={s.messageIcon} /> 가계부 관리
+        </button>
+        <button css={s.expenseButton} onClick={handleDestinaionClick}>
+        <FaMoneyCheckDollar css={s.messageIcon} /> 여행지 목록
         </button>
         </div>
         <div css={s.myPageFooter}>
