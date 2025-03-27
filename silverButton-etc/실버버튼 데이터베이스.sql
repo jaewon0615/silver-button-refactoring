@@ -198,3 +198,23 @@ CREATE TABLE destination (
     updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP  -- 여행지 마지막 수정일
 );
 
+CREATE TABLE userSavedDestinations (
+	id BIGINT AUTO_INCREMENT primary Key,
+    user_id BIGINT,
+    destination_id BIGINT,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (destination_id) REFERENCES destination(id) ON DELETE CASCADE
+);
+
+CREATE TABLE reviews (
+  id BIGINT AUTO_INCREMENT PRIMARY KEY,   -- 리뷰 고유 ID
+  destination_id BIGINT NOT NULL,          -- 여행지 ID (Foreign Key)
+  user_id BIGINT NOT NULL,                 -- 사용자 ID (Foreign Key)
+  rating DECIMAL(3, 2) NOT NULL,           -- 평점 (1-5)
+  review_text TEXT,                     -- 리뷰 내용
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 리뷰 작성 일시
+  updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 리뷰 수정 일시
+  FOREIGN KEY (destination_id) REFERENCES destination(id) ON DELETE CASCADE,  -- 여행지와 연결
+  FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+

@@ -165,4 +165,42 @@ export default function Destination() {
               />
               <h2 css={s.title}>{destination.name}</h2>
               <p css={s.category}>카테고리: {destination.category}</p>
-              <p css={s.location}>지역: 
+              <p css={s.location}>지역: {destination.location}</p>
+              <p css={s.location}>조회수: {destination.viewCount}회</p>
+              <p>{destination.address}</p>
+            </div>
+          ))
+        ) : (
+          <p>등록된 여행지가 없습니다</p>
+        )}
+        {totalPages > 1 && (
+          <div css={s.paginationContainer}>
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              css={s.paginationButton}
+              disabled={currentPage === 1}
+            >
+              &lt; 이전
+            </button>
+            {[...Array(totalPages)].map((_, index) => (
+              <button
+                key={index}
+                onClick={() => handlePageChange(index + 1)}
+                css={s.paginationButton}
+              >
+                {index + 1}
+              </button>
+            ))}
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              css={s.paginationButton}
+              disabled={currentPage === totalPages}
+            >
+              다음 &gt;
+            </button>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
