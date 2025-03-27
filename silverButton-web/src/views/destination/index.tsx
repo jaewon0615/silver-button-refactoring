@@ -1,8 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as s from "./style";
+import { IoIosArrowBack } from "react-icons/io";
+
 
 export interface DestinationType {
   id: number;
@@ -62,80 +64,95 @@ export default function Destination() {
     setCurrentPage(page);
   };
 
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -200, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 200, behavior: "smooth" });
+    }
+  };
+
   const handleLocationSeoul = () => {
     navigate(`/destination/location/서울`);
-};
+  };
 
-const handleLocationBusan = () => {
-  navigate(`/destination/location/부산`);
-};
+  const handleLocationBusan = () => {
+    navigate(`/destination/location/부산`);
+  };
 
-const handleLocationJeju = () => {
-  navigate(`/destination/location/제주`);
-};
+  const handleLocationJeju = () => {
+    navigate(`/destination/location/제주`);
+  };
 
-const handleLocationGangwon = () => {
-  navigate(`/destination/location/강원`);
-};
+  const handleLocationGangwon = () => {
+    navigate(`/destination/location/강원`);
+  };
 
-const handleLocationGyeongbuk = () => {
-  navigate(`/destination/location/경북`);
-};
+  const handleLocationGyeongbuk = () => {
+    navigate(`/destination/location/경북`);
+  };
 
-const handleLocationGyeongnam = () => {
-  navigate(`/destination/location/경남`);
-};
+  const handleLocationGyeongnam = () => {
+    navigate(`/destination/location/경남`);
+  };
 
-const handleLocationJeonnam = () => {
-  navigate(`/destination/location/전남`);
-};
+  const handleLocationJeonnam = () => {
+    navigate(`/destination/location/전남`);
+  };
 
-const handleLocationJeonbuk = () => {
-  navigate(`/destination/location/전북`);
-};
+  const handleLocationJeonbuk = () => {
+    navigate(`/destination/location/전북`);
+  };
 
-const handleLocationChungbuk = () => {
-  navigate(`/destination/location/충북`);
-};
+  const handleLocationChungbuk = () => {
+    navigate(`/destination/location/충북`);
+  };
 
-const handleLocationChungnam = () => {
-  navigate(`/destination/location/충남`);
-};
+  const handleLocationChungnam = () => {
+    navigate(`/destination/location/충남`);
+  };
 
-const handleLocationGyeongki = () => {
-  navigate(`/destination/location/경기`);
-};
+  const handleLocationGyeongki = () => {
+    navigate(`/destination/location/경기`);
+  };
 
-const navigateToDestinationDetail = (destinationId: number) => {
-  navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
-};
+  const navigateToDestinationDetail = (destinationId: number) => {
+    navigate(`/my-page/destination/id/${destinationId}`);
+  };
 
   return (
     <div css={s.container}>
       <h1>여행지 목록</h1>
-      {/* <input
-        css={s.searchInput}
-        type="text"
-        placeholder="여행지 검색..."
-        value={searchTerm}
-        onChange={(e) => setSearchTerm(e.target.value)}
-      /> */}
-      <div css={s.buttonContainer}>
-      <button css={s.buttonStyleSeoul} onClick={handleLocationSeoul}><span>서울</span></button>
-      <button css={s.buttonStyleBusan} onClick={handleLocationBusan}><span>부산</span></button>
-      <button css={s.buttonStyleJeju} onClick={handleLocationJeju}><span>제주</span></button>
-      <button css={s.buttonStyleGangwon} onClick={handleLocationGangwon}><span>강원</span></button>
-      <button css={s.buttonStyleGyeongbuk} onClick={handleLocationGyeongbuk}><span>경북</span></button>
-      <button css={s.buttonStyleGyeongnam} onClick={handleLocationGyeongnam}><span>경남</span></button>
-      <button css={s.buttonStyleJeonnam} onClick={handleLocationJeonnam}><span>전남</span></button>
-      <button css={s.buttonStyleJeonbuk} onClick={handleLocationJeonbuk}><span>전북</span></button>
-      <button css={s.buttonStyleChungbuk} onClick={handleLocationChungbuk}><span>충북</span></button>
-      <button css={s.buttonStyleChungnam} onClick={handleLocationChungnam}><span>충남</span></button>
-      <button css={s.buttonStyleGyeongki} onClick={handleLocationGyeongki}><span>경기</span></button>
+      
+      {/* Location buttons carousel */}
+      <div css={s.buttonCarouselContainer}>
+      <button css={s.arrowButtonTop} onClick={scrollLeft}>
+            ◀
+          </button>
+        <div css={s.buttonCarousel} ref={carouselRef}>
+          <button css={s.buttonStyleSeoul} onClick={handleLocationSeoul}><span>서울</span></button>
+          <button css={s.buttonStyleBusan} onClick={handleLocationBusan}><span>부산</span></button>
+          <button css={s.buttonStyleJeju} onClick={handleLocationJeju}><span>제주</span></button>
+          <button css={s.buttonStyleGangwon} onClick={handleLocationGangwon}><span>강원</span></button>
+          <button css={s.buttonStyleGyeongbuk} onClick={handleLocationGyeongbuk}><span>경북</span></button>
+          <button css={s.buttonStyleGyeongnam} onClick={handleLocationGyeongnam}><span>경남</span></button>
+          <button css={s.buttonStyleJeonnam} onClick={handleLocationJeonnam}><span>전남</span></button>
+          <button css={s.buttonStyleJeonbuk} onClick={handleLocationJeonbuk}><span>전북</span></button>
+          <button css={s.buttonStyleChungbuk} onClick={handleLocationChungbuk}><span>충북</span></button>
+          <button css={s.buttonStyleChungnam} onClick={handleLocationChungnam}><span>충남</span></button>
+          <button css={s.buttonStyleGyeongki} onClick={handleLocationGyeongki}><span>경기</span></button>
+        </div>
+        <button css={s.arrowButtonTop} onClick={scrollRight}>
+          ▶
+        </button>
       </div>
       
-      
-
       <div css={s.gridContainer}>
         {currentRecords.length > 0 ? (
           currentRecords.map((destination) => (
@@ -148,42 +165,4 @@ const navigateToDestinationDetail = (destinationId: number) => {
               />
               <h2 css={s.title}>{destination.name}</h2>
               <p css={s.category}>카테고리: {destination.category}</p>
-              <p css={s.location}>지역: {destination.location}</p>
-              <p css={s.location}>조회수: {destination.viewCount}회</p>
-              <p>{destination.address}</p>
-            </div>
-          ))
-        ) : (
-          <p>등록된 여행지가 없습니다</p>
-        )}
-        {totalPages > 1 && (
-          <div css={s.paginationContainer}>
-            <button
-              onClick={() => handlePageChange(currentPage - 1)}
-              css={s.paginationButton}
-              disabled={currentPage === 1}
-            >
-              &lt; 이전
-            </button>
-            {[...Array(totalPages)].map((_, index) => (
-              <button
-                key={index}
-                onClick={() => handlePageChange(index + 1)}
-                css={s.paginationButton}
-              >
-                {index + 1}
-              </button>
-            ))}
-            <button
-              onClick={() => handlePageChange(currentPage + 1)}
-              css={s.paginationButton}
-              disabled={currentPage === totalPages}
-            >
-              다음 &gt;
-            </button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
+              <p css={s.location}>지역: 

@@ -150,11 +150,11 @@ export const buttonStyle = css`
 `;
 
 export const buttonStyleSeoul = css`
-  width: 17%;
-  height: 80px;
+  width: 200px; /* 버튼의 고정된 너비 */
+  height: 100px; /* 고정된 높이 */
   font-size: 20px;
   font-weight: bold;
-  color: white; /* 텍스트 색깔을 선명하게 유지 */
+  color: white; /* 텍스트 색상을 선명하게 유지 */
   border: none;
   border-radius: 15px;
   cursor: pointer;
@@ -163,6 +163,7 @@ export const buttonStyleSeoul = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -172,16 +173,16 @@ export const buttonStyleSeoul = css`
     width: 100%;
     height: 100%;
     background: url("https://search.pstatic.net/sunny/?src=https%3A%2F%2Fus.123rf.com%2F450wm%2Fnattanaicj%2Fnattanaicj1512%2Fnattanaicj151200188%2F50305740-%25EC%2584%259C%25EC%259A%25B8-%25ED%2595%259C%25EA%25B5%25AD%25EC%2597%2590%25EC%2584%259C-%25EB%25B0%25A4%25EC%2597%2590-%25EA%25B2%25BD%25EB%25B3%25B5%25EA%25B6%2581-%25EA%25B6%2581%25EC%25A0%2584.jpg%3Fver%3D6&type=sc960_832") 
-                no-repeat center center / cover;
-    opacity: 0.5; /* 배경 이미지만 50% 투명하게 설정 */
+      no-repeat center center / cover;
+    opacity: 0.5; /* 배경 이미지에 50% 투명도 설정 */
     z-index: 0;
   }
 
   span {
     position: relative;
     z-index: 1; /* 글자가 배경 위에 위치하도록 설정 */
-    color: white; /* 텍스트 색깔을 원래대로 유지 */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트에 그림자 추가하여 가독성 향상 */
+    color: white; /* 텍스트 색상 유지 */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* 텍스트에 그림자 추가 */
   }
 
   transition: transform 0.3s ease-in-out;
@@ -200,9 +201,10 @@ export const buttonStyleSeoul = css`
   }
 `;
 
+
 export const buttonStyleBusan = css`
-  width: 17%;
-  height: 80px;
+  width: 200px;
+  height: 100px;
   font-size: 20px;
   font-weight: bold;
   color: white; /* 텍스트 색깔을 선명하게 유지 */
@@ -214,6 +216,7 @@ export const buttonStyleBusan = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -252,8 +255,8 @@ export const buttonStyleBusan = css`
 `;
 
 export const buttonStyleJeju = css`
-  width: 17%;
-  height: 80px;
+  width: 200px;
+  height: 100px;
   font-size: 20px;
   font-weight: bold;
   color: white; /* 텍스트 색깔을 선명하게 유지 */
@@ -265,6 +268,7 @@ export const buttonStyleJeju = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -303,17 +307,23 @@ export const buttonStyleJeju = css`
 `;
 
 export const buttonContainer = css`
-  display: flex;
+  /* display: flex;
   justify-content: center;
   gap: 20px;
   margin-top: 20px;
   overflow-x: auto; /* 가로 스크롤 가능 */
-  white-space: nowrap; /* 버튼들이 한 줄에 유지되도록 설정 */
+  /* white-space: nowrap; 버튼들이 한 줄에 유지되도록 설정  */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
 `;
 
 export const buttonStyleGangwon = css`
-  width: 17%;
-  height: 80px;
+  width: 200px;
+  height: 100px;
   font-size: 20px;
   font-weight: bold;
   color: white; /* 텍스트 색깔을 선명하게 유지 */
@@ -325,6 +335,7 @@ export const buttonStyleGangwon = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -363,8 +374,8 @@ export const buttonStyleGangwon = css`
 `;
 
 export const buttonStyleGyeongbuk = css`
-  width: 17%;
-  height: 80px;
+ width: 200px;
+ height: 100px;
   font-size: 20px;
   font-weight: bold;
   color: white; /* 텍스트 색깔을 선명하게 유지 */
@@ -376,6 +387,7 @@ export const buttonStyleGyeongbuk = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -414,8 +426,8 @@ export const buttonStyleGyeongbuk = css`
 `;
 
 export const buttonStyleGyeongnam = css`
-  width: 17%;
-  height: 80px;
+  width: 200px;
+  height: 100px;
   font-size: 20px;
   font-weight: bold;
   color: white; /* 텍스트 색깔을 선명하게 유지 */
@@ -427,6 +439,7 @@ export const buttonStyleGyeongnam = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -465,8 +478,8 @@ export const buttonStyleGyeongnam = css`
 `;
 
 export const buttonStyleJeonnam = css`
-  width: 17%;
-  height: 80px;
+  width: 200px;
+  height: 100px;
   font-size: 20px;
   font-weight: bold;
   color: white; /* 텍스트 색깔을 선명하게 유지 */
@@ -478,6 +491,7 @@ export const buttonStyleJeonnam = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -516,8 +530,8 @@ export const buttonStyleJeonnam = css`
 `;
 
 export const buttonStyleJeonbuk = css`
-  width: 17%;
-  height: 80px;
+  width: 200px;
+  height: 100px;
   font-size: 20px;
   font-weight: bold;
   color: white; /* 텍스트 색깔을 선명하게 유지 */
@@ -529,6 +543,7 @@ export const buttonStyleJeonbuk = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -567,8 +582,8 @@ export const buttonStyleJeonbuk = css`
 `;
 
 export const buttonStyleChungbuk = css`
-  width: 17%;
-  height: 80px;
+  width: 200px;
+  height: 100px;
   font-size: 20px;
   font-weight: bold;
   color: white; /* 텍스트 색깔을 선명하게 유지 */
@@ -580,6 +595,7 @@ export const buttonStyleChungbuk = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -618,8 +634,8 @@ export const buttonStyleChungbuk = css`
 `;
 
 export const buttonStyleChungnam = css`
-  width: 17%;
-  height: 80px;
+  width: 200px;
+  height: 100px;
   font-size: 20px;
   font-weight: bold;
   color: white; /* 텍스트 색깔을 선명하게 유지 */
@@ -631,6 +647,7 @@ export const buttonStyleChungnam = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -669,8 +686,8 @@ export const buttonStyleChungnam = css`
 `;
 
 export const buttonStyleGyeongki = css`
-  width: 17%;
-  height: 80px;
+  width: 200px;
+  height: 100px;
   font-size: 20px;
   font-weight: bold;
   color: white; /* 텍스트 색깔을 선명하게 유지 */
@@ -682,6 +699,7 @@ export const buttonStyleGyeongki = css`
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-shrink: 0; /* 버튼 크기가 줄어들지 않도록 방지 */
 
   &::before {
     content: "";
@@ -718,3 +736,47 @@ export const buttonStyleGyeongki = css`
     cursor: not-allowed;
   }
 `;
+
+export const buttonCarouselContainer = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 20px 0;
+  width: 100%;
+`;
+
+export const buttonCarousel = css`
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;  // Enable horizontal scrolling
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  padding: 10px;
+  width: 100%;  // Show only 4-5 buttons initially
+  -ms-overflow-style: none;  // Hide scrollbar for IE
+  scrollbar-width: none;  // Hide scrollbar for Firefox
+
+  &::-webkit-scrollbar {
+    display: none;  // Hide scrollbar for Webkit browsers (Chrome, Safari, etc.)
+  }
+`;
+
+export const arrowButtonTop = css`
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin: 0 10px;
+  color: #333;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #007bff;
+  }
+`;
+
+
+
+
+
+

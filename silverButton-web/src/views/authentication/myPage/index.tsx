@@ -1,6 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../../../stores/auth.store";
 import axios from "axios";
@@ -13,6 +13,7 @@ import { IoIosContacts } from "react-icons/io";
 import { IoIosJournal } from "react-icons/io";
 import { MdOutlineDirectionsRun } from "react-icons/md";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
+import { MdCardTravel } from "react-icons/md";
 
 const MyPage = () => {
   const { isAuthenticated, user, login, logout } = useAuthStore();
@@ -70,7 +71,7 @@ const MyPage = () => {
     };
 
     fetchProfileImg();
-  }, []);
+  }, [token]);
 
   const handleProfileImgEdit = () => {
     alert("프로필 이미지를 수정합니다.");
@@ -160,8 +161,6 @@ const MyPage = () => {
     }
   };
 
-  
-
   const handleMessageClick = () => {
     navigate("/message");
   };
@@ -170,7 +169,20 @@ const MyPage = () => {
     navigate("/my-page/resign");
   };
 
-  
+  // 🔄 버튼 캐러셀 기능 (좌우 스크롤)
+  const carouselRef = useRef<HTMLDivElement>(null);
+
+  const scrollLeft = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -200, behavior: "smooth" });
+    }
+  };
+
+  const scrollRight = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 200, behavior: "smooth" });
+    }
+  };
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditUser({ ...editUser, password: e.target.value });
@@ -290,31 +302,23 @@ const MyPage = () => {
       </div>
 
       <div css={s.tmiButtons}>
-        <div css={s.footerBox}>
-        <button css={s.messageButton} onClick={handleMessageClick}>
-          <MdOutlineMessage css={s.messageIcon} />내 쪽지함 가기
-        </button>
-        <button css={s.medicineButton} onClick={handleSaveMedicineClick}>
-          <AiOutlineMedicineBox css={s.messageIcon} /> 저장된 약품 정보보기
-        </button>
-        <button css={s.recordButton} onClick={handleHealthRecordClick}>
-          <MdOutlineHealthAndSafety css={s.messageIcon} />건강 기록 관리
-        </button>
-        <button css={s.emergencyButton} onClick={handleEmergenctContactClick}>
-        <IoIosContacts  css={s.messageIcon}/>비상연락망 등록 / 조회
-        </button>
-        <button css={s.diaryButton} onClick={handleDiaryClick}>
-        <IoIosJournal css={s.messageIcon} />오늘의 일기
-        </button>
-        <button css={s.exerciseButton} onClick={handleExerciseClick}>
-        <MdOutlineDirectionsRun css={s.messageIcon}/>  운동 기록 일지
-        </button>
-        <button css={s.expenseButton} onClick={handleExpenseClick}>
-        <FaMoneyCheckDollar css={s.messageIcon} /> 가계부 관리
-        </button>
-        <button css={s.expenseButton} onClick={handleDestinaionClick}>
-        <FaMoneyCheckDollar css={s.messageIcon} /> 여행지 목록
-        </button>
+        <div css={s.buttonCarouselContainer}>
+          <button css={s.arrowButton} onClick={scrollLeft}>
+            ◀
+          </button>
+          <div css={s.buttonCarousel} ref={carouselRef}>
+            <button css={s.messageButton} onClick={handleMessageClick}> <MdOutlineMessage /> 내 쪽지함 </button>
+            <button css={s.medicineButton} onClick={handleSaveMedicineClick}> <AiOutlineMedicineBox /> 약품 정보 </button>
+            <button css={s.recordButton} onClick={handleHealthRecordClick}> <MdOutlineHealthAndSafety /> 건강 기록 </button>
+            <button css={s.emergencyButton} onClick={handleEmergenctContactClick}> <IoIosContacts /> 비상연락망 </button>
+            <button css={s.diaryButton} onClick={handleDiaryClick}> <IoIosJournal /> 오늘의 일기 </button>
+            <button css={s.exerciseButton} onClick={handleExerciseClick}> <MdOutlineDirectionsRun /> 운동 기록 </button>
+            <button css={s.expenseButton} onClick={handleExpenseClick}> <FaMoneyCheckDollar /> 가계부 목록 </button>
+            <button css={s.destinationButton} onClick={handleDestinaionClick}> <MdCardTravel /> 여행지 목록 </button>
+          </div>
+          <button css={s.arrowButton} onClick={scrollRight}>
+            ▶
+          </button>
         </div>
         <div css={s.myPageFooter}>
           <button css={s.saveButton} onClick={handleSaveChanges}>

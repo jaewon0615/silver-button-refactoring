@@ -5,17 +5,12 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as s from "./style";
 import { BiCategory } from "react-icons/bi";
 import { CiLocationArrow1 } from "react-icons/ci";
-import { FaRoad } from "react-icons/fa";
-import { FaLocationArrow } from "react-icons/fa";
-import { FaClock } from "react-icons/fa6";
-import { FaPhoneAlt } from "react-icons/fa";
+import { FaRoad, FaLocationArrow, FaClock, FaPhoneAlt, FaStar, FaSubway } from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
-import { FaStar } from "react-icons/fa";
-import { FaSubway } from "react-icons/fa";
-import { TbEyeSearch } from "react-icons/tb";
 import { IoIosPricetags } from "react-icons/io";
 import { MdDescription } from "react-icons/md";
-import { dE } from "@fullcalendar/core/internal-common";
+import { TbEyeSearch } from "react-icons/tb";
+import { FaCopy } from "react-icons/fa";
 
 export interface DestinationType {
   id: number;
@@ -102,7 +97,15 @@ export default function DestinationDetail() {
     }
   };
 
-  
+  // 주소를 클립보드에 복사하는 함수
+  const handleCopy = (text: string) => {
+    navigator.clipboard.writeText(text).then(() => {
+      alert("주소가 클립보드에 복사되었습니다.");
+    }).catch((error) => {
+      console.error("주소 복사 실패:", error);
+      alert("주소 복사에 실패했습니다.");
+    });
+  };
 
   return (
     <div css={s.detailContainer}>
@@ -120,7 +123,6 @@ export default function DestinationDetail() {
                 {destination.rating}
                 <button onClick={saveDestination} css={s.saveButton}>저장</button>
               </span>
-              
             </div>
             <div>
               <img
@@ -142,12 +144,14 @@ export default function DestinationDetail() {
             </div>
             <div css={s.flex}>
               <div css={s.column}>
-                <FaClock /> 운영시간: {destination.openingHours}~
-                {destination.closingHours}
+                <FaClock /> 운영시간: {destination.openingHours}~{destination.closingHours}
               </div>
               <div css={s.column}>
                 <FaRoad />
                 상세주소: {destination.address}
+                <button onClick={() => handleCopy(destination.address)} css={s.copyButton} title="주소 복사">
+                <FaCopy />
+                </button>
               </div>
             </div>
 

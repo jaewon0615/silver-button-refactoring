@@ -221,3 +221,15 @@ export const saveButton = css`
   }
 `;
 
+export const copyButton = css`
+  background: none;
+  border: none;
+  color: black;
+  cursor: pointer;
+  margin-left: 10px;  
+  font-size: 1.2em;
+  
+  &:hover {
+    color: black;
+  }
+`;

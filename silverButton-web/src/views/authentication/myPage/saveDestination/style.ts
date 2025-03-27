@@ -154,3 +154,39 @@ export const noData = css`
   color: #888;
 `;
 
+export const deleteButton = css`
+  padding: 8px 13px;
+  background-color: #e53935; /* Red */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease-in-out;
+  text-align: center;
+  width: auto;
+  display: inline-block; /* Align horizontally */
+  white-space: nowrap; /* Prevent text from wrapping */
+
+  &:hover {
+    background-color: #d32f2f; /* Darker red */
+  }
+
+  &:active {
+    background-color: #c62828; /* Even darker red */
+  }
+`;
+
+export const copyButton = css`
+  background: none;
+  border: none;
+  color: #007bff;
+  cursor: pointer;
+  margin-left: 10px;
+  font-size: 1.2em;
+  
+  &:hover {
+    color: #0056b3;
+  }
+`;

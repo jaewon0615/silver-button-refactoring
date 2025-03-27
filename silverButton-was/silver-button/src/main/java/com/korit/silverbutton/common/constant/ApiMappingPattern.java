@@ -25,4 +25,5 @@ public class ApiMappingPattern {
     public static final String EXPENSE = "/api/v1/expense";
     public static final String DESTINATION = "/api/v1/destination";
     public static final String USERSAVEDDESTINATION = "/api/v1/user-saved-destination";
+    public static final String REVIEW = "/api/v1/review";
 }

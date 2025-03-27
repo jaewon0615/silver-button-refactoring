@@ -178,3 +178,16 @@ export const searchInput = css`
     border-color: #007bff;
   }
 `;
+
+export const errorMessage = css`
+text-align: center;
+  font-size: 16px;
+  color: #d32f2f; 
+  font-weight: bold;
+  background: #ffccbc;
+  padding: 14px;
+  border-radius: 12px;
+  border: 1px solid #e57373; 
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  margin-top: 20px;
+`;

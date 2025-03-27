@@ -81,7 +81,8 @@ public class WebSecurityConfig {
                                 new AntPathRequestMatcher("/api/v1/exercise/**"),
                                 new AntPathRequestMatcher("/api/v1/expense/**"),
                                 new AntPathRequestMatcher("/api/v1/destination/**"),
-                                new AntPathRequestMatcher("/api/v1/user-saved-destination/**")
+                                new AntPathRequestMatcher("/api/v1/user-saved-destination/**"),
+                                new AntPathRequestMatcher("/api/v1/review/**")
                         )
                         .permitAll()  // 위의 엔드포인트는 모두 허용
                         .requestMatchers(

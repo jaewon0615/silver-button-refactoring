@@ -12,6 +12,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 @NoArgsConstructor
 public class UserSavedDestinationResponseDto {
+    private Long id;
+
     private Long userId;
 
     private Long destinationId;
@@ -52,6 +54,7 @@ public class UserSavedDestinationResponseDto {
 
 
     public UserSavedDestinationResponseDto(UserSavedDestination userSavedDestination) {
+        this.id = userSavedDestination.getId();
         this.userId = userSavedDestination.getUser().getId();
         this.destinationId = userSavedDestination.getDestination().getId();
         this.name = userSavedDestination.getDestination().getName();

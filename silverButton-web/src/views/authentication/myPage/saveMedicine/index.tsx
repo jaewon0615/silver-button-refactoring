@@ -91,7 +91,7 @@ export default function SaveMedicineList() {
         {filteredItems.length > 0 ? (
           <SaveMedicineUserId saveMedicineItem={currentItems} />
         ) : (
-          <div>검색 결과가 없습니다</div>
+          <p css={s.errorMessage}>등록된 약품이 없습니다</p>
         )}
 
         <div css={s.paginationContainer}>

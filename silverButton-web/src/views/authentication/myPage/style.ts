@@ -130,32 +130,33 @@ export const tmiButtons = css`
 `;
 
 export const messageButton = css`
-  background-color: #4F93F5;  // Purple color
-  color: white;
-  font-size: 30px;
-  font-weight: bold;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 35%;
+background-color: #4F93F5;  // Purple color
+color: white;
+font-size: 40px;
+font-weight: bold;
+padding: 10px 15px;
+border: none;
+border-radius: 15px;
+cursor: pointer;
+transition: transform 0.3s ease, box-shadow 0.3s ease;
+width: 50%;  // Increased width for a wider button
+height: 150px;
 
-  &:hover {
-    transform: scale(1.05);
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  }
+&:hover {
+  transform: scale(1.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-  &:active {
-    transform: scale(0.98);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  }
+&:active {
+  transform: scale(0.98);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
 `;
 
 export const medicineButton = css`
   background-color: #F59E0B;  // Purple color
   color: white;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   padding: 10px 15px;
   border: none;
@@ -178,7 +179,7 @@ export const medicineButton = css`
 export const recordButton = css`
   background-color: #34D399;  // Purple color
   color: white;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   padding: 10px 15px;
   border: none;
@@ -201,7 +202,7 @@ export const recordButton = css`
 export const emergencyButton = css`
   background-color: #dc3545;  // Purple color
   color: white;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   padding: 10px 15px;
   border: none;
@@ -224,7 +225,7 @@ export const emergencyButton = css`
 export const diaryButton = css`
   background-color: #6f42c1;  // Purple color
   color: white;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   padding: 10px 15px;
   border: none;
@@ -247,7 +248,7 @@ export const diaryButton = css`
 export const exerciseButton = css`
   background-color: rgb(189, 183, 107);  // Purple color
   color: white;
-  font-size: 30px;
+  font-size: 40px;
   font-weight: bold;
   padding: 10px 15px;
   border: none;
@@ -270,7 +271,30 @@ export const exerciseButton = css`
 export const expenseButton = css`
   background-color: #D9C29B;  // Purple color
   color: white;
-  font-size: 30px;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 35%;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+export const destinationButton = css`
+  background-color: #032132;  // Purple color
+  color: white;
+  font-size: 40px;
   font-weight: bold;
   padding: 10px 15px;
   border: none;
@@ -364,4 +388,122 @@ display: flex;
   justify-content: space-between;
   gap: 20px;
   flex: 1;
+`;
+
+export const buttonStyle = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  font-weight: bold;
+  color: #fff;
+  background-color: #007bff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  
+  &:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    background-color: #003d80;
+    transform: scale(0.98);
+  }
+  
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+  }
+`;
+
+
+export const buttonCarouselContainer = css`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 20px;
+`;
+
+export const buttonCarouselWrapper = css`
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  
+`;
+
+export const buttonCarousel = css`
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  width: 100%;
+  padding: 10px 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+`;
+
+export const carouselButton = css`
+  flex: 0 0 auto;
+  padding: 10px 15px;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background 0.3s;
+
+  &:hover {
+    background-color: #0056b3;
+  }
+`;
+
+export const arrowButton = css`
+  background: none;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+  margin: 0 10px;
+  color: #333;
+  transition: color 0.3s;
+
+  &:hover {
+    color: #007bff;
+  }
+`;
+
+export const carouselContainer = css`
+  display: flex;
+  align-items: center;
+  width: 100%;
+`;
+
+export const buttonList = css`
+  display: flex;
+  gap: 10px;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  white-space: nowrap;
+  width: 400px;
+  padding: 10px 0;
+`;
+
+export const hiddenScroll = css`
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
 `;
