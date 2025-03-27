@@ -21,8 +21,8 @@ import java.util.stream.Collectors;
 import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
-@Transactional
 @RequiredArgsConstructor
+@Transactional
 public class UserSavedDestinationServiceImpl implements UserSavedDestinationService {
     private final UserSavedDestinationRepository userSavedDestinationRepository;
     private final UserRepository userRepository;
