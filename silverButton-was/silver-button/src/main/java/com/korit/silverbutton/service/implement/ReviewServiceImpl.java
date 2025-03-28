@@ -19,6 +19,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -82,5 +83,17 @@ public class ReviewServiceImpl implements ReviewService {
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS,data);
+    }
+
+
+
+    @Override
+    public ResponseDto<Boolean> deleteReviewById(Long id) {
+        try {
+            reviewRepository.deleteReviewById(id);
+        } catch (Exception e){
+            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS,true);
     }
 }

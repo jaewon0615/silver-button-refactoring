@@ -73,6 +73,10 @@ import LocationChungbuk from "./views/destination/locationChungbuk"
 import LocationChungnam from "./views/destination/locationChungnam"
 import LocationGyeongki from "./views/destination/locationGyeongki"
 
+import Review from "./views/destination/review"
+
+import ReviewGet from "./views/destination/review/reviewGet"
+
 export default function App() {
   const { isAuthenticated, loadFromLocalStorage } = useAuthStore();
 
@@ -198,6 +202,10 @@ export default function App() {
 
           <Route path="my-page/destination/id/:id" element={<DestinationDetail/>}/>
 
+          <Route path="/review/:id" element={<Review/>}/>
+          <Route path="/review/destinationId/:destinationId" element={<ReviewGet/>}/>
+
+            
           <Route path="/destination/location/서울" element={<LocationSeoul/>}/>
           <Route path="/destination/location/서울/중구" element={<LocationSeoulJunggu/>}/>
 

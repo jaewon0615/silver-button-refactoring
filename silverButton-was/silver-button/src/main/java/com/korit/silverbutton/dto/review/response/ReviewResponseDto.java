@@ -29,6 +29,11 @@ public class ReviewResponseDto {
 
     private LocalDateTime updatedAt;
 
+    private String name;
+
+    private String nickname;
+
+
     public ReviewResponseDto(Review review) {
         this.id = review.getId();
         this.userId = review.getUser().getId();
@@ -37,5 +42,7 @@ public class ReviewResponseDto {
         this.reviewText = review.getReviewText();
         this.createdAt = review.getCreatedAt();
         this.updatedAt = review.getUpdatedAt();
+        this.name = review.getDestination().getName();
+        this.nickname = review.getUser().getNickname();
     }
 }

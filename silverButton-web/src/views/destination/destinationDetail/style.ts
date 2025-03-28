@@ -28,7 +28,7 @@ export const diaryContainer = css`
 
 export const title = css`
   color: #7f3fbf; /* 보라색 */
-  font-size: 36px;
+  font-size: 40px;
   font-weight: 600;
   margin-bottom: 20px; /* 여백 추가 */
   text-align: center;
@@ -56,7 +56,7 @@ export const backButton = css`
   margin-top: 20px; /* 여백 */
   cursor: pointer;
   text-align: center;
-  font-size: 18px;
+  font-size: 23px;
   font-weight: bold;
   background-color: #4a90e2; /* 파란색 배경 */
   width: 150px; /* 고정 너비 */
@@ -75,6 +75,59 @@ export const backButton = css`
     transform: translateY(1px); /* 클릭 시 살짝 아래로 이동 */
   }
 `;
+
+export const reviewButton = css`
+  color: white; /* 버튼 글자색 */
+  margin-top: 20px; /* 여백 */
+  cursor: pointer;
+  text-align: center;
+  font-size: 23px;
+  font-weight: bold;
+  background-color: yellowgreen; /* 파란색 배경 */
+  width: 150px; /* 고정 너비 */
+  padding: 10px; /* 내부 여백 */
+  border-radius: 8px; /* 둥근 모서리 */
+  border: none; /* 테두리 없앰 */
+  transition: background-color 0.3s, transform 0.2s; /* 호버 및 클릭 시 부드러운 효과 */
+  margin-left: 30px;
+
+  &:hover {
+    background-color: yellowgreen; /* 호버 시 어두운 파란색 배경 */
+    transform: translateY(-2px); /* 호버 시 위로 살짝 이동 */
+  }
+
+  &:active {
+    background-color: yellowgreen; /* 클릭 시 더 어두운 파란색 배경 */
+    transform: translateY(1px); /* 클릭 시 살짝 아래로 이동 */
+  }
+  `;
+
+export const reviewGetButton = css`
+  color: white; /* 버튼 글자색 */
+  margin-top: 20px; /* 여백 */
+  cursor: pointer;
+  text-align: center;
+  font-size: 23px;
+  font-weight: bold;
+  background-color: #FF8C42; /* 밝은 오렌지 */
+  width: 150px; /* 고정 너비 */
+  padding: 10px; /* 내부 여백 */
+  border-radius: 8px; /* 둥근 모서리 */
+  border: none; /* 테두리 없앰 */
+  transition: background-color 0.3s, transform 0.2s; /* 호버 및 클릭 시 부드러운 효과 */
+  margin-left: 30px;
+
+  &:hover {
+    background-color: #E07B39; /* 호버 시 진한 오렌지 */
+    transform: translateY(-2px); /* 호버 시 위로 살짝 이동 */
+  }
+
+  &:active {
+    background-color: #C96A30; /* 클릭 시 더 진한 오렌지 */
+    transform: translateY(1px); /* 클릭 시 살짝 아래로 이동 */
+  }
+`;
+
 
 
 
@@ -100,6 +153,7 @@ export const column = css`
   padding: 15px;
   border-radius: 8px;
   margin-top: 25px;
+  font-size: 20px;
   font-weight: bold;
 `;
 
@@ -232,4 +286,8 @@ export const copyButton = css`
   &:hover {
     color: black;
   }
+`;
+
+export const buttonCt = css`
+  gap: 30px;
 `;

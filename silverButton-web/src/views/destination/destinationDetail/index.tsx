@@ -52,6 +52,14 @@ export default function DestinationDetail() {
     navigate(`/destination`);
   };
 
+  const handleReview = () => {
+    navigate(`/review/${id}`);
+  };
+
+  const handleReviewGet = () => {
+    navigate(`/review/destinationId/${id}`);
+  };
+
   const fetchDestination = async (id: string) => {
     try {
       setLoading(true);
@@ -197,10 +205,19 @@ export default function DestinationDetail() {
                 조회수: {destination.viewCount}회
               </div>
             </div>
-
+            
+            <div css={s.buttonCt}>
             <button onClick={handleBack} css={s.backButton}>
               이전 페이지
             </button>
+            <button css={s.reviewButton} onClick={handleReview}>
+              리뷰 작성
+            </button>
+            <button css={s.reviewGetButton} onClick={handleReviewGet}>
+              리뷰 조회
+            </button>
+            </div>
+            
           </div>
         ) : (
           <p>여행지가 존재하지 않습니다</p>

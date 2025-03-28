@@ -162,7 +162,6 @@ export default function Diary() {
             
 
             <button type="submit" css={s.submitButton}>일기 등록</button>
-          
         </form>
       </div>
 
