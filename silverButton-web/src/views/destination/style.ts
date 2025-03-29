@@ -775,8 +775,8 @@ export const arrowButtonTop = css`
   }
 `;
 
-
-
-
+export const star = css`
+  color: red;
+`;
 
 

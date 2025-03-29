@@ -4,6 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import * as s from "./style";
 import { IoIosArrowBack } from "react-icons/io";
+import { FaStar } from "react-icons/fa";
 
 
 export interface DestinationType {
@@ -167,7 +168,7 @@ export default function Destination() {
               <p css={s.category}>카테고리: {destination.category}</p>
               <p css={s.location}>지역: {destination.location}</p>
               <p css={s.location}>조회수: {destination.viewCount}회</p>
-              <p>{destination.address}</p>
+              <p><FaStar css={s.star} />{destination.rating}</p>
             </div>
           ))
         ) : (

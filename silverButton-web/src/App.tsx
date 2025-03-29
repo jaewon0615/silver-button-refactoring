@@ -77,6 +77,8 @@ import Review from "./views/destination/review"
 
 import ReviewGet from "./views/destination/review/reviewGet"
 
+import DestinationReview from "./views/authentication/myPage/destinationReview"
+
 export default function App() {
   const { isAuthenticated, loadFromLocalStorage } = useAuthStore();
 
@@ -163,7 +165,7 @@ export default function App() {
                 <Route path="exercise/:id" element={<Exercise/>}/>
                 <Route path="expense/:id" element={<Expense/>}/>
                 <Route path="user-saved-destination/:id" element={<SaveDestination/>}/>
-
+                <Route path="/review/:userId" element={<DestinationReview/>}/>
               </Routes>
             }
           />
@@ -204,6 +206,7 @@ export default function App() {
 
           <Route path="/review/:id" element={<Review/>}/>
           <Route path="/review/destinationId/:destinationId" element={<ReviewGet/>}/>
+          
 
             
           <Route path="/destination/location/서울" element={<LocationSeoul/>}/>

@@ -7,6 +7,6 @@ import com.korit.silverbutton.dto.reviewLike.response.ReviewLikeResponseDto;
 import javax.annotation.Resource;
 
 public interface ReviewLikeService {
-    ResponseDto<ReviewLikeResponseDto> postReviewLike(Long userId, Long reviewId,ReviewLikeRequestDto dto);
+    ResponseDto<ReviewLikeResponseDto> postReviewLike(Long userId, ReviewLikeRequestDto dto);
 
 }

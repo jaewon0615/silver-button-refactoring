@@ -14,6 +14,7 @@ import { IoIosJournal } from "react-icons/io";
 import { MdOutlineDirectionsRun } from "react-icons/md";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { MdCardTravel } from "react-icons/md";
+import { MdOutlineRateReview } from "react-icons/md";
 
 const MyPage = () => {
   const { isAuthenticated, user, login, logout } = useAuthStore();
@@ -161,6 +162,12 @@ const MyPage = () => {
     }
   };
 
+  const handleDestinaionReviewClick = () => {
+    if (user) {
+      navigate(`/my-page/review/${user.id}`);
+    }
+  };
+
   const handleMessageClick = () => {
     navigate("/message");
   };
@@ -168,6 +175,7 @@ const MyPage = () => {
   const handleResignClick = () => {
     navigate("/my-page/resign");
   };
+  
 
   // 🔄 버튼 캐러셀 기능 (좌우 스크롤)
   const carouselRef = useRef<HTMLDivElement>(null);
@@ -315,6 +323,7 @@ const MyPage = () => {
             <button css={s.exerciseButton} onClick={handleExerciseClick}> <MdOutlineDirectionsRun /> 운동 기록 </button>
             <button css={s.expenseButton} onClick={handleExpenseClick}> <FaMoneyCheckDollar /> 가계부 목록 </button>
             <button css={s.destinationButton} onClick={handleDestinaionClick}> <MdCardTravel /> 여행지 목록 </button>
+            <button css={s.destinationReviewButton} onClick={handleDestinaionReviewClick}> <MdOutlineRateReview /> 리뷰 관리 </button>
           </div>
           <button css={s.arrowButton} onClick={scrollRight}>
             ▶

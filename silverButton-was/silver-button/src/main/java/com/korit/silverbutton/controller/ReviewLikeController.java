@@ -21,15 +21,14 @@ import static com.korit.silverbutton.common.constant.ApiMappingPattern.REVIEW_LI
 public class ReviewLikeController {
     private final ReviewLikeService reviewLikeService;
 
-    private static final String REVIEW_LIKE_POST = "/{reviewId}";
+    private static final String REVIEW_LIKE_POST = "/";
 
     @PostMapping(REVIEW_LIKE_POST)
     private ResponseEntity<ResponseDto<ReviewLikeResponseDto>> postReviewLike(
             @AuthenticationPrincipal PrincipalUser principalUser,
-            @PathVariable Long reviewId,
             @RequestBody ReviewLikeRequestDto dto
             ) {
-        ResponseDto<ReviewLikeResponseDto> response = reviewLikeService.postReviewLike(principalUser.getId(),reviewId,dto);
+        ResponseDto<ReviewLikeResponseDto> response = reviewLikeService.postReviewLike(principalUser.getId(),dto);
         HttpStatus status = response.isResult() ? HttpStatus.OK : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
 

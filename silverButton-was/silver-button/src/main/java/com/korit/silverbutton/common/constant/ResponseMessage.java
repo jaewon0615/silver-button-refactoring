@@ -84,4 +84,6 @@ public class ResponseMessage {
     public static final String GET_HEALTH_MAGAZINE_TOP5 = "Retrieved top 5 health magazines successfully.";
     public static final String GET_HEALTH_MAGAZINE_LATEST = "Retrieved latest health magazine successfully.";
     public static final String GET_HEALTH_MAGAZINE_DESC = "Retrieved health magazine description successfully.";
+
+    public static final String ALREADY_LIKED = "Already liked: ";
 }

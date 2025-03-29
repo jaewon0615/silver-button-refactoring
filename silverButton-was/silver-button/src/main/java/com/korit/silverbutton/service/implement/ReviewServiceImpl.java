@@ -18,6 +18,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -45,7 +46,7 @@ public class ReviewServiceImpl implements ReviewService {
                     .destination(destination)
                     .rating(rating)
                     .reviewText(reviewText)
-                    .createdAt(date.atStartOfDay())
+                    .createdAt(LocalDateTime.now())
                     .build();
             reviewRepository.save(review);
             data = new ReviewResponseDto(review);

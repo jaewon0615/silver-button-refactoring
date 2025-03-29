@@ -33,4 +33,14 @@ public class Review {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
+    private Integer likeCount;
+
+    public void incrementLikeCount() {
+        if (this.likeCount == null) {
+            this.likeCount = 0;
+        }
+        this.likeCount++;
+    }
+
 }

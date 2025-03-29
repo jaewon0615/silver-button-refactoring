@@ -33,6 +33,8 @@ public class ReviewResponseDto {
 
     private String nickname;
 
+    private Integer likeCount;
+
 
     public ReviewResponseDto(Review review) {
         this.id = review.getId();
@@ -44,5 +46,6 @@ public class ReviewResponseDto {
         this.updatedAt = review.getUpdatedAt();
         this.name = review.getDestination().getName();
         this.nickname = review.getUser().getNickname();
+        this.likeCount = review.getLikeCount();
     }
 }
