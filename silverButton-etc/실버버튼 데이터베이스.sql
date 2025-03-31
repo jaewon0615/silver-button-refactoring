@@ -213,8 +213,30 @@ CREATE TABLE reviews (
   rating DECIMAL(3, 2) NOT NULL,           -- 평점 (1-5)
   review_text TEXT,                     -- 리뷰 내용
   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,  -- 리뷰 작성 일시
+  like_count INT,
+  dislike_count INT,
   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,  -- 리뷰 수정 일시
   FOREIGN KEY (destination_id) REFERENCES destination(id) ON DELETE CASCADE,  -- 여행지와 연결
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
+);
+
+CREATE TABLE review_likes (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    review_id BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_id, review_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (review_id) REFERENCES reviews(id) ON DELETE CASCADE
+);
+
+CREATE TABLE review_dislikes (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    review_id BIGINT NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    UNIQUE(user_id, review_id),
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (review_id) REFERENCES reviews(id) ON DELETE CASCADE
 );
 

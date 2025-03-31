@@ -36,11 +36,20 @@ public class Review {
 
     private Integer likeCount;
 
+    private Integer dislikeCount;
+
     public void incrementLikeCount() {
         if (this.likeCount == null) {
             this.likeCount = 0;
         }
         this.likeCount++;
+    }
+
+    public void incrementDisLikeCount() {
+        if (this.dislikeCount == null) {
+            this.dislikeCount = 0;
+        }
+        this.dislikeCount++;
     }
 
 }

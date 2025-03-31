@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.reviewLike.request;
+package com.korit.silverbutton.dto.reviewDislike.request;
 
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ReviewLikeRequestDto {
+public class ReviewDislikeRequestDto {
     @NotNull
     private Long reviewId;
 
