@@ -25,7 +25,7 @@ import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
-@Transactional
+
 public class ReviewServiceImpl implements ReviewService {
     private final ReviewRepository reviewRepository;
     private final DestinationRepository destinationRepository;
@@ -39,7 +39,7 @@ public class ReviewServiceImpl implements ReviewService {
         String reviewText = dto.getReviewText();
         try {
             User user = userRepository.findById(userId).orElse(null);
-            Destination destination = destinationRepository.findById(dto.getDestinationId()).orElse(null);
+            Destination destination = destinationRepository.findById(destinationId).orElse(null);
 
             Review review = Review.builder()
                     .user(user)
@@ -50,11 +50,13 @@ public class ReviewServiceImpl implements ReviewService {
                     .build();
             reviewRepository.save(review);
             data = new ReviewResponseDto(review);
-        } catch (Exception e){
-            return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+        } catch (Exception e) {
+            e.printStackTrace(); // 로그에 실제 오류 메시지 출력
+            return ResponseDto.setFailed("리뷰 작성 중 오류가 발생했습니다: " + e.getMessage());
         }
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS,data);
     }
+
 
     @Override
     public ResponseDto<List<ReviewResponseDto>> getReviewByUserId(Long userId) {
@@ -89,6 +91,7 @@ public class ReviewServiceImpl implements ReviewService {
 
 
     @Override
+    @Transactional
     public ResponseDto<Boolean> deleteReviewById(Long id) {
         try {
             reviewRepository.deleteReviewById(id);

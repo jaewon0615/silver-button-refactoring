@@ -66,6 +66,34 @@ export default function LocationSeoul() {
     navigate(`/destination/location/서울/중구`);
 };
 
+const handleLocationGangnamgu = () => {
+  navigate(`/destination/location/서울/강남구`);
+};
+
+const handleLocationYeongdeungpo = () => {
+  navigate(`/destination/location/서울/영등포구`);
+};
+
+const handleLocationSongpa = () => {
+  navigate(`/destination/location/서울/송파구`);
+};
+
+const handleLocationGangbuk = () => {
+  navigate(`/destination/location/서울/강북구`);
+};
+
+const handleLocationMapo = () => {
+  navigate(`/destination/location/서울/마포구`);
+};
+
+const handleLocationSeocho = () => {
+  navigate(`/destination/location/서울/서초구`);
+};
+
+const handleLocationJongro = () => {
+  navigate(`/destination/location/서울/종로구`);
+};
+
 const navigateToDestinationDetail = (destinationId: number) => {
   navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
 };
@@ -82,6 +110,14 @@ const navigateToDestinationDetail = (destinationId: number) => {
       />
       <div css={s.buttonContainer}>
       <button onClick={handleLocationJunggu} css={s.buttonStyle}>중구</button>
+      <button onClick={handleLocationGangnamgu} css={s.buttonStyle}>강남구</button>
+      <button onClick={handleLocationYeongdeungpo} css={s.buttonStyle}>영등포구</button>
+      <button onClick={handleLocationSongpa} css={s.buttonStyle}>송파구</button>
+      <button onClick={handleLocationGangbuk} css={s.buttonStyle}>강북구</button>
+      <button onClick={handleLocationMapo} css={s.buttonStyle}>마포구</button>
+      <button onClick={handleLocationSeocho} css={s.buttonStyle}>서초구</button>
+      <button onClick={handleLocationJongro} css={s.buttonStyle}>종로구</button>
+
       </div>
       
       <div css={s.gridContainer}>

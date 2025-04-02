@@ -165,6 +165,7 @@ export const keyframes = css`
 
 export const container = css`
   width: 100%;
+  height: 100vh;
   margin: 0 auto;
   padding: 20px 150px;
   border-radius: 8px;

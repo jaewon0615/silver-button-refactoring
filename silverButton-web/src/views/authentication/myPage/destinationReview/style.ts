@@ -8,6 +8,7 @@ export const recordContainer = css`
   display: flex;
   flex-direction: column;
   gap: 35px;
+  height: 100vh;
 `;
 
 export const conttSt = css`
@@ -182,5 +183,19 @@ export const itemCt = css`
 export const icon = css`
   width: 30px;
   height: 30px;
+`;
+
+
+export const reviewText = css`
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 10px;
+  color: gray;
+`;
+
+export const reviewCont = css`
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
 `;
 

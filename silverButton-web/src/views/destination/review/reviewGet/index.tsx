@@ -2,28 +2,35 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import * as s from './style'; // 스타일을 별도로 분리한 파일을 import
+import * as s from './style';
+import { AiTwotoneLike, AiTwotoneDislike } from "react-icons/ai";
+import { useCookies } from 'react-cookie';
 
 export interface ReviewGetType {
   id: number;
   userId: string;
   destinationId: number;
-  name: string;  // 여행지 이름
-  nickname: string;  // 유저 닉네임
+  name: string;
+  nickname: string;
   rating: number;
   reviewText: string;
-  createdAt: number;  // createdAt은 타임스탬프 형태로 받아온다고 가정
+  createdAt: number;
+  likeCount: number;
+  dislikeCount: number;
+  hasLiked: boolean; // 사용자가 좋아요를 눌렀는지 여부
+  hasDisliked: boolean; // 사용자가 싫어요를 눌렀는지 여부
 }
 
 export default function ReviewGet() {
   const { destinationId } = useParams<{ destinationId: string }>();
   const [reviewGet, setReviewGet] = useState<ReviewGetType[]>([]);
-  const [destinationName, setDestinationName] = useState<string>(""); // 여행지 이름 저장
-  const [loading, setLoading] = useState<boolean>(true); // 로딩 상태 추가
+  const [destinationName, setDestinationName] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(true);
+  const [averageRating, setAverageRating] = useState<number | null>(null);
+  const [cookies] = useCookies(["token"]);
   const [currentPage, setCurrentPage] = useState(1);
   const recordPerPage = 5;
   const [searchTerm, setSearchTerm] = useState("");
-  const [averageRating, setAverageRating] = useState<number | null>(null);
 
   useEffect(() => {
     fetchReviewGet();
@@ -42,7 +49,13 @@ export default function ReviewGet() {
   const fetchReviewGet = async () => {
     try {
       const response = await axios.get(`http://localhost:4040/api/v1/review/destinationId/${destinationId}`);
-      setReviewGet(response.data.data);
+      setReviewGet(response.data.data.map((review: { likeCount: any; dislikeCount: any; hasLiked: any; hasDisliked: any; }) => ({
+        ...review,
+        likeCount: review.likeCount ?? 0,
+        dislikeCount: review.dislikeCount ?? 0,
+        hasLiked: review.hasLiked ?? false, // 사용자가 좋아요를 눌렀는지 여부
+        hasDisliked: review.hasDisliked ?? false // 사용자가 싫어요를 눌렀는지 여부
+      })));
     } catch (error) {
       console.error("리뷰를 불러오는 데 실패했습니다.");
     }
@@ -59,6 +72,71 @@ export default function ReviewGet() {
     }
   };
 
+  const handleLike = async (reviewId: number, hasLiked: boolean) => {
+    try {
+      if (hasLiked) {
+        // 이미 좋아요를 눌렀다면 좋아요 취소
+        await axios.delete(`http://localhost:4040/api/v1/review-like/`, { data: { reviewId }, headers: { Authorization: `Bearer ${cookies.token}` } });
+        setReviewGet(prevReviews =>
+          prevReviews.map(review =>
+            review.id === reviewId ? { ...review, likeCount: review.likeCount - 1, hasLiked: false } : review
+          )
+        );
+      } else {
+        // 좋아요를 누르지 않았다면 좋아요 추가
+        await axios.post(`http://localhost:4040/api/v1/review-like/`, { reviewId }, { headers: { Authorization: `Bearer ${cookies.token}` } });
+        setReviewGet(prevReviews =>
+          prevReviews.map(review =>
+            review.id === reviewId ? { ...review, likeCount: review.likeCount + 1, hasLiked: true } : review
+          )
+        );
+      }
+    } catch (error) {
+      console.error("좋아요를 처리하는 데 실패했습니다.");
+    }
+  };
+
+  const handleDislike = async (reviewId: number, hasDisliked: boolean) => {
+    try {
+      if (hasDisliked) {
+        // 이미 싫어요를 눌렀다면 싫어요 취소
+        await axios.delete(`http://localhost:4040/api/v1/review-dislike/`, { data: { reviewId }, headers: { Authorization: `Bearer ${cookies.token}` } });
+        setReviewGet(prevReviews =>
+          prevReviews.map(review =>
+            review.id === reviewId ? { ...review, dislikeCount: review.dislikeCount - 1, hasDisliked: false } : review
+          )
+        );
+      } else {
+        // 싫어요를 누르지 않았다면 싫어요 추가
+        await axios.post(`http://localhost:4040/api/v1/review-dislike/`, { reviewId }, { headers: { Authorization: `Bearer ${cookies.token}` } });
+        setReviewGet(prevReviews =>
+          prevReviews.map(review =>
+            review.id === reviewId ? { ...review, dislikeCount: review.dislikeCount + 1, hasDisliked: true } : review
+          )
+        );
+      }
+    } catch (error) {
+      console.error("싫어요를 처리하는 데 실패했습니다.");
+    }
+  };
+
+  const renderStars = (rating: number) => {
+    const fullStars = Math.floor(rating);
+    const emptyStars = 5 - fullStars;
+    return (
+      <>
+        {'★'.repeat(fullStars)}{'☆'.repeat(emptyStars)}
+      </>
+    );
+  };
+
+  const formatDate = (timestamp: number) => {
+    const date = new Date(timestamp);
+    const koreaOffset = 9 * 60;
+    const localDate = new Date(date.getTime() + koreaOffset * 60 * 1000);
+    return localDate.toISOString().replace('T', ' ').split('.')[0];
+  };
+
   const filteredReviews = reviewGet.filter((review) =>
     review.nickname.toLowerCase().includes(searchTerm.toLowerCase())
   );
@@ -72,32 +150,11 @@ export default function ReviewGet() {
     setCurrentPage(page);
   };
 
-  // 별점 표시 함수
-  const renderStars = (rating: number) => {
-    const fullStars = Math.floor(rating);
-    const emptyStars = 5 - fullStars;
-    return (
-      <>
-        {'★'.repeat(fullStars)}{'☆'.repeat(emptyStars)}
-      </>
-    );
-  };
-
-  // 날짜 포맷 함수 (KST로 변환)
-  const formatDate = (timestamp: number) => {
-    const date = new Date(timestamp);
-    const koreaOffset = 9 * 60; // 9 hours in minutes
-    const localDate = new Date(date.getTime() + koreaOffset * 60 * 1000);
-    return localDate.toISOString().replace('T', ' ').split('.')[0]; // 'T' 제거하고 밀리초 제외
-  };
-
   return (
     <div css={s.detailContainer}>
       <div css={s.subCt}>
         <h1 css={s.title}>여행지 리뷰</h1>
-        {destinationName && !loading && (
-          <h1 css={s.destinationTitle}>{destinationName}</h1>
-        )}
+        {destinationName && !loading && <h1 css={s.destinationTitle}>{destinationName}</h1>}
         {averageRating !== null && (
           <h2 css={s.averageRating}>실버니즈 평균 평점: {averageRating.toFixed(1)}점</h2>
         )}
@@ -110,6 +167,14 @@ export default function ReviewGet() {
                 <div css={s.starRating}>{renderStars(review.rating)}</div>
                 <p css={s.reviewText}>{review.reviewText}</p>
                 <p css={s.colck}>{formatDate(review.createdAt)}</p>
+                <div css={s.count}>
+                  <button onClick={() => handleLike(review.id, review.hasLiked)} css={s.likeButton}>
+                    <AiTwotoneLike css={s.icon} /> {review.likeCount}
+                  </button>
+                  <button onClick={() => handleDislike(review.id, review.hasDisliked)} css={s.likeButton}>
+                    <AiTwotoneDislike css={s.icon} /> {review.dislikeCount}
+                  </button>
+                </div>
               </div>
             ))
           ) : (
@@ -131,7 +196,8 @@ export default function ReviewGet() {
             </div>
           )}
         </div>
+        </div>
       </div>
-    </div>
+    
   );
 }

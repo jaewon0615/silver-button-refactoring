@@ -4,16 +4,20 @@ import React, { useEffect, useState } from "react";
 
 const Map: React.FC = () => {
   const [locationName, setLocationName] = useState<string>("");
+  const [hospitalList, setHospitalList] = useState<any[]>([]); // 병원 리스트 상태 추가
+  const [isLoading, setIsLoading] = useState<boolean>(true); // 로딩 상태 추가
 
   useEffect(() => {
     const script = document.createElement("script");
     script.src =
-      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=d8816cf3f64c7b0eb51bbbd847d6b222&autoload=true&libraries=services";
+      "https://dapi.kakao.com/v2/maps/sdk.js?appkey=addd4d21214f341ba9311c1cdd4b2a3e&autoload=true&libraries=services"; // 앱키 포함
     script.async = true;
 
     script.onload = () => {
       if (window.kakao && window.kakao.maps) {
         console.log("Kakao Maps API loaded");
+
+        // 카카오맵 API가 로드된 후에 services.Places 사용
         window.kakao.maps.load(() => {
           const container = document.getElementById("map");
           if (!container) {
@@ -45,8 +49,10 @@ const Map: React.FC = () => {
                   position: currentPosition,
                 });
 
+                // 병원 검색 기능 추가
+                searchHospital(map, currentPosition);
+
                 if (window.kakao.maps.services) {
-                  console.log("Kakao Maps services loaded");
                   const geocoder = new window.kakao.maps.services.Geocoder();
                   geocoder.coord2RegionCode(
                     lng,
@@ -76,23 +82,31 @@ const Map: React.FC = () => {
                   "Kakao Map created successfully at:",
                   currentPosition
                 );
+
+                // 로딩 상태 해제
+                setIsLoading(false);
               },
-              () => {
+              (error) => {
+                console.error("Geolocation error:", error);
                 setFallbackPosition();
+                setIsLoading(false); // 위치를 가져오지 못했을 경우 로딩 상태 해제
               }
             );
           } else {
             console.error("Geolocation is not supported by this browser.");
             setFallbackPosition();
+            setIsLoading(false); // 위치를 가져오지 못했을 경우 로딩 상태 해제
           }
         });
       } else {
         console.error("Failed to load Kakao Maps API");
+        setIsLoading(false); // 카카오맵 API 로드 실패 시 로딩 상태 해제
       }
     };
 
     script.onerror = () => {
       console.error("Failed to load Kakao Maps API");
+      setIsLoading(false); // 스크립트 로드 실패 시 로딩 상태 해제
     };
 
     document.head.appendChild(script);
@@ -101,6 +115,29 @@ const Map: React.FC = () => {
       document.head.removeChild(script);
     };
   }, []);
+
+  // 병원 검색 함수 추가
+  const searchHospital = (map: any, currentPosition: any) => {
+    const places = new window.kakao.maps.services.Places();
+
+    places.keywordSearch("병원", (data: any[], status: any) => {
+      if (status === window.kakao.maps.services.Status.OK) {
+        console.log("병원 검색 결과:", data);
+        setHospitalList(data); // 검색된 병원 리스트를 상태에 저장
+
+        // 검색된 병원 위치를 지도에 표시
+        data.forEach((place: any) => {
+          const markerPosition = new window.kakao.maps.LatLng(place.y, place.x);
+          new window.kakao.maps.Marker({
+            map: map,
+            position: markerPosition,
+          });
+        });
+      } else {
+        console.error("병원 검색에 실패했습니다.", status);
+      }
+    });
+  };
 
   const setFallbackPosition = () => {
     const fallbackPosition = new window.kakao.maps.LatLng(35.1576, 129.059);
@@ -128,6 +165,23 @@ const Map: React.FC = () => {
     <div css={s.mapbox}>
       <h3>현재 위치: {locationName || "Loading..."}</h3>
       <div id="map" css={s.mapContainerStyle} />
+      
+      {isLoading ? (
+        <div>로딩중...</div>
+      ) : (
+        <div>
+          <h4>주변 병원 목록</h4>
+          <ul>
+            {hospitalList.length > 0 ? (
+              hospitalList.map((hospital, index) => (
+                <li key={index}>{hospital.place_name}</li>
+              ))
+            ) : (
+              <li>병원을 찾을 수 없습니다.</li>
+            )}
+          </ul>
+        </div>
+      )}
     </div>
   );
 };

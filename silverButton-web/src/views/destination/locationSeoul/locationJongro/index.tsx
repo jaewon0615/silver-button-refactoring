@@ -38,7 +38,7 @@ export default function LocationSeoul() {
   const fetchDestination = async () => {
     try {
       const response = await axios.get(
-        `http://localhost:4040/api/v1/destination/location/서울/중구`
+        `http://localhost:4040/api/v1/destination/location/서울/종로구`
       );
       setDestination(response.data.data);
     } catch (e) {
@@ -62,11 +62,13 @@ export default function LocationSeoul() {
     setCurrentPage(page);
   };
 
-  const navigateToDestinationDetail = (destinationId: number) => {
-    navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
-  };
+  const handleLocationJongro = () => {
+    navigate(`/destination/location/서울/종로구`);
+};
 
-
+const navigateToDestinationDetail = (destinationId: number) => {
+  navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
+};
 
   return (
     <div css={s.container}>

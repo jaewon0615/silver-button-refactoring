@@ -2,6 +2,7 @@ package com.korit.silverbutton.repository;
 
 import com.korit.silverbutton.dto.detination.request.DestinationRequestDto;
 import com.korit.silverbutton.entity.Destination;
+import com.korit.silverbutton.entity.User;
 import jakarta.persistence.metamodel.SingularAttribute;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -31,6 +32,7 @@ public interface DestinationRepository extends JpaRepository<Destination, Long> 
     List<Destination> getDestinationByLocationAndCity(@Param("location") String location, @Param("city") String city);
 
     Optional<Destination> findById(Long destinationId);
+
 
 
 

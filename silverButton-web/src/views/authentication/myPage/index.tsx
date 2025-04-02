@@ -168,6 +168,12 @@ const MyPage = () => {
     }
   };
 
+  const handleSleepRecordClick = () => {
+    if (user) {
+      navigate(`/my-page/sleep-record/${user.id}`);
+    }
+  };
+
   const handleMessageClick = () => {
     navigate("/message");
   };
@@ -324,6 +330,7 @@ const MyPage = () => {
             <button css={s.expenseButton} onClick={handleExpenseClick}> <FaMoneyCheckDollar /> 가계부 목록 </button>
             <button css={s.destinationButton} onClick={handleDestinaionClick}> <MdCardTravel /> 여행지 목록 </button>
             <button css={s.destinationReviewButton} onClick={handleDestinaionReviewClick}> <MdOutlineRateReview /> 리뷰 관리 </button>
+            <button css={s.destinationReviewButton} onClick={handleSleepRecordClick}> <MdOutlineRateReview /> 수면 패턴 </button>
           </div>
           <button css={s.arrowButton} onClick={scrollRight}>
             ▶

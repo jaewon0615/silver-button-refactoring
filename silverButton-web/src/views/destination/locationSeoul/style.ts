@@ -70,26 +70,62 @@ export const viewCount = css`
 `;
 
 export const paginationContainer = css`
-  margin-top: 20px;
   display: flex;
   justify-content: center;
+  align-items: center;
   gap: 10px;
+  padding: 16px;
+  border-radius: 8px;
 `;
 
 export const paginationButton = css`
+  background-color: rgba(147, 129, 255, 0.2);
+  border: 1px solid rgba(147, 129, 255, 0.5);
+  border-radius: 4px;
   padding: 8px 12px;
-  border: none;
-  background-color: #007bff;
-  color: white;
-  border-radius: 5px;
+  font-size: 14px;
+  color: rgba(147, 129, 255, 0.8);
   cursor: pointer;
-  transition: background 0.2s ease-in-out;
+  transition: background-color 0.3s, border-color 0.3s, color 0.3s;
+
   &:hover {
-    background-color: #0056b3;
+    background-color: rgba(147, 129, 255, 0.3);
+    border-color: rgba(147, 129, 255, 0.8);
+    color: #ffffff;
   }
+`;
+
+export const paginationButtonActive = css`
+  background-color: rgba(147, 129, 255, 0.8);
+  color: #ffffff;
+  border-color: rgba(147, 129, 255, 1);
+
+  &:hover {
+    background-color: rgba(147, 129, 255, 1);
+  }
+`;
+
+export const arrowButton = css`
+  background-color: rgba(147, 129, 255, 0.2);
+  border: 1px solid rgba(147, 129, 255, 0.5);
+  color: rgba(147, 129, 255, 0.8);
+  border-radius: 4px;
+  padding: 8px 12px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+
+  &:hover:not(:disabled) {
+    background-color: rgba(147, 129, 255, 0.3);
+    border-color: rgba(147, 129, 255, 0.8);
+    color: #ffffff;
+  }
+
   &:disabled {
-    background-color: #ccc;
     cursor: not-allowed;
+    background-color: rgba(147, 129, 255, 0.1);
+    color: rgba(147, 129, 255, 0.5);
+    border-color: rgba(147, 129, 255, 0.2);
   }
 `;
 

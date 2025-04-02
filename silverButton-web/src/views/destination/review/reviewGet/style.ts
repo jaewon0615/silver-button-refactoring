@@ -8,7 +8,7 @@ export const detailContainer = css`
   display: flex;
   flex-direction: column;
   gap: 35px;
-  height: 90vh;
+  height: 100vh;
 `;
 
 export const subCt = css`
@@ -42,13 +42,12 @@ export const destinationTitle = css`
 
 export const reviewListContainer = css`
   width: 100%;
-  margin-top: 20px;
 `;
 
 export const reviewBox = css`
   border: 1px solid #ddd;
   padding: 15px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   border-radius: 10px;
   background-color: #ffffff;
   width: 100%;
@@ -167,9 +166,43 @@ text-align: center;
 `;
 
 export const averageRating = css`
-  font-size: 22px;
+  font-size: 20px;
   font-weight: bold;
   color: #ff9800;
-  margin: 15px 0;
-  text-align: center;
+`;
+
+export const count = css`
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  margin-top: 5px;
+`;
+
+export const likeButton = css`
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #f0f0f0;
+  border: none;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s;
+  &:hover {
+    background-color: #e0e0e0;
+  }
+  svg {
+    color: #007bff;
+  }
+`;
+
+export const icon = css`
+  width: 30px;
+  height: 20px;
+`;
+
+export const countText = css`
+  font-size: 15px;
 `;

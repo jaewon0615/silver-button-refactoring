@@ -33,6 +33,7 @@ import ExerciseChart from "./views/authentication/myPage/exercise/exerciseChart"
 import Expense from "./views/authentication/myPage/expense"
 import ExpenseChart from "./views/authentication/myPage/expense/expenseChart"
 import SaveDestination from "./views/authentication/myPage/saveDestination"
+import SleepRecord from "./views/authentication/myPage/sleepRecord"
 
 import RootLayout from "./layouts/rootLayout/RootLayout";
 import Header from "./layouts/header/Header";
@@ -62,6 +63,13 @@ import Destination from "./views/destination"
 import DestinationDetail from "./views/destination/destinationDetail"
 import LocationSeoul from "./views/destination/locationSeoul"
 import LocationSeoulJunggu from "./views/destination/locationSeoul/locationJunggu"
+import LocationSeoulGangnamgu from "./views/destination/locationSeoul/locationGangnamgu"
+import LocationSeoulYeongdeungpo from "./views/destination/locationSeoul/locationYeongdeungpo"
+import LocationSeoulSongpa from "./views/destination/locationSeoul/locationSongpa"
+import LocationSeoulGangbuk from "./views/destination/locationSeoul/locationGangbuk"
+import LocationSeoulMapo from "./views/destination/locationSeoul/locationMapo"
+import LocationSeoulSeocho from "./views/destination/locationSeoul/locationSeocho"
+import LocationSeoulJongro from "./views/destination/locationSeoul/locationJongro"
 import LocationBusan from "./views/destination/locationBusan"
 import LocationJeju from "./views/destination/locationJeju"
 import LocationGangwon from "./views/destination/locationGangwon"
@@ -166,6 +174,7 @@ export default function App() {
                 <Route path="expense/:id" element={<Expense/>}/>
                 <Route path="user-saved-destination/:id" element={<SaveDestination/>}/>
                 <Route path="/review/:userId" element={<DestinationReview/>}/>
+                <Route path="/sleep-record/:id" element={<SleepRecord/>}/> 
               </Routes>
             }
           />
@@ -211,6 +220,16 @@ export default function App() {
             
           <Route path="/destination/location/서울" element={<LocationSeoul/>}/>
           <Route path="/destination/location/서울/중구" element={<LocationSeoulJunggu/>}/>
+          <Route path="/destination/location/서울/강남구" element={<LocationSeoulGangnamgu/>}/>
+          <Route path="/destination/location/서울/강남구" element={<LocationSeoulGangnamgu/>}/>
+          <Route path="/destination/location/서울/영등포구" element={<LocationSeoulYeongdeungpo/>}/>
+          <Route path="/destination/location/서울/송파구" element={<LocationSeoulSongpa/>}/>
+          <Route path="/destination/location/서울/강북구" element={<LocationSeoulGangbuk/>}/>
+          <Route path="/destination/location/서울/마포구" element={<LocationSeoulMapo/>}/>
+          <Route path="/destination/location/서울/서초구" element={<LocationSeoulSeocho/>}/>
+          <Route path="/destination/location/서울/종로구" element={<LocationSeoulJongro/>}/>
+
+          
 
           <Route path="/destination/location/부산"
           element={<LocationBusan/>}/>

@@ -27,14 +27,13 @@ public class ReviewController {
     private static final String REVIEW_POST = "/{destinationId}";
     private static final String REVIEW_GET = "/{userId}";
     private static final String REVIEW_GET_DESTINATION = "destinationId/{destinationId}";
-    private static final String REVIEW_DELETE = "/{id}";
 
     @PostMapping(REVIEW_POST)
     public ResponseEntity<ResponseDto<ReviewResponseDto>> postReview(
             @AuthenticationPrincipal PrincipalUser principalUser,
             @PathVariable Long destinationId,
             @RequestBody ReviewRequestDto dto
-            ){
+    ){
         ResponseDto<ReviewResponseDto> response = reviewService.postReview(principalUser.getId(),destinationId,dto);
         HttpStatus status = response.isResult() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
@@ -51,18 +50,9 @@ public class ReviewController {
 
     @GetMapping(REVIEW_GET_DESTINATION)
     public ResponseEntity<ResponseDto<List<ReviewResponseDto>>> getReviewByDestinationId(
-           @PathVariable Long destinationId
+            @PathVariable Long destinationId
     ){
         ResponseDto<List<ReviewResponseDto>> response = reviewService.getReviewByDestinationId(destinationId);
-        HttpStatus status = response.isResult() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
-        return ResponseEntity.status(status).body(response);
-    }
-
-    @DeleteMapping(REVIEW_DELETE)
-    public ResponseEntity<ResponseDto<Boolean>> deleteReviewById(
-            @PathVariable Long id
-    ){
-        ResponseDto<Boolean> response = reviewService.deleteReviewById(id);
         HttpStatus status = response.isResult() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

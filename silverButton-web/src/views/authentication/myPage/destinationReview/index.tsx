@@ -5,6 +5,8 @@ import { useCookies } from 'react-cookie';
 import { useNavigate, useParams } from 'react-router-dom';
 import * as s from "./style";
 import { FaTrash } from 'react-icons/fa';
+import { AiTwotoneLike } from "react-icons/ai";
+import { AiTwotoneDislike } from "react-icons/ai"
 
 export interface MyReviewType{
   id:number;
@@ -15,6 +17,8 @@ export interface MyReviewType{
   createdAt:number;
   name:string;
   nickname:string;
+  likeCount: number;
+  dislikeCount: number;
 }
 
 export default function MyReview() {
@@ -124,6 +128,10 @@ export default function MyReview() {
               <div css={s.starRating}>{renderStars(myReview.rating)}</div>
               <h3>{myReview.reviewText}</h3>
               <p css={s.colck}>{formatDate(myReview.createdAt)}</p>
+              <div css={s.reviewCont}>
+                <p css={s.reviewText}><AiTwotoneLike />{myReview.likeCount}</p>
+                <p css={s.reviewText}><AiTwotoneDislike />{myReview.dislikeCount}</p>
+              </div>
               </div>
              
               <div css={s.buttonCt}>
