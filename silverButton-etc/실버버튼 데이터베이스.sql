@@ -230,6 +230,22 @@ CREATE TABLE review_likes (
     FOREIGN KEY (review_id) REFERENCES reviews(id) ON DELETE CASCADE
 );
 
+CREATE TABLE sleep_records (
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    sleep_date DATETIME(6) NULL,
+    sleep_time INT NOT NULL,
+    wake_time INT NOT NULL,
+    sleep_duration INT NOT NULL,
+    sleep_quality INT NOT NULL,
+    sleep_interruption_count INT DEFAULT 0,
+    notes VARCHAR(255) NULL,
+    dream_occurred VARCHAR(255) NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
 CREATE TABLE review_dislikes (
     id BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id BIGINT NOT NULL,

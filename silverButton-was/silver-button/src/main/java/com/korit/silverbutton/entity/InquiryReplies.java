@@ -33,7 +33,4 @@ public class InquiryReplies {
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
-
-
-
 }

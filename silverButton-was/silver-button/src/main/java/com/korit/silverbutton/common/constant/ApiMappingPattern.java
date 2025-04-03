@@ -29,4 +29,6 @@ public class ApiMappingPattern {
     public static final String REVIEW_LIKE = "/api/v1/review-like";
     public static final String REVIEW_DISLIKE = "/api/v1/review-dislike";
     public static final String SLEEP_RECORD = "/api/v1/sleep-record";
+    public static final String INQUIRIES = "/api/v1/inquiries";
+    public static final String INQUIRIES_REPLIES = "/api/v1/inquiries-replies";
 }

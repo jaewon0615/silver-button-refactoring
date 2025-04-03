@@ -373,7 +373,6 @@ const Calculator = () => {
         </Draggable>
       </div>
       </div>
-
     </div>
   );
 };

@@ -34,6 +34,7 @@ import Expense from "./views/authentication/myPage/expense"
 import ExpenseChart from "./views/authentication/myPage/expense/expenseChart"
 import SaveDestination from "./views/authentication/myPage/saveDestination"
 import SleepRecord from "./views/authentication/myPage/sleepRecord"
+import SleepRecordChart from "./views/authentication/myPage/sleepRecord/sleepRecordChart"
 
 import RootLayout from "./layouts/rootLayout/RootLayout";
 import Header from "./layouts/header/Header";
@@ -206,6 +207,7 @@ export default function App() {
           <Route path="health-record/:id" element={<RecordChart />} />
           <Route path="exercise/:id" element={<ExerciseChart/>}/>
           <Route path="expense/:id" element={<ExpenseChart/>}/>
+          <Route path="sleep-record/:id" element={<SleepRecordChart/>}/>
           
           <Route path="/cardGame" element={<CardGame />} />
 

@@ -24,17 +24,18 @@ public class Inquiries {
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "admin_id", nullable = false)
-    private User admin;
-
     private String title;
 
     private String content;
 
-    @Enumerated(EnumType.STRING) // Enum을 문자열로 저장
-    @Column(nullable = false)
-    private InquiryStatus status = InquiryStatus.PENDING;
+    private InquiryStatus status;
+
+    @PrePersist
+    public void prePersist() {
+        if (this.status == null) {
+            this.status = InquiryStatus.PENDING;
+        }
+    }
 
     private LocalDateTime createdAt;
 
