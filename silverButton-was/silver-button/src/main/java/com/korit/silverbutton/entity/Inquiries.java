@@ -28,6 +28,8 @@ public class Inquiries {
 
     private String content;
 
+    private String password;
+
     private InquiryStatus status;
 
     @PrePersist

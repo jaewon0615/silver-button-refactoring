@@ -1,4 +1,4 @@
-package com.korit.silverbutton.dto.inquiries.request;
+package com.korit.silverbutton.dto.inquiryReplies.request;
 
 
 import lombok.AllArgsConstructor;
@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class InquiriesRequestDto {
-    private String title;
+public class InquiryRepliesRequestDto {
+    private Long inquiryId;
 
-    private String content;
+    private String reply;
 
     private String password;
 

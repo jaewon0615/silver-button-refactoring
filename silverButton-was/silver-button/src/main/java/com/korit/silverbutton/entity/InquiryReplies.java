@@ -5,6 +5,7 @@ import lombok.*;
 
 import com.korit.silverbutton.entity.Inquiries;
 
+import javax.net.ssl.SSLSession;
 import java.time.LocalDateTime;
 
 
@@ -21,16 +22,17 @@ public class InquiryReplies {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "admin_id", nullable = false)
-    private User admin;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "inquiry_id", nullable = false)
-    private Inquiries Inquiries;
+    private Inquiries inquiries;
 
     private String reply;
 
     private LocalDateTime createdAt;
 
     private LocalDateTime updatedAt;
+
 }

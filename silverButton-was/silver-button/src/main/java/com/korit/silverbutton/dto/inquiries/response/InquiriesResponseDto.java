@@ -21,6 +21,8 @@ public class InquiriesResponseDto {
 
     private String content;
 
+    private String password;
+
     private InquiryStatus status;
 
     private LocalDateTime createdAt;
@@ -32,5 +34,6 @@ public class InquiriesResponseDto {
         this.content = inquiries.getContent();
         this.createdAt = inquiries.getCreatedAt();
         this.status = inquiries.getStatus();
+        this.password = inquiries.getPassword();
     }
 }

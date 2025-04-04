@@ -33,8 +33,9 @@ public class InquiriesServiceImpl implements InquiriesService {
     @Override
     public ResponseDto<InquiriesResponseDto> postInquiries(Long userId, InquiriesRequestDto dto) {
         InquiriesResponseDto data = null;
-        String title = dto.getTitle();
+        String title = dto.getTitle() ;
         String content = dto.getContent();
+        String password = dto.getPassword();
 
         try {
             User user = userRepository.findById(userId)
@@ -44,6 +45,7 @@ public class InquiriesServiceImpl implements InquiriesService {
                     .user(user)
                     .title(title)
                     .content(content)
+                    .password(password)
                     .createdAt(LocalDateTime.now())
                     .build();
 
