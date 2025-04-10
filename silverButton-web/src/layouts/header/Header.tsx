@@ -13,6 +13,7 @@ import { RiHealthBookLine } from "react-icons/ri";
 import { RiCalendarTodoLine } from "react-icons/ri";
 
 import { IoAirplaneOutline } from "react-icons/io5";
+import { RiCustomerService2Fill } from "react-icons/ri";
 import axios from "axios";
 
 function HeaderToolWrap() {
@@ -151,6 +152,13 @@ function HeaderNaviWrap() {
         >
           <IoAirplaneOutline  css={s.naviIcon}/>
           <div css={s.naviTitle}>여행지</div>
+        </div>
+        <div
+          css={s.haderNaviButton}
+          onClick={() => navigateTo("/service-center")}
+        >
+          <RiCustomerService2Fill css={s.naviIcon} />
+          <div css={s.naviTitle}>고객센터</div>
         </div>
       </div>
     </div>

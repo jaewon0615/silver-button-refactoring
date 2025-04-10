@@ -15,6 +15,7 @@ import { MdOutlineDirectionsRun } from "react-icons/md";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { MdCardTravel } from "react-icons/md";
 import { MdOutlineRateReview } from "react-icons/md";
+import { GiNightSleep } from "react-icons/gi";
 
 const MyPage = () => {
   const { isAuthenticated, user, login, logout } = useAuthStore();
@@ -330,7 +331,7 @@ const MyPage = () => {
             <button css={s.expenseButton} onClick={handleExpenseClick}> <FaMoneyCheckDollar /> 가계부 목록 </button>
             <button css={s.destinationButton} onClick={handleDestinaionClick}> <MdCardTravel /> 여행지 목록 </button>
             <button css={s.destinationReviewButton} onClick={handleDestinaionReviewClick}> <MdOutlineRateReview /> 리뷰 관리 </button>
-            <button css={s.destinationReviewButton} onClick={handleSleepRecordClick}> <MdOutlineRateReview /> 수면 패턴 </button>
+            <button css={s.sleepButton} onClick={handleSleepRecordClick}><GiNightSleep /> 수면 패턴 </button>
           </div>
           <button css={s.arrowButton} onClick={scrollRight}>
             ▶

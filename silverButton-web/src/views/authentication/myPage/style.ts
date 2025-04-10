@@ -337,6 +337,30 @@ export const destinationReviewButton = css`
   }
 `;
 
+export const sleepButton = css`
+  background-color: #3B1E35; /* Charcoal Plum: 어두운 자주색 */
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 35%;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
+`;
+
+
 
 export const messageIcon = css`
   margin-right: 10px;

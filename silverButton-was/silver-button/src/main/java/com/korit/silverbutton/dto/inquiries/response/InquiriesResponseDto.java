@@ -21,6 +21,8 @@ public class InquiriesResponseDto {
 
     private String content;
 
+    private String nickname;
+
     private String password;
 
     private InquiryStatus status;
@@ -35,5 +37,6 @@ public class InquiriesResponseDto {
         this.createdAt = inquiries.getCreatedAt();
         this.status = inquiries.getStatus();
         this.password = inquiries.getPassword();
+        this.nickname = inquiries.getUser().getNickname();
     }
 }

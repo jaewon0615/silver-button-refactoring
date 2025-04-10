@@ -80,10 +80,10 @@ const SleepChart = () => {
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={sleepChartData}>
           <CartesianGrid strokeDasharray="3 3" />
-          <XAxis dataKey="date" tick={{ fontSize: 14 }} />
-          <YAxis tick={{ fontSize: 14 }} />
+          <XAxis dataKey="date" tick={{ fontSize: 20 }} />
+          <YAxis tick={{ fontSize: 20 }} />
           <Tooltip />
-          <Legend wrapperStyle={{ fontSize: 14 }} />
+          <Legend wrapperStyle={{ fontSize: 20 }} />
           <ReferenceLine y={8} stroke="red" label="최소 권장 수면 (8시간)" />
           <Line type="monotone" dataKey="duration" stroke="#8884d8" name="수면 시간 (시간)" dot={{ r: 6 }} />
           <Line type="monotone" dataKey="quality" stroke="#82ca9d" name="수면의 질 (점수)" dot={{ r: 6 }} />
@@ -95,10 +95,10 @@ const SleepChart = () => {
 <ResponsiveContainer width="100%" height={400}>
   <LineChart data={sleepChartData}>
     <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey="date" tick={{ fontSize: 14 }} />
-    <YAxis tick={{ fontSize: 14 }} domain={[0, 24]} label={{ value: "시간", angle: -90, position: "insideLeft" }} />
+    <XAxis dataKey="date" tick={{ fontSize: 20 }} />
+    <YAxis tick={{ fontSize: 20 }} domain={[0, 24]} label={{ value: "시간", angle: -90, position: "insideLeft" }} />
     <Tooltip />
-    <Legend wrapperStyle={{ fontSize: 14 }} />
+    <Legend wrapperStyle={{ fontSize: 20 }} />
     <ReferenceLine y={0} stroke="gray" />
     <ReferenceLine y={24} stroke="gray" />
     
@@ -119,13 +119,13 @@ const SleepChart = () => {
                    { name: "꿈 X", value: sleepRecords.filter(r => r.dreamOccurred === "꾸지 않음").length }]}
             outerRadius={120}
             fill="#8884d8"
-            label={{ fontSize: 14 }}
+            label={{ fontSize: 16 }}
           >
             {["#0088FE", "#FF8042"].map((color, index) => (
               <Cell key={`cell-${index}`} fill={color} />
             ))}
           </Pie>
-          <Legend wrapperStyle={{ fontSize: 14 }} />
+          <Legend wrapperStyle={{ fontSize: 16 }} />
         </PieChart>
       </ResponsiveContainer>
     </div>

@@ -88,6 +88,9 @@ import ReviewGet from "./views/destination/review/reviewGet"
 
 import DestinationReview from "./views/authentication/myPage/destinationReview"
 
+import ServiceCenter from "./views/serviceCenter"
+import InquiryPost from "./views/serviceCenter/inquiryPost"
+import InquiryGet from "./views/serviceCenter/inquiryGet"
 export default function App() {
   const { isAuthenticated, loadFromLocalStorage } = useAuthStore();
 
@@ -244,6 +247,10 @@ export default function App() {
           <Route path="/destination/location/충북" element={<LocationChungbuk/>}/>
           <Route path="/destination/location/충남" element={<LocationChungnam/>}/>
           <Route path="/destination/location/경기" element={<LocationGyeongki/>}/>
+
+          <Route path="/service-center" element={<ServiceCenter/>}/>
+          <Route path="/inquiries" element={<InquiryPost/>}/>
+          <Route path="/inquiries/:id" element={<InquiryGet/>}/>
 
         </Routes>
       </MainLayout>
