@@ -109,10 +109,10 @@ const navigateToDestinationDetail = (destinationId: number) => {
         css={s.searchInput}
       />
       <div css={s.buttonContainer}>
-      <button onClick={handleLocationJunggu} css={s.buttonStyle}>중구</button>
-      <button onClick={handleLocationGangnamgu} css={s.buttonStyle}>강남구</button>
-      <button onClick={handleLocationYeongdeungpo} css={s.buttonStyle}>영등포구</button>
-      <button onClick={handleLocationSongpa} css={s.buttonStyle}>송파구</button>
+      <button onClick={handleLocationJunggu} css={s.buttonStyleJg}>중구</button>
+      <button onClick={handleLocationGangnamgu} css={s.buttonStyleGn}>강남구</button>
+      <button onClick={handleLocationYeongdeungpo} css={s.buttonStyleYDP}>영등포구</button>
+      <button onClick={handleLocationSongpa} css={s.buttonStyleSP}>송파구</button>
       <button onClick={handleLocationGangbuk} css={s.buttonStyle}>강북구</button>
       <button onClick={handleLocationMapo} css={s.buttonStyle}>마포구</button>
       <button onClick={handleLocationSeocho} css={s.buttonStyle}>서초구</button>

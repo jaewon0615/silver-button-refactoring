@@ -35,6 +35,7 @@ import ExpenseChart from "./views/authentication/myPage/expense/expenseChart"
 import SaveDestination from "./views/authentication/myPage/saveDestination"
 import SleepRecord from "./views/authentication/myPage/sleepRecord"
 import SleepRecordChart from "./views/authentication/myPage/sleepRecord/sleepRecordChart"
+import MyInquiry from "./views/authentication/myPage/myInquiry"
 
 import RootLayout from "./layouts/rootLayout/RootLayout";
 import Header from "./layouts/header/Header";
@@ -91,6 +92,8 @@ import DestinationReview from "./views/authentication/myPage/destinationReview"
 import ServiceCenter from "./views/serviceCenter"
 import InquiryPost from "./views/serviceCenter/inquiryPost"
 import InquiryGet from "./views/serviceCenter/inquiryGet"
+
+import ReplyPost from "./views/serviceCenter/replyPost"
 export default function App() {
   const { isAuthenticated, loadFromLocalStorage } = useAuthStore();
 
@@ -179,6 +182,7 @@ export default function App() {
                 <Route path="user-saved-destination/:id" element={<SaveDestination/>}/>
                 <Route path="/review/:userId" element={<DestinationReview/>}/>
                 <Route path="/sleep-record/:id" element={<SleepRecord/>}/> 
+                <Route path="/inquiries/userId/:id" element={<MyInquiry/>}/>
               </Routes>
             }
           />
@@ -251,6 +255,7 @@ export default function App() {
           <Route path="/service-center" element={<ServiceCenter/>}/>
           <Route path="/inquiries" element={<InquiryPost/>}/>
           <Route path="/inquiries/:id" element={<InquiryGet/>}/>
+          <Route path="/inquiries-replies/:id" element={<ReplyPost/>}/>
 
         </Routes>
       </MainLayout>

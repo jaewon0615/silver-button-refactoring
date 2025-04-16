@@ -360,6 +360,29 @@ export const sleepButton = css`
   }
 `;
 
+export const reviewButton = css`
+  background-color: #014D4E; /* Deep Teal Blue: 희귀하고 세련된 파랑+초록 계열 */
+  color: #F0F8FF; /* Alice Blue: 밝고 차분한 흰색 느낌 */
+  font-size: 40px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 35%;
+
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(1, 77, 78, 0.3);
+  }
+
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(1, 77, 78, 0.5);
+  }
+`;
+
 
 
 export const messageIcon = css`

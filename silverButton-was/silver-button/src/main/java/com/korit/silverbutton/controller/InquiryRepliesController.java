@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.korit.silverbutton.common.constant.ApiMappingPattern.INQUIRIES_REPLIES;
 import static com.korit.silverbutton.common.constant.ApiMappingPattern.REVIEW;
 
@@ -22,6 +24,7 @@ public class InquiryRepliesController {
 
     private static final String INQUIRIES_REPLIES_POST = "/{inquiryId}";
     private static final String INQUIRIES_REPLIES_DELETE = "/{id}";
+    private static final String INQUIRIES_REPLIES_GET = "/inquiryId/{inquiryId}";
 
     @PostMapping(INQUIRIES_REPLIES_POST)
     public ResponseEntity<ResponseDto<InquiryRepliesResponseDto>> postinquiryReplies(
@@ -37,6 +40,15 @@ public class InquiryRepliesController {
     @DeleteMapping(INQUIRIES_REPLIES_DELETE)
     public ResponseEntity<ResponseDto<Boolean>> deleteInquiryRepliesById(@PathVariable Long id) {
         ResponseDto<Boolean> response = inquiryRepliesService.deleteInquiryRepliesById(id);
+        HttpStatus status = response.isResult() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
+        return ResponseEntity.status(status).body(response);
+    }
+
+    @GetMapping(INQUIRIES_REPLIES_GET)
+    public ResponseEntity<ResponseDto<List<InquiryRepliesResponseDto>>> getInquiryRepliesByInquiryId(
+            @PathVariable Long inquiryId
+    ){
+        ResponseDto<List<InquiryRepliesResponseDto>> response = inquiryRepliesService.getInquiryRepliesByInquiryId(inquiryId);
         HttpStatus status = response.isResult() ? HttpStatus.CREATED : HttpStatus.BAD_REQUEST;
         return ResponseEntity.status(status).body(response);
     }

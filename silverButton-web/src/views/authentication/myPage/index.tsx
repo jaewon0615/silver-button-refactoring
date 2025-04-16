@@ -16,6 +16,7 @@ import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { MdCardTravel } from "react-icons/md";
 import { MdOutlineRateReview } from "react-icons/md";
 import { GiNightSleep } from "react-icons/gi";
+import { MdRateReview } from "react-icons/md";
 
 const MyPage = () => {
   const { isAuthenticated, user, login, logout } = useAuthStore();
@@ -172,6 +173,12 @@ const MyPage = () => {
   const handleSleepRecordClick = () => {
     if (user) {
       navigate(`/my-page/sleep-record/${user.id}`);
+    }
+  };
+
+  const handleMyInquiryClick = () => {
+    if (user) {
+      navigate(`/my-page/inquiries/userId/${user.id}`);
     }
   };
 
@@ -332,6 +339,7 @@ const MyPage = () => {
             <button css={s.destinationButton} onClick={handleDestinaionClick}> <MdCardTravel /> 여행지 목록 </button>
             <button css={s.destinationReviewButton} onClick={handleDestinaionReviewClick}> <MdOutlineRateReview /> 리뷰 관리 </button>
             <button css={s.sleepButton} onClick={handleSleepRecordClick}><GiNightSleep /> 수면 패턴 </button>
+            <button css={s.reviewButton} onClick={handleMyInquiryClick}><MdRateReview /> 문의글 관리 </button>
           </div>
           <button css={s.arrowButton} onClick={scrollRight}>
             ▶

@@ -17,6 +17,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -73,6 +75,22 @@ public class InquiryRepliesServiceImpl implements InquiryRepliesService {
             return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
         }
         return ResponseDto.setSuccess(ResponseMessage.SUCCESS, true);
+    }
+
+    @Override
+    public ResponseDto<List<InquiryRepliesResponseDto>> getInquiryRepliesByInquiryId(Long inquiryId) {
+        List<InquiryRepliesResponseDto> data = null;
+        try {
+            List<InquiryReplies> inquiryReplies = inquiryRepliesRepository.getInquiryRepliesByInquiryId(inquiryId);
+            if(inquiryReplies.isEmpty()){
+                return ResponseDto.setFailed(ResponseMessage.DATABASE_ERROR);
+            }
+            data = inquiryReplies.stream().map(InquiryRepliesResponseDto::new).collect(Collectors.toList());
+        } catch (Exception e) {
+            e.printStackTrace();
+            return ResponseDto.setFailed(e.getMessage());
+        }
+        return ResponseDto.setSuccess(ResponseMessage.SUCCESS, data);
     }
 
 }

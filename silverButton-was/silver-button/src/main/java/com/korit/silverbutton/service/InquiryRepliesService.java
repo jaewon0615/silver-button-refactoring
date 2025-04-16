@@ -5,8 +5,11 @@ import com.korit.silverbutton.dto.inquiryReplies.request.InquiryRepliesRequestDt
 import com.korit.silverbutton.dto.inquiryReplies.response.InquiryRepliesResponseDto;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 public interface InquiryRepliesService {
     ResponseDto<InquiryRepliesResponseDto> postinquiryReplies(Long userId, Long inquiryId, InquiryRepliesRequestDto dto);
     ResponseDto<Boolean> deleteInquiryRepliesById(Long id);
+
+    ResponseDto<List<InquiryRepliesResponseDto>> getInquiryRepliesByInquiryId(Long inquiryId);
 }

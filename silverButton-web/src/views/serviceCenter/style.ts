@@ -151,3 +151,61 @@ export const arrowButton = css`
     border-color: rgba(147, 129, 255, 0.2);
   }
 `;
+
+export const modalOverlay = css`
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+`;
+
+export const modalContent = css`
+  background-color: white;
+  padding: 24px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 300px;
+`;
+
+export const modalTitle = css`
+  font-size: 1.2rem;
+  font-weight: bold;
+`;
+
+export const modalInput = css`
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+`;
+
+export const modalError = css`
+  color: red;
+  font-size: 14px;
+`;
+
+export const modalButtons = css`
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+`;
+
+export const modalButton = css`
+  padding: 6px 12px;
+  background-color: #3f51b5;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #303f9f;
+  }
+`;

@@ -2,7 +2,8 @@
 import { css } from "@emotion/react";
 
 export const container = css`
-  width: 80%;
+  width: 100%;
+  padding: 20px 150px;
   margin: 0 auto;
   text-align: center;
 `;
@@ -20,7 +21,6 @@ export const gridContainer = css`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
-  justify-content: center;
   margin-top: 20px;
 `;
 

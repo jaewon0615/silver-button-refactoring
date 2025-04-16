@@ -64,17 +64,62 @@ export const status = css`
 `;
 
 export const statusButton = css`
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 16px;
+  font-weight: 600;
   color: #5d3a00;
-  padding: 10px 16px;
-  border-radius: 8px;
-  display: flex;
-  align-items: flex-end;
+  padding: 10px 18px;
+  border-radius: 10px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid #5d3a00;
+  background-color: #fff8ee;
+  transition: all 0.3s ease;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #ffecd1;
+    color: #3e2700;
+    border-color: #3e2700;
+  }
 `;
 
 export const row = css`
   display: flex;
   flex-direction: row;
   gap: 50px;
+`;
+
+export const replySection = css`
+  margin-top: 2rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ccc;
+`;
+
+export const replyTitle = css`
+  font-size: 1.2rem;
+  font-weight: bold;
+`;
+
+export const replyBox = css`
+  background: #f9f9f9;
+  padding: 1rem;
+  margin-top: 1rem;
+  border-radius: 8px;
+`;
+
+export const replyContent = css`
+  font-size: 1rem;
+`;
+
+export const replyDate = css`
+  font-size: 0.8rem;
+  color: #777;
+  margin-top: 0.5rem;
+`;
+
+export const noReply = css`
+  margin-top: 1rem;
+  font-style: italic;
+  color: #666;
 `;
