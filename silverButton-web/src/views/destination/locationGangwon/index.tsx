@@ -63,7 +63,7 @@ export default function LocationGangwon() {
   };
 
   const navigateToDestinationDetail = (destinationId: number) => {
-    navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
+    navigate(`/my-page/destination/id/${destinationId}`); 
   };
 
   return (

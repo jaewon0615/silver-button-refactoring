@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { ex } from "@fullcalendar/core/internal-common";
 
 export const container = css`
   width: 100%;
@@ -18,7 +17,7 @@ export const title = css`
   color: #1e88e5;
   padding-bottom: 20px;
   font-weight: bold;
-  border-bottom: 2px solid #1e88e5 ;
+  border-bottom: 2px solid #1e88e5;
 `;
 
 export const form = css`
@@ -73,36 +72,34 @@ export const input = css`
 `;
 
 export const submitButton = css`
-  padding: 12px 20px;  /* 위아래 여백, 좌우 여백을 다르게 설정 */
-  background-color: #1e88e5;  /* 기본 배경색 */
-  color: white;  /* 글자색 */
+  padding: 12px 20px;
+  background-color: #1e88e5;
+  color: white;
   border: none;
-  border-radius: 8px;  /* 둥근 모서리 */
+  border-radius: 8px;
   cursor: pointer;
-  font-size: 18px;  /* 글자 크기 */
-  font-weight: bold;  /* 글자 굵게 */
-  transition: background-color 0.3s, transform 0.2s ease-in-out;  /* 배경색과 변환 애니메이션 */
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);  /* 버튼 그림자 */
+  font-size: 18px;
+  font-weight: bold;
+  transition: background-color 0.3s, transform 0.2s ease-in-out;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin-bottom: 10px;
 
   &:hover {
-    background-color: #1565c0;  /* hover 상태일 때 배경색 */
-    transform: translateY(-2px);  /* 마우스 오버 시 버튼이 약간 위로 이동 */
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);  /* hover 상태일 때 그림자 더 강하게 */
+    background-color: #1565c0;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   }
 
   &:active {
-    background-color: #0d47a1;  /* 클릭 시 배경색 */
-    transform: translateY(0);  /* 클릭 시 버튼이 눌린 효과 */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);  /* 클릭 시 그림자 효과 감소 */
+    background-color: #0d47a1;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 `;
 
-
 export const chartButton = css`
   padding: 12px 20px;
-  background-color: #ff7043;  /* 오렌지색 배경 */
-  color: white;
+  background-color: #ff7043;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -114,18 +111,17 @@ export const chartButton = css`
   margin-top: 28px;
 
   &:hover {
-    background-color: #f4511e;  /* hover 시 어두운 오렌지 */
+    background-color: #f4511e;
     transform: translateY(-2px);
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   }
 
   &:active {
-    background-color: #e64a19;  /* 클릭 시 더 어두운 오렌지 */
+    background-color: #e64a19;
     transform: translateY(0);
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 `;
-
 
 export const recordList = css`
   margin-top: 20px;
@@ -134,14 +130,14 @@ export const recordList = css`
 `;
 
 export const recordItem = css`
-background-color: #f9f9f9;
+  background-color: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   display: flex;
   justify-content: space-between;
   align-items: center;
-  font-family: 'Nanum Gothic', sans-serif; /* 한글 폰트 설정 */
+  font-family: "Nanum Gothic", sans-serif;
   border: 1px solid rgba(147, 129, 255, 0.3);
   margin-top: 30px;
 `;
@@ -166,7 +162,7 @@ export const resultText = css`
 
 export const deleteButton = css`
   padding: 8px 13px;
-  background-color: #e53935; /* Red */
+  background-color: #e53935;
   color: white;
   border: none;
   border-radius: 8px;
@@ -176,15 +172,15 @@ export const deleteButton = css`
   transition: all 0.3s ease-in-out;
   text-align: center;
   width: auto;
-  display: inline-block; /* Align horizontally */
-  white-space: nowrap; /* Prevent text from wrapping */
+  display: inline-block;
+  white-space: nowrap;
 
   &:hover {
-    background-color: #d32f2f; /* Darker red */
+    background-color: #d32f2f;
   }
 
   &:active {
-    background-color: #c62828; /* Even darker red */
+    background-color: #c62828;
   }
 `;
 
@@ -289,16 +285,16 @@ export const datePageText = css`
 export const dataText = css`
   font-weight: bold;
   color: red;
-`
+`;
 export const errorMessage = css`
-text-align: center;
+  text-align: center;
   font-size: 16px;
-  color: #d32f2f; 
+  color: #d32f2f;
   font-weight: bold;
   background: #ffccbc;
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid #e57373; 
+  border: 1px solid #e57373;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 `;

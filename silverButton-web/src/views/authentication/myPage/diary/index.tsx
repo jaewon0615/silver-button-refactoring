@@ -1,7 +1,7 @@
 /** @jsxImportSource @emotion/react */
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useNavigate, useParams } from "react-router-dom"; 
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import * as s from "./style";
 import { userId } from "../../../drug/medicineListPage/style";
@@ -21,7 +21,6 @@ export interface DiaryType {
 
 export default function Diary() {
   const { id } = useParams<{ id: string }>();
-  // const { userId } = useParams<{ userId: string}>;
   const [diaries, setDiaries] = useState<DiaryType[]>([]);
   const [cookies] = useCookies(["token"]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -37,7 +36,7 @@ export default function Diary() {
     createdAt: Date.now(),
   });
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchDiaries();
@@ -52,16 +51,21 @@ export default function Diary() {
     }
 
     try {
-      const response = await axios.get(`http://localhost:4040/api/v1/diary/userId/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        `http://localhost:4040/api/v1/diary/userId/${userId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setDiaries(response.data.data || []);
     } catch (error) {
       console.error("Failed to fetch diaries", error);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setNewDiary({ ...newDiary, [name]: value });
   };
@@ -124,88 +128,152 @@ export default function Diary() {
 
   const indexOfLastRecord = currentPage * recordPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordPerPage;
-  const currentRecords = filteredDiaries.slice(indexOfFirstRecord, indexOfLastRecord);
+  const currentRecords = filteredDiaries.slice(
+    indexOfFirstRecord,
+    indexOfLastRecord
+  );
   const totalPages = Math.ceil(filteredDiaries.length / recordPerPage);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
 
-  // 제목 클릭 시 상세 페이지로 이동하는 함수 수정
   const navigateToDiaryDetail = (diaryId: number) => {
-    navigate(`/my-page/diary/diaryId/${diaryId}`); // 경로를 수정하여 이동합니다.
+    navigate(`/my-page/diary/diaryId/${diaryId}`);
   };
 
   return (
     <div css={s.container}>
       <div css={s.conttSt}>
-      <div css={s.recordContainer}>
-        <h1 css={s.title}>오늘의 일기</h1>
-        <form onSubmit={handleSubmit} css={s.form}>
-          <div css={s.inputGroup}>
-            <label css={s.label}>제목</label>
-            <input type="text" name="title" value={newDiary.title} onChange={handleInputChange} placeholder="제목" required css={s.input} />
+        <div css={s.recordContainer}>
+          <h1 css={s.title}>오늘의 일기</h1>
+          <form onSubmit={handleSubmit} css={s.form}>
+            <div css={s.inputGroup}>
+              <label css={s.label}>제목</label>
+              <input
+                type="text"
+                name="title"
+                value={newDiary.title}
+                onChange={handleInputChange}
+                placeholder="제목"
+                required
+                css={s.input}
+              />
             </div>
             <div css={s.inputGroup}>
-            <label css={s.label}><SiAccuweather css={s.icon} />날씨</label>
-            <input type="text" name="weather" value={newDiary.weather} onChange={handleInputChange} placeholder="예) 눈,비,맑음,흐림" required css={s.input} />
+              <label css={s.label}>
+                <SiAccuweather css={s.icon} />
+                날씨
+              </label>
+              <input
+                type="text"
+                name="weather"
+                value={newDiary.weather}
+                onChange={handleInputChange}
+                placeholder="예) 눈,비,맑음,흐림"
+                required
+                css={s.input}
+              />
             </div>
             <div css={s.inputGroup}>
-            <label css={s.label}><MdMood css={s.icon} />기분</label>
-            <input type="text" name="mood" value={newDiary.mood} onChange={handleInputChange} placeholder="예)행복,좋음,슬픔,화남,무기력" required css={s.input} />
+              <label css={s.label}>
+                <MdMood css={s.icon} />
+                기분
+              </label>
+              <input
+                type="text"
+                name="mood"
+                value={newDiary.mood}
+                onChange={handleInputChange}
+                placeholder="예)행복,좋음,슬픔,화남,무기력"
+                required
+                css={s.input}
+              />
             </div>
             <div css={s.contentGroup}>
-            <label css={s.label}>내용</label>
-            <textarea name="content" value={newDiary.content} onChange={handleInputChange} placeholder="내용" required css={s.contentInput} />
+              <label css={s.label}>내용</label>
+              <textarea
+                name="content"
+                value={newDiary.content}
+                onChange={handleInputChange}
+                placeholder="내용"
+                required
+                css={s.contentInput}
+              />
             </div>
-            
-            
 
-            <button type="submit" css={s.submitButton}>일기 등록</button>
-        </form>
-      </div>
+            <button type="submit" css={s.submitButton}>
+              일기 등록
+            </button>
+          </form>
+        </div>
 
-      <div css={s.recordContainer}>
-        <h1 css={s.resultText}>일기 목록</h1>
-        <h1 css={s.labels}>검색</h1>
-        <input type="text" placeholder="제목 검색..." value={searchTerm} onChange={handleSearchChange} css={s.searchInput} />
-        <ul>
-          {currentRecords.length > 0 ? (
-            currentRecords.map((diary) => (
-              <div key={diary.id} css={s.recordItem}>
-                <p onClick={() => navigateToDiaryDetail(diary.id)} css={s.linkStyle}>
-                  제목: {diary.title}
-                </p>
-                <p css={s.dataText}>작성일: {new Date(diary.createdAt).toLocaleDateString()}</p>
-                <div>
-                <button onClick={() => handleDelete(diary.id)} css={s.deleteButton}>
-            <FaTrash />
-          </button>
+        <div css={s.recordContainer}>
+          <h1 css={s.resultText}>일기 목록</h1>
+          <h1 css={s.labels}>검색</h1>
+          <input
+            type="text"
+            placeholder="제목 검색..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            css={s.searchInput}
+          />
+          <ul>
+            {currentRecords.length > 0 ? (
+              currentRecords.map((diary) => (
+                <div key={diary.id} css={s.recordItem}>
+                  <p
+                    onClick={() => navigateToDiaryDetail(diary.id)}
+                    css={s.linkStyle}
+                  >
+                    제목: {diary.title}
+                  </p>
+                  <p css={s.dataText}>
+                    작성일: {new Date(diary.createdAt).toLocaleDateString()}
+                  </p>
+                  <div>
+                    <button
+                      onClick={() => handleDelete(diary.id)}
+                      css={s.deleteButton}
+                    >
+                      <FaTrash />
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <p css={s.errorMessage}>등록된 일기가 없습니다.</p>
-          )}
-        </ul>
-        {totalPages > 1 && (
-          <div css={s.paginationContainer}>
-            <button onClick={() => handlePageChange(currentPage - 1)} css={s.paginationButton} disabled={currentPage === 1}>
-              &lt; 이전
-            </button>
-            {[...Array(totalPages)].map((_, index) => (
-              <button key={index} onClick={() => handlePageChange(index + 1)} css={s.paginationButton}>
-                {index + 1}
+              ))
+            ) : (
+              <p css={s.errorMessage}>등록된 일기가 없습니다.</p>
+            )}
+          </ul>
+          {totalPages > 1 && (
+            <div css={s.paginationContainer}>
+              <button
+                onClick={() => handlePageChange(currentPage - 1)}
+                css={s.paginationButton}
+                disabled={currentPage === 1}
+              >
+                &lt; 이전
               </button>
-            ))}
-            <button onClick={() => handlePageChange(currentPage + 1)} css={s.paginationButton} disabled={currentPage === totalPages}>
-              다음 &gt;
-            </button>
-          </div>
-        )}
+              {[...Array(totalPages)].map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => handlePageChange(index + 1)}
+                  css={s.paginationButton}
+                >
+                  {index + 1}
+                </button>
+              ))}
+              <button
+                onClick={() => handlePageChange(currentPage + 1)}
+                css={s.paginationButton}
+                disabled={currentPage === totalPages}
+              >
+                다음 &gt;
+              </button>
+            </div>
+          )}
+        </div>
       </div>
-      </div>
-     
     </div>
   );
 }

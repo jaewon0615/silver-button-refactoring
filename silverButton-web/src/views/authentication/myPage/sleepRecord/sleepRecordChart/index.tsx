@@ -75,7 +75,7 @@ const SleepChart = () => {
   return (
     <div css={s.chartContainer}>
       <h1 css={s.resultText}>수면 기록 차트</h1>
-      
+
       <h2>수면 시간, 수면 질, 깨는 횟수</h2>
       <ResponsiveContainer width="100%" height={400}>
         <LineChart data={sleepChartData}>
@@ -85,38 +85,81 @@ const SleepChart = () => {
           <Tooltip />
           <Legend wrapperStyle={{ fontSize: 20 }} />
           <ReferenceLine y={8} stroke="red" label="최소 권장 수면 (8시간)" />
-          <Line type="monotone" dataKey="duration" stroke="#8884d8" name="수면 시간 (시간)" dot={{ r: 6 }} />
-          <Line type="monotone" dataKey="quality" stroke="#82ca9d" name="수면의 질 (점수)" dot={{ r: 6 }} />
-          <Line type="monotone" dataKey="interruptions" stroke="#FF8042" name="깨는 횟수" dot={{ r: 6 }} />
+          <Line
+            type="monotone"
+            dataKey="duration"
+            stroke="#8884d8"
+            name="수면 시간 (시간)"
+            dot={{ r: 6 }}
+          />
+          <Line
+            type="monotone"
+            dataKey="quality"
+            stroke="#82ca9d"
+            name="수면의 질 (점수)"
+            dot={{ r: 6 }}
+          />
+          <Line
+            type="monotone"
+            dataKey="interruptions"
+            stroke="#FF8042"
+            name="깨는 횟수"
+            dot={{ r: 6 }}
+          />
         </LineChart>
       </ResponsiveContainer>
 
       <h2>잠든 시간 & 깬 시간</h2>
-<ResponsiveContainer width="100%" height={400}>
-  <LineChart data={sleepChartData}>
-    <CartesianGrid strokeDasharray="3 3" />
-    <XAxis dataKey="date" tick={{ fontSize: 20 }} />
-    <YAxis tick={{ fontSize: 20 }} domain={[0, 24]} label={{ value: "시간", angle: -90, position: "insideLeft" }} />
-    <Tooltip />
-    <Legend wrapperStyle={{ fontSize: 20 }} />
-    <ReferenceLine y={0} stroke="gray" />
-    <ReferenceLine y={24} stroke="gray" />
-    
-    {/* 잠든 시간 선 그래프 */}
-    <Line type="monotone" dataKey="sleepTime" stroke="#8884d8" name="잠든 시간" dot={{ r: 5 }} />
-    
-    {/* 깬 시간 선 그래프 */}
-    <Line type="monotone" dataKey="wakeTime" stroke="#FF8042" name="깬 시간" dot={{ r: 5 }} />
-  </LineChart>
-</ResponsiveContainer>
+      <ResponsiveContainer width="100%" height={400}>
+        <LineChart data={sleepChartData}>
+          <CartesianGrid strokeDasharray="3 3" />
+          <XAxis dataKey="date" tick={{ fontSize: 20 }} />
+          <YAxis
+            tick={{ fontSize: 20 }}
+            domain={[0, 24]}
+            label={{ value: "시간", angle: -90, position: "insideLeft" }}
+          />
+          <Tooltip />
+          <Legend wrapperStyle={{ fontSize: 20 }} />
+          <ReferenceLine y={0} stroke="gray" />
+          <ReferenceLine y={24} stroke="gray" />
+
+          <Line
+            type="monotone"
+            dataKey="sleepTime"
+            stroke="#8884d8"
+            name="잠든 시간"
+            dot={{ r: 5 }}
+          />
+
+          <Line
+            type="monotone"
+            dataKey="wakeTime"
+            stroke="#FF8042"
+            name="깬 시간"
+            dot={{ r: 5 }}
+          />
+        </LineChart>
+      </ResponsiveContainer>
 
       <h2>꿈 여부 비율</h2>
       <ResponsiveContainer width="100%" height={300}>
         <PieChart>
           <Pie
             dataKey="value"
-            data={[{ name: "꿈 O", value: sleepRecords.filter(r => r.dreamOccurred === "꿈").length },
-                   { name: "꿈 X", value: sleepRecords.filter(r => r.dreamOccurred === "꾸지 않음").length }]}
+            data={[
+              {
+                name: "꿈 O",
+                value: sleepRecords.filter((r) => r.dreamOccurred === "꿈")
+                  .length,
+              },
+              {
+                name: "꿈 X",
+                value: sleepRecords.filter(
+                  (r) => r.dreamOccurred === "꾸지 않음"
+                ).length,
+              },
+            ]}
             outerRadius={120}
             fill="#8884d8"
             label={{ fontSize: 16 }}

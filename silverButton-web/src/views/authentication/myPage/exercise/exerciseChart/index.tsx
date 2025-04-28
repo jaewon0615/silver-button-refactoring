@@ -1,14 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import axios from "axios";
-import * as s from "./style"; // 스타일 파일 임포트
+import * as s from "./style";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useParams } from "react-router-dom"; // useNavigate 제거
+import { useParams } from "react-router-dom";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-// 차트 등록
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export interface ExerciseType {
   id: number;
@@ -21,8 +37,8 @@ export interface ExerciseType {
   location: string;
   notes: string;
   createdAt: number;
-  heart:number;
-  weight:number;
+  heart: number;
+  weight: number;
 }
 
 export default function Exercise() {
@@ -30,7 +46,6 @@ export default function Exercise() {
   const [exerciseItem, setExerciseItem] = useState<ExerciseType[]>([]);
   const [cookies] = useCookies(["token"]);
 
-  // 운동 기록을 가져오는 함수
   const fetchExercises = async () => {
     const token = cookies.token;
     if (id && token) {
@@ -44,20 +59,18 @@ export default function Exercise() {
           }
         );
         console.log(response.data.data);
-        setExerciseItem(response.data.data); // 운동 기록 업데이트
+        setExerciseItem(response.data.data);
       } catch (e) {
         console.error("Error fetching exercise records", e);
       }
     }
   };
 
-  // 컴포넌트가 처음 렌더링될 때 운동 기록을 가져오는 effect
   useEffect(() => {
     console.log("User ID:", id);
     fetchExercises();
   }, [id, cookies.token]);
 
-  // 차트 데이터 준비
   const chartData = {
     labels: exerciseItem.map((exercise) =>
       new Date(exercise.createdAt).toLocaleDateString()
@@ -98,7 +111,6 @@ export default function Exercise() {
         backgroundColor: "rgba(255, 159, 64, 0.2)",
         fill: true,
       },
-
     ],
   };
 
@@ -115,7 +127,7 @@ export default function Exercise() {
                   legend: {
                     labels: {
                       font: {
-                        size: 18, // 범례 글자 크기 키움
+                        size: 18,
                       },
                     },
                   },
@@ -124,14 +136,14 @@ export default function Exercise() {
                   x: {
                     ticks: {
                       font: {
-                        size: 15, // x축 폰트 크기
+                        size: 15,
                       },
                     },
                   },
                   y: {
                     ticks: {
                       font: {
-                        size: 15, // y축 폰트 크기
+                        size: 15,
                       },
                     },
                   },

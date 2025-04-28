@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import * as s from "./style";
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 
-export type InquiryStatus = 'PENDING' | 'IN_PROGRESS' | 'COMPLETED';
+export type InquiryStatus = "PENDING" | "IN_PROGRESS" | "COMPLETED";
 
 export interface ServiceCenterType {
   id: number;
@@ -14,16 +14,19 @@ export interface ServiceCenterType {
   status: InquiryStatus;
   createdAt: number;
   nickname: string;
-  password: string; // ✅ 추가된 비밀번호 필드
+  password: string;
 }
 
 export default function ServiceCenter() {
   const { id } = useParams<{ id: string }>();
   const [serviceCenter, setServiceCenter] = useState<ServiceCenterType[]>([]);
-  const [replyCountMap, setReplyCountMap] = useState<{ [key: number]: number }>({});
+  const [replyCountMap, setReplyCountMap] = useState<{ [key: number]: number }>(
+    {}
+  );
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState("");
-  const [selectedInquiry, setSelectedInquiry] = useState<ServiceCenterType | null>(null);
+  const [selectedInquiry, setSelectedInquiry] =
+    useState<ServiceCenterType | null>(null);
   const [modalOpen, setModalOpen] = useState(false);
   const [inputPassword, setInputPassword] = useState("");
   const [error, setError] = useState("");
@@ -43,7 +46,9 @@ export default function ServiceCenter() {
 
   const fetchServiceCenter = async () => {
     try {
-      const response = await axios.get(`http://localhost:4040/api/v1/inquiries/all/all`);
+      const response = await axios.get(
+        `http://localhost:4040/api/v1/inquiries/all/all`
+      );
       setServiceCenter(response.data.data);
     } catch (e) {
       console.error("문의글 불러오기 실패", e);
@@ -56,7 +61,9 @@ export default function ServiceCenter() {
     await Promise.all(
       serviceCenter.map(async (inquiry) => {
         try {
-          const res = await axios.get(`http://localhost:4040/api/v1/inquiries-replies/inquiryId/${inquiry.id}`);
+          const res = await axios.get(
+            `http://localhost:4040/api/v1/inquiries-replies/inquiryId/${inquiry.id}`
+          );
           newCountMap[inquiry.id] = res.data.data.length;
         } catch (e) {
           console.error(`답변 확인 실패 (ID: ${inquiry.id})`, e);
@@ -74,7 +81,10 @@ export default function ServiceCenter() {
 
   const indexOfLastRecord = currentPage * recordPerPage;
   const indexOfFirstRecord = indexOfLastRecord - recordPerPage;
-  const currentRecords = filteredInquiries.slice(indexOfFirstRecord, indexOfLastRecord);
+  const currentRecords = filteredInquiries.slice(
+    indexOfFirstRecord,
+    indexOfLastRecord
+  );
   const totalPages = Math.ceil(filteredInquiries.length / recordPerPage);
 
   const handlePageChange = (page: number) => {
@@ -110,7 +120,7 @@ export default function ServiceCenter() {
     <div css={s.container}>
       <div css={s.conttSt}>
         <div css={s.header}>
-          <h1 css={s.title}>고객센터</h1>
+          <h1 css={s.title}>실버니즈 고객센터</h1>
           <button onClick={handlePost}>등록하기</button>
         </div>
 
@@ -118,13 +128,19 @@ export default function ServiceCenter() {
           currentRecords.map((service) => {
             const replyCount = replyCountMap[service.id] || 0;
             const statusLabel =
-              replyCount > 0 ? "완료됨" :
-              service.status === "IN_PROGRESS" ? "처리중" : "대기중";
+              replyCount > 0
+                ? "완료됨"
+                : service.status === "IN_PROGRESS"
+                ? "처리중"
+                : "대기중";
 
             return (
               <div key={service.id} css={s.inquiryCard}>
-                <div css={s.inquiryTitle} onClick={() => openPasswordModal(service)}>
-                  {service.title} {" "}
+                <div
+                  css={s.inquiryTitle}
+                  onClick={() => openPasswordModal(service)}
+                >
+                  {service.title}{" "}
                   <span css={{ fontSize: "1.2rem", color: "gray" }}>
                     ({replyCount})
                   </span>
@@ -147,21 +163,32 @@ export default function ServiceCenter() {
 
         {totalPages > 1 && (
           <div css={s.paginationContainer}>
-            <button onClick={() => handlePageChange(currentPage - 1)} css={s.paginationButton} disabled={currentPage === 1}>
+            <button
+              onClick={() => handlePageChange(currentPage - 1)}
+              css={s.paginationButton}
+              disabled={currentPage === 1}
+            >
               &lt; 이전
             </button>
             {[...Array(totalPages)].map((_, index) => (
-              <button key={index} onClick={() => handlePageChange(index + 1)} css={s.paginationButton}>
+              <button
+                key={index}
+                onClick={() => handlePageChange(index + 1)}
+                css={s.paginationButton}
+              >
                 {index + 1}
               </button>
             ))}
-            <button onClick={() => handlePageChange(currentPage + 1)} css={s.paginationButton} disabled={currentPage === totalPages}>
+            <button
+              onClick={() => handlePageChange(currentPage + 1)}
+              css={s.paginationButton}
+              disabled={currentPage === totalPages}
+            >
               다음 &gt;
             </button>
           </div>
         )}
 
-        {/* 🔐 비밀번호 입력 모달 */}
         {modalOpen && selectedInquiry && (
           <div css={s.modalOverlay}>
             <div css={s.modalContent}>
@@ -176,8 +203,12 @@ export default function ServiceCenter() {
               />
               {error && <span css={s.modalError}>{error}</span>}
               <div css={s.modalButtons}>
-                <button onClick={() => setModalOpen(false)} css={s.modalButton}>취소</button>
-                <button onClick={handlePasswordCheck} css={s.modalButton}>확인</button>
+                <button onClick={() => setModalOpen(false)} css={s.modalButton}>
+                  취소
+                </button>
+                <button onClick={handlePasswordCheck} css={s.modalButton}>
+                  확인
+                </button>
               </div>
             </div>
           </div>

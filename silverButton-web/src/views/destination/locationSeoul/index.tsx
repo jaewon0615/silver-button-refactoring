@@ -64,39 +64,39 @@ export default function LocationSeoul() {
 
   const handleLocationJunggu = () => {
     navigate(`/destination/location/서울/중구`);
-};
+  };
 
-const handleLocationGangnamgu = () => {
-  navigate(`/destination/location/서울/강남구`);
-};
+  const handleLocationGangnamgu = () => {
+    navigate(`/destination/location/서울/강남구`);
+  };
 
-const handleLocationYeongdeungpo = () => {
-  navigate(`/destination/location/서울/영등포구`);
-};
+  const handleLocationYeongdeungpo = () => {
+    navigate(`/destination/location/서울/영등포구`);
+  };
 
-const handleLocationSongpa = () => {
-  navigate(`/destination/location/서울/송파구`);
-};
+  const handleLocationSongpa = () => {
+    navigate(`/destination/location/서울/송파구`);
+  };
 
-const handleLocationGangbuk = () => {
-  navigate(`/destination/location/서울/강북구`);
-};
+  const handleLocationGangbuk = () => {
+    navigate(`/destination/location/서울/강북구`);
+  };
 
-const handleLocationMapo = () => {
-  navigate(`/destination/location/서울/마포구`);
-};
+  const handleLocationMapo = () => {
+    navigate(`/destination/location/서울/마포구`);
+  };
 
-const handleLocationSeocho = () => {
-  navigate(`/destination/location/서울/서초구`);
-};
+  const handleLocationSeocho = () => {
+    navigate(`/destination/location/서울/서초구`);
+  };
 
-const handleLocationJongro = () => {
-  navigate(`/destination/location/서울/종로구`);
-};
+  const handleLocationJongro = () => {
+    navigate(`/destination/location/서울/종로구`);
+  };
 
-const navigateToDestinationDetail = (destinationId: number) => {
-  navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
-};
+  const navigateToDestinationDetail = (destinationId: number) => {
+    navigate(`/my-page/destination/id/${destinationId}`);
+  };
 
   return (
     <div css={s.container}>
@@ -109,22 +109,42 @@ const navigateToDestinationDetail = (destinationId: number) => {
         css={s.searchInput}
       />
       <div css={s.buttonContainer}>
-      <button onClick={handleLocationJunggu} css={s.buttonStyleJg}>중구</button>
-      <button onClick={handleLocationGangnamgu} css={s.buttonStyleGn}>강남구</button>
-      <button onClick={handleLocationYeongdeungpo} css={s.buttonStyleYDP}>영등포구</button>
-      <button onClick={handleLocationSongpa} css={s.buttonStyleSP}>송파구</button>
-      <button onClick={handleLocationGangbuk} css={s.buttonStyle}>강북구</button>
-      <button onClick={handleLocationMapo} css={s.buttonStyle}>마포구</button>
-      <button onClick={handleLocationSeocho} css={s.buttonStyle}>서초구</button>
-      <button onClick={handleLocationJongro} css={s.buttonStyle}>종로구</button>
-
+        <button onClick={handleLocationJunggu} css={s.buttonStyleJg}>
+          중구
+        </button>
+        <button onClick={handleLocationGangnamgu} css={s.buttonStyleGn}>
+          강남구
+        </button>
+        <button onClick={handleLocationYeongdeungpo} css={s.buttonStyleYDP}>
+          영등포구
+        </button>
+        <button onClick={handleLocationSongpa} css={s.buttonStyleSP}>
+          송파구
+        </button>
+        <button onClick={handleLocationGangbuk} css={s.buttonStyle}>
+          강북구
+        </button>
+        <button onClick={handleLocationMapo} css={s.buttonStyle}>
+          마포구
+        </button>
+        <button onClick={handleLocationSeocho} css={s.buttonStyle}>
+          서초구
+        </button>
+        <button onClick={handleLocationJongro} css={s.buttonStyle}>
+          종로구
+        </button>
       </div>
-      
+
       <div css={s.gridContainer}>
         {currentRecords.length > 0 ? (
           currentRecords.map((destination) => (
             <div key={destination.id} css={s.card}>
-              <img src={destination.imageUrl} alt={destination.name} css={s.image} onClick={() =>navigateToDestinationDetail(destination.id)}/>
+              <img
+                src={destination.imageUrl}
+                alt={destination.name}
+                css={s.image}
+                onClick={() => navigateToDestinationDetail(destination.id)}
+              />
               <div css={s.cardContent}>
                 <h2 css={s.title}>{destination.name}</h2>
                 <p css={s.category}>{destination.category}</p>

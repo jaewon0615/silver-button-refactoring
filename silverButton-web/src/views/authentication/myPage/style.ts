@@ -1,7 +1,5 @@
-/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
-// MyPage Container
 export const myPageContainer = css`
   width: 100%;
   height: 100%;
@@ -9,7 +7,6 @@ export const myPageContainer = css`
   border-radius: 8px;
 `;
 
-// Header
 export const myPageHeader = css`
   text-align: center;
   margin-bottom: 20px;
@@ -17,10 +14,9 @@ export const myPageHeader = css`
 
 export const myPageHeaderTitle = css`
   font-size: 24px;
-  color: #3b82f6;  // Blue color
+  color: #3b82f6;
 `;
 
-// Main Section
 export const myPageMain = css`
   display: flex;
   justify-content: space-between;
@@ -53,9 +49,8 @@ export const profileImgStyle = css`
   border-radius: 50%;
 `;
 
-// Edit button for profile image
 export const editButton = css`
-  background-color: #3b82f6;  // Blue color
+  background-color: #3b82f6;
   color: white;
   padding: 8px 16px;
   border: none;
@@ -87,7 +82,6 @@ export const myPageRight = css`
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 `;
 
-
 export const formItem = css`
   display: flex;
   flex-direction: column;
@@ -104,7 +98,7 @@ export const small = css`
 export const inputField = css`
   padding: 12px;
   font-size: 20px;
-  border: 1px solid #d1d5db;  // Light grey border
+  border: 1px solid #d1d5db;
   border-radius: 15px;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
   transition: border-color 0.3s ease, box-shadow 0.3s ease;
@@ -112,12 +106,12 @@ export const inputField = css`
   background-color: white;
 
   &:focus {
-    border-color: #3b82f6;  // Blue border on focus
-    box-shadow: 0 0 4px rgba(59, 130, 246, 0.5);  // Blue glow
+    border-color: #3b82f6;
+    box-shadow: 0 0 4px rgba(59, 130, 246, 0.5);
   }
 
   &::placeholder {
-    color: #a1a1a1;  // Placeholder color
+    color: #a1a1a1;
   }
 `;
 
@@ -130,31 +124,31 @@ export const tmiButtons = css`
 `;
 
 export const messageButton = css`
-background-color: #4F93F5;  // Purple color
-color: white;
-font-size: 40px;
-font-weight: bold;
-padding: 10px 15px;
-border: none;
-border-radius: 15px;
-cursor: pointer;
-transition: transform 0.3s ease, box-shadow 0.3s ease;
-width: 50%;  // Increased width for a wider button
-height: 150px;
+  background-color: #4f93f5;
+  color: white;
+  font-size: 40px;
+  font-weight: bold;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 50%;
+  height: 150px;
 
-&:hover {
-  transform: scale(1.05);
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+  &:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
 
-&:active {
-  transform: scale(0.98);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-}
+  &:active {
+    transform: scale(0.98);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  }
 `;
 
 export const medicineButton = css`
-  background-color: #F59E0B;  // Purple color
+  background-color: #f59e0b;
   color: white;
   font-size: 40px;
   font-weight: bold;
@@ -177,7 +171,7 @@ export const medicineButton = css`
 `;
 
 export const recordButton = css`
-  background-color: #34D399;  // Purple color
+  background-color: #34d399;
   color: white;
   font-size: 40px;
   font-weight: bold;
@@ -200,7 +194,7 @@ export const recordButton = css`
 `;
 
 export const emergencyButton = css`
-  background-color: #dc3545;  // Purple color
+  background-color: #dc3545;
   color: white;
   font-size: 40px;
   font-weight: bold;
@@ -223,7 +217,7 @@ export const emergencyButton = css`
 `;
 
 export const diaryButton = css`
-  background-color: #6f42c1;  // Purple color
+  background-color: #6f42c1;
   color: white;
   font-size: 40px;
   font-weight: bold;
@@ -246,7 +240,7 @@ export const diaryButton = css`
 `;
 
 export const exerciseButton = css`
-  background-color: rgb(189, 183, 107);  // Purple color
+  background-color: rgb(189, 183, 107);
   color: white;
   font-size: 40px;
   font-weight: bold;
@@ -269,7 +263,7 @@ export const exerciseButton = css`
 `;
 
 export const expenseButton = css`
-  background-color: #D9C29B;  // Purple color
+  background-color: #d9c29b;
   color: white;
   font-size: 40px;
   font-weight: bold;
@@ -292,7 +286,7 @@ export const expenseButton = css`
 `;
 
 export const destinationButton = css`
-  background-color: #032132;  // Purple color
+  background-color: #032132;
   color: white;
   font-size: 40px;
   font-weight: bold;
@@ -315,7 +309,7 @@ export const destinationButton = css`
 `;
 
 export const destinationReviewButton = css`
-  background-color: #5D3A00; /* 희귀한 갈색 계열 */
+  background-color: #5d3a00;
   color: white;
   font-size: 40px;
   font-weight: bold;
@@ -338,7 +332,7 @@ export const destinationReviewButton = css`
 `;
 
 export const sleepButton = css`
-  background-color: #3B1E35; /* Charcoal Plum: 어두운 자주색 */
+  background-color: #3b1e35;
   color: white;
   font-size: 40px;
   font-weight: bold;
@@ -361,8 +355,8 @@ export const sleepButton = css`
 `;
 
 export const reviewButton = css`
-  background-color: #014D4E; /* Deep Teal Blue: 희귀하고 세련된 파랑+초록 계열 */
-  color: #F0F8FF; /* Alice Blue: 밝고 차분한 흰색 느낌 */
+  background-color: #014d4e;
+  color: #f0f8ff;
   font-size: 40px;
   font-weight: bold;
   padding: 10px 15px;
@@ -383,8 +377,6 @@ export const reviewButton = css`
   }
 `;
 
-
-
 export const messageIcon = css`
   margin-right: 10px;
 `;
@@ -397,7 +389,7 @@ export const myPageFooter = css`
 `;
 
 export const saveButton = css`
-  background-color: #22c55e;  // Green color
+  background-color: #22c55e;
   color: white;
   font-size: 23px;
   padding: 10px 20px;
@@ -419,7 +411,7 @@ export const saveButton = css`
 `;
 
 export const deleteButton = css`
-  background-color: #ef4444;  // Red color
+  background-color: #ef4444;
   color: white;
   font-size: 23px;
   padding: 10px 20px;
@@ -448,14 +440,14 @@ export const errorMessage = css`
 `;
 
 export const text = css`
-font-size: 20px;
+  font-size: 20px;
   font-weight: bold;
-  color: #3b82f6;  // Blue color
+  color: #3b82f6;
   margin-bottom: 8px;
 `;
 
 export const footerBox = css`
-display: flex;
+  display: flex;
   justify-content: space-between;
   gap: 20px;
   flex: 1;
@@ -475,7 +467,7 @@ export const buttonStyle = css`
   border-radius: 8px;
   cursor: pointer;
   transition: background-color 0.3s ease, transform 0.2s ease;
-  
+
   &:hover {
     background-color: #0056b3;
     transform: scale(1.05);
@@ -485,13 +477,12 @@ export const buttonStyle = css`
     background-color: #003d80;
     transform: scale(0.98);
   }
-  
+
   &:focus {
     outline: none;
     box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
   }
 `;
-
 
 export const buttonCarouselContainer = css`
   display: flex;
@@ -507,7 +498,6 @@ export const buttonCarouselWrapper = css`
   align-items: center;
   width: 100%;
   justify-content: center;
-  
 `;
 
 export const buttonCarousel = css`

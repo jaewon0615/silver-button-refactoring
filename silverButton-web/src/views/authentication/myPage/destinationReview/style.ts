@@ -1,4 +1,4 @@
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 export const recordContainer = css`
   width: 100%;
@@ -37,7 +37,6 @@ export const searchInput = css`
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 16px;
-
 `;
 
 export const recordItem = css`
@@ -154,15 +153,15 @@ export const deleteButton = css`
   transition: all 0.3s ease-in-out;
   text-align: center;
   width: auto;
-  display: inline-block; /* Align horizontally */
-  white-space: nowrap; /* Prevent text from wrapping */
+  display: inline-block;
+  white-space: nowrap;
 
   &:hover {
-    background-color: #d32f2f; /* Darker red */
+    background-color: #d32f2f;
   }
 
   &:active {
-    background-color: #c62828; /* Even darker red */
+    background-color: #c62828;
   }
 `;
 
@@ -185,7 +184,6 @@ export const icon = css`
   height: 30px;
 `;
 
-
 export const reviewText = css`
   font-size: 20px;
   font-weight: bold;
@@ -198,4 +196,3 @@ export const reviewCont = css`
   flex-direction: row;
   gap: 10px;
 `;
-

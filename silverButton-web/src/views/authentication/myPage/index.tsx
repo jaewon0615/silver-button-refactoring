@@ -189,9 +189,7 @@ const MyPage = () => {
   const handleResignClick = () => {
     navigate("/my-page/resign");
   };
-  
 
-  // 🔄 버튼 캐러셀 기능 (좌우 스크롤)
   const carouselRef = useRef<HTMLDivElement>(null);
 
   const scrollLeft = () => {
@@ -277,7 +275,9 @@ const MyPage = () => {
         </div>
         <div css={s.myPageRight}>
           <div css={s.formItem}>
-            <label htmlFor="nickname" css={s.text}>변경하실 닉네임</label>
+            <label htmlFor="nickname" css={s.text}>
+              변경하실 닉네임
+            </label>
             <input
               type="text"
               id="nickname"
@@ -290,7 +290,9 @@ const MyPage = () => {
             />
           </div>
           <div css={s.formItem}>
-            <label htmlFor="phone" css={s.text}>변경하실 전화번호</label>  
+            <label htmlFor="phone" css={s.text}>
+              변경하실 전화번호
+            </label>
             <input
               type="text"
               id="phone"
@@ -305,7 +307,9 @@ const MyPage = () => {
             />
           </div>
           <div css={s.formItem}>
-            <label htmlFor="password" css={s.text}>변경하실 비밀번호</label>
+            <label htmlFor="password" css={s.text}>
+              변경하실 비밀번호
+            </label>
             <input
               type="password"
               id="password"
@@ -329,17 +333,54 @@ const MyPage = () => {
             ◀
           </button>
           <div css={s.buttonCarousel} ref={carouselRef}>
-            <button css={s.messageButton} onClick={handleMessageClick}> <MdOutlineMessage /> 내 쪽지함 </button>
-            <button css={s.medicineButton} onClick={handleSaveMedicineClick}> <AiOutlineMedicineBox /> 약품 정보 </button>
-            <button css={s.recordButton} onClick={handleHealthRecordClick}> <MdOutlineHealthAndSafety /> 건강 기록 </button>
-            <button css={s.emergencyButton} onClick={handleEmergenctContactClick}> <IoIosContacts /> 비상연락망 </button>
-            <button css={s.diaryButton} onClick={handleDiaryClick}> <IoIosJournal /> 오늘의 일기 </button>
-            <button css={s.exerciseButton} onClick={handleExerciseClick}> <MdOutlineDirectionsRun /> 운동 기록 </button>
-            <button css={s.expenseButton} onClick={handleExpenseClick}> <FaMoneyCheckDollar /> 가계부 목록 </button>
-            <button css={s.destinationButton} onClick={handleDestinaionClick}> <MdCardTravel /> 여행지 목록 </button>
-            <button css={s.destinationReviewButton} onClick={handleDestinaionReviewClick}> <MdOutlineRateReview /> 리뷰 관리 </button>
-            <button css={s.sleepButton} onClick={handleSleepRecordClick}><GiNightSleep /> 수면 패턴 </button>
-            <button css={s.reviewButton} onClick={handleMyInquiryClick}><MdRateReview /> 문의글 관리 </button>
+            <button css={s.messageButton} onClick={handleMessageClick}>
+              {" "}
+              <MdOutlineMessage /> 내 쪽지함{" "}
+            </button>
+            <button css={s.medicineButton} onClick={handleSaveMedicineClick}>
+              {" "}
+              <AiOutlineMedicineBox /> 약품 정보{" "}
+            </button>
+            <button css={s.recordButton} onClick={handleHealthRecordClick}>
+              {" "}
+              <MdOutlineHealthAndSafety /> 건강 기록{" "}
+            </button>
+            <button
+              css={s.emergencyButton}
+              onClick={handleEmergenctContactClick}
+            >
+              {" "}
+              <IoIosContacts /> 비상연락망{" "}
+            </button>
+            <button css={s.diaryButton} onClick={handleDiaryClick}>
+              {" "}
+              <IoIosJournal /> 오늘의 일기{" "}
+            </button>
+            <button css={s.exerciseButton} onClick={handleExerciseClick}>
+              {" "}
+              <MdOutlineDirectionsRun /> 운동 기록{" "}
+            </button>
+            <button css={s.expenseButton} onClick={handleExpenseClick}>
+              {" "}
+              <FaMoneyCheckDollar /> 가계부 목록{" "}
+            </button>
+            <button css={s.destinationButton} onClick={handleDestinaionClick}>
+              {" "}
+              <MdCardTravel /> 여행지 목록{" "}
+            </button>
+            <button
+              css={s.destinationReviewButton}
+              onClick={handleDestinaionReviewClick}
+            >
+              {" "}
+              <MdOutlineRateReview /> 리뷰 관리{" "}
+            </button>
+            <button css={s.sleepButton} onClick={handleSleepRecordClick}>
+              <GiNightSleep /> 수면 패턴{" "}
+            </button>
+            <button css={s.reviewButton} onClick={handleMyInquiryClick}>
+              <MdRateReview /> 문의글 관리{" "}
+            </button>
           </div>
           <button css={s.arrowButton} onClick={scrollRight}>
             ▶

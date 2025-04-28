@@ -54,17 +54,17 @@ const ExpenseChart = () => {
     fetchExpenses();
   }, [id, cookies.token]);
 
-  // 오래된 순으로 정렬된 데이터
-  const sortedExpenses = [...expenses].sort((a, b) => a.paymentDate - b.paymentDate);
+  const sortedExpenses = [...expenses].sort(
+    (a, b) => a.paymentDate - b.paymentDate
+  );
 
   const barChartData = sortedExpenses.map((expense) => ({
     name: new Date(expense.paymentDate).toLocaleDateString("ko-KR"),
     amount: expense.amount,
   }));
 
-  // XAxis 데이터를 오래된 순으로 정렬하기 (name 기준으로 타임스탬프 비교)
-  const sortedBarChartData = barChartData.sort((a, b) => 
-    new Date(a.name).getTime() - new Date(b.name).getTime()
+  const sortedBarChartData = barChartData.sort(
+    (a, b) => new Date(a.name).getTime() - new Date(b.name).getTime()
   );
 
   const categoryData = Object.values(
@@ -134,7 +134,10 @@ const ExpenseChart = () => {
             label={{ fontSize: 18 }}
           >
             {categoryData.map((_, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
             ))}
           </Pie>
           <Legend wrapperStyle={{ fontSize: 14 }} />
@@ -163,7 +166,10 @@ const ExpenseChart = () => {
             label={{ fontSize: 18 }}
           >
             {descriptionData.map((_, index) => (
-              <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+              <Cell
+                key={`cell-${index}`}
+                fill={COLORS[index % COLORS.length]}
+              />
             ))}
           </Pie>
           <Legend wrapperStyle={{ fontSize: 18 }} />

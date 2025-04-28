@@ -63,7 +63,7 @@ export default function LocationJeju() {
   };
 
   const navigateToDestinationDetail = (destinationId: number) => {
-    navigate(`/my-page/destination/id/${destinationId}`); // 경로를 수정하여 이동합니다.
+    navigate(`/my-page/destination/id/${destinationId}`);
   };
 
   return (
@@ -80,7 +80,12 @@ export default function LocationJeju() {
         {currentRecords.length > 0 ? (
           currentRecords.map((destination) => (
             <div key={destination.id} css={s.card}>
-              <img src={destination.imageUrl} alt={destination.name} css={s.image} onClick={()=> navigateToDestinationDetail(destination.id)} />
+              <img
+                src={destination.imageUrl}
+                alt={destination.name}
+                css={s.image}
+                onClick={() => navigateToDestinationDetail(destination.id)}
+              />
               <div css={s.cardContent}>
                 <h2 css={s.title}>{destination.name}</h2>
                 <p css={s.category}>{destination.category}</p>

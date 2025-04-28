@@ -1,14 +1,30 @@
 /** @jsxImportSource @emotion/react */
 import axios from "axios";
-import * as s from "./style"; // 스타일 파일 임포트
+import * as s from "./style";
 import React, { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
-import { useParams } from "react-router-dom"; // useNavigate 제거
+import { useParams } from "react-router-dom";
 import { Line } from "react-chartjs-2";
-import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend } from "chart.js";
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend,
+} from "chart.js";
 
-// 차트 등록
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+ChartJS.register(
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+);
 
 export interface HealthRecordType {
   id: number;
@@ -24,7 +40,9 @@ export interface HealthRecordType {
 
 export default function HealthRecord() {
   const { id } = useParams<{ id: string }>();
-  const [healthRecordItem, setHealthRecordItem] = useState<HealthRecordType[]>([]);
+  const [healthRecordItem, setHealthRecordItem] = useState<HealthRecordType[]>(
+    []
+  );
   const [cookies] = useCookies(["token"]);
 
   const fetchHealthRecords = async () => {
@@ -39,8 +57,8 @@ export default function HealthRecord() {
             },
           }
         );
-        console.log(response.data.data); // 데이터 확인
-        setHealthRecordItem(response.data.data); // 건강 기록 목록 업데이트
+        console.log(response.data.data);
+        setHealthRecordItem(response.data.data);
       } catch (e) {
         console.error("Failed to fetch health records", e);
       }
@@ -48,11 +66,10 @@ export default function HealthRecord() {
   };
 
   useEffect(() => {
-    console.log("User ID:", id); // ID 값 확인
-    fetchHealthRecords(); // 데이터 로딩
+    console.log("User ID:", id);
+    fetchHealthRecords();
   }, [id, cookies.token]);
 
-  // 차트 데이터를 위한 준비
   const chartData = {
     labels: healthRecordItem.map((record) =>
       new Date(record.createdAt).toLocaleDateString()
@@ -64,7 +81,6 @@ export default function HealthRecord() {
         borderColor: "rgb(75, 192, 192)",
         backgroundColor: "rgba(75, 192, 192, 0.2)",
         fill: true,
-        
       },
       {
         label: "이완기 혈압 (mmHg)",
@@ -103,34 +119,36 @@ export default function HealthRecord() {
         <h1 css={s.resultText}>건강 기록 차트</h1>
         {healthRecordItem.length > 0 ? (
           <div css={s.chartContainer}>
-            <Line data={chartData} options={{
-              plugins: {
-                legend: {
-                  labels: {
-                    font: {
-                      size: 18,  // 범례 글자 크기 키움
-                    }
-                  }
+            <Line
+              data={chartData}
+              options={{
+                plugins: {
+                  legend: {
+                    labels: {
+                      font: {
+                        size: 18,
+                      },
+                    },
+                  },
                 },
-                
-              },
-              scales: {
-                x: {
-                  ticks: {
-                    font: {
-                      size: 15,  // x축 폰트 크기
-                    }
-                  }
+                scales: {
+                  x: {
+                    ticks: {
+                      font: {
+                        size: 15,
+                      },
+                    },
+                  },
+                  y: {
+                    ticks: {
+                      font: {
+                        size: 15,
+                      },
+                    },
+                  },
                 },
-                y: {
-                  ticks: {
-                    font: {
-                      size: 15,  // y축 폰트 크기
-                    }
-                  }
-                }
-              }
-            }} />
+              }}
+            />
           </div>
         ) : (
           <p css={s.errorMessage}>등록된 건강 기록이 없습니다.</p>

@@ -5,7 +5,14 @@ import { useNavigate, useParams } from "react-router-dom";
 import * as s from "./style";
 import { BiCategory } from "react-icons/bi";
 import { CiLocationArrow1 } from "react-icons/ci";
-import { FaRoad, FaLocationArrow, FaClock, FaPhoneAlt, FaStar, FaSubway } from "react-icons/fa";
+import {
+  FaRoad,
+  FaLocationArrow,
+  FaClock,
+  FaPhoneAlt,
+  FaStar,
+  FaSubway,
+} from "react-icons/fa";
 import { CgWebsite } from "react-icons/cg";
 import { IoIosPricetags } from "react-icons/io";
 import { MdDescription } from "react-icons/md";
@@ -74,7 +81,6 @@ export default function DestinationDetail() {
     }
   };
 
-  // 여행지를 저장하는 함수
   const saveDestination = async () => {
     if (!token) {
       alert("로그인 상태에서만 여행지를 저장할 수 있습니다.");
@@ -85,11 +91,11 @@ export default function DestinationDetail() {
       const response = await axios.post(
         "http://localhost:4040/api/v1/user-saved-destination/",
         {
-          destinationId: destination?.id, // 여행지 ID
+          destinationId: destination?.id,
         },
         {
           headers: {
-            Authorization: `Bearer ${token}`, // JWT 토큰을 헤더에 포함
+            Authorization: `Bearer ${token}`,
           },
         }
       );
@@ -105,14 +111,16 @@ export default function DestinationDetail() {
     }
   };
 
-  // 주소를 클립보드에 복사하는 함수
   const handleCopy = (text: string) => {
-    navigator.clipboard.writeText(text).then(() => {
-      alert("주소가 클립보드에 복사되었습니다.");
-    }).catch((error) => {
-      console.error("주소 복사 실패:", error);
-      alert("주소 복사에 실패했습니다.");
-    });
+    navigator.clipboard
+      .writeText(text)
+      .then(() => {
+        alert("주소가 클립보드에 복사되었습니다.");
+      })
+      .catch((error) => {
+        console.error("주소 복사 실패:", error);
+        alert("주소 복사에 실패했습니다.");
+      });
   };
 
   return (
@@ -129,7 +137,9 @@ export default function DestinationDetail() {
               <span css={s.rating}>
                 <FaStar css={s.star} />
                 {destination.rating}
-                <button onClick={saveDestination} css={s.saveButton}>저장</button>
+                <button onClick={saveDestination} css={s.saveButton}>
+                  저장
+                </button>
               </span>
             </div>
             <div>
@@ -152,13 +162,18 @@ export default function DestinationDetail() {
             </div>
             <div css={s.flex}>
               <div css={s.column}>
-                <FaClock /> 운영시간: {destination.openingHours}~{destination.closingHours}
+                <FaClock /> 운영시간: {destination.openingHours}~
+                {destination.closingHours}
               </div>
               <div css={s.column}>
                 <FaRoad />
                 상세주소: {destination.address}
-                <button onClick={() => handleCopy(destination.address)} css={s.copyButton} title="주소 복사">
-                <FaCopy />
+                <button
+                  onClick={() => handleCopy(destination.address)}
+                  css={s.copyButton}
+                  title="주소 복사"
+                >
+                  <FaCopy />
                 </button>
               </div>
             </div>
@@ -205,19 +220,18 @@ export default function DestinationDetail() {
                 조회수: {destination.viewCount}회
               </div>
             </div>
-            
+
             <div css={s.buttonCt}>
-            <button onClick={handleBack} css={s.backButton}>
-              이전 페이지
-            </button>
-            <button css={s.reviewButton} onClick={handleReview}>
-              리뷰 작성
-            </button>
-            <button css={s.reviewGetButton} onClick={handleReviewGet}>
-              리뷰 조회
-            </button>
+              <button onClick={handleBack} css={s.backButton}>
+                이전 페이지
+              </button>
+              <button css={s.reviewButton} onClick={handleReview}>
+                리뷰 작성
+              </button>
+              <button css={s.reviewGetButton} onClick={handleReviewGet}>
+                리뷰 조회
+              </button>
             </div>
-            
           </div>
         ) : (
           <p>여행지가 존재하지 않습니다</p>

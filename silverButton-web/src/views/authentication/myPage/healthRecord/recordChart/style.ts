@@ -18,10 +18,10 @@ export const title = css`
 `;
 
 export const chartContainer = css`
-  width: 90%;  /* 너비를 90%로 설정 */
-  max-width: 1000px;  /* 최대 너비를 1000px로 설정하여 더 넓게 */
+  width: 90%;
+  max-width: 1000px;
   margin: 0 auto;
-  padding: 20px 0;  /* 여백 추가 */
+  padding: 20px 0;
 `;
 
 export const noDataMessage = css`
@@ -116,30 +116,30 @@ export const errorMessage = css`
 `;
 
 export const chartTitle = css`
-  font-size: 30px;  /* 폰트 사이즈 키움 */
+  font-size: 30px;
   font-weight: bold;
   color: #333;
   text-align: center;
-  margin-bottom: 30px;  /* 더 여유 있게 마진 추가 */
+  margin-bottom: 30px;
 `;
 
 export const chartLegend = css`
   display: flex;
   justify-content: space-around;
   margin-top: 20px;
-  font-size: 1.2rem;  /* 폰트 사이즈 키움 */
+  font-size: 1.2rem;
 `;
 
 export const legendItem = css`
   display: flex;
   align-items: center;
-  font-size: 1.2rem;  /* 폰트 사이즈 키움 */
+  font-size: 1.2rem;
   color: #333;
 `;
 
 export const legendDot = css`
-  width: 14px;  /* 범례 점 크기 키움 */
-  height: 14px;  /* 범례 점 크기 키움 */
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
-  margin-right: 10px;  /* 점과 텍스트 간 간격을 넓힘 */
+  margin-right: 10px;
 `;

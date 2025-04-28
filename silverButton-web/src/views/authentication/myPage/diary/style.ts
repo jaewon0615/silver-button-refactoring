@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
-import { ex } from "@fullcalendar/core/internal-common";
 
 export const container = css`
   width: 100%;
@@ -18,7 +17,7 @@ export const title = css`
   color: #1e88e5;
   padding-bottom: 20px;
   font-weight: bold;
-  border-bottom: 2px solid #1e88e5 ;
+  border-bottom: 2px solid #1e88e5;
 `;
 
 export const form = css`
@@ -82,8 +81,6 @@ export const contentInput = css`
   }
 `;
 
-
-
 export const submitButton = css`
   padding: 10px;
   background-color: #1e88e5;
@@ -106,7 +103,7 @@ export const recordList = css`
 `;
 
 export const recordItem = css`
-background-color: #f9f9f9;
+  background-color: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -114,7 +111,7 @@ background-color: #f9f9f9;
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  font-family: 'Nanum Gothic', sans-serif; /* 한글 폰트 설정 */
+  font-family: "Nanum Gothic", sans-serif;
   border: 1px solid rgba(147, 129, 255, 0.3);
   margin-top: 5px;
   flex-direction: column;
@@ -137,12 +134,11 @@ export const resultText = css`
   color: #1e88e5;
   font-weight: bold;
   border-bottom: 2px solid #1e88e5;
-  
 `;
 
 export const deleteButton = css`
   padding: 8px 13px;
-  background-color: #e53935; /* Red */
+  background-color: #e53935;
   color: white;
   border: none;
   border-radius: 8px;
@@ -152,15 +148,15 @@ export const deleteButton = css`
   transition: all 0.3s ease-in-out;
   text-align: center;
   width: auto;
-  display: inline-block; /* Align horizontally */
-  white-space: nowrap; /* Prevent text from wrapping */
+  display: inline-block;
+  white-space: nowrap;
 
   &:hover {
-    background-color: #d32f2f; /* Darker red */
+    background-color: #d32f2f;
   }
 
   &:active {
-    background-color: #c62828; /* Even darker red */
+    background-color: #c62828;
   }
 `;
 
@@ -266,50 +262,49 @@ export const nameText = css`
 export const dataText = css`
   font-weight: bold;
   color: red;
-`
+`;
 export const searchInput = css`
-  width:100%;
-    padding: 10px;
-    border:1px solid #ccc;
-    border-radius:5px;
-    font-size: 16px;
-    outline: none;
-    transition: border-color 0.3s;
-    margin-top: 5px;
-    :focus{
-      border-color: '#007BFF', // 포커스 시 테두리 색상 변경
-
-    }
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s;
+  margin-top: 5px;
+  :focus {
+    border-color: "#007BFF";
+  }
 `;
 
 export const linkStyle = css`
-  color: #007bff; /* 파란색 링크 */
-  font-weight: bold; /* 글자 굵게 */
-  font-size: 25px; /* 크기 조정 */
-  transition: color 0.3s, text-decoration 0.3s; /* 부드러운 호버 효과 */
+  color: #007bff;
+  font-weight: bold;
+  font-size: 25px;
+  transition: color 0.3s, text-decoration 0.3s;
   cursor: pointer;
-  
+
   &:hover {
-    color: #0056b3; /* 호버 시 어두운 파란색 */
-    text-decoration: underline; /* 밑줄 추가 */
-    transform: scale(1.05); /* 호버 시 크기 살짝 커짐 */
+    color: #0056b3;
+    text-decoration: underline;
+    transform: scale(1.05);
   }
-  
+
   &:active {
-    color: #003d80; /* 클릭 시 더 어두운 파란색 */
-    transform: scale(1); /* 클릭 시 크기 원래대로 */
+    color: #003d80;
+    transform: scale(1);
   }
 `;
 
 export const errorMessage = css`
-text-align: center;
+  text-align: center;
   font-size: 16px;
-  color: #d32f2f; 
+  color: #d32f2f;
   font-weight: bold;
   background: #ffccbc;
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid #e57373; 
+  border: 1px solid #e57373;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 `;

@@ -131,19 +131,19 @@ export const paginationButton = css`
 `;
 
 export const paginationButtonActive = css`
-  background-color: rgba(162, 143, 199, 0.8); 
-  color: #ffffff; 
+  background-color: rgba(162, 143, 199, 0.8);
+  color: #ffffff;
   border-color: rgba(162, 143, 199, 1);
 
   &:hover {
-    background-color: rgba(162, 143, 199, 1); 
+    background-color: rgba(162, 143, 199, 1);
   }
 `;
 
 export const arrowButton = css`
-  background-color: rgba(162, 143, 199, 0.2); 
-  border: 1px solid rgba(162, 143, 199, 0.5); 
-  color: rgba(162, 143, 199, 0.8); 
+  background-color: rgba(162, 143, 199, 0.2);
+  border: 1px solid rgba(162, 143, 199, 0.5);
+  color: rgba(162, 143, 199, 0.8);
   border-radius: 4px;
   padding: 8px 12px;
   font-size: 14px;
@@ -180,14 +180,14 @@ export const searchInput = css`
 `;
 
 export const errorMessage = css`
-text-align: center;
+  text-align: center;
   font-size: 16px;
-  color: #d32f2f; 
+  color: #d32f2f;
   font-weight: bold;
   background: #ffccbc;
   padding: 14px;
   border-radius: 12px;
-  border: 1px solid #e57373; 
+  border: 1px solid #e57373;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
   margin-top: 20px;
 `;

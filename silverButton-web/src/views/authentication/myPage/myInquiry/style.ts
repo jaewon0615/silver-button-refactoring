@@ -1,11 +1,11 @@
-import { css } from '@emotion/react';
+import { css } from "@emotion/react";
 
 export const container = css`
   width: 100%;
   height: 100vh;
   padding: 20px 150px;
   margin: 0 auto;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 `;
 
 export const inquiryList = css`
@@ -37,7 +37,7 @@ export const inquiryTitle = css`
   margin-bottom: 10px;
   text-decoration: underline;
   cursor: pointer;
-  &:hover{
+  &:hover {
     color: blue;
   }
 `;
@@ -58,7 +58,7 @@ export const noInquiry = css`
 
 export const deleteButton = css`
   padding: 15px 20px;
-  background-color: #e53935; /* Red */
+  background-color: #e53935;
   color: white;
   border: none;
   border-radius: 8px;
@@ -68,17 +68,17 @@ export const deleteButton = css`
   transition: all 0.3s ease-in-out;
   text-align: center;
   width: auto;
-  display: inline-block; /* Align horizontally */
-  white-space: nowrap; /* Prevent text from wrapping */
+  display: inline-block;
+  white-space: nowrap;
   display: flex;
   justify-content: flex-start;
   margin-left: 30%;
   &:hover {
-    background-color: #d32f2f; /* Darker red */
+    background-color: #d32f2f;
   }
 
   &:active {
-    background-color: #c62828; /* Even darker red */
+    background-color: #c62828;
   }
 `;
 

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
 export const contailner = css`
@@ -84,7 +83,6 @@ export const levelText = (level: number) => css`
   transition: color 0.3s ease-in-out;
   margin-top: 30px;
 
-
   ${level >= 11 &&
   `animation: pulse 1s infinite alternate;
    @keyframes pulse {
@@ -108,14 +106,13 @@ export const modalOverlay = css`
 
 export const modalContent = css`
   background: #fff;
-  padding: 40px; /* Increased padding for more space */
+  padding: 40px;
   border-radius: 12px;
-  width: 90%; /* Increased width to 90% for a larger modal */
-  max-width: 800px; /* Increased max-width */
+  width: 90%;
+  max-width: 800px;
   text-align: center;
-  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.3); /* Increased shadow for better emphasis */
+  box-shadow: 0px 5px 25px rgba(0, 0, 0, 0.3);
 `;
-
 
 export const infoButton = css`
   padding: 12px 25px;
@@ -179,11 +176,9 @@ export const list = css`
 `;
 
 export const indexStyle = css`
-  color: #FF5722;
+  color: #ff5722;
   font-weight: bold;
 `;
-
-// style.ts 파일에 추가할 스타일 예시
 
 export const timerText = css`
   font-size: 1.5rem;
@@ -198,17 +193,21 @@ export const timerText = css`
   width: fit-content;
   margin-left: auto;
   margin-right: auto;
-  font-family: 'Arial', sans-serif;
+  font-family: "Arial", sans-serif;
 
-  /* 게임 테마에 맞는 색상 또는 스타일을 추가 */
-  color: #4caf50; // 초록색 텍스트 (게임의 성공적인 느낌을 주기 위해)
+  color: #4caf50;
 
-  /* 타이머 숫자가 바뀔 때 조금 더 강조되는 효과 */
   animation: timerBlink 1s infinite;
-  
+
   @keyframes timerBlink {
-    0% { opacity: 1; }
-    50% { opacity: 0.7; }
-    100% { opacity: 1; }
+    0% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.7;
+    }
+    100% {
+      opacity: 1;
+    }
   }
 `;

@@ -1,4 +1,3 @@
-/** @jsxImportSource @emotion/react */
 import { css } from "@emotion/react";
 
 export const paginationContainer = css`
@@ -88,23 +87,22 @@ export const card = css`
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   overflow: hidden;
   transition: transform 0.2s ease-in-out;
-  
+
   &:hover {
     transform: translateY(-5px);
   }
 
   @media (max-width: 768px) {
-    width: 100%; // 모바일에서는 한 줄에 1개씩
+    width: 100%;
   }
 `;
 
 export const image = css`
   width: 100%;
   height: 250px;
-  object-fit: cover; /* 이미지가 잘리지 않고 전체가 보이게 */
+  object-fit: cover;
   object-position: center;
   border-radius: 8px;
-  
 `;
 
 export const cardContent = css`
@@ -156,7 +154,7 @@ export const noData = css`
 
 export const deleteButton = css`
   padding: 8px 13px;
-  background-color: #e53935; /* Red */
+  background-color: #e53935;
   color: white;
   border: none;
   border-radius: 8px;
@@ -166,15 +164,15 @@ export const deleteButton = css`
   transition: all 0.3s ease-in-out;
   text-align: center;
   width: auto;
-  display: inline-block; /* Align horizontally */
-  white-space: nowrap; /* Prevent text from wrapping */
+  display: inline-block;
+  white-space: nowrap;
 
   &:hover {
-    background-color: #d32f2f; /* Darker red */
+    background-color: #d32f2f;
   }
 
   &:active {
-    background-color: #c62828; /* Even darker red */
+    background-color: #c62828;
   }
 `;
 
@@ -185,7 +183,7 @@ export const copyButton = css`
   cursor: pointer;
   margin-left: 10px;
   font-size: 1.2em;
-  
+
   &:hover {
     color: #0056b3;
   }

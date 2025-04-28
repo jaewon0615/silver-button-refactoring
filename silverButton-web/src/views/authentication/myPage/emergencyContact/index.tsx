@@ -20,7 +20,9 @@ export interface EmergencyContactType {
 
 export default function EmergencyContact() {
   const { id } = useParams<{ id: string }>();
-  const [emergencyContacts, setEmergencyContacts] = useState<EmergencyContactType[]>([]);
+  const [emergencyContacts, setEmergencyContacts] = useState<
+    EmergencyContactType[]
+  >([]);
   const [cookies] = useCookies(["token"]);
   const [newContact, setNewContact] = useState<EmergencyContactType>({
     id: 0,
@@ -32,8 +34,8 @@ export default function EmergencyContact() {
     createdAt: Date.now(),
     memo: "",
   });
-  
-  const [searchTerm, setSearchTerm] = useState(""); // 검색어 상태 추가
+
+  const [searchTerm, setSearchTerm] = useState("");
 
   useEffect(() => {
     console.log("useParams()로 받은 id:", id);
@@ -49,9 +51,12 @@ export default function EmergencyContact() {
     }
 
     try {
-      const response = await axios.get(`http://localhost:4040/api/v1/emergency-contact/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await axios.get(
+        `http://localhost:4040/api/v1/emergency-contact/${userId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       console.log("API 응답 데이터:", response.data);
       setEmergencyContacts(response.data.data || []);
@@ -66,7 +71,7 @@ export default function EmergencyContact() {
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchTerm(e.target.value); // 검색어 상태 업데이트
+    setSearchTerm(e.target.value);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -79,9 +84,13 @@ export default function EmergencyContact() {
     }
 
     try {
-      await axios.post(`http://localhost:4040/api/v1/emergency-contact/create`, newContact, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.post(
+        `http://localhost:4040/api/v1/emergency-contact/create`,
+        newContact,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
       alert("비상 연락망 등록 완료");
       setNewContact({
@@ -95,7 +104,7 @@ export default function EmergencyContact() {
         memo: "",
       });
 
-      fetchEmergencyContacts(); // 새로 등록 후 목록 갱신
+      fetchEmergencyContacts();
     } catch (error) {
       console.error("Failed to save emergency contact", error);
       alert("비상 연락망 등록에 실패했습니다.");
@@ -108,11 +117,16 @@ export default function EmergencyContact() {
     if (!window.confirm("정말 삭제하시겠습니까?")) return;
 
     try {
-      await axios.delete(`http://localhost:4040/api/v1/emergency-contact/${contactId}`, {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      await axios.delete(
+        `http://localhost:4040/api/v1/emergency-contact/${contactId}`,
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
 
-      setEmergencyContacts((prev) => prev.filter((contact) => contact.id !== contactId));
+      setEmergencyContacts((prev) =>
+        prev.filter((contact) => contact.id !== contactId)
+      );
       alert("비상 연락망이 삭제되었습니다.");
     } catch (error) {
       console.error("Failed to delete emergency contact", error);
@@ -120,77 +134,122 @@ export default function EmergencyContact() {
     }
   };
 
-  // 검색어에 따른 필터링
-  const filteredContacts = emergencyContacts.filter(contact =>
+  const filteredContacts = emergencyContacts.filter((contact) =>
     contact.name.toLowerCase().includes(searchTerm.toLowerCase())
   );
 
   return (
     <div css={s.container}>
       <div css={s.conttSt}>
-      <div css={s.recordContainer}>
-        <h1 css={s.title}>비상 연락망 등록</h1>
-        <form css={s.form} onSubmit={handleSubmit}>
-          <div css={s.inputGroup}>
-            <label css={s.label}>이름</label>
-            <input type="text" name="name" value={newContact.name} onChange={handleInputChange} placeholder="예: 홍길동" required css={s.input} />
-          </div>
-          <div css={s.inputGroup}>
-            <label css={s.label}>관계</label>
-            <input type="text" name="relation" value={newContact.relation} onChange={handleInputChange} placeholder="예: 자녀" required css={s.input} />
-          </div>
-          <div css={s.inputGroup}>
-            <label css={s.label}>휴대폰</label>
-            <input type="text" name="phone" value={newContact.phone} onChange={handleInputChange} placeholder="예: 010-0000-0000" required css={s.input} />
-          </div>
-          <div css={s.inputGroup}>
-            <label css={s.label}>주소</label>
-            <input type="text" name="address" value={newContact.address} onChange={handleInputChange} placeholder="예: 00시 00구 00동 00로" required css={s.input} />
-          </div>
-          <div css={s.inputGroup}>
-            <label css={s.label}>메모</label>
-            <input type="text" name="memo" value={newContact.memo} onChange={handleInputChange} placeholder="예: 기타 메모"  css={s.input} />
-          </div>
-          <button type="submit" css={s.submitButton}>비상 연락망 등록</button>
-        </form>
-      </div>
+        <div css={s.recordContainer}>
+          <h1 css={s.title}>비상 연락망 등록</h1>
+          <form css={s.form} onSubmit={handleSubmit}>
+            <div css={s.inputGroup}>
+              <label css={s.label}>이름</label>
+              <input
+                type="text"
+                name="name"
+                value={newContact.name}
+                onChange={handleInputChange}
+                placeholder="예: 홍길동"
+                required
+                css={s.input}
+              />
+            </div>
+            <div css={s.inputGroup}>
+              <label css={s.label}>관계</label>
+              <input
+                type="text"
+                name="relation"
+                value={newContact.relation}
+                onChange={handleInputChange}
+                placeholder="예: 자녀"
+                required
+                css={s.input}
+              />
+            </div>
+            <div css={s.inputGroup}>
+              <label css={s.label}>휴대폰</label>
+              <input
+                type="text"
+                name="phone"
+                value={newContact.phone}
+                onChange={handleInputChange}
+                placeholder="예: 010-0000-0000"
+                required
+                css={s.input}
+              />
+            </div>
+            <div css={s.inputGroup}>
+              <label css={s.label}>주소</label>
+              <input
+                type="text"
+                name="address"
+                value={newContact.address}
+                onChange={handleInputChange}
+                placeholder="예: 00시 00구 00동 00로"
+                required
+                css={s.input}
+              />
+            </div>
+            <div css={s.inputGroup}>
+              <label css={s.label}>메모</label>
+              <input
+                type="text"
+                name="memo"
+                value={newContact.memo}
+                onChange={handleInputChange}
+                placeholder="예: 기타 메모"
+                css={s.input}
+              />
+            </div>
+            <button type="submit" css={s.submitButton}>
+              비상 연락망 등록
+            </button>
+          </form>
+        </div>
 
-      <div css={s.recordContainer}>
-        <h1 css={s.resultText}>비상 연락망 목록</h1>
-        <h1 css={s.search}>검색</h1>
-        <input
-          type="text"
-          placeholder="이름으로 검색..."
-          value={searchTerm}
-          onChange={handleSearchChange}
-          css={s.searchInput} // 기존 CSS 사용
-        />
-        <div css={{ maxHeight: '70%', overflowY: 'auto' }}> {/* 스크롤을 위한 컨테이너 */}
-          {filteredContacts.length > 0 ? (
-            filteredContacts.map((record) => (
-              <div key={record.id} css={s.recordItem}>
-                <div>
-                  <h3 css={s.nameText}>이름: {record.name}</h3>
-                  <h3 css={s.resultPageText}>관계: {record.relation}</h3>
-                  <h3 css={s.resultPageText}>휴대폰: {record.phone}</h3>
-                  <h3 css={s.resultPageText}>주소: {record.address}</h3>
-                  <h3 css={s.resultPageText}>기타메모: {record.memo}</h3>
-                  <h3 css={s.resultPageText}>기록 일시: {new Date(record.createdAt).toLocaleDateString()}</h3>
+        <div css={s.recordContainer}>
+          <h1 css={s.resultText}>비상 연락망 목록</h1>
+          <h1 css={s.search}>검색</h1>
+          <input
+            type="text"
+            placeholder="이름으로 검색..."
+            value={searchTerm}
+            onChange={handleSearchChange}
+            css={s.searchInput}
+          />
+          <div css={{ maxHeight: "70%", overflowY: "auto" }}>
+            {filteredContacts.length > 0 ? (
+              filteredContacts.map((record) => (
+                <div key={record.id} css={s.recordItem}>
+                  <div>
+                    <h3 css={s.nameText}>이름: {record.name}</h3>
+                    <h3 css={s.resultPageText}>관계: {record.relation}</h3>
+                    <h3 css={s.resultPageText}>휴대폰: {record.phone}</h3>
+                    <h3 css={s.resultPageText}>주소: {record.address}</h3>
+                    <h3 css={s.resultPageText}>기타메모: {record.memo}</h3>
+                    <h3 css={s.resultPageText}>
+                      기록 일시:{" "}
+                      {new Date(record.createdAt).toLocaleDateString()}
+                    </h3>
+                  </div>
+                  <div>
+                    <button
+                      onClick={() => handleDelete(record.id)}
+                      css={s.deleteButton}
+                    >
+                      <FaTrash />
+                    </button>
+                  </div>
                 </div>
-                <div>
-                <button onClick={() => handleDelete(record.id)} css={s.deleteButton}>
-            <FaTrash />
-          </button>
-                </div>
-              </div>
-            ))
-          ) : (
-            <p css={s.errorMessage}>등록된 연락처가 없습니다.</p>
-          )}
+              ))
+            ) : (
+              <p css={s.errorMessage}>등록된 연락처가 없습니다.</p>
+            )}
+          </div>
         </div>
       </div>
-      </div>
-      
     </div>
   );
 }
